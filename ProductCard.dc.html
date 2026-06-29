@@ -23,6 +23,13 @@
     </sc-if>
     <a href="#/producto/{{ c.id }}" style="text-decoration:none"><h3 style="font-family:'Hanken Grotesk',sans-serif;font-size:17px;font-weight:700;color:#0B2440;line-height:1.22;letter-spacing:-.01em">{{ c.nombre }}</h3></a>
     <p style="font-size:13px;color:#5A6B7B;line-height:1.5;flex:1">{{ c.investigacion }}</p>
+    <sc-if value="{{ c.hasCaps }}" hint-placeholder-val="{{ false }}">
+      <div style="display:flex;flex-wrap:wrap;gap:6px">
+        <sc-for list="{{ c.caps }}" as="cap" hint-placeholder-count="3">
+          <button onClick="{{ cap.onClick }}" style="{{ cap.style }}">{{ cap.label }}</button>
+        </sc-for>
+      </div>
+    </sc-if>
     <div>
       <div style="display:flex;align-items:baseline;gap:7px;flex-wrap:wrap">
         <sc-if value="{{ c.desde }}" hint-placeholder-val="{{ false }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7E93A8;text-transform:uppercase;letter-spacing:.06em">desde</span></sc-if>
