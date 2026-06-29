@@ -319,84 +319,225 @@ input{font:inherit}
     <!-- ================= PRODUCTO (detalle) ================= -->
     <sc-if value="{{ isProducto }}" hint-placeholder-val="{{ false }}">
       <sc-if value="{{ product }}" hint-placeholder-val="{{ false }}">
-        <section style="background:#fff">
-          <div style="max-width:1180px;margin:0 auto;width:100%;padding:24px clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
+        <section style="background:#F8FAFC">
+          <div style="max-width:1180px;margin:0 auto;width:100%;padding:24px clamp(20px,5vw,56px) clamp(40px,5vw,56px)">
             <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#7E93A8;display:flex;gap:8px;flex-wrap:wrap">
               <a href="#/inicio" style="color:#7E93A8;text-decoration:none" style-hover="color:#0E5FB5">Inicio</a><span>/</span>
               <a href="#/catalogo" style="color:#7E93A8;text-decoration:none" style-hover="color:#0E5FB5">Catálogo</a><span>/</span>
               <span style="color:#0B2440">{{ product.nombre }}</span>
             </div>
 
-            <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(28px,5vw,56px);align-items:start">
+            <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(20px,3vw,28px);align-items:stretch">
               <!-- media -->
-              <div style="position:relative;border:1px solid #E2E8F0;border-radius:12px;background:#F4F7FB;background-image:linear-gradient(#E5ECF4 1px,transparent 1px),linear-gradient(90deg,#E5ECF4 1px,transparent 1px);background-size:26px 26px;aspect-ratio:1/1;min-height:300px;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
-                <svg width="108" height="108" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg>
-                <div style="position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 16px;border-top:1px solid #E2E8F0;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.03em;color:#5A6B7B">
-                  <span>LOTE · COA</span><span style="color:#0E5FB5;font-weight:500">Producido en EE. UU.</span>
-                </div>
+              <div style="position:relative;border:1px solid #E2E8F0;border-radius:16px;background:#fff;min-height:380px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+                <div style="position:absolute;inset:0;background:radial-gradient(120% 120% at 30% 20%,#EAF2FB 0%,#F4F7FB 55%,#EDE7F3 100%)"></div>
+                <svg width="128" height="128" viewBox="0 0 24 24" fill="none" stroke="#9DB1C7" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:1"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg>
+                <span style="position:absolute;left:14px;bottom:14px;z-index:1;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:#5A6B7B;background:#fff;border:1px solid #E2E8F0;border-radius:5px;padding:3px 9px">{{ product.presentacion }}</span>
               </div>
 
-              <!-- info -->
-              <div style="display:flex;flex-direction:column;gap:18px">
+              <!-- caja de compra -->
+              <div style="border:1px solid #E2E8F0;border-radius:16px;background:#fff;padding:clamp(22px,3vw,30px);display:flex;flex-direction:column;gap:16px">
+                <div style="font-family:'IBM Plex Sans',sans-serif;font-style:italic;font-size:13.5px;color:#7E93A8">{{ product.subtitulo }}</div>
+                <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.08;letter-spacing:-.02em;color:#0B2440;margin-top:-6px">{{ product.nombre }}</h1>
+
+                <sc-if value="{{ product.hasNombres }}" hint-placeholder-val="{{ false }}">
+                  <div style="display:flex;flex-wrap:wrap;gap:8px">
+                    <sc-for list="{{ product.nombresCientificos }}" as="n" hint-placeholder-count="2">
+                      <span style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#3A4855;background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:5px 12px">{{ n }}</span>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;line-height:1.6;color:#5A6B7B">{{ product.descripcion }}</p>
+
+                <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
+                  <sc-if value="{{ product.enStock }}" hint-placeholder-val="{{ true }}">
+                    <span style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;color:#15875A;background:rgba(31,169,113,.12);padding:5px 11px;border-radius:6px"><span style="width:7px;height:7px;border-radius:50%;background:#1FA971;display:inline-block"></span>En stock</span>
+                  </sc-if>
+                  <sc-if value="{{ product.sinStock }}" hint-placeholder-val="{{ false }}">
+                    <span style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;color:#B45309;background:rgba(180,83,9,.1);padding:5px 11px;border-radius:6px"><span style="width:7px;height:7px;border-radius:50%;background:#D9962B;display:inline-block"></span>Sin stock</span>
+                  </sc-if>
+                </div>
+
+                <div style="height:1px;background:#EEF2F7"></div>
+
+                <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
+                  <sc-if value="{{ product.hasVariantes }}" hint-placeholder-val="{{ true }}">
+                    <div>
+                      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:700;color:#0B2440;margin-bottom:9px">Dosis</div>
+                      <div style="display:flex;flex-wrap:wrap;gap:9px">
+                        <sc-for list="{{ product.variantes }}" as="v" hint-placeholder-count="2">
+                          <button onClick="{{ v.onClick }}" style="{{ v.style }}">{{ v.label }}</button>
+                        </sc-for>
+                      </div>
+                    </div>
+                  </sc-if>
+                  <div style="text-align:right;margin-left:auto">
+                    <sc-if value="{{ product.hasVariantes }}" hint-placeholder-val="{{ false }}"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7E93A8;text-transform:uppercase;letter-spacing:.06em">Desde</div></sc-if>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:clamp(26px,3.6vw,32px);color:#0B2440;letter-spacing:-.01em">{{ product.usdText }}</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#5A6B7B">{{ product.arsText }}</div>
+                  </div>
+                </div>
+
                 <sc-if value="{{ product.enStock }}" hint-placeholder-val="{{ true }}">
-                  <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;color:#15875A;background:rgba(31,169,113,.12);padding:5px 11px;border-radius:6px"><span style="width:7px;height:7px;border-radius:50%;background:#1FA971;display:inline-block"></span>En stock</span>
+                  <div style="display:flex;align-items:center;gap:12px">
+                    <span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:700;color:#0B2440">Cantidad</span>
+                    <div style="display:inline-flex;align-items:center;border:1px solid #CBD5E1;border-radius:8px;overflow:hidden;background:#fff">
+                      <button onClick="{{ decDetail }}" aria-label="Restar" style="width:42px;height:44px;border:none;background:#fff;color:#0B2440;font-size:20px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:#F4F7FB">−</button>
+                      <span style="min-width:40px;text-align:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px;color:#0B2440">{{ detailQty }}</span>
+                      <button onClick="{{ incDetail }}" aria-label="Sumar" style="width:42px;height:44px;border:none;background:#fff;color:#0B2440;font-size:20px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:#F4F7FB">+</button>
+                    </div>
+                  </div>
+                  <div style="display:flex;gap:10px;align-items:stretch">
+                    <sc-if value="{{ product.hasCoaBtn }}" hint-placeholder-val="{{ false }}">
+                      <button onClick="{{ product.onViewCoaPrincipal }}" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:0 18px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;transition:background .15s" style-hover="background:#F4F7FB"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg>COA</button>
+                    </sc-if>
+                    <button onClick="{{ addToCart }}" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;transition:background .15s,transform .12s" style-hover="background:#0B4E97;transform:translateY(-1px)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.3"></circle><circle cx="18" cy="20" r="1.3"></circle><path d="M2.5 3h2.2l2 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.6-1.3L21 7H6.2"></path></svg>Agregar al carrito</button>
+                  </div>
                 </sc-if>
                 <sc-if value="{{ product.sinStock }}" hint-placeholder-val="{{ false }}">
-                  <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;color:#B45309;background:rgba(180,83,9,.1);padding:5px 11px;border-radius:6px"><span style="width:7px;height:7px;border-radius:50%;background:#D9962B;display:inline-block"></span>Sin stock</span>
+                  <a href="{{ product.whatsappHref }}" target="_blank" rel="noopener" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:8px;padding:15px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:15px;text-decoration:none;transition:background .15s,color .15s" style-hover="background:#0E5FB5;color:#fff">Consultar por disponibilidad</a>
                 </sc-if>
 
-                <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,38px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">{{ product.nombre }}</h1>
+                <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border:1px solid #EEF2F7;border-radius:10px;background:#FAFBFD;padding:14px 10px;text-align:center">
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"></rect><path d="M16 8h4l3 3v5h-7"></path><circle cx="5.5" cy="18.5" r="2"></circle><circle cx="18.5" cy="18.5" r="2"></circle></svg><span style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.3;color:#5A6B7B">Despacho<br>en 24 h hábiles</span></div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v4.4c0 4.6-3.4 7.8-8.4 9.15-5-1.35-8.4-4.55-8.4-9.15v-4.4z"></path><path d="m9 12 2 2 4-4"></path></svg><span style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.3;color:#5A6B7B">Embalaje<br>con cadena de frío</span></div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg><span style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.3;color:#5A6B7B">Pago seguro<br>transf · MP · USDT</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
 
-                <sc-if value="{{ product.hasVariantes }}" hint-placeholder-val="{{ false }}">
-                  <div>
-                    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#0B2440;margin-bottom:10px">Presentación</div>
-                    <div style="display:flex;flex-wrap:wrap;gap:10px">
-                      <sc-for list="{{ product.variantes }}" as="v" hint-placeholder-count="2">
-                        <button onClick="{{ v.onClick }}" style="{{ v.style }}">{{ v.label }}</button>
+        <!-- ===== CERTIFICADO DE ANÁLISIS (COA) ===== -->
+        <sc-if value="{{ product.hasCoa }}" hint-placeholder-val="{{ false }}">
+          <section style="background:#fff">
+            <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px)">
+              <div style="display:flex;align-items:center;gap:13px;margin-bottom:24px">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:rgba(31,169,113,.12);color:#15875A;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.5L5.5 18a2 2 0 0 0 1.8 3h9.4a2 2 0 0 0 1.8-3L14 8.5V3"></path></svg></span>
+                <div>
+                  <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,28px);color:#0B2440;letter-spacing:-.01em">Certificado de Análisis</h2>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#5A6B7B;margin-top:2px">Testeado por laboratorio externo · {{ product.coaLab }}</div>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:18px">
+                <sc-for list="{{ product.coaCards }}" as="coa" hint-placeholder-count="1">
+                  <div style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:20px 18px;display:flex;flex-direction:column;gap:14px">
+                    <div style="display:flex;flex-wrap:wrap;gap:6px">
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.05em;color:#fff;background:#0B2440;border-radius:5px;padding:3px 8px">ÚLTIMO</span>
+                      <sc-if value="{{ coa.hasNTests }}" hint-placeholder-val="{{ false }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.05em;color:#0E5FB5;background:rgba(14,95,181,.1);border-radius:5px;padding:3px 8px">{{ coa.nTestsText }}</span></sc-if>
+                    </div>
+                    <div style="text-align:center;padding:6px 0">
+                      <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:38px;color:#15875A;line-height:1;letter-spacing:-.02em">{{ coa.pureza }}</div>
+                      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;color:#7E93A8;text-transform:uppercase;margin-top:4px">Pureza</div>
+                      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#15875A;margin-top:8px">✓ Pasó el panel QC completo</div>
+                    </div>
+                    <div style="border:1px solid #EEF2F7;border-radius:9px;overflow:hidden">
+                      <div style="display:flex;justify-content:space-between;gap:10px;padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;border-bottom:1px solid #EEF2F7"><span style="color:#94A3B8">Variante</span><span style="color:#1C2733;text-align:right">{{ coa.variante }}</span></div>
+                      <div style="display:flex;justify-content:space-between;gap:10px;padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;border-bottom:1px solid #EEF2F7"><span style="color:#94A3B8">Lote #</span><span style="color:#1C2733;text-align:right">{{ coa.lote }}</span></div>
+                      <div style="display:flex;justify-content:space-between;gap:10px;padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;border-bottom:1px solid #EEF2F7"><span style="color:#94A3B8">Rotulado</span><span style="color:#1C2733;text-align:right">{{ coa.rotulado }}</span></div>
+                      <div style="display:flex;justify-content:space-between;gap:10px;padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;border-bottom:1px solid #EEF2F7"><span style="color:#94A3B8">Real</span><span style="color:#15875A;text-align:right">{{ coa.real }}</span></div>
+                      <div style="display:flex;justify-content:space-between;gap:10px;padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:11.5px"><span style="color:#94A3B8">Analizado</span><span style="color:#1C2733;text-align:right">{{ coa.fecha }}</span></div>
+                    </div>
+                    <div style="border:1px solid #EEF2F7;border-radius:9px;background:#FAFBFD;padding:11px 13px">
+                      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0B2440;margin-bottom:8px">Panel QC completo</div>
+                      <sc-for list="{{ coa.panel }}" as="row" hint-placeholder-count="4">
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 0;font-family:'IBM Plex Sans',sans-serif;font-size:12px"><span style="color:#5A6B7B">{{ row.k }}</span><span style="color:#1C2733;display:inline-flex;align-items:center;gap:5px;text-align:right">{{ row.v }} <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#15875A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg></span></div>
                       </sc-for>
                     </div>
+                    <sc-if value="{{ coa.hasPdf }}" hint-placeholder-val="{{ true }}">
+                      <button onClick="{{ coa.onView }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0B2440;color:#fff;border:none;border-radius:8px;padding:12px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;transition:background .15s" style-hover="background:#16335a"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg>Ver COA</button>
+                    </sc-if>
                   </div>
-                </sc-if>
+                </sc-for>
+              </div>
+            </div>
+          </section>
+        </sc-if>
 
+        <!-- ===== INFORMACIÓN DEL COMPUESTO ===== -->
+        <sc-if value="{{ product.hasCompound }}" hint-placeholder-val="{{ false }}">
+          <section style="background:#F8FAFC">
+            <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px)">
+              <div style="display:flex;align-items:center;gap:13px;margin-bottom:24px">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:rgba(14,95,181,.1);color:#0E5FB5;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v6.5L2.5 18a2 2 0 0 0 1.8 3h15.4a2 2 0 0 0 1.8-3L19 9.5V3"></path><path d="M5 3h14M7 14h10"></path></svg></span>
                 <div>
-                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#0B2440;margin-bottom:6px">Para qué se investiga</div>
-                  <p style="font-family:'IBM Plex Sans',sans-serif;font-size:15.5px;line-height:1.65;color:#5A6B7B">{{ product.investigacion }}</p>
-                </div>
-
-                <div style="border-top:1px solid #E2E8F0">
-                  <div style="display:flex;gap:16px;padding:11px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:104px;color:#94A3B8;letter-spacing:.03em">ORIGEN</span><span style="color:#1C2733">Estados Unidos</span></div>
-                  <div style="display:flex;gap:16px;padding:11px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:104px;color:#94A3B8;letter-spacing:.03em">PRESENTACIÓN</span><span style="color:#1C2733">{{ product.presentacion }}</span></div>
-                  <div style="display:flex;gap:16px;padding:11px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:104px;color:#94A3B8;letter-spacing:.03em">FORMA</span><span style="color:#1C2733">{{ product.forma }}</span></div>
-                  <div style="display:flex;gap:16px;padding:11px 0;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:104px;color:#94A3B8;letter-spacing:.03em">COA</span><span style="color:#1C2733">Disponible por lote</span></div>
-                </div>
-
-                <div style="border:1px solid #E2E8F0;border-radius:10px;background:#F8FAFC;padding:18px 20px">
-                  <div style="display:flex;align-items:baseline;gap:9px;flex-wrap:wrap">
-                    <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:clamp(28px,4vw,34px);color:#0B2440;letter-spacing:-.01em">{{ product.usdText }}</span>
-                  </div>
-                  <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:#5A6B7B;margin-top:4px">{{ product.arsText }}</div>
-                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:#94A3B8;margin-top:10px">Cotización dólar blue (venta) + $10 · actualizada periódicamente.</div>
-                </div>
-
-                <sc-if value="{{ product.enStock }}" hint-placeholder-val="{{ true }}">
-                  <div style="display:flex;gap:12px;align-items:stretch">
-                    <div style="display:inline-flex;align-items:center;border:1px solid #CBD5E1;border-radius:8px;overflow:hidden;background:#fff">
-                      <button onClick="{{ decDetail }}" aria-label="Restar" style="width:46px;height:100%;min-height:50px;border:none;background:#fff;color:#0B2440;font-size:20px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:#F4F7FB">−</button>
-                      <span style="min-width:42px;text-align:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px;color:#0B2440">{{ detailQty }}</span>
-                      <button onClick="{{ incDetail }}" aria-label="Sumar" style="width:46px;height:100%;min-height:50px;border:none;background:#fff;color:#0B2440;font-size:20px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:#F4F7FB">+</button>
-                    </div>
-                    <button onClick="{{ addToCart }}" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15.5px;cursor:pointer;transition:background .15s" style-hover="background:#0B4E97"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.3"></circle><circle cx="18" cy="20" r="1.3"></circle><path d="M2.5 3h2.2l2 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.6-1.3L21 7H6.2"></path></svg>Agregar al carrito</button>
-                  </div>
-                </sc-if>
-                <sc-if value="{{ product.sinStock }}" hint-placeholder-val="{{ false }}">
-                  <a href="{{ product.whatsappHref }}" target="_blank" rel="noopener" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:8px;padding:15px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;transition:background .15s,color .15s" style-hover="background:#0E5FB5;color:#fff">Consultar por disponibilidad</a>
-                </sc-if>
-
-                <div style="border:1px solid #E2E8F0;border-radius:8px;background:#F8FAFC;padding:14px 16px">
-                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0B2440;margin-bottom:6px">Aviso legal</div>
-                  <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.6;color:#5A6B7B">{{ disclaimer }}</p>
+                  <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,28px);color:#0B2440;letter-spacing:-.01em">Información del compuesto</h2>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#5A6B7B;margin-top:2px">Especificaciones técnicas</div>
                 </div>
               </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;align-items:start">
+                <div style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:22px 22px 18px">
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0E5FB5;margin-bottom:6px">Perfil molecular</div>
+                  <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:19px;color:#0B2440;margin-bottom:14px">¿Qué es {{ product.nombre }}?</h3>
+                  <div>
+                    <sc-for list="{{ product.compoundRows }}" as="r" hint-placeholder-count="6">
+                      <div style="display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid #EEF2F7;font-family:'IBM Plex Sans',sans-serif;font-size:13px"><span style="color:#7E93A8">{{ r.k }}</span><span style="color:#1C2733;font-weight:600;text-align:right">{{ r.v }}</span></div>
+                    </sc-for>
+                  </div>
+                  <sc-if value="{{ product.hasFuente }}" hint-placeholder-val="{{ false }}">
+                    <a href="{{ product.fuenteUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#0E5FB5;text-decoration:none" style-hover="text-decoration:underline"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"></path></svg>Base de datos PubChem</a>
+                  </sc-if>
+                </div>
+                <sc-if value="{{ product.hasStorage }}" hint-placeholder-val="{{ false }}">
+                  <div style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:22px 22px 18px">
+                    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0E5FB5;margin-bottom:6px">Conservación</div>
+                    <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:19px;color:#0B2440;margin-bottom:14px">Estabilidad y almacenamiento</h3>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
+                      <sc-for list="{{ product.storageNotas }}" as="nota" hint-placeholder-count="3">
+                        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#3A4855;background:#F4F7FB;border:1px solid #E2E8F0;border-radius:20px;padding:5px 12px">{{ nota }}</span>
+                      </sc-for>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;border:1px solid #EEF2F7;border-radius:10px;background:#FAFBFD;padding:12px 14px;margin-bottom:10px">
+                      <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:#EAF2FB;color:#0E5FB5;flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11"></path></svg></span>
+                      <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#0B2440">Liofilizado (polvo)</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#5A6B7B">{{ product.storageLiofilizado }}</div></div>
+                    </div>
+                    <div style="display:flex;align-items:center;gap:12px;border:1px solid #EEF2F7;border-radius:10px;background:#FAFBFD;padding:12px 14px">
+                      <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:rgba(31,169,113,.12);color:#15875A;flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2l4 4M17 3l3 3-9.5 9.5-3.8.8.8-3.8z"></path><path d="M3 21l4.5-1"></path></svg></span>
+                      <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#0B2440">Reconstituido</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#5A6B7B">{{ product.storageReconstituido }}</div></div>
+                    </div>
+                  </div>
+                </sc-if>
+              </div>
+            </div>
+          </section>
+        </sc-if>
+
+        <!-- ===== FUENTES Y REFERENCIAS ===== -->
+        <sc-if value="{{ product.hasRefs }}" hint-placeholder-val="{{ false }}">
+          <section style="background:#fff">
+            <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px)">
+              <div style="display:flex;align-items:center;gap:13px;margin-bottom:24px">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:rgba(14,95,181,.1);color:#0E5FB5;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"></path><path d="M14 3v5h5M8 13h8M8 17h6"></path></svg></span>
+                <div>
+                  <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,28px);color:#0B2440;letter-spacing:-.01em">Fuentes y referencias</h2>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#5A6B7B;margin-top:2px">Investigación revisada por pares</div>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px">
+                <sc-for list="{{ product.referencias }}" as="ref" hint-placeholder-count="4">
+                  <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:18px 18px;display:flex;flex-direction:column;gap:9px">
+                    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#15875A;line-height:1.3">{{ ref.journal }}</div>
+                    <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:14px;line-height:1.35;color:#0B2440">{{ ref.titulo }}</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#7E93A8">{{ ref.anio }}<sc-if value="{{ ref.hasId }}" hint-placeholder-val="{{ false }}"> · {{ ref.idLabel }}</sc-if></div>
+                    <div style="font-family:'IBM Plex Sans',sans-serif;font-style:italic;font-size:12px;color:#5A6B7B">{{ ref.autores }}</div>
+                    <sc-if value="{{ ref.hasUrl }}" hint-placeholder-val="{{ false }}">
+                      <a href="{{ ref.url }}" target="_blank" rel="noopener" style="margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#0E5FB5;text-decoration:none" style-hover="text-decoration:underline">Ver fuente <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"></path></svg></a>
+                    </sc-if>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+          </section>
+        </sc-if>
+
+        <!-- ===== AVISO IMPORTANTE DE INVESTIGACIÓN ===== -->
+        <section style="background:#fff">
+          <div style="max-width:1180px;margin:0 auto;width:100%;padding:0 clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
+            <div style="border:1px solid #F3D9A4;border-radius:12px;background:#FFFBF2;padding:20px 22px">
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.2 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.2a2 2 0 0 0-3.4 0z"></path><path d="M12 9v4M12 17h.01"></path></svg><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#B45309">Aviso importante de investigación</span></div>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:#5A6B7B"><strong style="color:#3A4855">No apto para consumo humano ni veterinario.</strong> Producto destinado exclusivamente a investigación in vitro y de laboratorio. No es un medicamento, no está registrado ni aprobado por ANMAT, y no diagnostica, trata, cura ni previene ninguna enfermedad.</p>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:#5A6B7B;margin-top:8px">Los datos de investigación citados provienen de publicaciones revisadas por pares y se ofrecen solo como referencia educativa; no constituyen asesoramiento médico ni afirmaciones sobre el producto. Al comprar, confirmás que sos un investigador calificado y que usarás el producto conforme a la normativa vigente.</p>
             </div>
           </div>
         </section>
@@ -857,6 +998,24 @@ input{font:inherit}
     <div style="position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:70;background:#0B2440;color:#fff;padding:12px 18px;border-radius:8px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;box-shadow:0 12px 32px -8px rgba(11,36,64,.5);animation:amToast .2s ease;max-width:90vw;text-align:center">{{ toast }}</div>
   </sc-if>
 
+  <!-- ================= MODAL COA (visor de PDF) ================= -->
+  <div style="{{ coaModalWrapStyle }}">
+    <div onClick="{{ closeCoa }}" style="position:absolute;inset:0;z-index:0;cursor:pointer"></div>
+    <div style="{{ coaModalPanelStyle }}">
+      <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid #E2E8F0;flex-shrink:0">
+        <div style="display:flex;align-items:center;gap:10px;min-width:0">
+          <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:rgba(31,169,113,.12);color:#15875A;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.5L5.5 18a2 2 0 0 0 1.8 3h9.4a2 2 0 0 0 1.8-3L14 8.5V3"></path></svg></span>
+          <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;color:#0B2440;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Certificado de Análisis</span>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
+          <a href="{{ coaModalUrl }}" target="_blank" rel="noopener" download style="display:inline-flex;align-items:center;gap:7px;border:1px solid #CBD5E1;border-radius:8px;padding:8px 13px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;color:#0B2440;text-decoration:none;transition:background .15s" style-hover="background:#F4F7FB"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"></path></svg>Descargar</a>
+          <button onClick="{{ closeCoa }}" aria-label="Cerrar" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid #E2E8F0;border-radius:8px;background:#fff;color:#0B2440;cursor:pointer;transition:background .15s" style-hover="background:#F4F7FB"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
+        </div>
+      </div>
+      <iframe src="{{ coaModalUrl }}" title="Certificado de Análisis" style="flex:1;width:100%;border:none;background:#525659"></iframe>
+    </div>
+  </div>
+
   <!-- ================= GATE: VERIFICACIÓN DE INVESTIGADOR / +18 (cada carga) ================= -->
   <div style="{{ ageGateWrapStyle }}">
 
@@ -960,6 +1119,54 @@ class Component extends DCLogic {
     { q: "¿Cuánto tarda el envío?", a: "Despachamos dentro de las 24 horas hábiles una vez confirmado el pago. El tiempo de tránsito depende de Andreani y de tu localidad de destino." },
   ];
 
+  // ====== FICHAS TÉCNICAS POR PRODUCTO (compuesto + conservación + COA + referencias) ======
+  // Datos ricos para la página de producto, keyed por id. Si un id no está acá, la ficha
+  // muestra solo lo básico (las secciones extra se ocultan). Se cargan progresivamente.
+  FICHAS = {
+    "ghk-cu": {
+      subtitulo: "Compuesto dérmico · cobre-péptido",
+      nombresCientificos: ["Cobre Tripéptido-1", "Glicil-L-histidil-L-lisina:cobre"],
+      descripcion: "Tripéptido de cobre natural estudiado por su rol en la remodelación de tejido, la cicatrización y la síntesis de colágeno en estudios in vitro y en animales. Péptido de investigación premium.",
+      compuesto: {
+        tipo: "Complejo cobre-péptido",
+        cas: "49557-75-7",
+        pesoMolecular: "340,38 g/mol (péptido libre)",
+        pesoMolecularCu: "401,91 g/mol (con cobre)",
+        aminoacidos: "3 (tripéptido)",
+        secuencia: "Gly-His-Lys",
+        formula: "C14H24N6O4·Cu",
+      },
+      fuenteUrl: "https://pubchem.ncbi.nlm.nih.gov/compound/73754",
+      conservacion: {
+        notas: ["Proteger de la luz", "Evitar congelado/descongelado repetido", "El color azul indica unión al cobre"],
+        liofilizado: "-20 °C · hasta 2 años",
+        reconstituido: "2-8 °C · hasta 30 días",
+      },
+      coas: [
+        {
+          variante: "GHK-Cu 50 mg", lote: "GHK50GA-03", pureza: "98,915%",
+          rotulado: "50 mg", real: "54,10 mg", fecha: "26/05/2026",
+          lab: "Kovera Labs", reporte: "KVR-2026-3AA240", nTests: 3,
+          panel: [
+            { k: "Pureza (RP-HPLC)", v: "98,915%" },
+            { k: "Contenido neto de péptido", v: "54,10 mg" },
+            { k: "Identidad (LC-MS)", v: "Confirmada" },
+            { k: "Esterilidad microbiana", v: "Sin crecimiento" },
+            { k: "Endotoxinas", v: "< 0,5 EU/mL" },
+            { k: "Metales pesados (As/Cd/Pb/Hg)", v: "Negativo" },
+          ],
+          pdfUrl: "coa/GHK-Cu_GHK50GA-03_COA.pdf",
+        },
+      ],
+      referencias: [
+        { journal: "International Journal of Molecular Sciences", titulo: "Regenerative and Protective Actions of the GHK-Cu Peptide in the Light of the New Gene Data", anio: "2018", autores: "Pickart L, Margolina A", idLabel: "PMID: 29986520", url: "https://pubmed.ncbi.nlm.nih.gov/29986520/" },
+        { journal: "BioMed Research International", titulo: "GHK Peptide as a Natural Modulator of Multiple Cellular Pathways in Skin Regeneration", anio: "2015", autores: "Pickart L, Vasquez-Soltero JM, Margolina A", idLabel: "PMID: 26236730", url: "https://pubmed.ncbi.nlm.nih.gov/26236730/" },
+        { journal: "Journal of Cosmetic Science", titulo: "Estudio doble ciego controlado con placebo de crema facial con GHK-Cu (12 semanas)", anio: "2005", autores: "Finkley et al.", idLabel: "", url: "" },
+        { journal: "Journal of Aging Science and Clinical Practice", titulo: "Efectos de GHK-Cu en nanovehículos sobre la expresión de MMP y parámetros de arrugas faciales", anio: "2009", autores: "Gorouhi F, Maibach HI", idLabel: "", url: "" },
+      ],
+    },
+  };
+
   state = {
     page: "inicio",      // inicio | catalogo | producto | carrito | medios-pago | nosotros | envios | faq | contacto
     productId: null,
@@ -970,6 +1177,7 @@ class Component extends DCLogic {
     ageConfirmed: false, // gate de verificación: arranca en false → se muestra en cada carga
     chkAge: false,        // checkbox "soy mayor de 18"
     chkResearcher: false, // checkbox "compro solo para investigación"
+    coaModal: "",         // URL del PDF del COA abierto en el popup ("" = cerrado)
     cardVariant: {},     // { productId: variantIndex } — capacidad elegida en cada card del catálogo
     query: "",
     sort: "destacados",   // destacados | nombre | precio-asc | precio-desc
@@ -1290,6 +1498,8 @@ class Component extends DCLogic {
   toggleChkResearcher = () => this.setState((s) => ({ chkResearcher: !s.chkResearcher }));
   confirmAge = () => { if (this.state.chkAge && this.state.chkResearcher) this.setState({ ageConfirmed: true }); };
   rejectAge = () => { if (typeof window !== "undefined") window.location.href = "https://www.google.com"; };
+  openCoa = (url) => this.setState({ coaModal: url });
+  closeCoa = () => this.setState({ coaModal: "" });
   incItem = (key) => this.setState((s) => ({ cart: s.cart.map((it) => it.key === key ? { ...it, qty: it.qty + 1 } : it) }));
   decItem = (key) => this.setState((s) => ({ cart: s.cart.map((it) => it.key === key ? { ...it, qty: Math.max(1, it.qty - 1) } : it) }));
   removeItem = (key) => this.setState((s) => ({ cart: s.cart.filter((it) => it.key !== key) }));
@@ -1412,6 +1622,35 @@ class Component extends DCLogic {
     const ventaUSD = this.precioVentaUSD(costo);
     const ars = this.precioARS(ventaUSD);
     const esInsumo = p.id === "agua-bac-10";
+
+    // ====== FICHA TÉCNICA (compuesto, conservación, COA, referencias) ======
+    const ficha = this.FICHAS[p.id] || {};
+    const cmp = ficha.compuesto || null;
+    const compoundRows = cmp ? [
+      { k: "Tipo", v: cmp.tipo },
+      { k: "Número CAS", v: cmp.cas },
+      { k: "Peso molecular", v: cmp.pesoMolecular },
+      { k: "Peso molecular (con Cu)", v: cmp.pesoMolecularCu },
+      { k: "Aminoácidos", v: cmp.aminoacidos },
+      { k: "Secuencia", v: cmp.secuencia },
+      { k: "Fórmula molecular", v: cmp.formula },
+    ].filter((r) => r.v) : [];
+    const cons = ficha.conservacion || null;
+    const coaCards = (ficha.coas || []).map((coa) => ({
+      variante: coa.variante, lote: coa.lote, pureza: coa.pureza,
+      rotulado: coa.rotulado, real: coa.real, fecha: coa.fecha,
+      lab: coa.lab, reporte: coa.reporte,
+      nTestsText: (coa.nTests || 0) + " vials testeados", hasNTests: !!coa.nTests,
+      panel: coa.panel || [],
+      hasPdf: !!coa.pdfUrl, onView: coa.pdfUrl ? (() => this.openCoa(coa.pdfUrl)) : (() => {}),
+    }));
+    const coaLab = (ficha.coas && ficha.coas[0]) ? ficha.coas[0].lab : "";
+    const referencias = (ficha.referencias || []).map((r) => ({
+      journal: r.journal, titulo: r.titulo, anio: r.anio, autores: r.autores,
+      idLabel: r.idLabel || "", hasId: !!r.idLabel, url: r.url || "", hasUrl: !!r.url,
+    }));
+    const coaPrincipal = (ficha.coas && ficha.coas[0] && ficha.coas[0].pdfUrl) ? ficha.coas[0].pdfUrl : "";
+
     return {
       id: p.id, nombre: p.nombre, investigacion: p.investigacion,
       enStock, sinStock: !enStock,
@@ -1420,6 +1659,18 @@ class Component extends DCLogic {
       forma: esInsumo ? "Solución estéril" : "Vial liofilizado (polvo)",
       usdText: this.fmtUSD(ventaUSD), arsText: this.fmtARS(ars),
       whatsappHref: this.waConsulta(p.nombre),
+      // --- ficha técnica ---
+      subtitulo: ficha.subtitulo || (esInsumo ? "Insumo de laboratorio" : "Péptido de investigación"),
+      descripcion: ficha.descripcion || p.investigacion,
+      nombresCientificos: ficha.nombresCientificos || [],
+      hasNombres: !!(ficha.nombresCientificos && ficha.nombresCientificos.length),
+      hasCompound: compoundRows.length > 0, compoundRows,
+      fuenteUrl: ficha.fuenteUrl || "", hasFuente: !!ficha.fuenteUrl,
+      hasStorage: !!cons, storageNotas: cons ? cons.notas : [],
+      storageLiofilizado: cons ? cons.liofilizado : "", storageReconstituido: cons ? cons.reconstituido : "",
+      hasCoa: coaCards.length > 0, coaCards, coaLab,
+      hasCoaBtn: !!coaPrincipal, onViewCoaPrincipal: coaPrincipal ? (() => this.openCoa(coaPrincipal)) : (() => {}),
+      hasRefs: referencias.length > 0, referencias,
     };
   }
 
@@ -1521,6 +1772,21 @@ class Component extends DCLogic {
     };
     const ageEnterClick = ageCanEnter ? this.confirmAge : (() => {});
 
+    // ====== MODAL COA (popup con visor de PDF) ======
+    const coaOpen = !!this.state.coaModal;
+    const coaModalWrapStyle = {
+      position: "fixed", inset: 0, zIndex: 150, display: "flex", alignItems: "center", justifyContent: "center", padding: "clamp(12px,3vw,32px)",
+      background: "rgba(11,36,64,.55)", backdropFilter: "blur(4px)", WebkitBackdropFilter: "blur(4px)",
+      opacity: coaOpen ? 1 : 0, pointerEvents: coaOpen ? "auto" : "none", transition: "opacity .25s ease",
+    };
+    const coaModalPanelStyle = {
+      position: "relative", zIndex: 1,
+      background: "#fff", borderRadius: "14px", width: "min(920px,100%)", height: "min(88vh,100%)",
+      display: "flex", flexDirection: "column", overflow: "hidden",
+      boxShadow: "0 40px 90px -30px rgba(11,36,64,.6)",
+      transform: coaOpen ? "scale(1)" : "scale(.97)", transition: "transform .25s cubic-bezier(.16,1,.3,1)",
+    };
+
     return {
       isInicio: page === "inicio",
       isCatalogo: page === "catalogo",
@@ -1548,6 +1814,7 @@ class Component extends DCLogic {
       drawerOpen: dOpen, openDrawer: this.openDrawer, closeDrawer: this.closeDrawer,
       drawerWrapStyle, drawerOverlayStyle, drawerPanelStyle,
       ageGateWrapStyle, ageGateCardStyle, rejectAge: this.rejectAge,
+      coaModalWrapStyle, coaModalPanelStyle, coaModalUrl: this.state.coaModal, closeCoa: this.closeCoa,
       chkAge: this.state.chkAge, chkResearcher: this.state.chkResearcher,
       chkAgeBoxStyle, chkResearcherBoxStyle, chkAgeRowStyle, chkResearcherRowStyle,
       toggleChkAge: this.toggleChkAge, toggleChkResearcher: this.toggleChkResearcher,
