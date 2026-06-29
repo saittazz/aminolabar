@@ -845,12 +845,9 @@ class Component extends DCLogic {
   };
 
   // ====== AUTO-ACTUALIZACIÓN AL CARGAR (FASE DATOS REALES) ======
-  // Se ejecuta una vez cuando el sitio carga. Trae el dólar blue (venta) en vivo
-  // desde DolarAPI y, si falla, deja el valor de respaldo (DOLAR_BLUE_VENTA).
-  componentDidMount() {
-    this.actualizarDolarBlue();
-    this.actualizarCatalogo();
-  }
+  // Las llamadas a actualizarDolarBlue() y actualizarCatalogo() se disparan
+  // desde el componentDidMount principal (más abajo), no acá: no puede haber
+  // dos métodos componentDidMount en la clase (el segundo pisa al primero).
 
   // Trae el catálogo desde Google Sheets y reemplaza el array local.
   // Si SHEET_URL está vacío o la planilla falla, se mantiene el array de respaldo.
@@ -1007,6 +1004,8 @@ class Component extends DCLogic {
   componentDidMount() {
     window.addEventListener("hashchange", this.syncFromHash);
     window.addEventListener("resize", this.onResize);
+    this.actualizarDolarBlue();   // dólar blue en vivo (DolarAPI)
+    this.actualizarCatalogo();    // catálogo en vivo (Google Sheets)
     this.injectSchema();   // datos estructurados JSON-LD (Products, FAQ, Reviews)
     this.syncFromHash();
   }
