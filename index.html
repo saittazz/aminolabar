@@ -856,9 +856,9 @@ class Component extends DCLogic {
   // Si SHEET_URL está vacío o la planilla falla, se mantiene el array de respaldo.
   actualizarCatalogo() {
     if (!this.SHEET_URL) return;
-    // "_=timestamp" evita que el navegador sirva una copia cacheada: siempre pide lo último.
-    const url = this.SHEET_URL + (this.SHEET_URL.includes("?") ? "&" : "?") + "_=" + Date.now();
-    fetch(url, { cache: "no-store" })
+    // cache:"no-store" evita la copia cacheada del navegador sin romper opensheet
+    // (opensheet NO admite parámetros extra en la URL: devuelve 400).
+    fetch(this.SHEET_URL, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((filas) => {
         const productos = (filas || [])
