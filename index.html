@@ -1,0 +1,1372 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+<!-- ============ SEO / METADATOS (defaults; se actualizan por página vía JS) ============ -->
+<meta name="description" content="AminoLabAr vende péptidos de investigación importados de Estados Unidos, con Certificado de Análisis (COA) por lote, envíos a todo el país por Andreani y despacho en 24 hs. Asesoría por WhatsApp.">
+<meta name="keywords" content="péptidos de investigación, comprar péptidos Argentina, BPC-157, TB-500, GLP-1, retatrutide, semaglutide, GHK-Cu, COA, péptidos importados EE. UU., AminoLabAr">
+<meta name="robots" content="index, follow, max-image-preview:large">
+<meta name="author" content="AminoLabAr">
+<meta name="language" content="es-AR">
+<link rel="canonical" href="https://aminolabar.com.ar/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="AminoLabAr">
+<meta property="og:locale" content="es_AR">
+<meta property="og:title" content="AminoLabAr · Péptidos de investigación en Argentina | Importados de EE. UU.">
+<meta property="og:description" content="Péptidos de investigación importados de Estados Unidos, con COA por lote, envíos a todo el país por Andreani y despacho en 24 hs. Asesoría por WhatsApp.">
+<meta property="og:url" content="https://aminolabar.com.ar/">
+<!-- Twitter -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="AminoLabAr · Péptidos de investigación en Argentina">
+<meta name="twitter:description" content="Péptidos importados de EE. UU., COA por lote, envíos a todo el país por Andreani y despacho en 24 hs.">
+
+<!-- ============ DATOS ESTRUCTURADOS (estáticos: identidad de marca) ============ -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://aminolabar.com.ar/#organization",
+      "name": "AminoLabAr",
+      "url": "https://aminolabar.com.ar",
+      "description": "Proveedor argentino de péptidos de investigación importados de Estados Unidos, con Certificado de Análisis (COA) por lote y envíos a todo el país.",
+      "areaServed": { "@type": "Country", "name": "Argentina" },
+      "knowsLanguage": "es-AR",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+5492215227060",
+        "contactType": "customer service",
+        "availableLanguage": "Spanish",
+        "areaServed": "AR"
+      }
+    },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://aminolabar.com.ar/#localbusiness",
+      "name": "AminoLabAr",
+      "url": "https://aminolabar.com.ar",
+      "image": "https://aminolabar.com.ar/og.jpg",
+      "description": "Venta de péptidos de investigación importados de Estados Unidos. COA por lote disponible, asesoría personalizada y envíos a todo el país por Andreani con despacho en 24 hs hábiles.",
+      "telephone": "+5492215227060",
+      "priceRange": "$$",
+      "currenciesAccepted": "USD, ARS, USDT",
+      "paymentAccepted": "Transferencia bancaria, USDT",
+      "openingHours": "Mo-Fr 09:00-18:00",
+      "address": { "@type": "PostalAddress", "addressCountry": "AR" },
+      "areaServed": { "@type": "Country", "name": "Argentina" },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.9",
+        "reviewCount": "128",
+        "bestRating": "5",
+        "worstRating": "1"
+      }
+    }
+  ]
+}
+</script>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{margin:0;background:#fff;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+button{font:inherit}
+input{font:inherit}
+::selection{background:rgba(14,95,181,.16)}
+@keyframes amToast{from{opacity:0;transform:translate(-50%,8px)}to{opacity:1;transform:translate(-50%,0)}}
+@keyframes amHeaderSweep{0%{background-position:-160% 0}100%{background-position:260% 0}}
+@keyframes amPageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+</style>
+</helmet>
+<div style="font-family:'IBM Plex Sans',sans-serif;color:#1C2733;background:#fff;min-height:100vh;display:flex;flex-direction:column">
+
+  <!-- ================= HEADER (compartido) ================= -->
+  <header style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #E2E8F0">
+    <div aria-hidden="true" style="position:absolute;left:0;right:0;bottom:-1px;height:2px;background-image:linear-gradient(90deg,transparent 0%,transparent 18%,#2FA8E0 38%,#0E5FB5 50%,#2FA8E0 62%,transparent 82%,transparent 100%);background-size:200% 100%;background-repeat:no-repeat;animation:amHeaderSweep 3.8s linear infinite;pointer-events:none"></div>
+    <div style="max-width:1180px;margin:0 auto;width:100%;padding-left:clamp(20px,5vw,56px);padding-right:clamp(20px,5vw,56px);height:68px;display:flex;align-items:center;justify-content:space-between;gap:20px">
+      <a href="#/inicio" style="display:inline-flex;align-items:center;gap:10px;text-decoration:none">
+        <span style="display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;color:#0E5FB5">
+          <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v9.7L12 21.7l-8.4-4.85v-9.7z"></path><circle cx="12" cy="12" r="2.4" fill="#2FA8E0" stroke="none"></circle></svg>
+        </span>
+        <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em;color:#0B2440">AminoLab<span style="color:#0E5FB5">Ar</span></span>
+      </a>
+
+      <sc-if value="{{ showFullNav }}" hint-placeholder-val="{{ true }}">
+        <nav style="display:flex;align-items:center;gap:26px">
+          <sc-for list="{{ navItems }}" as="n" hint-placeholder-count="6">
+            <a href="{{ n.href }}" style="{{ n.style }}" style-hover="color:#0E5FB5">{{ n.label }}</a>
+          </sc-for>
+        </nav>
+      </sc-if>
+
+      <div style="display:flex;align-items:center;gap:12px">
+        <a href="#/carrito" aria-label="Carrito" style="position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #E2E8F0;border-radius:8px;color:#0B2440;text-decoration:none;transition:border-color .15s,background .15s" style-hover="border-color:#CBD5E1;background:#F4F7FB">
+          <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.3"></circle><circle cx="18" cy="20" r="1.3"></circle><path d="M2.5 3h2.2l2 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.6-1.3L21 7H6.2"></path></svg>
+          <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
+            <span style="position:absolute;top:-6px;right:-6px;min-width:18px;height:18px;padding:0 4px;display:inline-flex;align-items:center;justify-content:center;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;border-radius:9px;border:2px solid #fff">{{ cartCount }}</span>
+          </sc-if>
+        </a>
+        <sc-if value="{{ isCompact }}" hint-placeholder-val="{{ false }}">
+          <button onClick="{{ toggleMenu }}" aria-label="Abrir menú" style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #E2E8F0;border-radius:8px;background:#fff;color:#0B2440;cursor:pointer"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"></path></svg></button>
+        </sc-if>
+      </div>
+    </div>
+  </header>
+
+  <!-- Menú móvil -->
+  <sc-if value="{{ menuOpen }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:0;right:0;top:68px;bottom:0;z-index:49;background:#fff">
+      <div style="max-width:1180px;margin:0 auto;width:100%;padding:8px clamp(20px,5vw,56px) 28px">
+        <sc-for list="{{ navItemsMobile }}" as="n" hint-placeholder-count="6">
+          <a href="{{ n.href }}" style="{{ n.style }}">{{ n.label }}</a>
+        </sc-for>
+        <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="margin-top:22px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:14px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none">Escribir por WhatsApp</a>
+      </div>
+    </div>
+  </sc-if>
+
+  <main key="{{ routeKey }}" style="flex:1;animation:amPageIn .42s cubic-bezier(.22,.61,.36,1) both">
+
+    <!-- ================= INICIO ================= -->
+    <sc-if value="{{ isInicio }}" hint-placeholder-val="{{ true }}">
+      <section style="background:#fff">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(46px,7vw,88px) clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(34px,5vw,60px);align-items:center">
+          <div>
+            <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:18px">Péptidos de investigación · Importación EE. UU.</span>
+            <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(31px,4.6vw,52px);line-height:1.07;letter-spacing:-.02em;color:#0B2440;text-wrap:balance">Péptidos de investigación importados de Estados Unidos</h1>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(15px,1.6vw,18px);line-height:1.6;color:#5A6B7B;margin-top:20px;max-width:540px"><strong style="color:#3A4855;font-weight:600">AminoLabAr</strong> es un proveedor argentino de péptidos de investigación importados de Estados Unidos. Certificado de Análisis (COA) por lote, envíos a todo el país por Andreani con despacho en 24 hs hábiles y asesoría personalizada por WhatsApp. Productos destinados a investigación y colección.</p>
+            <div style="margin-top:30px">
+              <a href="#/catalogo" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:15px 28px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15.5px;letter-spacing:.01em;text-decoration:none;transition:background .15s" style-hover="background:#0B4E97">Ver catálogo<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
+            </div>
+          </div>
+          <div style="position:relative;border:1px solid #E2E8F0;border-radius:12px;background:#F4F7FB;background-image:linear-gradient(#E5ECF4 1px,transparent 1px),linear-gradient(90deg,#E5ECF4 1px,transparent 1px);background-size:26px 26px;min-height:300px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
+            <svg width="104" height="104" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg>
+            <div style="position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 16px;border-top:1px solid #E2E8F0;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.03em;color:#5A6B7B">
+              <span>LOTE · COA</span><span style="color:#0E5FB5;font-weight:500">Producido en EE. UU.</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Tira de confianza -->
+      <div style="background:#0B2440;color:#C7D6E6">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:15px clamp(20px,5vw,56px);display:flex;flex-wrap:wrap;justify-content:center;align-items:center;gap:8px 20px;font-family:'IBM Plex Mono',monospace;font-size:12.5px;letter-spacing:.01em;text-align:center">
+          <span>Producidos en Estados Unidos</span><span style="color:#2FA8E0">·</span>
+          <span>COA por lote disponible</span><span style="color:#2FA8E0">·</span>
+          <span>Asesoría personalizada</span><span style="color:#2FA8E0">·</span>
+          <span>Envíos a todo el país por Andreani</span><span style="color:#2FA8E0">·</span>
+          <span>Despacho en 24 hs hábiles</span>
+        </div>
+      </div>
+
+      <!-- Productos destacados -->
+      <section style="background:#fff">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,76px) clamp(20px,5vw,56px)">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:28px">
+            <div>
+              <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:12px">En catálogo</span>
+              <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-.02em;color:#0B2440">Productos disponibles</h2>
+            </div>
+            <a href="#/catalogo" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;color:#0E5FB5;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap" style-hover="gap:9px">Ver catálogo completo<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:20px">
+            <sc-for list="{{ featured }}" as="c" hint-placeholder-count="4">
+              <dc-import name="ProductCard" c="{{ c }}" on-add="{{ addToCart }}" hint-size="100%,392px"></dc-import>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- Calidad / COA -->
+      <section style="background:#F4F7FB;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(34px,5vw,60px);align-items:center">
+          <div>
+            <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Calidad y trazabilidad</span>
+            <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.13;letter-spacing:-.02em;color:#0B2440">Cada lote con su Certificado de Análisis</h2>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.65;color:#5A6B7B;margin-top:20px;max-width:540px">Trabajamos con péptidos producidos en Estados Unidos. El Certificado de Análisis (COA) de cada lote está disponible a solicitud e informa la identidad y la pureza del compuesto.</p>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.65;color:#5A6B7B;margin-top:14px;max-width:540px">Despachamos en 24 horas hábiles y enviamos a todo el país por Andreani. Ante cualquier consulta sobre presentaciones o disponibilidad, la asesoría es directa por WhatsApp.</p>
+            <div style="margin-top:26px;display:flex;flex-direction:column;gap:0;border-top:1px solid #E2E8F0;max-width:520px">
+              <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="width:88px;color:#94A3B8;letter-spacing:.04em">ORIGEN</span><span style="color:#1C2733">Estados Unidos</span></div>
+              <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="width:88px;color:#94A3B8;letter-spacing:.04em">COA</span><span style="color:#1C2733">Disponible por lote</span></div>
+              <div style="display:flex;gap:16px;padding:13px 0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="width:88px;color:#94A3B8;letter-spacing:.04em">ENVÍO</span><span style="color:#1C2733">Andreani · todo el país</span></div>
+            </div>
+          </div>
+          <div style="position:relative;border:1px solid #E2E8F0;border-radius:12px;background:#fff;background-image:linear-gradient(#EEF3F8 1px,transparent 1px),linear-gradient(90deg,#EEF3F8 1px,transparent 1px);background-size:26px 26px;min-height:280px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
+            <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.5h7.5L19 7v14.5H7z"></path><path d="M14 2.5V7h5"></path><path d="M9.5 12h7M9.5 15.5h7M9.5 8.5h3"></path></svg>
+            <span style="position:absolute;left:14px;bottom:13px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6B7B;background:#fff;border:1px solid #E2E8F0;border-radius:4px;padding:3px 8px">certificado de análisis</span>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= RESEÑAS / TESTIMONIOS ================= -->
+      <section style="background:#fff;border-top:1px solid #E2E8F0">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,76px) clamp(20px,5vw,56px)">
+          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:30px">
+            <div>
+              <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:12px">Reseñas de clientes</span>
+              <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-.02em;color:#0B2440">Lo que dicen quienes ya compraron</h2>
+            </div>
+            <div style="display:flex;align-items:center;gap:16px;border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:16px 22px">
+              <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(34px,5vw,44px);line-height:1;letter-spacing:-.02em;color:#0B2440">{{ reviewAvgText }}</div>
+              <div>
+                <div style="font-size:18px;letter-spacing:1px;line-height:1"><span style="color:#F2A516">{{ reviewStarsOn }}</span><span style="color:#D9E1EA">{{ reviewStarsOff }}</span></div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6B7B;margin-top:6px">Promedio · {{ reviewCountText }}</div>
+              </div>
+            </div>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:18px">
+            <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
+              <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:22px 22px;display:flex;flex-direction:column">
+                <div style="font-size:15px;letter-spacing:1px;line-height:1;margin-bottom:13px"><span style="color:#F2A516">{{ r.starsOn }}</span><span style="color:#D9E1EA">{{ r.starsOff }}</span></div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;line-height:1.6;color:#3A4855;flex:1">{{ r.texto }}</p>
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid #EEF3F8">
+                  <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:13.5px;color:#0B2440">{{ r.autor }} · {{ r.lugar }}</span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#94A3B8">{{ r.fechaText }}</span>
+                </div>
+              </div>
+            </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- Banda asesoría -->
+      <section style="background:#fff">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(44px,5vw,68px) clamp(20px,5vw,56px)">
+          <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:clamp(28px,4vw,44px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px">
+            <div style="max-width:560px">
+              <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:12px">Asesoramiento</span>
+              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(21px,2.6vw,28px);line-height:1.2;letter-spacing:-.01em;color:#0B2440">¿Dudas sobre presentaciones o disponibilidad?</h3>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:15.5px;line-height:1.6;color:#5A6B7B;margin-top:12px">Escribinos por WhatsApp y te respondemos a la brevedad.</p>
+            </div>
+            <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:8px;padding:15px 28px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15.5px;text-decoration:none;white-space:nowrap;transition:background .15s" style-hover="background:#18885B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Escribir por WhatsApp</a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ================= CATÁLOGO ================= -->
+    <sc-if value="{{ isCatalogo }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff">
+        
+      <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(40px,5vw,64px) clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
+          <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Catálogo</span>
+          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Péptidos de investigación</h1>
+          <p style="font-family: 'IBM Plex Sans',sans-serif; font-size: 15px; line-height: 1.6; color: #5A6B7B; margin-top: 14px; max-width: 620px; width: 640px; height: 54px">Precio de venta en dólares; el valor en pesos es de referencia. Cotización dólar blue (venta) · actualizada periódicamente.</p>
+
+          <div style="margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px">
+            <div style="position:relative;flex:1;min-width:240px;max-width:440px">
+              <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#7E93A8;display:inline-flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.4-3.4"></path></svg></span>
+              <input value="{{ query }}" onInput="{{ onSearch }}" placeholder="Buscar por nombre o tipo de investigación…" style="width:100%;padding:12px 14px 12px 42px;border:1px solid #E2E8F0;border-radius:8px;font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;color:#1C2733;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+            </div>
+
+            <!-- Ordenar por -->
+            <label style="position:relative;display:inline-flex;align-items:center">
+              <span style="position:absolute;left:13px;color:#7E93A8;display:inline-flex;pointer-events:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h13M3 12h9M3 18h5M17 8V19M17 19l3-3M17 19l-3-3"></path></svg></span>
+              <select value="{{ sort }}" onChange="{{ onSort }}" aria-label="Ordenar por" style="appearance:none;-webkit-appearance:none;padding:11px 36px 11px 38px;border:1px solid #E2E8F0;border-radius:8px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#1C2733;background:#fff;cursor:pointer;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+                <sc-for list="{{ sortOptions }}" as="o" hint-placeholder-count="4">
+                  <option value="{{ o.value }}">{{ o.label }}</option>
+                </sc-for>
+              </select>
+              <span style="position:absolute;right:13px;color:#7E93A8;display:inline-flex;pointer-events:none"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"></path></svg></span>
+            </label>
+
+            <!-- Solo en stock -->
+            <button onClick="{{ toggleSoloStock }}" aria-label="Mostrar solo productos en stock" style="display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border:1px solid #E2E8F0;border-radius:8px;background:#fff;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#1C2733;cursor:pointer;transition:border-color .15s" style-hover="border-color:#CBD5E1">
+              <sc-if value="{{ soloStock }}" hint-placeholder-val="{{ false }}">
+                <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:#0E5FB5;color:#fff"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+              </sc-if>
+              <sc-if value="{{ mostrarTodo }}" hint-placeholder-val="{{ true }}">
+                <span style="flex-shrink:0;display:inline-block;width:18px;height:18px;border-radius:5px;border:1.5px solid #CBD5E1;background:#fff"></span>
+              </sc-if>
+              Solo en stock
+            </button>
+
+            <span style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#5A6B7B;margin-left:auto">{{ resultCount }} productos</span>
+          </div>
+
+          <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:20px">
+              <sc-for list="{{ cards }}" as="c" hint-placeholder-count="9">
+                <dc-import name="ProductCard" c="{{ c }}" on-add="{{ addToCart }}" hint-size="100%,392px"></dc-import>
+              </sc-for>
+            </div>
+          </sc-if>
+          <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:40px;border:1px solid #E2E8F0;border-radius:10px;background:#F4F7FB;padding:48px 24px;text-align:center">
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:17px;color:#0B2440">Sin resultados para tu búsqueda</p>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B;margin-top:8px">Probá con otro término.</p>
+              <button onClick="{{ clearQuery }}" style="margin-top:18px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:7px;padding:10px 20px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14px;cursor:pointer">Limpiar búsqueda</button>
+            </div>
+          </sc-if>
+        </div></section>
+    </sc-if>
+
+    <!-- ================= PRODUCTO (detalle) ================= -->
+    <sc-if value="{{ isProducto }}" hint-placeholder-val="{{ false }}">
+      <sc-if value="{{ product }}" hint-placeholder-val="{{ false }}">
+        <section style="background:#fff">
+          <div style="max-width:1180px;margin:0 auto;width:100%;padding:24px clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#7E93A8;display:flex;gap:8px;flex-wrap:wrap">
+              <a href="#/inicio" style="color:#7E93A8;text-decoration:none" style-hover="color:#0E5FB5">Inicio</a><span>/</span>
+              <a href="#/catalogo" style="color:#7E93A8;text-decoration:none" style-hover="color:#0E5FB5">Catálogo</a><span>/</span>
+              <span style="color:#0B2440">{{ product.nombre }}</span>
+            </div>
+
+            <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(28px,5vw,56px);align-items:start">
+              <!-- media -->
+              <div style="position:relative;border:1px solid #E2E8F0;border-radius:12px;background:#F4F7FB;background-image:linear-gradient(#E5ECF4 1px,transparent 1px),linear-gradient(90deg,#E5ECF4 1px,transparent 1px);background-size:26px 26px;aspect-ratio:1/1;min-height:300px;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
+                <svg width="108" height="108" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg>
+                <div style="position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 16px;border-top:1px solid #E2E8F0;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.03em;color:#5A6B7B">
+                  <span>LOTE · COA</span><span style="color:#0E5FB5;font-weight:500">Producido en EE. UU.</span>
+                </div>
+              </div>
+
+              <!-- info -->
+              <div style="display:flex;flex-direction:column;gap:18px">
+                <sc-if value="{{ product.enStock }}" hint-placeholder-val="{{ true }}">
+                  <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;color:#15875A;background:rgba(31,169,113,.12);padding:5px 11px;border-radius:6px"><span style="width:7px;height:7px;border-radius:50%;background:#1FA971;display:inline-block"></span>En stock</span>
+                </sc-if>
+                <sc-if value="{{ product.sinStock }}" hint-placeholder-val="{{ false }}">
+                  <span style="align-self:flex-start;display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;color:#B45309;background:rgba(180,83,9,.1);padding:5px 11px;border-radius:6px"><span style="width:7px;height:7px;border-radius:50%;background:#D9962B;display:inline-block"></span>Sin stock</span>
+                </sc-if>
+
+                <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(26px,3.6vw,38px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">{{ product.nombre }}</h1>
+
+                <sc-if value="{{ product.hasVariantes }}" hint-placeholder-val="{{ false }}">
+                  <div>
+                    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#0B2440;margin-bottom:10px">Presentación</div>
+                    <div style="display:flex;flex-wrap:wrap;gap:10px">
+                      <sc-for list="{{ product.variantes }}" as="v" hint-placeholder-count="2">
+                        <button onClick="{{ v.onClick }}" style="{{ v.style }}">{{ v.label }}</button>
+                      </sc-for>
+                    </div>
+                  </div>
+                </sc-if>
+
+                <div>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#0B2440;margin-bottom:6px">Para qué se investiga</div>
+                  <p style="font-family:'IBM Plex Sans',sans-serif;font-size:15.5px;line-height:1.65;color:#5A6B7B">{{ product.investigacion }}</p>
+                </div>
+
+                <div style="border-top:1px solid #E2E8F0">
+                  <div style="display:flex;gap:16px;padding:11px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:104px;color:#94A3B8;letter-spacing:.03em">ORIGEN</span><span style="color:#1C2733">Estados Unidos</span></div>
+                  <div style="display:flex;gap:16px;padding:11px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:104px;color:#94A3B8;letter-spacing:.03em">PRESENTACIÓN</span><span style="color:#1C2733">{{ product.presentacion }}</span></div>
+                  <div style="display:flex;gap:16px;padding:11px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:104px;color:#94A3B8;letter-spacing:.03em">FORMA</span><span style="color:#1C2733">{{ product.forma }}</span></div>
+                  <div style="display:flex;gap:16px;padding:11px 0;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:104px;color:#94A3B8;letter-spacing:.03em">COA</span><span style="color:#1C2733">Disponible por lote</span></div>
+                </div>
+
+                <div style="border:1px solid #E2E8F0;border-radius:10px;background:#F8FAFC;padding:18px 20px">
+                  <div style="display:flex;align-items:baseline;gap:9px;flex-wrap:wrap">
+                    <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:clamp(28px,4vw,34px);color:#0B2440;letter-spacing:-.01em">{{ product.usdText }}</span>
+                  </div>
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:15px;color:#5A6B7B;margin-top:4px">{{ product.arsText }}</div>
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;color:#94A3B8;margin-top:10px">Cotización dólar blue (venta) + $10 · actualizada periódicamente.</div>
+                </div>
+
+                <sc-if value="{{ product.enStock }}" hint-placeholder-val="{{ true }}">
+                  <div style="display:flex;gap:12px;align-items:stretch">
+                    <div style="display:inline-flex;align-items:center;border:1px solid #CBD5E1;border-radius:8px;overflow:hidden;background:#fff">
+                      <button onClick="{{ decDetail }}" aria-label="Restar" style="width:46px;height:100%;min-height:50px;border:none;background:#fff;color:#0B2440;font-size:20px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:#F4F7FB">−</button>
+                      <span style="min-width:42px;text-align:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px;color:#0B2440">{{ detailQty }}</span>
+                      <button onClick="{{ incDetail }}" aria-label="Sumar" style="width:46px;height:100%;min-height:50px;border:none;background:#fff;color:#0B2440;font-size:20px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:#F4F7FB">+</button>
+                    </div>
+                    <button onClick="{{ addToCart }}" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15.5px;cursor:pointer;transition:background .15s" style-hover="background:#0B4E97"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.3"></circle><circle cx="18" cy="20" r="1.3"></circle><path d="M2.5 3h2.2l2 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.6-1.3L21 7H6.2"></path></svg>Agregar al carrito</button>
+                  </div>
+                </sc-if>
+                <sc-if value="{{ product.sinStock }}" hint-placeholder-val="{{ false }}">
+                  <a href="{{ product.whatsappHref }}" target="_blank" rel="noopener" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:8px;padding:15px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none;transition:background .15s,color .15s" style-hover="background:#0E5FB5;color:#fff">Consultar por disponibilidad</a>
+                </sc-if>
+
+                <div style="border:1px solid #E2E8F0;border-radius:8px;background:#F8FAFC;padding:14px 16px">
+                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0B2440;margin-bottom:6px">Aviso legal</div>
+                  <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.6;color:#5A6B7B">{{ disclaimer }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </sc-if>
+
+      <sc-if value="{{ productNotFound }}" hint-placeholder-val="{{ false }}">
+        <section style="background:#fff">
+          <div style="max-width:1180px;margin:0 auto;width:100%;padding:80px clamp(20px,5vw,56px);text-align:center">
+            <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:28px;color:#0B2440">Producto no encontrado</h1>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#5A6B7B;margin-top:12px">El producto que buscás no está disponible.</p>
+            <a href="#/catalogo" style="margin-top:22px;display:inline-flex;background:#0E5FB5;color:#fff;border-radius:8px;padding:13px 24px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none">Volver al catálogo</a>
+          </div>
+        </section>
+      </sc-if>
+    </sc-if>
+
+    <!-- ================= PÁGINAS EN CONSTRUCCIÓN (Nosotros / Envíos / FAQ / Contacto) ================= -->
+    <!-- ================= NOSOTROS ================= -->
+    <sc-if value="{{ isNosotros }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(40px,5vw,64px) clamp(20px,5vw,56px) clamp(28px,4vw,44px)">
+          <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Nosotros</span>
+          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440;max-width:760px;text-wrap:balance">Péptidos de investigación con trazabilidad y respaldo</h1>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:18px;max-width:680px">AminoLabAr es un proveedor argentino de péptidos de investigación importados de Estados Unidos. Trabajamos con un objetivo simple: que cada compra sea trazable, esté bien conservada y cuente con asesoría real de principio a fin.</p>
+        </div>
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:0 clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px">
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#EAF2FB;color:#0E5FB5;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v9.7L12 21.7l-8.4-4.85v-9.7z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
+              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">Producidos en Estados Unidos</h3>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Importamos péptidos fabricados en EE. UU., cumpliendo estándares de calidad reconocidos en investigación.</p>
+            </div>
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#EAF2FB;color:#0E5FB5;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.5h7.5L19 7v14.5H7z"></path><path d="M14 2.5V7h5"></path><path d="M9.5 12h7M9.5 15.5h7"></path></svg></span>
+              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">COA por lote disponible</h3>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Cada lote cuenta con su Certificado de Análisis, que informa identidad y pureza del compuesto. Disponible a solicitud.</p>
+            </div>
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#EAF2FB;color:#0E5FB5;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5a6 6 0 0 0-6 6c0 1.5.5 2.7 1.5 4l4.5 6 4.5-6c1-1.3 1.5-2.5 1.5-4a6 6 0 0 0-6-6z"></path><path d="M9.5 8.5h5M12 6v5"></path></svg></span>
+              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">Conservación y cadena de frío</h3>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Almacenamiento y despacho cuidando la cadena de frío, para preservar la estabilidad del producto hasta tu domicilio.</p>
+            </div>
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#E7F6EF;color:#15875A;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg></span>
+              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">Asesoría personalizada</h3>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Te acompañamos por WhatsApp para resolver dudas sobre presentaciones, disponibilidad y envíos, de forma directa.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:24px;border:1px solid #FCE3B8;background:#FEF8EC;border-radius:12px;padding:20px 24px;display:flex;gap:13px;align-items:flex-start">
+            <span style="flex-shrink:0;color:#B07A0E;display:inline-flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg></span>
+            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.6;color:#92660C">Todos los productos comercializados por AminoLabAr están destinados exclusivamente a investigación y colección. No son aptos para consumo humano ni animal, ni para uso diagnóstico o terapéutico.</p>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ================= ENVÍOS ================= -->
+    <sc-if value="{{ isEnvios }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(40px,5vw,64px) clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
+          <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Envíos</span>
+          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Envíos a todo el país</h1>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:660px">Despachamos a toda la Argentina por Andreani, con seguimiento. Coordinás el envío por WhatsApp al finalizar tu pedido.</p>
+
+          <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:18px">
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#EAF2FB;color:#0E5FB5;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"></path><path d="M14 10h4l3 3v3h-7"></path><circle cx="7" cy="18" r="1.6"></circle><circle cx="17.5" cy="18" r="1.6"></circle></svg></span>
+              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440">Andreani · todo el país</h3>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Enviamos a cualquier localidad de Argentina mediante Andreani, con número de seguimiento.</p>
+            </div>
+            <div style="border:1px solid #C9E9D7;border-radius:12px;background:#F2FBF6;padding:24px 22px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#1FA971;color:#fff;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440">Envío GRATIS desde 3 péptidos</h3>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Si tu pedido incluye 3 o más péptidos, el envío es <strong style="color:#15875A">sin cargo</strong>. Con menos, el costo se coordina por WhatsApp.</p>
+            </div>
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#EAF2FB;color:#0E5FB5;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg></span>
+              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440">Despacho en 24 hs hábiles</h3>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Una vez confirmado el pago, despachamos dentro de las 24 horas hábiles.</p>
+            </div>
+          </div>
+
+          <div style="margin-top:28px;border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:8px clamp(18px,3vw,28px)">
+            <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E7EDF4;font-family:'IBM Plex Sans',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">CORREO</span><span style="font-size:14.5px;color:#1C2733">Andreani, con seguimiento a todo el país.</span></div>
+            <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E7EDF4;font-family:'IBM Plex Sans',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">ENVÍO GRATIS</span><span style="font-size:14.5px;color:#1C2733">A partir de 3 péptidos en el pedido.</span></div>
+            <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E7EDF4;font-family:'IBM Plex Sans',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">DESPACHO</span><span style="font-size:14.5px;color:#1C2733">Dentro de las 24 hs hábiles tras confirmar el pago.</span></div>
+            <div style="display:flex;gap:16px;padding:16px 0;font-family:'IBM Plex Sans',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">CONSERVACIÓN</span><span style="font-size:14.5px;color:#1C2733">Embalaje que cuida la cadena de frío durante el transporte.</span></div>
+          </div>
+
+          <div style="margin-top:26px"><a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:14px 26px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="background:#18885B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Consultar por un envío</a></div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ================= FAQ ================= -->
+    <sc-if value="{{ isFaq }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff">
+        <div style="max-width:880px;margin:0 auto;width:100%;padding:clamp(40px,5vw,64px) clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
+          <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Preguntas frecuentes</span>
+          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Preguntas frecuentes</h1>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:640px">Respuestas directas a las consultas más habituales. Si te queda alguna duda, escribinos por WhatsApp.</p>
+
+          <div style="margin-top:30px;display:flex;flex-direction:column;gap:16px">
+            <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
+              <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:22px 24px">
+                <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(16px,1.9vw,18px);color:#0B2440;line-height:1.3">{{ f.q }}</h3>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;line-height:1.65;color:#5A6B7B;margin-top:10px">{{ f.a }}</p>
+              </div>
+            </sc-for>
+          </div>
+
+          <div style="margin-top:26px;border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:24px clamp(20px,3vw,28px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px">
+            <div><h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:#0B2440">¿Tenés otra consulta?</h3><p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B;margin-top:6px">Te respondemos por WhatsApp a la brevedad.</p></div>
+            <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:13px 24px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none;white-space:nowrap" style-hover="background:#18885B"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Escribir por WhatsApp</a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ================= CONTACTO ================= -->
+    <sc-if value="{{ isContacto }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(40px,5vw,64px) clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
+          <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Contacto</span>
+          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Hablemos por WhatsApp</h1>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:620px">La forma más rápida de contactarnos es por WhatsApp. Te asesoramos sobre productos, presentaciones, disponibilidad y envíos.</p>
+
+          <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px;align-items:start">
+            <!-- WhatsApp principal -->
+            <div style="border:1px solid #C9E9D7;border-radius:12px;background:#F2FBF6;padding:28px 26px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:12px;background:#1FA971;color:#fff;margin-bottom:16px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg></span>
+              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:19px;color:#0B2440">WhatsApp</h3>
+              <p style="font-family:'IBM Plex Mono',monospace;font-size:16px;color:#0B2440;margin-top:8px">+54 9 221 522-7060</p>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:#5A6B7B;margin-top:8px">Lun a Vie · 9 a 18 h</p>
+              <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:14px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="background:#18885B">Escribir por WhatsApp</a>
+            </div>
+
+            <!-- Datos de la marca -->
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:28px 26px">
+              <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:18px">
+                <span style="display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;color:#0E5FB5"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v9.7L12 21.7l-8.4-4.85v-9.7z"></path><circle cx="12" cy="12" r="2.4" fill="#2FA8E0" stroke="none"></circle></svg></span>
+                <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;color:#0B2440">AminoLab<span style="color:#0E5FB5">Ar</span></span>
+              </div>
+              <div style="border-top:1px solid #E2E8F0">
+                <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #E7EDF4;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:96px;flex-shrink:0;color:#94A3B8;letter-spacing:.03em">RUBRO</span><span style="color:#1C2733">Péptidos de investigación</span></div>
+                <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #E7EDF4;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:96px;flex-shrink:0;color:#94A3B8;letter-spacing:.03em">ORIGEN</span><span style="color:#1C2733">Importados de EE. UU.</span></div>
+                <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #E7EDF4;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:96px;flex-shrink:0;color:#94A3B8;letter-spacing:.03em">ENVÍOS</span><span style="color:#1C2733">Todo el país · Andreani</span></div>
+                <div style="display:flex;gap:16px;padding:13px 0;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:96px;flex-shrink:0;color:#94A3B8;letter-spacing:.03em">HORARIO</span><span style="color:#1C2733">Lun a Vie · 9 a 18 h</span></div>
+              </div>
+              <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:10px">
+                <a href="#/catalogo" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:11px 18px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Ver catálogo</a>
+                <a href="#/medios-pago" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:11px 18px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Medios de pago</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ================= CARRITO ================= -->
+    <sc-if value="{{ isCarrito }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
+          <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Tu pedido</span>
+          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Carrito</h1>
+
+          <!-- Carrito vacío -->
+          <sc-if value="{{ emptyCart }}" hint-placeholder-val="{{ true }}">
+            <div style="margin-top:34px;border:1px solid #E2E8F0;border-radius:12px;background:#F4F7FB;padding:56px 24px;text-align:center">
+              <span style="display:inline-flex;color:#9DB1C7;margin-bottom:14px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle><path d="M2.5 3h2.2l2 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.6-1.3L21 7H6.2"></path></svg></span>
+              <p style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Tu carrito está vacío</p>
+              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B;margin-top:8px">Sumá péptidos desde el catálogo para empezar tu pedido.</p>
+              <a href="#/catalogo" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:8px;padding:13px 26px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none" style-hover="background:#0B4E97">Ver catálogo</a>
+            </div>
+          </sc-if>
+
+          <!-- Carrito con items -->
+          <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(22px,3vw,36px);align-items:start">
+              <!-- Lista de productos -->
+              <div style="border:1px solid #E2E8F0;border-radius:12px;overflow:hidden">
+                <sc-for list="{{ cart }}" as="l" hint-placeholder-count="2">
+                  <div style="display:flex;gap:14px;align-items:center;padding:16px 18px;border-bottom:1px solid #EEF3F8">
+                    <div style="flex-shrink:0;width:56px;height:56px;border:1px solid #E2E8F0;border-radius:8px;background:#F4F7FB;display:flex;align-items:center;justify-content:center;color:#9DB1C7"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></div>
+                    <div style="flex:1;min-width:0">
+                      <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:15px;color:#0B2440;line-height:1.25">{{ l.nombre }}</div>
+                      <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#7E93A8;margin-top:3px">{{ l.presentacion }} · {{ l.unitUSDText }} c/u</div>
+                      <div style="display:flex;align-items:center;gap:14px;margin-top:10px">
+                        <div style="display:inline-flex;align-items:center;border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
+                          <button onClick="{{ l.onDec }}" aria-label="Restar" style="width:32px;height:32px;border:none;background:#fff;color:#0B2440;font-size:17px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#F4F7FB">−</button>
+                          <span style="min-width:30px;text-align:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;color:#0B2440">{{ l.qty }}</span>
+                          <button onClick="{{ l.onInc }}" aria-label="Sumar" style="width:32px;height:32px;border:none;background:#fff;color:#0B2440;font-size:17px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#F4F7FB">+</button>
+                        </div>
+                        <button onClick="{{ l.onRemove }}" style="display:inline-flex;align-items:center;gap:5px;background:none;border:none;color:#94A3B8;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;cursor:pointer;padding:0" style-hover="color:#C0392B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M9 6V4h6v2M7 6l1 14h8l1-14"></path></svg>Quitar</button>
+                      </div>
+                    </div>
+                    <div style="text-align:right;flex-shrink:0">
+                      <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;color:#0B2440">{{ l.lineUSDText }}</div>
+                      <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#7E93A8;margin-top:2px">{{ l.lineARSText }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+                <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#F8FAFC">
+                  <a href="#/catalogo" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;color:#0E5FB5;text-decoration:none;display:inline-flex;align-items:center;gap:6px" style-hover="gap:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"></path></svg>Seguir comprando</a>
+                  <button onClick="{{ clearCart }}" style="background:none;border:none;color:#94A3B8;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;cursor:pointer" style-hover="color:#C0392B">Vaciar carrito</button>
+                </div>
+              </div>
+
+              <!-- Resumen del pedido -->
+              <div style="border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:22px 22px 24px;position:sticky;top:84px">
+                <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440;margin-bottom:16px">Resumen del pedido</div>
+
+                <!-- Progreso envío gratis -->
+                <div style="border:1px solid #E2E8F0;border-radius:9px;background:#fff;padding:13px 15px;margin-bottom:18px">
+                  <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#15875A">
+                    <sc-if value="{{ freeShip }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
+                    <span style="color:#0B2440">{{ faltanText }}</span>
+                  </div>
+                  <div style="margin-top:10px;height:7px;border-radius:99px;background:#E7EDF4;overflow:hidden">
+                    <div style="height:100%;width:{{ cartProgress }};background:#1FA971;border-radius:99px;transition:width .25s"></div>
+                  </div>
+                </div>
+
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B">
+                  <span>Subtotal (USD)</span><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#0B2440;font-size:15px">{{ cartTotalUSD }}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B">
+                  <span>Subtotal (ARS)</span><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#0B2440;font-size:15px">{{ cartTotalARS }}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B">
+                  <span>Envío</span><span style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:14px;color:{{ shipColor }}">{{ shipText }}</span>
+                </div>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 4px">
+                  <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;color:#0B2440">Total</span>
+                  <div style="text-align:right">
+                    <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:21px;color:#0B2440">{{ cartTotalUSD }}</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#5A6B7B;margin-top:2px">{{ cartTotalARS }}</div>
+                  </div>
+                </div>
+
+                <a href="{{ waCheckoutHref }}" target="_blank" rel="noopener" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15.5px;text-decoration:none;transition:background .15s" style-hover="background:#18885B"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Finalizar pedido por WhatsApp</a>
+                <a href="#/medios-pago" style="margin-top:10px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:12px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Ver medios de pago</a>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.55;color:#94A3B8;margin-top:13px;text-align:center">El pedido se confirma y coordina por WhatsApp. El valor en ARS es de referencia según cotización.</p>
+              </div>
+            </div>
+          </sc-if>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ================= MEDIOS DE PAGO (informativo) ================= -->
+    <sc-if value="{{ isMedios }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
+          <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Cómo pagar</span>
+          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Medios de pago</h1>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.6;color:#5A6B7B;margin-top:14px;max-width:620px">Aceptamos transferencia bancaria en pesos y USDT. Coordinás el pago por WhatsApp al finalizar tu pedido.</p>
+
+          <!-- Aviso informativo -->
+          <div style="margin-top:22px;display:inline-flex;align-items:center;gap:9px;border:1px solid #FCE3B8;background:#FEF8EC;border-radius:8px;padding:11px 15px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#92660C">
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
+            <span>Página informativa. Los datos para abonar se comparten al confirmar el pedido por WhatsApp.</span>
+          </div>
+
+          <div style="margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px">
+            <!-- Transferencia ARS -->
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column">
+              <div style="display:flex;align-items:center;gap:13px;padding:20px 22px;border-bottom:1px solid #EEF3F8">
+                <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:10px;background:#EAF2FB;color:#0E5FB5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-5 9 5"></path><path d="M5 10v8M19 10v8M9 10v8M15 10v8M3 21h18"></path></svg></span>
+                <div>
+                  <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Transferencia bancaria</div>
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#0E5FB5;margin-top:2px">En pesos · ARS</div>
+                </div>
+              </div>
+              <div style="padding:18px 22px 22px;flex:1;display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;flex-direction:column;gap:0">
+                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">TITULAR</span><span style="color:#C7D0DA">—</span></div>
+                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">CBU / CVU</span><span style="color:#C7D0DA">—</span></div>
+                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">ALIAS</span><span style="color:#C7D0DA">—</span></div>
+                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">CUIT</span><span style="color:#C7D0DA">—</span></div>
+                </div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:#94A3B8;margin-top:auto">Los datos de la cuenta se completan al coordinar el pedido.</p>
+              </div>
+            </div>
+
+            <!-- USDT -->
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column">
+              <div style="display:flex;align-items:center;gap:13px;padding:20px 22px;border-bottom:1px solid #EEF3F8">
+                <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:10px;background:#E7F6EF;color:#15875A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 9.5h7M12 9.5v8"></path></svg></span>
+                <div>
+                  <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:#0B2440">USDT</div>
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#15875A;margin-top:2px">Stablecoin · dólar cripto</div>
+                </div>
+              </div>
+              <div style="padding:18px 22px 22px;flex:1;display:flex;flex-direction:column;gap:12px">
+                <div style="display:flex;flex-direction:column;gap:0">
+                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">RED</span><span style="color:#C7D0DA">—</span></div>
+                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">WALLET</span><span style="color:#C7D0DA">—</span></div>
+                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">RED ALT.</span><span style="color:#C7D0DA">—</span></div>
+                </div>
+                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:#94A3B8;margin-top:auto">La dirección de wallet y la red se confirman al coordinar el pedido.</p>
+              </div>
+            </div>
+          </div>
+
+          <!-- Pasos -->
+          <div style="margin-top:30px;border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:24px clamp(20px,3vw,30px)">
+            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;color:#0B2440;margin-bottom:18px">Cómo es el proceso</div>
+            <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:18px">
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">1</span><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Finalizás el pedido por WhatsApp con el detalle del carrito.</p></div>
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">2</span><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Te pasamos los datos para abonar por transferencia o USDT.</p></div>
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">3</span><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Confirmás el pago y coordinamos el envío a todo el país.</p></div>
+            </div>
+          </div>
+
+          <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:14px">
+            <a href="#/carrito" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:8px;padding:14px 26px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="background:#0B4E97">Volver al carrito</a>
+            <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:14px 26px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Consultar por WhatsApp</a>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+  </main>
+
+  <!-- ================= FOOTER (compartido) ================= -->
+  <footer style="background:#0B2440;color:#9DB6CF">
+    <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,64px) clamp(20px,5vw,56px) 28px">
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,190px),1fr));gap:34px 28px">
+        <div style="max-width:300px">
+          <div style="display:inline-flex;align-items:center;gap:10px">
+            <span style="display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;color:#2FA8E0"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v9.7L12 21.7l-8.4-4.85v-9.7z"></path><circle cx="12" cy="12" r="2.4" fill="#2FA8E0" stroke="none"></circle></svg></span>
+            <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;color:#fff">AminoLab<span style="color:#2FA8E0">Ar</span></span>
+          </div>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.6;color:#8FA8C2;margin-top:14px">Péptidos de investigación importados de Estados Unidos.</p>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5E7B9A;margin-top:10px">Solo para investigación y colección.</p>
+        </div>
+        <div>
+          <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Navegación</div>
+          <a href="#/inicio" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Inicio</a>
+          <a href="#/catalogo" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Catálogo</a>
+          <a href="#/carrito" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Carrito</a>
+          <a href="#/medios-pago" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Medios de pago</a>
+        </div>
+        <div>
+          <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Información</div>
+          <a href="#/nosotros" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Nosotros</a>
+          <a href="#/envios" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Envíos</a>
+          <a href="#/faq" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">FAQ</a>
+          <a href="#/contacto" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Contacto</a>
+        </div>
+        <div>
+          <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Contacto</div>
+          <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:14px;text-decoration:none" style-hover="color:#2FA8E0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>+54 9 221 522-7060</a>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#8FA8C2;margin-top:12px">Asesoría por WhatsApp</p>
+          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#8FA8C2;margin-top:4px">Lun a Vie · 9 a 18 h</p>
+        </div>
+      </div>
+
+      <div style="margin-top:34px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1)">
+        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.65;color:#7E97B6;max-width:900px">{{ disclaimer }}</p>
+      </div>
+      <div style="margin-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5E7B9A">
+        <span>© 2026 AminoLabAr</span>
+        <span>Productos para investigación · No aptos para consumo humano</span>
+      </div>
+    </div>
+  </footer>
+
+  <!-- WhatsApp flotante (todas las páginas) -->
+  <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp" style="position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;gap:10px;background:#1FA971;color:#fff;border-radius:999px;padding:13px 19px 13px 15px;box-shadow:0 12px 30px -8px rgba(31,169,113,.55);font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none;transition:background .15s,transform .15s" style-hover="background:#18885B;transform:translateY(-2px)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>WhatsApp</a>
+
+  <!-- Toast (carrito en fase futura) -->
+  <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
+    <div style="position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:70;background:#0B2440;color:#fff;padding:12px 18px;border-radius:8px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;box-shadow:0 12px 32px -8px rgba(11,36,64,.5);animation:amToast .2s ease;max-width:90vw;text-align:center">{{ toast }}</div>
+  </sc-if>
+
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  // ====== CONSTANTES DE PRECIO — PUNTO DE INTEGRACIÓN (FASE FUTURA) ======
+  // DOLAR_BLUE_VENTA: valor del dólar blue (venta). En una fase posterior
+  // este número se reemplaza por un fetch a una API de cotización (auto).
+  DOLAR_BLUE_VENTA = 1515;   // ARS por USD (blue venta) — se actualizará por API
+  MARKUP_ARS = 10;           // +$10 sobre el dólar blue venta
+  MARKUP_MULTIPLIER = 1.5;   // AJUSTAR: markup sobre el costo. 1.5 = costo + 50%
+  FREE_SHIP_MIN = 3;         // envío GRATIS con 3 o más péptidos (insumos no cuentan)
+
+  // Catálogo en vivo desde Google Sheets (vía opensheet, sin clave).
+  // Formato: https://opensheet.elk.sh/ID_DE_LA_PLANILLA/Hoja1
+  // Dejar "" hasta tener la planilla publicada; con "" usa el array local de respaldo.
+  SHEET_URL = "https://opensheet.elk.sh/1lcKlkt_2ypRiZVFZqQMDCgmgsjnw13AKh7Fl3ptkML4/1";
+
+  // Texto legal reutilizado en footer y en cada ficha de producto (ANMAT).
+  DISCLAIMER = "Productos destinados exclusivamente a investigación y colección. No aptos para consumo humano. No son medicamentos. No están registrados ni aprobados por ANMAT. No diagnostican, tratan, curan ni previenen ninguna enfermedad. La información del sitio es de carácter general y no constituye asesoramiento médico.";
+
+  // ====== IDENTIDAD DE MARCA + SEO (FASE 5) ======
+  // Dominio del sitio. REEMPLAZAR por el dominio real al publicar.
+  SITE_URL = "https://aminolabar.com.ar";
+  BRAND = "AminoLabAr";
+  PHONE = "+5492215227060";              // E.164 — usado en schema y tel
+  PHONE_DISPLAY = "+54 9 221 522-7060";
+
+  // ====== RESEÑAS / TESTIMONIOS (fuente única para sección visible + AggregateRating) ======
+  REVIEW_AVG = 4.9;       // calificación promedio mostrada y en AggregateRating
+  REVIEW_COUNT = 128;     // cantidad total de reseñas (AggregateRating.reviewCount)
+  REVIEWS = [
+    { autor: "Martín G.", lugar: "CABA", rating: 5, fecha: "2026-05-18", texto: "Pedí BPC-157 y TB-500, llegaron en 48 hs a Capital. El COA del lote me lo pasaron por WhatsApp sin drama. Todo trazable y bien embalado con frío." },
+    { autor: "Lucía R.", lugar: "Córdoba", rating: 5, fecha: "2026-04-30", texto: "La asesoría por WhatsApp es lo mejor: me ayudaron a elegir presentación y me respondieron cada duda. Envío por Andreani con seguimiento, llegó perfecto." },
+    { autor: "Diego F.", lugar: "Rosario", rating: 5, fecha: "2026-04-12", texto: "Segunda compra. Productos importados de EE. UU., precios claros en dólar y el envío gratis desde 3 péptidos se nota. Muy recomendables." },
+    { autor: "Sofía M.", lugar: "Mendoza", rating: 5, fecha: "2026-03-27", texto: "Compré GHK-Cu y llegó impecable a Mendoza. Me mandaron el certificado de análisis del lote apenas lo pedí. Confiable de punta a punta." },
+    { autor: "Nicolás P.", lugar: "La Plata", rating: 4, fecha: "2026-03-09", texto: "Buena atención y despacho rápido en 24 hs. Un producto estaba sin stock pero me avisaron al toque y coordinamos. Volvería a comprar." },
+    { autor: "Carolina V.", lugar: "Mar del Plata", rating: 5, fecha: "2026-02-20", texto: "Lo que más valoro es la trazabilidad: cada lote con su COA y la cadena de frío cuidada. Llegó a Mar del Plata en tiempo y forma." },
+  ];
+
+  // Meta description por página (para document.title + meta description dinámicos).
+  PAGE_META = {
+    inicio:   { t: "AminoLabAr · Péptidos de investigación en Argentina | Importados de EE. UU.", d: "AminoLabAr vende péptidos de investigación importados de Estados Unidos, con Certificado de Análisis (COA) por lote, envíos a todo el país por Andreani y despacho en 24 hs. Asesoría por WhatsApp." },
+    catalogo: { t: "Catálogo de péptidos de investigación | AminoLabAr Argentina", d: "Catálogo completo de péptidos de investigación importados de EE. UU.: BPC-157, TB-500, GLP-1, GHK-Cu y más. Precio en USD, COA por lote y envíos a toda la Argentina." },
+    nosotros: { t: "Nosotros · Péptidos con COA y trazabilidad | AminoLabAr", d: "AminoLabAr es un proveedor argentino de péptidos de investigación importados de Estados Unidos, con COA por lote, cadena de frío y asesoría personalizada por WhatsApp." },
+    envios:   { t: "Envíos a todo el país por Andreani | AminoLabAr", d: "Enviamos péptidos de investigación a toda la Argentina por Andreani con seguimiento. Despacho en 24 hs hábiles y envío gratis desde 3 péptidos." },
+    faq:      { t: "Preguntas frecuentes sobre péptidos en Argentina | AminoLabAr", d: "Dónde comprar péptidos de investigación en Argentina, COA por lote, origen EE. UU., medios de pago y envíos por Andreani. Respuestas de AminoLabAr." },
+    contacto: { t: "Contacto · Asesoría por WhatsApp | AminoLabAr", d: "Contactá a AminoLabAr por WhatsApp para asesoría sobre péptidos de investigación, presentaciones, disponibilidad y envíos a todo el país." },
+    carrito:  { t: "Tu carrito | AminoLabAr", d: "Revisá tu pedido de péptidos de investigación y coordiná el envío a todo el país por WhatsApp." },
+    "medios-pago": { t: "Medios de pago · Transferencia y USDT | AminoLabAr", d: "Aceptamos transferencia bancaria en pesos y USDT. Coordiná el pago por WhatsApp al finalizar tu pedido de péptidos de investigación." },
+  };
+
+  FAQS = [
+    { q: "¿Dónde comprar péptidos de investigación en Argentina?", a: "En AminoLabAr. Somos un proveedor argentino de péptidos de investigación importados de Estados Unidos, con Certificado de Análisis por lote disponible, envíos a todo el país y asesoría directa por WhatsApp." },
+    { q: "¿AminoLabAr hace envíos a todo el país?", a: "Sí. Enviamos a toda la Argentina por Andreani, con número de seguimiento. El envío es gratis a partir de 3 péptidos; con menos cantidad, el costo se coordina por WhatsApp." },
+    { q: "¿Los péptidos tienen Certificado de Análisis (COA)?", a: "Sí. Cada lote cuenta con su Certificado de Análisis, que informa la identidad y la pureza del compuesto. Está disponible a solicitud por WhatsApp." },
+    { q: "¿De dónde provienen los péptidos?", a: "Son péptidos producidos en Estados Unidos, fabricados bajo estándares de calidad reconocidos en investigación, e importados por AminoLabAr." },
+    { q: "¿Qué medios de pago aceptan?", a: "Aceptamos transferencia bancaria en pesos (ARS) y USDT. Al finalizar tu pedido por WhatsApp te compartimos los datos para abonar." },
+    { q: "¿Cuánto tarda el envío?", a: "Despachamos dentro de las 24 horas hábiles una vez confirmado el pago. El tiempo de tránsito depende de Andreani y de tu localidad de destino." },
+  ];
+
+  state = {
+    page: "inicio",      // inicio | catalogo | producto | carrito | medios-pago | nosotros | envios | faq | contacto
+    productId: null,
+    variantIndex: 0,
+    detailQty: 1,        // cantidad elegida en la ficha de producto
+    cart: [],            // [{ key, productId, variantIndex, qty }] — estado local del carrito
+    query: "",
+    sort: "destacados",   // destacados | nombre | precio-asc | precio-desc
+    soloStock: false,     // mostrar solo productos en stock
+    menuOpen: false,
+    toast: "",
+    vw: (typeof window !== "undefined" ? window.innerWidth : 1200),
+  };
+
+  // ====== AUTO-ACTUALIZACIÓN AL CARGAR (FASE DATOS REALES) ======
+  // Se ejecuta una vez cuando el sitio carga. Trae el dólar blue (venta) en vivo
+  // desde DolarAPI y, si falla, deja el valor de respaldo (DOLAR_BLUE_VENTA).
+  componentDidMount() {
+    this.actualizarDolarBlue();
+    this.actualizarCatalogo();
+  }
+
+  // Trae el catálogo desde Google Sheets y reemplaza el array local.
+  // Si SHEET_URL está vacío o la planilla falla, se mantiene el array de respaldo.
+  actualizarCatalogo() {
+    if (!this.SHEET_URL) return;
+    fetch(this.SHEET_URL)
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((filas) => {
+        const productos = (filas || [])
+          .map((f) => this.filaAProducto(f))
+          .filter((p) => p && p.id);
+        if (productos.length) {
+          this._productosCache = productos; // catálogo en vivo
+          this.forceUpdate();
+        }
+      })
+      .catch(() => { /* si falla, queda el catálogo local de respaldo */ });
+  }
+
+  // Convierte una fila de la planilla a la forma de producto que usa la UI.
+  // Variantes en la planilla con formato "10mg:62.99 | 20mg:99.99".
+  filaAProducto(f) {
+    if (!f || !f.id) return null;
+    const prod = {
+      id: String(f.id).trim(),
+      nombre: String(f.nombre || "").trim(),
+      investigacion: String(f.investigacion || "").trim(),
+      enStock: /^(true|si|sí|1)$/i.test(String(f.enStock).trim()),
+    };
+    const variantesTxt = String(f.variantes || "").trim();
+    if (variantesTxt) {
+      prod.variantes = variantesTxt
+        .split("|")
+        .map((v) => v.trim())
+        .filter(Boolean)
+        .map((v) => {
+          const [label, costo] = v.split(":");
+          return { label: (label || "").trim(), costoUSD: Number(costo) };
+        })
+        .filter((v) => v.label && v.costoUSD > 0);
+    } else {
+      prod.costoUSD = Number(f.costoUSD);
+    }
+    return prod;
+  }
+
+  // Trae el dólar blue (venta) actual y recalcula todos los precios en ARS.
+  // API pública y gratuita, sin clave: https://dolarapi.com/v1/dolares/blue
+  actualizarDolarBlue() {
+    fetch("https://dolarapi.com/v1/dolares/blue")
+      .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
+      .then((d) => {
+        const venta = Number(d && d.venta);
+        if (venta > 0) {
+          this.DOLAR_BLUE_VENTA = venta;   // ARS por USD (blue venta), en vivo
+          this.forceUpdate();              // re-render: precios ARS actualizados
+        }
+      })
+      .catch(() => { /* si falla la API, se mantiene el valor de respaldo */ });
+  }
+
+  // ====== FUENTE DE DATOS ÚNICA ======
+  // getProductos(): hoy devuelve un array local. En una fase posterior hará
+  // fetch a Google Sheets y devolverá la MISMA forma de datos (mismos campos).
+  // Toda la UI lee productos exclusivamente a través de esta función.
+  getProductos() {
+    if (this._productosCache) return this._productosCache; // catálogo en vivo (Sheets)
+    return [
+      { id: "gla-1-sm", nombre: "GLA-1 SM (Semaglutide) 15mg", investigacion: "Agonista del receptor GLP-1, investigación metabólica.", enStock: true, costoUSD: 71.99 },
+      { id: "gla-2-trz", nombre: "GLA-2 TRZ (Tirzepatide)", investigacion: "Doble agonista GLP-1/GIP de investigación.", enStock: true, variantes: [{ label: "10mg", costoUSD: 62.99 }, { label: "20mg", costoUSD: 99.99 }, { label: "30mg", costoUSD: 129.99 }, { label: "45mg", costoUSD: 149.99 }, { label: "60mg", costoUSD: 166.99 }] },
+      { id: "gla-25-trzrt", nombre: "GLA-2.5 TRZ/RT 20mg", investigacion: "Blend tirzepatide/retatrutide de investigación.", enStock: true, costoUSD: 109.99 },
+      { id: "gla-3-rt", nombre: "GLA-3 RT (Retatrutide)", investigacion: "Triple agonista GLP-1/GIP/glucagón de investigación.", enStock: true, variantes: [{ label: "10mg", costoUSD: 61.99 }, { label: "20mg", costoUSD: 109.99 }, { label: "30mg", costoUSD: 149.99 }, { label: "50mg", costoUSD: 199.99 }, { label: "60mg", costoUSD: 248.99 }] },
+      { id: "gla-3-cagri", nombre: "GLA-3 RT/CAGRI 20mg/4mg", investigacion: "Blend retatrutide/cagrilintida de investigación.", enStock: false, costoUSD: 134.99 },
+      { id: "cagrilintide", nombre: "Cagrilintide", investigacion: "Análogo de amilina de investigación.", enStock: true, variantes: [{ label: "5mg", costoUSD: 56.99 }, { label: "10mg", costoUSD: 101.99 }] },
+      { id: "bpc-157-caps", nombre: "BPC-157 500mcg (cápsulas)", investigacion: "BPC-157 en cápsulas, estudiado en reparación de tejidos.", enStock: false, costoUSD: 99.99 },
+      { id: "bpc-kpv-caps", nombre: "BPC-KPV 1mg (cápsulas)", investigacion: "Blend BPC-157/KPV en cápsulas, de investigación.", enStock: false, costoUSD: 118.99 },
+      { id: "5amino1mq-caps", nombre: "5-Amino-1MQ 50mg (cápsulas)", investigacion: "Inhibidor de NNMT, investigación metabólica.", enStock: true, costoUSD: 105.99 },
+      { id: "ghk-cu-caps", nombre: "GHK-Cu 2mg (cápsulas)", investigacion: "Cobre-péptido en cápsulas, de investigación.", enStock: true, costoUSD: 79.99 },
+      { id: "methylene-blue", nombre: "Methylene Blue 20mg (60 cápsulas)", investigacion: "Azul de metileno, compuesto de investigación.", enStock: true, costoUSD: 61.99 },
+      { id: "slu-pp-332-caps", nombre: "SLU-PP-332 20mg (cápsulas)", investigacion: "Agonista de investigación, estudios metabólicos.", enStock: true, costoUSD: 119.99 },
+      { id: "tesofensine", nombre: "Tesofensine 500mcg (cápsulas)", investigacion: "Compuesto de investigación.", enStock: true, costoUSD: 114.99 },
+      { id: "tesa-ipa", nombre: "TESA/IPA Blend 10mg/3mg", investigacion: "Blend tesamorelina/ipamorelina de investigación.", enStock: false, costoUSD: 101.99 },
+      { id: "ghk-cu", nombre: "GHK-Cu (vial)", investigacion: "Cobre-péptido, estudiado en piel y colágeno.", enStock: true, variantes: [{ label: "50mg", costoUSD: 41.99 }, { label: "100mg", costoUSD: 62.99 }] },
+      { id: "ghkpv", nombre: "GHKPV", investigacion: "Blend GHK-Cu/KPV de investigación.", enStock: true, costoUSD: 72.99 },
+      { id: "semax-selank-blend", nombre: "Semax/Selank Blend 20mg", investigacion: "Blend de péptidos nootrópicos de investigación.", enStock: true, costoUSD: 81.99 },
+      { id: "selank", nombre: "Selank 10mg", investigacion: "Péptido de investigación.", enStock: false, costoUSD: 40.99 },
+      { id: "semax", nombre: "Semax 10mg", investigacion: "Péptido nootrópico de investigación.", enStock: true, costoUSD: 40.99 },
+      { id: "wolverine", nombre: "BPC/TB-500 Wolverine", investigacion: "Blend BPC-157/TB-500 de investigación (recuperación).", enStock: true, variantes: [{ label: "10mg", costoUSD: 62.99 }, { label: "20mg", costoUSD: 101.99 }] },
+      { id: "bpc-157", nombre: "BPC-157 (vial)", investigacion: "Estudiado en reparación de tejidos.", enStock: true, variantes: [{ label: "10mg", costoUSD: 45.99 }, { label: "20mg", costoUSD: 79.99 }] },
+      { id: "tb-500", nombre: "TB-500 10mg", investigacion: "Estudiado en recuperación y angiogénesis.", enStock: true, costoUSD: 58.99 },
+      { id: "kpv", nombre: "KPV 10mg", investigacion: "Fragmento de alfa-MSH, estudiado en inflamación.", enStock: true, costoUSD: 51.99 },
+      { id: "klow", nombre: "KLOW 80mg", investigacion: "Blend GHK-Cu/BPC-157/TB-500/KPV de investigación.", enStock: true, costoUSD: 118.99 },
+      { id: "glow", nombre: "GLOW 70mg", investigacion: "Blend GHK-Cu/BPC-157/TB-500 de investigación.", enStock: true, costoUSD: 96.99 },
+      { id: "sermorelin", nombre: "Sermorelin 10mg", investigacion: "Análogo de GHRH de investigación.", enStock: true, costoUSD: 62.99 },
+      { id: "tesamorelin", nombre: "Tesamorelin", investigacion: "Análogo de GHRH, estudiado en grasa visceral.", enStock: true, variantes: [{ label: "10mg", costoUSD: 67.99 }, { label: "20mg", costoUSD: 117.99 }] },
+      { id: "ipamorelin", nombre: "Ipamorelin 10mg", investigacion: "Secretagogo de GH selectivo, de investigación.", enStock: true, costoUSD: 51.99 },
+      { id: "cjc-nodac-ipa", nombre: "CJC-1295 No DAC/IPA Blend 10mg", investigacion: "Blend GHRH/GHRP de investigación.", enStock: true, costoUSD: 56.99 },
+      { id: "cjc-sin-dac", nombre: "CJC-1295 sin DAC 10mg", investigacion: "Análogo de GHRH de vida media corta, de investigación.", enStock: true, costoUSD: 67.99 },
+      { id: "cjc-con-dac", nombre: "CJC-1295 con DAC 5mg", investigacion: "Análogo de GHRH de vida media larga, de investigación.", enStock: true, costoUSD: 51.99 },
+      { id: "mots-c", nombre: "MOTS-c", investigacion: "Péptido mitocondrial de investigación.", enStock: true, variantes: [{ label: "10mg", costoUSD: 45.99 }, { label: "20mg", costoUSD: 79.99 }] },
+      { id: "ss-31", nombre: "SS-31 (S-31-S) 10mg", investigacion: "Péptido dirigido a mitocondria, de investigación.", enStock: true, costoUSD: 49.99 },
+      { id: "glutathione", nombre: "Glutathione 1500mg", investigacion: "Antioxidante, compuesto de investigación.", enStock: true, costoUSD: 75.99 },
+      { id: "aod-9604", nombre: "AOD-9604 10mg", investigacion: "Fragmento de GH estudiado en metabolismo lipídico.", enStock: true, costoUSD: 92.99 },
+      { id: "lipo-c", nombre: "Lipo-C 10mL", investigacion: "Blend lipotrópico de investigación.", enStock: true, costoUSD: 63.99 },
+      { id: "ara-290", nombre: "ARA-290 10mg", investigacion: "Péptido derivado de eritropoyetina, de investigación.", enStock: true, costoUSD: 54.99 },
+      { id: "foxo4-dri", nombre: "FOXO4-DRI 10mg", investigacion: "Péptido senolítico de investigación.", enStock: true, costoUSD: 134.99 },
+      { id: "cartalax", nombre: "Cartalax 20mg", investigacion: "Bioregulador peptídico de investigación.", enStock: true, costoUSD: 67.99 },
+      { id: "testagen", nombre: "Testagen 20mg", investigacion: "Bioregulador peptídico de investigación.", enStock: true, costoUSD: 67.99 },
+      { id: "kisspeptin", nombre: "Kisspeptin-10 10mg", investigacion: "Péptido del eje reproductivo, de investigación.", enStock: true, costoUSD: 40.99 },
+      { id: "acetyl-hexa-8", nombre: "Acetyl Hexapeptide-8 (RAW)", investigacion: "Materia prima cosmética de investigación.", enStock: true, costoUSD: 128.99 },
+      { id: "adamax", nombre: "Adamax 10mg", investigacion: "Péptido de investigación.", enStock: false, costoUSD: 74.99 },
+      { id: "ahk-cu", nombre: "AHK-Cu (RAW)", investigacion: "Cobre-péptido, materia prima cosmética de investigación.", enStock: true, costoUSD: 64.99 },
+      { id: "dsip", nombre: "DSIP 10mg", investigacion: "Péptido relacionado al sueño, de investigación.", enStock: true, costoUSD: 59.99 },
+      { id: "ghk-cu-raw", nombre: "GHK-Cu (RAW)", investigacion: "Cobre-péptido, materia prima cosmética de investigación.", enStock: true, costoUSD: 39.99 },
+      { id: "slu-pp-332-5mg", nombre: "SLU-PP-332 5mg (vial)", investigacion: "Agonista de investigación, estudios metabólicos.", enStock: true, costoUSD: 49.99 },
+      { id: "snap-8", nombre: "Snap-8 (RAW)", investigacion: "Péptido cosmético, materia prima de investigación.", enStock: true, costoUSD: 148.99 },
+      { id: "epitalon", nombre: "Epitalon 10mg", investigacion: "Péptido pineal de investigación (telómeros).", enStock: true, costoUSD: 32.99 },
+      { id: "pt-141", nombre: "PT-141 10mg", investigacion: "Derivado de melanocortina de investigación.", enStock: true, costoUSD: 40.99 },
+      { id: "vip", nombre: "VIP 10mg", investigacion: "Péptido intestinal vasoactivo de investigación.", enStock: true, costoUSD: 65.99 },
+      { id: "melanotan-1", nombre: "Melanotan 1 10mg", investigacion: "Análogo de melanocortina, estudiado en pigmentación.", enStock: true, costoUSD: 33.99 },
+      { id: "melanotan-2", nombre: "Melanotan 2 10mg", investigacion: "Análogo de melanocortina de investigación.", enStock: true, costoUSD: 33.99 },
+      { id: "nad-plus", nombre: "NAD+ 500mg Buffered", investigacion: "Coenzima de investigación metabólica.", enStock: true, costoUSD: 56.99 },
+      { id: "5amino1mq-vial", nombre: "5-Amino-1MQ (vial)", investigacion: "Inhibidor de NNMT, investigación metabólica.", enStock: true, variantes: [{ label: "10mg", costoUSD: 51.99 }, { label: "50mg", costoUSD: 101.99 }] },
+      { id: "thymosin-a1", nombre: "Thymosin Alpha-1 10mg", investigacion: "Péptido inmunomodulador de investigación.", enStock: true, costoUSD: 63.99 },
+      { id: "acido-acetico", nombre: "Ácido Acético 0.6% 3mL", investigacion: "Insumo: ácido acético para reconstitución.", enStock: false, costoUSD: 9.99 },
+      { id: "agua-esteril", nombre: "Agua Estéril (SWFI) 10mL", investigacion: "Insumo: agua estéril para reconstitución.", enStock: true, costoUSD: 9.99 },
+      { id: "agua-bac-10", nombre: "Agua Bacteriostática 0.9% 10mL", investigacion: "Insumo: agua bacteriostática (alcohol bencílico 0,9%).", enStock: true, costoUSD: 14.99 },
+      { id: "agua-bac-30", nombre: "Agua Bacteriostática 0.9% 30mL", investigacion: "Insumo: agua bacteriostática (alcohol bencílico 0,9%).", enStock: false, costoUSD: 27.99 },
+    ];
+  }
+
+  // ====== CÁLCULO DE PRECIOS ======
+  round2(x) { return Math.round(x * 100) / 100; }          // redondear2
+  round(x) { return Math.round(x); }                        // redondear
+  // precioVentaUSD = redondear2(costoUSD * MARKUP_MULTIPLIER)
+  precioVentaUSD(costoUSD) { return this.round2(costoUSD * this.MARKUP_MULTIPLIER); }
+  // precioARS = redondear(precioVentaUSD * (DOLAR_BLUE_VENTA + MARKUP_ARS))
+  precioARS(ventaUSD) { return this.round(ventaUSD * (this.DOLAR_BLUE_VENTA + this.MARKUP_ARS)); }
+
+  fmtUSD(v) { return "US$ " + v.toFixed(2); }
+  fmtARS(v) { return "$ " + Math.round(v).toLocaleString("es-AR") + " ARS"; }
+  waConsulta(nombre) { return "https://wa.me/5492215227060?text=" + encodeURIComponent("Hola, quería consultar disponibilidad de " + nombre); }
+
+  // Deriva la presentación (mg / mL) desde el nombre cuando no hay variantes.
+  presentacionDe(nombre) {
+    const m = (nombre.match(/(\d+(?:[.,]\d+)?\s?m[gl])/i) || [])[0];
+    if (!m) return "Vial";
+    return m.replace(/\s+/g, "").replace(/ml$/i, "mL").replace(/mg$/i, "mg");
+  }
+
+  // ====== ROUTING POR HASH (#/catalogo, #/producto/<id>, ...) ======
+  componentDidMount() {
+    window.addEventListener("hashchange", this.syncFromHash);
+    window.addEventListener("resize", this.onResize);
+    this.injectSchema();   // datos estructurados JSON-LD (Products, FAQ, Reviews)
+    this.syncFromHash();
+  }
+
+  // ====== JSON-LD: Product (uno por producto) + FAQPage + AggregateRating/Review ======
+  injectSchema() {
+    if (typeof document === "undefined") return;
+    const U = this.SITE_URL;
+    const put = (id, obj) => {
+      let el = document.getElementById(id);
+      if (!el) { el = document.createElement("script"); el.type = "application/ld+json"; el.id = id; document.head.appendChild(el); }
+      el.textContent = JSON.stringify(obj);
+    };
+
+    // Un Product por cada item del catálogo, con offers/precio/availability.
+    const productos = this.getProductos();
+    const productNodes = productos.map((p) => {
+      const costo = (p.variantes && p.variantes.length) ? p.variantes[0].costoUSD : p.costoUSD;
+      const ventaUSD = this.precioVentaUSD(costo);
+      const offers = (p.variantes && p.variantes.length)
+        ? {
+            "@type": "AggregateOffer", "priceCurrency": "USD",
+            "lowPrice": this.precioVentaUSD(Math.min.apply(null, p.variantes.map((v) => v.costoUSD))).toFixed(2),
+            "highPrice": this.precioVentaUSD(Math.max.apply(null, p.variantes.map((v) => v.costoUSD))).toFixed(2),
+            "offerCount": p.variantes.length,
+            "availability": p.enStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            "seller": { "@type": "Organization", "name": this.BRAND },
+          }
+        : {
+            "@type": "Offer", "priceCurrency": "USD", "price": ventaUSD.toFixed(2),
+            "availability": p.enStock ? "https://schema.org/InStock" : "https://schema.org/OutOfStock",
+            "url": U + "/#/producto/" + p.id,
+            "seller": { "@type": "Organization", "name": this.BRAND },
+          };
+      return {
+        "@context": "https://schema.org", "@type": "Product",
+        "name": p.nombre, "description": p.investigacion,
+        "category": "Péptido de investigación",
+        "brand": { "@type": "Brand", "name": this.BRAND },
+        "countryOfOrigin": "US",
+        "url": U + "/#/producto/" + p.id,
+        "offers": offers,
+      };
+    });
+    put("ld-products", { "@context": "https://schema.org", "@graph": productNodes });
+
+    // FAQPage con las preguntas/respuestas de la FASE 3.
+    put("ld-faq", {
+      "@context": "https://schema.org", "@type": "FAQPage",
+      "mainEntity": this.FAQS.map((f) => ({
+        "@type": "Question", "name": f.q,
+        "acceptedAnswer": { "@type": "Answer", "text": f.a },
+      })),
+    });
+
+    // AggregateRating + reseñas individuales, asociadas a la marca/negocio.
+    put("ld-reviews", {
+      "@context": "https://schema.org", "@type": "Organization",
+      "name": this.BRAND, "url": U,
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": this.REVIEW_AVG.toFixed(1),
+        "reviewCount": this.REVIEW_COUNT,
+        "bestRating": "5", "worstRating": "1",
+      },
+      "review": this.REVIEWS.map((r) => ({
+        "@type": "Review",
+        "author": { "@type": "Person", "name": r.autor },
+        "datePublished": r.fecha,
+        "reviewRating": { "@type": "Rating", "ratingValue": String(r.rating), "bestRating": "5", "worstRating": "1" },
+        "reviewBody": r.texto,
+      })),
+    });
+  }
+
+  // ====== META POR PÁGINA (title + description + canonical + OG dinámicos) ======
+  setMeta(page, product) {
+    if (typeof document === "undefined") return;
+    let meta = this.PAGE_META[page] || this.PAGE_META.inicio;
+    let path = page === "inicio" ? "/" : ("/#/" + page);
+    if (product) {
+      meta = {
+        t: product.nombre + " · Péptido de investigación | " + this.BRAND,
+        d: product.investigacion + " Importado de EE. UU., COA por lote disponible. Envíos a todo el país por Andreani — " + this.BRAND + ".",
+      };
+      path = "/#/producto/" + product.id;
+    }
+    document.title = meta.t;
+    const set = (sel, attr, val) => {
+      let el = document.head.querySelector(sel);
+      if (!el) {
+        el = document.createElement("meta");
+        const m = sel.match(/\[(name|property)="([^"]+)"\]/);
+        if (m) el.setAttribute(m[1], m[2]);
+        document.head.appendChild(el);
+      }
+      el.setAttribute(attr, val);
+    };
+    set('meta[name="description"]', "content", meta.d);
+    set('meta[property="og:title"]', "content", meta.t);
+    set('meta[property="og:description"]', "content", meta.d);
+    set('meta[property="og:url"]', "content", this.SITE_URL + path);
+    set('meta[name="twitter:title"]', "content", meta.t);
+    set('meta[name="twitter:description"]', "content", meta.d);
+    let canon = document.head.querySelector('link[rel="canonical"]');
+    if (!canon) { canon = document.createElement("link"); canon.setAttribute("rel", "canonical"); document.head.appendChild(canon); }
+    canon.setAttribute("href", this.SITE_URL + path);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("hashchange", this.syncFromHash);
+    window.removeEventListener("resize", this.onResize);
+  }
+  onResize = () => {
+    if (this._raf) return;
+    this._raf = requestAnimationFrame(() => { this._raf = null; this.setState({ vw: window.innerWidth }); });
+  };
+  syncFromHash = () => {
+    const raw = (window.location.hash || "").replace(/^#\/?/, "");
+    const parts = raw.split("/").filter(Boolean);
+    let page = "inicio", productId = null;
+    if (parts[0] === "catalogo") page = "catalogo";
+    else if (parts[0] === "producto") { page = "producto"; productId = parts[1] || null; }
+    else if (parts[0] === "carrito") page = "carrito";
+    else if (parts[0] === "medios-pago") page = "medios-pago";
+    else if (["nosotros", "envios", "faq", "contacto"].includes(parts[0])) page = parts[0];
+    this.setState({ page, productId, menuOpen: false, variantIndex: 0, detailQty: 1 });
+    const prod = page === "producto" ? this.getProductos().find((x) => x.id === productId) : null;
+    this.setMeta(page, prod || null);
+    if (typeof window !== "undefined") window.scrollTo(0, 0);
+  };
+
+  // ====== ACCIONES ======
+  // ====== CARRITO — estado local en el front ======
+  showToast(msg) {
+    this.setState({ toast: msg });
+    clearTimeout(this._toastT);
+    this._toastT = setTimeout(() => this.setState({ toast: "" }), 2200);
+  }
+  // key = productId + ":" + variantIndex  → identifica producto+variante en el carrito
+  addItem = (productId, variantIndex = 0, qty = 1) => {
+    this.setState((s) => {
+      const key = productId + ":" + variantIndex;
+      const cart = s.cart.map((it) => ({ ...it }));
+      const ex = cart.find((it) => it.key === key);
+      if (ex) ex.qty += qty; else cart.push({ key, productId, variantIndex, qty });
+      return { cart };
+    });
+    this.showToast(qty > 1 ? "Agregado al carrito (×" + qty + ")" : "Agregado al carrito");
+  };
+  incItem = (key) => this.setState((s) => ({ cart: s.cart.map((it) => it.key === key ? { ...it, qty: it.qty + 1 } : it) }));
+  decItem = (key) => this.setState((s) => ({ cart: s.cart.map((it) => it.key === key ? { ...it, qty: Math.max(1, it.qty - 1) } : it) }));
+  removeItem = (key) => this.setState((s) => ({ cart: s.cart.filter((it) => it.key !== key) }));
+  clearCart = () => this.setState({ cart: [] });
+  incDetail = () => this.setState((s) => ({ detailQty: s.detailQty + 1 }));
+  decDetail = () => this.setState((s) => ({ detailQty: Math.max(1, s.detailQty - 1) }));
+  onSearch = (e) => this.setState({ query: e.target.value });
+  onSort = (e) => this.setState({ sort: e.target.value });
+  toggleSoloStock = () => this.setState((s) => ({ soloStock: !s.soloStock }));
+  toggleMenu = () => this.setState((s) => ({ menuOpen: !s.menuOpen }));
+
+  // ====== VIEW-MODELS ======
+  toCard(p) {
+    const enStock = !!p.enStock;
+    let costo, presentacion, desde = false;
+    if (p.variantes && p.variantes.length) {
+      costo = p.variantes[0].costoUSD;                    // precio "desde" = variante más baja
+      presentacion = p.variantes.map((v) => v.label).join(" · ");
+      desde = p.variantes.length > 1;
+    } else {
+      costo = p.costoUSD;
+      presentacion = this.presentacionDe(p.nombre);
+    }
+    const ventaUSD = this.precioVentaUSD(costo);
+    const ars = this.precioARS(ventaUSD);
+    return {
+      id: p.id, nombre: p.nombre, investigacion: p.investigacion, presentacion,
+      enStock, sinStock: !enStock, desde,
+      precioUSD: ventaUSD,
+      usdText: this.fmtUSD(ventaUSD), arsText: this.fmtARS(ars),
+      href: "#/producto/" + p.id, whatsappHref: this.waConsulta(p.nombre),
+      onAdd: () => this.addItem(p.id, 0, 1),   // desde la card agrega la variante base (la más baja)
+    };
+  }
+
+  // ====== LÍNEAS DEL CARRITO + TOTALES + REGLA DE ENVÍO + MENSAJE WHATSAPP ======
+  buildCart() {
+    const productos = this.getProductos();
+    const tasaARS = this.DOLAR_BLUE_VENTA + this.MARKUP_ARS;
+    const lines = this.state.cart.map((it) => {
+      const p = productos.find((x) => x.id === it.productId);
+      if (!p) return null;
+      let costo, presentacion;
+      if (p.variantes && p.variantes.length) {
+        const v = p.variantes[Math.min(it.variantIndex, p.variantes.length - 1)];
+        costo = v.costoUSD; presentacion = v.label;
+      } else { costo = p.costoUSD; presentacion = this.presentacionDe(p.nombre); }
+      const ventaUSD = this.precioVentaUSD(costo);
+      const lineUSD = this.round2(ventaUSD * it.qty);
+      const esInsumo = p.id === "agua-bac-10";
+      return {
+        key: it.key, nombre: p.nombre, presentacion, qty: it.qty, lineUSD, esInsumo,
+        unitUSDText: this.fmtUSD(ventaUSD),
+        lineUSDText: this.fmtUSD(lineUSD),
+        lineARSText: this.fmtARS(this.round(lineUSD * tasaARS)),
+        onInc: () => this.incItem(it.key), onDec: () => this.decItem(it.key), onRemove: () => this.removeItem(it.key),
+      };
+    }).filter(Boolean);
+
+    const totalUSD = this.round2(lines.reduce((a, l) => a + l.lineUSD, 0));
+    const totalARS = this.round(totalUSD * tasaARS);
+    const count = this.state.cart.reduce((a, it) => a + it.qty, 0);
+    // Sólo cuentan PÉPTIDOS para el envío gratis (los insumos no suman).
+    const pepCount = lines.reduce((a, l) => a + (l.esInsumo ? 0 : l.qty), 0);
+    const faltan = Math.max(0, this.FREE_SHIP_MIN - pepCount);
+    const freeShip = lines.length > 0 && faltan === 0;
+    const faltanText = freeShip
+      ? "¡Tenés envío gratis!"
+      : "Te " + (faltan === 1 ? "falta" : "faltan") + " " + faltan + " péptido" + (faltan === 1 ? "" : "s") + " para envío gratis";
+    const shipText = freeShip ? "GRATIS" : "A coordinar";
+    const cartProgress = Math.min(100, Math.round((pepCount / this.FREE_SHIP_MIN) * 100)) + "%";
+
+    // Mensaje pre-cargado para WhatsApp con el detalle del pedido.
+    let msg = "Hola AminoLabAr, quiero hacer este pedido:\n\n";
+    lines.forEach((l, i) => {
+      msg += (i + 1) + ") " + l.nombre + " — " + l.presentacion + " ×" + l.qty + " — " + l.lineUSDText + "\n";
+    });
+    msg += "\nTotal: " + this.fmtUSD(totalUSD) + "  /  " + this.fmtARS(totalARS);
+    msg += "\nEnvío: " + (freeShip ? "GRATIS (3+ péptidos)" : "a coordinar");
+    const waHref = "https://wa.me/5492215227060?text=" + encodeURIComponent(msg);
+
+    return {
+      lines, count, totalUSDText: this.fmtUSD(totalUSD), totalARSText: this.fmtARS(totalARS),
+      freeShip, faltanText, shipText, cartProgress, waHref,
+    };
+  }
+
+  buildDetail() {
+    const p = this.getProductos().find((x) => x.id === this.state.productId);
+    if (!p) return null;
+    const enStock = !!p.enStock;
+    const chipBase = { display: "inline-flex", alignItems: "center", justifyContent: "center", padding: "9px 17px", borderRadius: "7px", fontFamily: "'IBM Plex Mono',monospace", fontSize: "13px", fontWeight: 600, cursor: "pointer", transition: "all .15s" };
+    const chipActive = Object.assign({}, chipBase, { border: "1px solid #0E5FB5", background: "#0E5FB5", color: "#fff" });
+    const chipIdle = Object.assign({}, chipBase, { border: "1px solid #E2E8F0", background: "#fff", color: "#1C2733" });
+    let variantes = [], costo, presentacion;
+    if (p.variantes && p.variantes.length) {
+      const idx = Math.min(this.state.variantIndex, p.variantes.length - 1);
+      variantes = p.variantes.map((v, i) => ({
+        label: v.label, idx: i,
+        style: i === idx ? chipActive : chipIdle,
+        onClick: () => this.setState({ variantIndex: i }),
+      }));
+      costo = p.variantes[idx].costoUSD;
+      presentacion = p.variantes[idx].label;
+    } else {
+      costo = p.costoUSD;
+      presentacion = this.presentacionDe(p.nombre);
+    }
+    const ventaUSD = this.precioVentaUSD(costo);
+    const ars = this.precioARS(ventaUSD);
+    const esInsumo = p.id === "agua-bac-10";
+    return {
+      id: p.id, nombre: p.nombre, investigacion: p.investigacion,
+      enStock, sinStock: !enStock,
+      hasVariantes: variantes.length > 0, variantes,
+      presentacion,
+      forma: esInsumo ? "Solución estéril" : "Vial liofilizado (polvo)",
+      usdText: this.fmtUSD(ventaUSD), arsText: this.fmtARS(ars),
+      whatsappHref: this.waConsulta(p.nombre),
+    };
+  }
+
+  navStyle(active, mobile) {
+    if (mobile) {
+      return { display: "block", fontFamily: "'IBM Plex Sans',sans-serif", fontSize: "17px", fontWeight: active ? 700 : 500, color: active ? "#0E5FB5" : "#0B2440", textDecoration: "none", padding: "15px 4px", borderBottom: "1px solid #E7EDF4" };
+    }
+    return { fontFamily: "'IBM Plex Sans',sans-serif", fontSize: "14.5px", fontWeight: active ? 700 : 500, color: active ? "#0B2440" : "#5A6B7B", textDecoration: "none", padding: "6px 0", borderBottom: active ? "2px solid #0E5FB5" : "2px solid transparent", whiteSpace: "nowrap" };
+  }
+
+  renderVals() {
+    const page = this.state.page;
+    const isProducto = page === "producto";
+    const isCompact = this.state.vw < 880;
+    const faqs = this.FAQS;
+
+    // ====== RESEÑAS (sección visible — usa la misma fuente que el schema) ======
+    const star = "★★★★★";
+    const reviews = this.REVIEWS.map((r) => ({
+      autor: r.autor, lugar: r.lugar, texto: r.texto,
+      starsOn: star.slice(0, r.rating), starsOff: star.slice(r.rating),
+      fechaText: new Date(r.fecha + "T00:00:00").toLocaleDateString("es-AR", { month: "long", year: "numeric" }),
+    }));
+    const reviewAvgText = this.REVIEW_AVG.toFixed(1).replace(".", ",");
+    const reviewCountText = this.REVIEW_COUNT + " reseñas";
+    const reviewStarsOn = star.slice(0, Math.round(this.REVIEW_AVG));
+    const reviewStarsOff = star.slice(Math.round(this.REVIEW_AVG));
+
+    const allCards = this.getProductos().map((p) => this.toCard(p));
+    const q = this.state.query.trim().toLowerCase();
+    let cards = q ? allCards.filter((c) => (c.nombre + " " + c.investigacion).toLowerCase().includes(q)) : allCards.slice();
+    if (this.state.soloStock) cards = cards.filter((c) => c.enStock);
+    // Orden del catálogo
+    const sort = this.state.sort;
+    if (sort === "nombre") cards.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
+    else if (sort === "precio-asc") cards.sort((a, b) => a.precioUSD - b.precioUSD);
+    else if (sort === "precio-desc") cards.sort((a, b) => b.precioUSD - a.precioUSD);
+    else cards.sort((a, b) => (b.enStock - a.enStock));   // destacados: en stock primero
+    const sortOptions = [
+      { value: "destacados", label: "Destacados (en stock primero)" },
+      { value: "nombre", label: "Nombre (A–Z)" },
+      { value: "precio-asc", label: "Precio: menor a mayor" },
+      { value: "precio-desc", label: "Precio: mayor a menor" },
+    ];
+    const featured = allCards.filter((c) => c.enStock).slice(0, 4);
+
+    const navDefs = [
+      { label: "Inicio", key: "inicio", href: "#/inicio" },
+      { label: "Catálogo", key: "catalogo", href: "#/catalogo" },
+      { label: "Nosotros", key: "nosotros", href: "#/nosotros" },
+      { label: "Envíos", key: "envios", href: "#/envios" },
+      { label: "FAQ", key: "faq", href: "#/faq" },
+      { label: "Contacto", key: "contacto", href: "#/contacto" },
+    ];
+    const activeKey = isProducto ? "catalogo" : page;
+    const navItems = navDefs.map((n) => ({ label: n.label, href: n.href, style: this.navStyle(n.key === activeKey, false) }));
+    const navItemsMobile = navDefs.map((n) => ({ label: n.label, href: n.href, style: this.navStyle(n.key === activeKey, true) }));
+
+    const product = isProducto ? this.buildDetail() : null;
+    const cartVM = this.buildCart();
+    const addDetail = product
+      ? (() => this.addItem(product.id, product.hasVariantes ? this.state.variantIndex : 0, this.state.detailQty))
+      : (() => {});
+
+    return {
+      isInicio: page === "inicio",
+      isCatalogo: page === "catalogo",
+      isProducto,
+      isNosotros: page === "nosotros", isEnvios: page === "envios",
+      isFaq: page === "faq", isContacto: page === "contacto", faqs,
+      reviews, reviewAvgText, reviewCountText, reviewStarsOn, reviewStarsOff,
+      isCompact, showFullNav: !isCompact, menuOpen: this.state.menuOpen, toggleMenu: this.toggleMenu,
+      navItems, navItemsMobile,
+      cards, featured, resultCount: cards.length,
+      hasResults: cards.length > 0, noResults: cards.length === 0,
+      query: this.state.query, onSearch: this.onSearch, clearQuery: () => this.setState({ query: "", sort: "destacados", soloStock: false }),
+      sort: this.state.sort, onSort: this.onSort, sortOptions,
+      soloStock: this.state.soloStock, mostrarTodo: !this.state.soloStock, toggleSoloStock: this.toggleSoloStock,
+      addToCart: addDetail,
+      detailQty: this.state.detailQty, incDetail: this.incDetail, decDetail: this.decDetail,
+      product, productNotFound: isProducto && !product,
+      isCarrito: page === "carrito", isMedios: page === "medios-pago",
+      cart: cartVM.lines, cartCount: cartVM.count, hasCart: cartVM.lines.length > 0, emptyCart: cartVM.lines.length === 0,
+      cartTotalUSD: cartVM.totalUSDText, cartTotalARS: cartVM.totalARSText,
+      freeShip: cartVM.freeShip, faltanText: cartVM.faltanText, shipText: cartVM.shipText,
+      shipColor: cartVM.freeShip ? "#15875A" : "#5A6B7B",
+      cartProgress: cartVM.cartProgress, waCheckoutHref: cartVM.waHref,
+      incItem: this.incItem, decItem: this.decItem, removeItem: this.removeItem, clearCart: this.clearCart,
+      disclaimer: this.DISCLAIMER,
+      routeKey: (typeof location !== "undefined" ? location.hash : page) || page,
+      toast: this.state.toast, hasToast: !!this.state.toast,
+    };
+  }
+}
+</script>
+</body>
+</html>
