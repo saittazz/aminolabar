@@ -779,7 +779,7 @@ class Component extends DCLogic {
   // este número se reemplaza por un fetch a una API de cotización (auto).
   DOLAR_BLUE_VENTA = 1515;   // ARS por USD (blue venta) — se actualizará por API
   MARKUP_ARS = 10;           // +$10 sobre el dólar blue venta
-  MARKUP_MULTIPLIER = 1.5;   // AJUSTAR: markup sobre el costo. 1.5 = costo + 50%
+  MARKUP_MULTIPLIER = 1;     // 1 = el precio de la planilla es el precio FINAL de venta (sin markup automático)
   FREE_SHIP_MIN = 3;         // envío GRATIS con 3 o más péptidos (insumos no cuentan)
 
   // Catálogo en vivo desde Google Sheets (vía opensheet, sin clave).
@@ -856,7 +856,9 @@ class Component extends DCLogic {
   // Si SHEET_URL está vacío o la planilla falla, se mantiene el array de respaldo.
   actualizarCatalogo() {
     if (!this.SHEET_URL) return;
-    fetch(this.SHEET_URL)
+    // "_=timestamp" evita que el navegador sirva una copia cacheada: siempre pide lo último.
+    const url = this.SHEET_URL + (this.SHEET_URL.includes("?") ? "&" : "?") + "_=" + Date.now();
+    fetch(url, { cache: "no-store" })
       .then((r) => (r.ok ? r.json() : Promise.reject(r.status)))
       .then((filas) => {
         const productos = (filas || [])
