@@ -371,7 +371,7 @@ input{font:inherit}
             </div>
             <a href="#/catalogo" style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14.5px;color:#0E5FB5;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap" style-hover="gap:9px">Ver catálogo completo<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
           </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:20px">
+          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px">
             <sc-for list="{{ featured }}" as="c" hint-placeholder-count="4">
               <dc-import name="ProductCard" c="{{ c }}" on-add="{{ addToCart }}" hint-size="100%,392px"></dc-import>
             </sc-for>
@@ -717,7 +717,7 @@ input{font:inherit}
           </div>
 
           <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ true }}">
-            <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:20px">
+            <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:20px">
               <sc-for list="{{ cards }}" as="c" hint-placeholder-count="9">
                 <dc-import name="ProductCard" c="{{ c }}" on-add="{{ addToCart }}" hint-size="100%,392px"></dc-import>
               </sc-for>
@@ -746,7 +746,7 @@ input{font:inherit}
 
             <div style="margin-top:20px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,360px),1fr));gap:clamp(20px,3vw,28px);align-items:stretch">
               <!-- media -->
-              <div style="position:relative;border:1px solid #E2E8F0;border-radius:16px;background:#fff;min-height:380px;display:flex;align-items:center;justify-content:center;overflow:hidden">
+              <div style="position:relative;border:1px solid #E2E8F0;border-radius:16px;background:#fff;aspect-ratio:1/1;align-self:start;display:flex;align-items:center;justify-content:center;overflow:hidden">
                 <div style="position:absolute;inset:0;background:radial-gradient(120% 120% at 30% 20%,#EAF2FB 0%,#F4F7FB 55%,#EDE7F3 100%)"></div>
                 <svg width="128" height="128" viewBox="0 0 24 24" fill="none" stroke="#9DB1C7" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:1"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg>
                 <sc-if value="{{ product.hasImagen }}" hint-placeholder-val="{{ false }}">
