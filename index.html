@@ -2537,9 +2537,63 @@ class Component extends DCLogic {
   }
 
   // ====== FUENTE DE DATOS ÚNICA ======
-  // getProductos(): devuelve el catálogo en vivo (Sheets) si ya cargó; si no,
-  // el array local de respaldo. Toda la UI lee productos a través de esta función.
+  // getProductos(): catálogo AGRUPADO (una entrada por péptido, con sus capacidades).
+  // Toda la UI lee productos a través de esta función.
   getProductos() {
+    return this.agrupar(this._flatProductos());
+  }
+
+  // Precio anterior segun la capacidad seleccionada (o del producto si es suelto).
+  precioAntDe(p, idx) {
+    if (p.variantes && p.variantes.length) {
+      const v = p.variantes[Math.min(idx || 0, p.variantes.length - 1)];
+      return v ? v.precioAnterior : null;
+    }
+    return p.precioAnterior;
+  }
+
+  // Agrupa filas planas (id por capacidad) en una tarjeta por péptido.
+  // Familia = id sin el sufijo de capacidad: "ghk-cu-50mg" -> "ghk-cu".
+  agrupar(lista) {
+    const capRe = /-(\d+(?:[.,]\d+)?(?:mg|ml|mcg))$/i;
+    const out = [];
+    const grupos = {};
+    for (const p of lista) {
+      if (p.variantes && p.variantes.length) { out.push(p); continue; } // ya agrupado (respaldo)
+      const m = p.id.match(capRe);
+      if (!m) { out.push(p); continue; }                                // sin capacidad -> suelto
+      const base = p.id.slice(0, m.index);
+      if (!grupos[base]) { grupos[base] = { base: base, items: [] }; out.push(grupos[base]); }
+      grupos[base].items.push({ p: p, label: m[1] });
+    }
+    return out.map((x) => {
+      if (!x || !x.items) return x;                                     // producto normal
+      const vis = x.items.filter((it) => it.p.visible !== false);
+      if (vis.length === 0) return Object.assign({}, x.items[0].p, { visible: false });
+      if (vis.length === 1) return vis[0].p;                            // una sola capacidad -> suelto
+      const first = vis[0].p;
+      const variantes = vis.map((it) => ({
+        label: it.label, costoUSD: it.p.costoUSD, precioAnterior: it.p.precioAnterior,
+        id: it.p.id, enStock: it.p.enStock,
+      }));
+      const esc = vis[0].label.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+      const nombreBase = first.nombre.replace(new RegExp("\\s*" + esc + "\\s*$", "i"), "").trim();
+      const ordenes = vis.map((it) => it.p.orden).filter((o) => typeof o === "number");
+      const conBadge = vis.find((it) => it.p.badge);
+      return {
+        id: x.base, nombre: nombreBase, investigacion: first.investigacion, variantes: variantes,
+        enStock: vis.some((it) => it.p.enStock),
+        visible: true,
+        destacado: vis.some((it) => it.p.destacado),
+        orden: ordenes.length ? Math.min.apply(null, ordenes) : null,
+        badge: conBadge ? conBadge.p.badge : "",
+        imagen: first.imagen,
+      };
+    });
+  }
+
+  // Catálogo PLANO: en vivo (Sheets) si ya cargó; si no, el array local de respaldo.
+  _flatProductos() {
     if (this._productosCache) return this._productosCache; // catálogo en vivo (Sheets)
     return [
       { id: "gla-1-sm", nombre: "GLA-1 SM (Semaglutide) 15mg", investigacion: "Agonista del receptor GLP-1, investigación metabólica.", enStock: true, costoUSD: 71.99 },
@@ -2817,7 +2871,9 @@ class Component extends DCLogic {
   // Clave de imagen segun la capacidad elegida: <id>-<cap> si hay variantes, si no <id>.
   imgKey(p, idx) {
     if (p.variantes && p.variantes.length) {
-      const lbl = String(p.variantes[Math.min(idx || 0, p.variantes.length - 1)].label).trim().toLowerCase().replace(/\s+/g, "");
+      const v = p.variantes[Math.min(idx || 0, p.variantes.length - 1)];
+      if (v && v.id) return v.id;
+      const lbl = String(v.label).trim().toLowerCase().replace(/\s+/g, "");
       return p.id + "-" + lbl;
     }
     return p.id;
@@ -2861,8 +2917,8 @@ class Component extends DCLogic {
       hasImagen: this.imgResolve(p, selIdx).has,
       destacado: !!p.destacado, orden: (typeof p.orden === "number") ? p.orden : null,
       badge: p.badge || "", hasBadge: !!(p.badge && String(p.badge).trim()),
-      hasPrecioAnt: !!(p.precioAnterior && p.precioAnterior > ventaUSD),
-      precioAntUSDText: this.fmtUSD(p.precioAnterior || 0), precioAntARSText: this.fmtARS(this.precioARS(p.precioAnterior || 0)),
+      hasPrecioAnt: !!(this.precioAntDe(p, selIdx) && this.precioAntDe(p, selIdx) > ventaUSD),
+      precioAntUSDText: this.fmtUSD(this.precioAntDe(p, selIdx) || 0), precioAntARSText: this.fmtARS(this.precioARS(this.precioAntDe(p, selIdx) || 0)),
       enStock, sinStock: !enStock, desde,
       hasCaps, caps,
       precioUSD: ventaUSD,
@@ -2982,8 +3038,8 @@ class Component extends DCLogic {
       imagen: this.imgResolve(p, this.state.variantIndex).url,
       hasImagen: this.imgResolve(p, this.state.variantIndex).has,
       badge: p.badge || "", hasBadge: !!(p.badge && String(p.badge).trim()),
-      hasPrecioAnt: !!(p.precioAnterior && p.precioAnterior > ventaUSD),
-      precioAntUSDText: this.fmtUSD(p.precioAnterior || 0), precioAntARSText: this.fmtARS(this.precioARS(p.precioAnterior || 0)),
+      hasPrecioAnt: !!(this.precioAntDe(p, this.state.variantIndex) && this.precioAntDe(p, this.state.variantIndex) > ventaUSD),
+      precioAntUSDText: this.fmtUSD(this.precioAntDe(p, this.state.variantIndex) || 0), precioAntARSText: this.fmtARS(this.precioARS(this.precioAntDe(p, this.state.variantIndex) || 0)),
       enStock, sinStock: !enStock,
       hasVariantes: variantes.length > 0, variantes,
       presentacion,
