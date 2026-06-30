@@ -14,6 +14,9 @@
       <sc-if value="{{ c.hasImagen }}" hint-placeholder-val="{{ false }}">
         <img src="{{ c.imagen }}" alt="{{ c.nombre }}" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"/>
       </sc-if>
+      <sc-if value="{{ c.hasBadge }}" hint-placeholder-val="{{ false }}">
+        <span style="position:absolute;top:10px;right:10px;z-index:2;font-family:'Hanken Grotesk',sans-serif;font-size:11px;font-weight:700;color:#fff;background:#0E5FB5;border-radius:6px;padding:4px 9px;letter-spacing:.02em">{{ c.badge }}</span>
+      </sc-if>
       <span style="position:absolute;left:10px;bottom:10px;z-index:1;font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.04em;color:#5A6B7B;background:#fff;border:1px solid #E2E8F0;border-radius:4px;padding:2px 7px">{{ c.presentacion }}</span>
     </div>
   </a>
@@ -37,6 +40,7 @@
       <div style="display:flex;align-items:baseline;gap:7px;flex-wrap:wrap">
         <sc-if value="{{ c.desde }}" hint-placeholder-val="{{ false }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7E93A8;text-transform:uppercase;letter-spacing:.06em">desde</span></sc-if>
         <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:23px;color:#0B2440">{{ c.usdText }}</span>
+        <sc-if value="{{ c.hasPrecioAnt }}" hint-placeholder-val="{{ false }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#94A3B8;text-decoration:line-through">{{ c.precioAntUSDText }}</span></sc-if>
       </div>
       <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#5A6B7B;margin-top:3px">{{ c.arsText }}</div>
     </div>

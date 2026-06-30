@@ -752,6 +752,9 @@ input{font:inherit}
                 <sc-if value="{{ product.hasImagen }}" hint-placeholder-val="{{ false }}">
                   <img src="{{ product.imagen }}" alt="{{ product.nombre }}" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:contain"/>
                 </sc-if>
+                <sc-if value="{{ product.hasBadge }}" hint-placeholder-val="{{ false }}">
+                  <span style="position:absolute;top:14px;right:14px;z-index:2;font-family:'Hanken Grotesk',sans-serif;font-size:12px;font-weight:700;color:#fff;background:#0E5FB5;border-radius:7px;padding:5px 11px;letter-spacing:.02em">{{ product.badge }}</span>
+                </sc-if>
                 <span style="position:absolute;left:14px;bottom:14px;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:#5A6B7B;background:#fff;border:1px solid #E2E8F0;border-radius:5px;padding:3px 9px">{{ product.presentacion }}</span>
               </div>
 
@@ -795,6 +798,7 @@ input{font:inherit}
                   <div style="text-align:right;margin-left:auto">
                     <sc-if value="{{ product.hasVariantes }}" hint-placeholder-val="{{ false }}"><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7E93A8;text-transform:uppercase;letter-spacing:.06em">Desde</div></sc-if>
                     <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:clamp(26px,3.6vw,32px);color:#0B2440;letter-spacing:-.01em">{{ product.usdText }}</div>
+                    <sc-if value="{{ product.hasPrecioAnt }}" hint-placeholder-val="{{ false }}"><div style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#94A3B8;text-decoration:line-through">{{ product.precioAntUSDText }}</div></sc-if>
                     <div style="font-family:'IBM Plex Mono',monospace;font-size:14px;color:#5A6B7B">{{ product.arsText }}</div>
                   </div>
                 </div>
@@ -2044,11 +2048,11 @@ class Component extends DCLogic {
   // Dejar "" para usar el array local de respaldo.
   SHEET_URL = "https://opensheet.elk.sh/1lcKlkt_2ypRiZVFZqQMDCgmgsjnw13AKh7Fl3ptkML4/1";
 
-  // "Claves" de imagen disponibles en /img/<clave>.png.
+  // "Claves" de imagen disponibles en /img/<clave>.webp.
   // - Producto SIN variantes: la clave es el id (ej. "cjc-nodac-ipa").
   // - Producto CON capacidades: clave = id + "-" + capacidad
   //   (ej. "ghk-cu-50mg", "ghk-cu-100mg"). Sumá la clave acá al agregar la imagen.
-  IMG_DISPONIBLES = ["ghk-cu-50mg", "ghk-cu-100mg", "cjc-nodac-ipa"];
+  IMG_DISPONIBLES = ["cjc-nodac-ipa", "ghk-cu-100mg", "ghk-cu-50mg", "ipamorelin", "tesa-ipa", "tesamorelin"];
 
   // Texto legal reutilizado en footer y en cada ficha de producto (ANMAT).
   DISCLAIMER = "Productos destinados exclusivamente a investigación y colección. No aptos para consumo humano. No son medicamentos. No están registrados ni aprobados por ANMAT. No diagnostican, tratan, curan ni previenen ninguna enfermedad. La información del sitio es de carácter general y no constituye asesoramiento médico.";
@@ -2495,6 +2499,11 @@ class Component extends DCLogic {
       enStock: /^(true|si|sí|1)$/i.test(String(f.enStock).trim()),
     };
     if (f.imagen) prod.imagen = String(f.imagen).trim();
+    if (/^(false|no|0|oculto|ocultar)$/i.test(String(f.visible || "").trim())) prod.visible = false;
+    if (/^(true|si|sí|1|x)$/i.test(String(f.destacado || "").trim())) prod.destacado = true;
+    if (String(f.orden || "").trim() !== "" && !isNaN(Number(f.orden))) prod.orden = Number(f.orden);
+    if (f.badge) prod.badge = String(f.badge).trim();
+    if (String(f.precioAnterior || "").trim() !== "" && !isNaN(Number(f.precioAnterior))) prod.precioAnterior = Number(f.precioAnterior);
     const variantesTxt = String(f.variantes || "").trim();
     if (variantesTxt) {
       prod.variantes = variantesTxt
@@ -2814,6 +2823,15 @@ class Component extends DCLogic {
     return p.id;
   }
 
+  // Resuelve la imagen segun capacidad. Si no hay por capacidad, cae a la del producto (<id>).
+  imgResolve(p, idx) {
+    if (p.imagen) return { url: p.imagen, has: true };
+    const k = this.imgKey(p, idx);
+    if (this.IMG_DISPONIBLES.includes(k)) return { url: "img/" + k + ".webp", has: true };
+    if (this.IMG_DISPONIBLES.includes(p.id)) return { url: "img/" + p.id + ".webp", has: true };
+    return { url: "img/" + k + ".webp", has: false };
+  }
+
   toCard(p) {
     const enStock = !!p.enStock;
     const hasCaps = !!(p.variantes && p.variantes.length > 1);  // selector solo si hay varias capacidades
@@ -2839,8 +2857,12 @@ class Component extends DCLogic {
     const ars = this.precioARS(ventaUSD);
     return {
       id: p.id, nombre: p.nombre, investigacion: p.investigacion, presentacion,
-      imagen: p.imagen ? p.imagen : ("img/" + this.imgKey(p, selIdx) + ".png"),
-      hasImagen: !!p.imagen || this.IMG_DISPONIBLES.includes(this.imgKey(p, selIdx)),
+      imagen: this.imgResolve(p, selIdx).url,
+      hasImagen: this.imgResolve(p, selIdx).has,
+      destacado: !!p.destacado, orden: (typeof p.orden === "number") ? p.orden : null,
+      badge: p.badge || "", hasBadge: !!(p.badge && String(p.badge).trim()),
+      hasPrecioAnt: !!(p.precioAnterior && p.precioAnterior > ventaUSD),
+      precioAntUSDText: this.fmtUSD(p.precioAnterior || 0), precioAntARSText: this.fmtARS(this.precioARS(p.precioAnterior || 0)),
       enStock, sinStock: !enStock, desde,
       hasCaps, caps,
       precioUSD: ventaUSD,
@@ -2957,8 +2979,11 @@ class Component extends DCLogic {
 
     return {
       id: p.id, nombre: p.nombre, investigacion: p.investigacion,
-      imagen: p.imagen ? p.imagen : ("img/" + this.imgKey(p, this.state.variantIndex) + ".png"),
-      hasImagen: !!p.imagen || this.IMG_DISPONIBLES.includes(this.imgKey(p, this.state.variantIndex)),
+      imagen: this.imgResolve(p, this.state.variantIndex).url,
+      hasImagen: this.imgResolve(p, this.state.variantIndex).has,
+      badge: p.badge || "", hasBadge: !!(p.badge && String(p.badge).trim()),
+      hasPrecioAnt: !!(p.precioAnterior && p.precioAnterior > ventaUSD),
+      precioAntUSDText: this.fmtUSD(p.precioAnterior || 0), precioAntARSText: this.fmtARS(this.precioARS(p.precioAnterior || 0)),
       enStock, sinStock: !enStock,
       hasVariantes: variantes.length > 0, variantes,
       presentacion,
@@ -3005,7 +3030,7 @@ class Component extends DCLogic {
     const reviewStarsOn = star.slice(0, Math.round(this.REVIEW_AVG));
     const reviewStarsOff = star.slice(Math.round(this.REVIEW_AVG));
 
-    const allCards = this.getProductos().map((p) => this.toCard(p));
+    const allCards = this.getProductos().filter((p) => p.visible !== false).map((p) => this.toCard(p));
     const q = this.state.query.trim().toLowerCase();
     let cards = q ? allCards.filter((c) => (c.nombre + " " + c.investigacion).toLowerCase().includes(q)) : allCards.slice();
     if (this.state.soloStock) cards = cards.filter((c) => c.enStock);
@@ -3014,14 +3039,17 @@ class Component extends DCLogic {
     if (sort === "nombre") cards.sort((a, b) => a.nombre.localeCompare(b.nombre, "es"));
     else if (sort === "precio-asc") cards.sort((a, b) => a.precioUSD - b.precioUSD);
     else if (sort === "precio-desc") cards.sort((a, b) => b.precioUSD - a.precioUSD);
-    else cards.sort((a, b) => (b.enStock - a.enStock));   // destacados: en stock primero
+    else cards.sort((a, b) => { const ao = a.orden == null ? Infinity : a.orden, bo = b.orden == null ? Infinity : b.orden; return ao !== bo ? ao - bo : (b.enStock - a.enStock); });   // destacados: orden manual, luego en stock
     const sortOptions = [
       { value: "destacados", label: "Destacados (en stock primero)" },
       { value: "nombre", label: "Nombre (A–Z)" },
       { value: "precio-asc", label: "Precio: menor a mayor" },
       { value: "precio-desc", label: "Precio: mayor a menor" },
     ];
-    const featured = allCards.filter((c) => c.enStock).slice(0, 4);
+    const flagged = allCards.filter((c) => c.destacado);
+    const featBase = (flagged.length ? flagged.slice() : allCards.filter((c) => c.enStock));
+    featBase.sort((a, b) => { const ao = a.orden == null ? Infinity : a.orden, bo = b.orden == null ? Infinity : b.orden; return ao !== bo ? ao - bo : (b.enStock - a.enStock); });
+    const featured = featBase.slice(0, 4);
 
     const navDefs = [
       { label: "Inicio", key: "inicio", href: "#/inicio" },
