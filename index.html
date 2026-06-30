@@ -10,7 +10,7 @@
 <helmet>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;family=IBM+Plex+Sans:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Anek+Latin:wght@400;500;600;700;800&amp;family=Poppins:wght@400;500;600;700;800&amp;family=IBM+Plex+Mono:wght@400;500;600&amp;display=swap" rel="stylesheet">
 
 <!-- ============ SEO / METADATOS (defaults; se actualizan por página vía JS) ============ -->
 <meta name="description" content="AminoLabAr vende péptidos de investigación importados de Estados Unidos, con Certificado de Análisis (COA) por lote, envíos a todo el país por Andreani y despacho en 24 hs. Asesoría por WhatsApp.">
@@ -91,9 +91,11 @@ input{font:inherit}
 @keyframes amDriftA{0%,100%{transform:translate(0,0) rotate(8deg)}50%{transform:translate(10px,-26px) rotate(13deg)}}
 @keyframes amDriftB{0%,100%{transform:translate(0,0) rotate(-12deg)}50%{transform:translate(-14px,-20px) rotate(-7deg)}}
 @keyframes amDriftC{0%,100%{transform:translate(0,0) rotate(18deg)}50%{transform:translate(9px,-30px) rotate(23deg)}}
+@keyframes amBubble{0%{transform:translateY(0) scale(1);opacity:0}12%{opacity:.7}88%{opacity:.7}100%{transform:translateY(-140px) scale(.4);opacity:0}}
+@keyframes amSweep{0%{background-position:180% 0}100%{background-position:-80% 0}}
 </style>
 </helmet>
-<div style="font-family:'IBM Plex Sans',sans-serif;color:#1C2733;background:#fff;min-height:100vh;display:flex;flex-direction:column">
+<div style="font-family:'Poppins',sans-serif;color:#1C2733;background:#fff;min-height:100vh;display:flex;flex-direction:column">
 
   <!-- ================= HEADER (compartido) ================= -->
   <header style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #E2E8F0">
@@ -103,7 +105,7 @@ input{font:inherit}
         <span style="display:inline-flex;width:32px;height:32px;align-items:center;justify-content:center;color:#0E5FB5">
           <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v9.7L12 21.7l-8.4-4.85v-9.7z"></path><circle cx="12" cy="12" r="2.4" fill="#2FA8E0" stroke="none"></circle></svg>
         </span>
-        <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em;color:#0B2440">AminoLab<span style="color:#0E5FB5">Ar</span></span>
+        <span style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:20px;letter-spacing:-.02em;color:#0B2440">AminoLab<span style="color:#0E5FB5">Ar</span></span>
       </a>
 
       <sc-if value="{{ showFullNav }}" hint-placeholder-val="{{ true }}">
@@ -135,12 +137,20 @@ input{font:inherit}
         <sc-for list="{{ navItemsMobile }}" as="n" hint-placeholder-count="6">
           <a href="{{ n.href }}" style="{{ n.style }}">{{ n.label }}</a>
         </sc-for>
-        <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="margin-top:22px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:14px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none">Escribir por WhatsApp</a>
+        <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="margin-top:22px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:14px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15px;text-decoration:none">Escribir por WhatsApp</a>
       </div>
     </div>
   </sc-if>
 
   <main key="{{ routeKey }}" style="flex:1;animation:amPageIn .42s cubic-bezier(.22,.61,.36,1) both">
+
+    <!-- ================= BANNER RESEARCH-USE (global) ================= -->
+    <div style="background:#0B2440;color:#C7D6E8">
+      <div style="max-width:1180px;margin:0 auto;width:100%;padding:9px clamp(20px,5vw,56px);display:flex;align-items:center;justify-content:center;gap:8px;text-align:center;font-family:'Poppins',sans-serif;font-size:12px;line-height:1.4">
+        <span style="flex-shrink:0">⚠️</span>
+        <span><span style="color:#F0A53E;font-weight:700;letter-spacing:.02em">SOLO PARA FINES DE INVESTIGACIÓN</span> — Producto no apto para consumo humano ni veterinario. No es un medicamento ni está aprobado por ANMAT. La información del sitio proviene de estudios y se ofrece como referencia educativa.</span>
+      </div>
+    </div>
 
     <!-- ================= INICIO ================= -->
     <sc-if value="{{ isInicio }}" hint-placeholder-val="{{ true }}">
@@ -148,10 +158,10 @@ input{font:inherit}
         <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(46px,7vw,88px) clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(34px,5vw,60px);align-items:center">
           <div>
             <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:18px">Péptidos de investigación · Importación EE. UU.</span>
-            <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(31px,4.6vw,52px);line-height:1.07;letter-spacing:-.02em;color:#0B2440;text-wrap:balance">Péptidos de investigación importados de Estados Unidos</h1>
-            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(15px,1.6vw,18px);line-height:1.6;color:#5A6B7B;margin-top:20px;max-width:540px"><strong style="color:#3A4855;font-weight:600">AminoLabAr</strong> es un proveedor argentino de péptidos de investigación importados de Estados Unidos. Certificado de Análisis (COA) por lote, envíos a todo el país por Andreani con despacho en 24 hs hábiles y asesoría personalizada por WhatsApp. Productos destinados a investigación y colección.</p>
+            <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(31px,4.6vw,52px);line-height:1.07;letter-spacing:-.02em;color:#0B2440;text-wrap:balance">Péptidos de investigación importados de Estados Unidos</h1>
+            <p style="font-family:'Poppins',sans-serif;font-size:clamp(15px,1.6vw,18px);line-height:1.6;color:#5A6B7B;margin-top:20px;max-width:540px"><strong style="color:#3A4855;font-weight:600">AminoLabAr</strong> es un proveedor argentino de péptidos de investigación importados de Estados Unidos. Certificado de Análisis (COA) por lote, envíos a todo el país por Andreani con despacho en 24 hs hábiles y asesoría personalizada por WhatsApp. Productos destinados a investigación y colección.</p>
             <div style="margin-top:30px">
-              <a href="#/catalogo" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:15px 28px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15.5px;letter-spacing:.01em;text-decoration:none;transition:background .15s" style-hover="background:#0B4E97">Ver catálogo<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
+              <a href="#/catalogo" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:15px 28px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15.5px;letter-spacing:.01em;text-decoration:none;transition:background .15s" style-hover="background:#0B4E97">Ver catálogo<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
             </div>
           </div>
           <div style="position:relative;border:1px solid #E2E8F0;border-radius:12px;background:#F4F7FB;background-image:linear-gradient(#E5ECF4 1px,transparent 1px),linear-gradient(90deg,#E5ECF4 1px,transparent 1px);background-size:26px 26px;min-height:300px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
@@ -180,9 +190,9 @@ input{font:inherit}
           <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:18px;flex-wrap:wrap;margin-bottom:28px">
             <div>
               <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:12px">En catálogo</span>
-              <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-.02em;color:#0B2440">Productos disponibles</h2>
+              <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-.02em;color:#0B2440">Productos disponibles</h2>
             </div>
-            <a href="#/catalogo" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;color:#0E5FB5;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap" style-hover="gap:9px">Ver catálogo completo<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
+            <a href="#/catalogo" style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14.5px;color:#0E5FB5;text-decoration:none;display:inline-flex;align-items:center;gap:6px;white-space:nowrap" style-hover="gap:9px">Ver catálogo completo<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
           </div>
           <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,250px),1fr));gap:20px">
             <sc-for list="{{ featured }}" as="c" hint-placeholder-count="4">
@@ -197,9 +207,9 @@ input{font:inherit}
         <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(34px,5vw,60px);align-items:center">
           <div>
             <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Calidad y trazabilidad</span>
-            <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.13;letter-spacing:-.02em;color:#0B2440">Cada lote con su Certificado de Análisis</h2>
-            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.65;color:#5A6B7B;margin-top:20px;max-width:540px">Trabajamos con péptidos producidos en Estados Unidos. El Certificado de Análisis (COA) de cada lote está disponible a solicitud e informa la identidad y la pureza del compuesto.</p>
-            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:16px;line-height:1.65;color:#5A6B7B;margin-top:14px;max-width:540px">Despachamos en 24 horas hábiles y enviamos a todo el país por Andreani. Ante cualquier consulta sobre presentaciones o disponibilidad, la asesoría es directa por WhatsApp.</p>
+            <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.13;letter-spacing:-.02em;color:#0B2440">Cada lote con su Certificado de Análisis</h2>
+            <p style="font-family:'Poppins',sans-serif;font-size:16px;line-height:1.65;color:#5A6B7B;margin-top:20px;max-width:540px">Trabajamos con péptidos producidos en Estados Unidos. El Certificado de Análisis (COA) de cada lote está disponible a solicitud e informa la identidad y la pureza del compuesto.</p>
+            <p style="font-family:'Poppins',sans-serif;font-size:16px;line-height:1.65;color:#5A6B7B;margin-top:14px;max-width:540px">Despachamos en 24 horas hábiles y enviamos a todo el país por Andreani. Ante cualquier consulta sobre presentaciones o disponibilidad, la asesoría es directa por WhatsApp.</p>
             <div style="margin-top:26px;display:flex;flex-direction:column;gap:0;border-top:1px solid #E2E8F0;max-width:520px">
               <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="width:88px;color:#94A3B8;letter-spacing:.04em">ORIGEN</span><span style="color:#1C2733">Estados Unidos</span></div>
               <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="width:88px;color:#94A3B8;letter-spacing:.04em">COA</span><span style="color:#1C2733">Disponible por lote</span></div>
@@ -219,10 +229,10 @@ input{font:inherit}
           <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:30px">
             <div>
               <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:12px">Reseñas de clientes</span>
-              <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-.02em;color:#0B2440">Lo que dicen quienes ya compraron</h2>
+              <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-.02em;color:#0B2440">Lo que dicen quienes ya compraron</h2>
             </div>
             <div style="display:flex;align-items:center;gap:16px;border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:16px 22px">
-              <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(34px,5vw,44px);line-height:1;letter-spacing:-.02em;color:#0B2440">{{ reviewAvgText }}</div>
+              <div style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(34px,5vw,44px);line-height:1;letter-spacing:-.02em;color:#0B2440">{{ reviewAvgText }}</div>
               <div>
                 <div style="font-size:18px;letter-spacing:1px;line-height:1"><span style="color:#F2A516">{{ reviewStarsOn }}</span><span style="color:#D9E1EA">{{ reviewStarsOff }}</span></div>
                 <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6B7B;margin-top:6px">Promedio · {{ reviewCountText }}</div>
@@ -233,9 +243,9 @@ input{font:inherit}
             <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
               <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:22px 22px;display:flex;flex-direction:column">
                 <div style="font-size:15px;letter-spacing:1px;line-height:1;margin-bottom:13px"><span style="color:#F2A516">{{ r.starsOn }}</span><span style="color:#D9E1EA">{{ r.starsOff }}</span></div>
-                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;line-height:1.6;color:#3A4855;flex:1">{{ r.texto }}</p>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#3A4855;flex:1">{{ r.texto }}</p>
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid #EEF3F8">
-                  <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:13.5px;color:#0B2440">{{ r.autor }} · {{ r.lugar }}</span>
+                  <span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;color:#0B2440">{{ r.autor }} · {{ r.lugar }}</span>
                   <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#94A3B8">{{ r.fechaText }}</span>
                 </div>
               </div>
@@ -250,10 +260,10 @@ input{font:inherit}
           <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:clamp(28px,4vw,44px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px">
             <div style="max-width:560px">
               <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:12px">Asesoramiento</span>
-              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(21px,2.6vw,28px);line-height:1.2;letter-spacing:-.01em;color:#0B2440">¿Dudas sobre presentaciones o disponibilidad?</h3>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:15.5px;line-height:1.6;color:#5A6B7B;margin-top:12px">Escribinos por WhatsApp y te respondemos a la brevedad.</p>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:clamp(21px,2.6vw,28px);line-height:1.2;letter-spacing:-.01em;color:#0B2440">¿Dudas sobre presentaciones o disponibilidad?</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:15.5px;line-height:1.6;color:#5A6B7B;margin-top:12px">Escribinos por WhatsApp y te respondemos a la brevedad.</p>
             </div>
-            <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:8px;padding:15px 28px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15.5px;text-decoration:none;white-space:nowrap;transition:background .15s" style-hover="background:#18885B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Escribir por WhatsApp</a>
+            <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:8px;padding:15px 28px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15.5px;text-decoration:none;white-space:nowrap;transition:background .15s" style-hover="background:#18885B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Escribir por WhatsApp</a>
           </div>
         </div>
       </section>
@@ -265,19 +275,19 @@ input{font:inherit}
         
       <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(40px,5vw,64px) clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
           <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Catálogo</span>
-          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Péptidos de investigación</h1>
-          <p style="font-family: 'IBM Plex Sans',sans-serif; font-size: 15px; line-height: 1.6; color: #5A6B7B; margin-top: 14px; max-width: 620px; width: 640px; height: 54px">Precio de venta en dólares; el valor en pesos es de referencia. Cotización dólar blue (venta) · actualizada periódicamente.</p>
+          <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Péptidos de investigación</h1>
+          <p style="font-family: 'Poppins',sans-serif; font-size: 15px; line-height: 1.6; color: #5A6B7B; margin-top: 14px; max-width: 620px; width: 640px; height: 54px">Precio de venta en dólares; el valor en pesos es de referencia. Cotización dólar blue (venta) · actualizada periódicamente.</p>
 
           <div style="margin-top:26px;display:flex;flex-wrap:wrap;align-items:center;gap:12px 16px">
             <div style="position:relative;flex:1;min-width:240px;max-width:440px">
               <span style="position:absolute;left:14px;top:50%;transform:translateY(-50%);color:#7E93A8;display:inline-flex"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-3.4-3.4"></path></svg></span>
-              <input value="{{ query }}" onInput="{{ onSearch }}" placeholder="Buscar por nombre o tipo de investigación…" style="width:100%;padding:12px 14px 12px 42px;border:1px solid #E2E8F0;border-radius:8px;font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;color:#1C2733;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+              <input value="{{ query }}" onInput="{{ onSearch }}" placeholder="Buscar por nombre o tipo de investigación…" style="width:100%;padding:12px 14px 12px 42px;border:1px solid #E2E8F0;border-radius:8px;font-family:'Poppins',sans-serif;font-size:14.5px;color:#1C2733;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
             </div>
 
             <!-- Ordenar por -->
             <label style="position:relative;display:inline-flex;align-items:center">
               <span style="position:absolute;left:13px;color:#7E93A8;display:inline-flex;pointer-events:none"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 6h13M3 12h9M3 18h5M17 8V19M17 19l3-3M17 19l-3-3"></path></svg></span>
-              <select value="{{ sort }}" onChange="{{ onSort }}" aria-label="Ordenar por" style="appearance:none;-webkit-appearance:none;padding:11px 36px 11px 38px;border:1px solid #E2E8F0;border-radius:8px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#1C2733;background:#fff;cursor:pointer;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+              <select value="{{ sort }}" onChange="{{ onSort }}" aria-label="Ordenar por" style="appearance:none;-webkit-appearance:none;padding:11px 36px 11px 38px;border:1px solid #E2E8F0;border-radius:8px;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;color:#1C2733;background:#fff;cursor:pointer;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
                 <sc-for list="{{ sortOptions }}" as="o" hint-placeholder-count="4">
                   <option value="{{ o.value }}">{{ o.label }}</option>
                 </sc-for>
@@ -286,7 +296,7 @@ input{font:inherit}
             </label>
 
             <!-- Solo en stock -->
-            <button onClick="{{ toggleSoloStock }}" aria-label="Mostrar solo productos en stock" style="display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border:1px solid #E2E8F0;border-radius:8px;background:#fff;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:500;color:#1C2733;cursor:pointer;transition:border-color .15s" style-hover="border-color:#CBD5E1">
+            <button onClick="{{ toggleSoloStock }}" aria-label="Mostrar solo productos en stock" style="display:inline-flex;align-items:center;gap:9px;padding:11px 16px;border:1px solid #E2E8F0;border-radius:8px;background:#fff;font-family:'Poppins',sans-serif;font-size:14px;font-weight:500;color:#1C2733;cursor:pointer;transition:border-color .15s" style-hover="border-color:#CBD5E1">
               <sc-if value="{{ soloStock }}" hint-placeholder-val="{{ false }}">
                 <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:18px;height:18px;border-radius:5px;background:#0E5FB5;color:#fff"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
               </sc-if>
@@ -308,9 +318,9 @@ input{font:inherit}
           </sc-if>
           <sc-if value="{{ noResults }}" hint-placeholder-val="{{ false }}">
             <div style="margin-top:40px;border:1px solid #E2E8F0;border-radius:10px;background:#F4F7FB;padding:48px 24px;text-align:center">
-              <p style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:17px;color:#0B2440">Sin resultados para tu búsqueda</p>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B;margin-top:8px">Probá con otro término.</p>
-              <button onClick="{{ clearQuery }}" style="margin-top:18px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:7px;padding:10px 20px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14px;cursor:pointer">Limpiar búsqueda</button>
+              <p style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:17px;color:#0B2440">Sin resultados para tu búsqueda</p>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;color:#5A6B7B;margin-top:8px">Probá con otro término.</p>
+              <button onClick="{{ clearQuery }}" style="margin-top:18px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:7px;padding:10px 20px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;cursor:pointer">Limpiar búsqueda</button>
             </div>
           </sc-if>
         </div></section>
@@ -337,25 +347,25 @@ input{font:inherit}
 
               <!-- caja de compra -->
               <div style="border:1px solid #E2E8F0;border-radius:16px;background:#fff;padding:clamp(22px,3vw,30px);display:flex;flex-direction:column;gap:16px">
-                <div style="font-family:'IBM Plex Sans',sans-serif;font-style:italic;font-size:13.5px;color:#7E93A8">{{ product.subtitulo }}</div>
-                <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.08;letter-spacing:-.02em;color:#0B2440;margin-top:-6px">{{ product.nombre }}</h1>
+                <div style="font-family:'Poppins',sans-serif;font-style:italic;font-size:13.5px;color:#7E93A8">{{ product.subtitulo }}</div>
+                <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.08;letter-spacing:-.02em;color:#0B2440;margin-top:-6px">{{ product.nombre }}</h1>
 
                 <sc-if value="{{ product.hasNombres }}" hint-placeholder-val="{{ false }}">
                   <div style="display:flex;flex-wrap:wrap;gap:8px">
                     <sc-for list="{{ product.nombresCientificos }}" as="n" hint-placeholder-count="2">
-                      <span style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#3A4855;background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:5px 12px">{{ n }}</span>
+                      <span style="font-family:'Poppins',sans-serif;font-size:12px;color:#3A4855;background:#fff;border:1px solid #E2E8F0;border-radius:20px;padding:5px 12px">{{ n }}</span>
                     </sc-for>
                   </div>
                 </sc-if>
 
-                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;line-height:1.6;color:#5A6B7B">{{ product.descripcion }}</p>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#5A6B7B">{{ product.descripcion }}</p>
 
                 <div style="display:flex;flex-wrap:wrap;gap:10px;align-items:center">
                   <sc-if value="{{ product.enStock }}" hint-placeholder-val="{{ true }}">
-                    <span style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;color:#15875A;background:rgba(31,169,113,.12);padding:5px 11px;border-radius:6px"><span style="width:7px;height:7px;border-radius:50%;background:#1FA971;display:inline-block"></span>En stock</span>
+                    <span style="display:inline-flex;align-items:center;gap:7px;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#15875A;background:rgba(31,169,113,.12);padding:5px 11px;border-radius:6px"><span style="width:7px;height:7px;border-radius:50%;background:#1FA971;display:inline-block"></span>En stock</span>
                   </sc-if>
                   <sc-if value="{{ product.sinStock }}" hint-placeholder-val="{{ false }}">
-                    <span style="display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;color:#B45309;background:rgba(180,83,9,.1);padding:5px 11px;border-radius:6px"><span style="width:7px;height:7px;border-radius:50%;background:#D9962B;display:inline-block"></span>Sin stock</span>
+                    <span style="display:inline-flex;align-items:center;gap:7px;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#B45309;background:rgba(180,83,9,.1);padding:5px 11px;border-radius:6px"><span style="width:7px;height:7px;border-radius:50%;background:#D9962B;display:inline-block"></span>Sin stock</span>
                   </sc-if>
                 </div>
 
@@ -364,7 +374,7 @@ input{font:inherit}
                 <div style="display:flex;justify-content:space-between;align-items:flex-end;gap:16px;flex-wrap:wrap">
                   <sc-if value="{{ product.hasVariantes }}" hint-placeholder-val="{{ true }}">
                     <div>
-                      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:700;color:#0B2440;margin-bottom:9px">Dosis</div>
+                      <div style="font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:700;color:#0B2440;margin-bottom:9px">Dosis</div>
                       <div style="display:flex;flex-wrap:wrap;gap:9px">
                         <sc-for list="{{ product.variantes }}" as="v" hint-placeholder-count="2">
                           <button onClick="{{ v.onClick }}" style="{{ v.style }}">{{ v.label }}</button>
@@ -381,7 +391,7 @@ input{font:inherit}
 
                 <sc-if value="{{ product.enStock }}" hint-placeholder-val="{{ true }}">
                   <div style="display:flex;align-items:center;gap:12px">
-                    <span style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:700;color:#0B2440">Cantidad</span>
+                    <span style="font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:700;color:#0B2440">Cantidad</span>
                     <div style="display:inline-flex;align-items:center;border:1px solid #CBD5E1;border-radius:8px;overflow:hidden;background:#fff">
                       <button onClick="{{ decDetail }}" aria-label="Restar" style="width:42px;height:44px;border:none;background:#fff;color:#0B2440;font-size:20px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;transition:background .15s" style-hover="background:#F4F7FB">−</button>
                       <span style="min-width:40px;text-align:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px;color:#0B2440">{{ detailQty }}</span>
@@ -390,19 +400,19 @@ input{font:inherit}
                   </div>
                   <div style="display:flex;gap:10px;align-items:stretch">
                     <sc-if value="{{ product.hasCoaBtn }}" hint-placeholder-val="{{ false }}">
-                      <button onClick="{{ product.onViewCoaPrincipal }}" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:0 18px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;transition:background .15s" style-hover="background:#F4F7FB"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg>COA</button>
+                      <button onClick="{{ product.onViewCoaPrincipal }}" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:0 18px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;transition:background .15s" style-hover="background:#F4F7FB"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg>COA</button>
                     </sc-if>
-                    <button onClick="{{ addToCart }}" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;transition:background .15s,transform .12s" style-hover="background:#0B4E97;transform:translateY(-1px)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.3"></circle><circle cx="18" cy="20" r="1.3"></circle><path d="M2.5 3h2.2l2 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.6-1.3L21 7H6.2"></path></svg>Agregar al carrito</button>
+                    <button onClick="{{ addToCart }}" style="flex:1;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;transition:background .15s,transform .12s" style-hover="background:#0B4E97;transform:translateY(-1px)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.3"></circle><circle cx="18" cy="20" r="1.3"></circle><path d="M2.5 3h2.2l2 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.6-1.3L21 7H6.2"></path></svg>Agregar al carrito</button>
                   </div>
                 </sc-if>
                 <sc-if value="{{ product.sinStock }}" hint-placeholder-val="{{ false }}">
-                  <a href="{{ product.whatsappHref }}" target="_blank" rel="noopener" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:8px;padding:15px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:15px;text-decoration:none;transition:background .15s,color .15s" style-hover="background:#0E5FB5;color:#fff">Consultar por disponibilidad</a>
+                  <a href="{{ product.whatsappHref }}" target="_blank" rel="noopener" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:8px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;text-decoration:none;transition:background .15s,color .15s" style-hover="background:#0E5FB5;color:#fff">Consultar por disponibilidad</a>
                 </sc-if>
 
                 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border:1px solid #EEF2F7;border-radius:10px;background:#FAFBFD;padding:14px 10px;text-align:center">
-                  <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"></rect><path d="M16 8h4l3 3v5h-7"></path><circle cx="5.5" cy="18.5" r="2"></circle><circle cx="18.5" cy="18.5" r="2"></circle></svg><span style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.3;color:#5A6B7B">Despacho<br>en 24 h hábiles</span></div>
-                  <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v4.4c0 4.6-3.4 7.8-8.4 9.15-5-1.35-8.4-4.55-8.4-9.15v-4.4z"></path><path d="m9 12 2 2 4-4"></path></svg><span style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.3;color:#5A6B7B">Embalaje<br>con cadena de frío</span></div>
-                  <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg><span style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.3;color:#5A6B7B">Pago seguro<br>transf · MP · USDT</span></div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="3" width="15" height="13" rx="1"></rect><path d="M16 8h4l3 3v5h-7"></path><circle cx="5.5" cy="18.5" r="2"></circle><circle cx="18.5" cy="18.5" r="2"></circle></svg><span style="font-family:'Poppins',sans-serif;font-size:11px;line-height:1.3;color:#5A6B7B">Despacho<br>en 24 h hábiles</span></div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v4.4c0 4.6-3.4 7.8-8.4 9.15-5-1.35-8.4-4.55-8.4-9.15v-4.4z"></path><path d="m9 12 2 2 4-4"></path></svg><span style="font-family:'Poppins',sans-serif;font-size:11px;line-height:1.3;color:#5A6B7B">Embalaje<br>con cadena de frío</span></div>
+                  <div style="display:flex;flex-direction:column;align-items:center;gap:5px"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="10" width="16" height="11" rx="2"></rect><path d="M8 10V7a4 4 0 0 1 8 0v3"></path></svg><span style="font-family:'Poppins',sans-serif;font-size:11px;line-height:1.3;color:#5A6B7B">Pago seguro<br>transf · MP · USDT</span></div>
                 </div>
               </div>
             </div>
@@ -414,10 +424,10 @@ input{font:inherit}
           <section style="background:#fff">
             <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px)">
               <div style="display:flex;align-items:center;gap:13px;margin-bottom:24px">
-                <span style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:rgba(31,169,113,.12);color:#15875A;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.5L5.5 18a2 2 0 0 0 1.8 3h9.4a2 2 0 0 0 1.8-3L14 8.5V3"></path></svg></span>
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:rgba(31,169,113,.12);font-size:22px;line-height:1;flex-shrink:0">🧪</span>
                 <div>
-                  <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,28px);color:#0B2440;letter-spacing:-.01em">Certificado de Análisis</h2>
-                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#5A6B7B;margin-top:2px">Testeado por laboratorio externo · {{ product.coaLab }}</div>
+                  <h2 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,28px);color:#0B2440;letter-spacing:-.01em">Certificado de Análisis</h2>
+                  <div style="font-family:'Poppins',sans-serif;font-size:13px;color:#5A6B7B;margin-top:2px">Testeado por laboratorio externo · {{ product.coaLab }}</div>
                 </div>
               </div>
               <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));gap:18px">
@@ -428,9 +438,9 @@ input{font:inherit}
                       <sc-if value="{{ coa.hasNTests }}" hint-placeholder-val="{{ false }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.05em;color:#0E5FB5;background:rgba(14,95,181,.1);border-radius:5px;padding:3px 8px">{{ coa.nTestsText }}</span></sc-if>
                     </div>
                     <div style="text-align:center;padding:6px 0">
-                      <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:38px;color:#15875A;line-height:1;letter-spacing:-.02em">{{ coa.pureza }}</div>
-                      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;color:#7E93A8;text-transform:uppercase;margin-top:4px">Pureza</div>
-                      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#15875A;margin-top:8px">✓ Pasó el panel QC completo</div>
+                      <div style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:38px;color:#15875A;line-height:1;letter-spacing:-.02em">{{ coa.pureza }}</div>
+                      <div style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:600;letter-spacing:.08em;color:#7E93A8;text-transform:uppercase;margin-top:4px">Pureza</div>
+                      <div style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#15875A;margin-top:8px">✓ Pasó el panel QC completo</div>
                     </div>
                     <div style="border:1px solid #EEF2F7;border-radius:9px;overflow:hidden">
                       <div style="display:flex;justify-content:space-between;gap:10px;padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;border-bottom:1px solid #EEF2F7"><span style="color:#94A3B8">Variante</span><span style="color:#1C2733;text-align:right">{{ coa.variante }}</span></div>
@@ -440,13 +450,13 @@ input{font:inherit}
                       <div style="display:flex;justify-content:space-between;gap:10px;padding:8px 12px;font-family:'IBM Plex Mono',monospace;font-size:11.5px"><span style="color:#94A3B8">Analizado</span><span style="color:#1C2733;text-align:right">{{ coa.fecha }}</span></div>
                     </div>
                     <div style="border:1px solid #EEF2F7;border-radius:9px;background:#FAFBFD;padding:11px 13px">
-                      <div style="font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0B2440;margin-bottom:8px">Panel QC completo</div>
+                      <div style="font-family:'Poppins',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#0B2440;margin-bottom:8px">Panel QC completo</div>
                       <sc-for list="{{ coa.panel }}" as="row" hint-placeholder-count="4">
-                        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 0;font-family:'IBM Plex Sans',sans-serif;font-size:12px"><span style="color:#5A6B7B">{{ row.k }}</span><span style="color:#1C2733;display:inline-flex;align-items:center;gap:5px;text-align:right">{{ row.v }} <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#15875A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg></span></div>
+                        <div style="display:flex;justify-content:space-between;align-items:center;gap:8px;padding:4px 0;font-family:'Poppins',sans-serif;font-size:12px"><span style="color:#5A6B7B">{{ row.k }}</span><span style="color:#1C2733;display:inline-flex;align-items:center;gap:5px;text-align:right">{{ row.v }} <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#15875A" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg></span></div>
                       </sc-for>
                     </div>
                     <sc-if value="{{ coa.hasPdf }}" hint-placeholder-val="{{ true }}">
-                      <button onClick="{{ coa.onView }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0B2440;color:#fff;border:none;border-radius:8px;padding:12px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;transition:background .15s" style-hover="background:#16335a"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg>Ver COA</button>
+                      <button onClick="{{ coa.onView }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0B2440;color:#fff;border:none;border-radius:8px;padding:12px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;transition:background .15s" style-hover="background:#16335a"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3H6a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"></path><path d="M14 3v6h6"></path></svg>Ver COA</button>
                     </sc-if>
                   </div>
                 </sc-for>
@@ -460,41 +470,41 @@ input{font:inherit}
           <section style="background:#F8FAFC">
             <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px)">
               <div style="display:flex;align-items:center;gap:13px;margin-bottom:24px">
-                <span style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:rgba(14,95,181,.1);color:#0E5FB5;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 3v6.5L2.5 18a2 2 0 0 0 1.8 3h15.4a2 2 0 0 0 1.8-3L19 9.5V3"></path><path d="M5 3h14M7 14h10"></path></svg></span>
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:rgba(14,95,181,.1);font-size:22px;line-height:1;flex-shrink:0">📐</span>
                 <div>
-                  <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,28px);color:#0B2440;letter-spacing:-.01em">Información del compuesto</h2>
-                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#5A6B7B;margin-top:2px">Especificaciones técnicas</div>
+                  <h2 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,28px);color:#0B2440;letter-spacing:-.01em">Información del compuesto</h2>
+                  <div style="font-family:'Poppins',sans-serif;font-size:13px;color:#5A6B7B;margin-top:2px">Especificaciones técnicas</div>
                 </div>
               </div>
               <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:18px;align-items:start">
                 <div style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:22px 22px 18px">
-                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0E5FB5;margin-bottom:6px">Perfil molecular</div>
-                  <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:19px;color:#0B2440;margin-bottom:14px">¿Qué es {{ product.nombre }}?</h3>
+                  <div style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0E5FB5;margin-bottom:6px">Perfil molecular</div>
+                  <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#0B2440;margin-bottom:14px">¿Qué es {{ product.nombre }}?</h3>
                   <div>
                     <sc-for list="{{ product.compoundRows }}" as="r" hint-placeholder-count="6">
-                      <div style="display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid #EEF2F7;font-family:'IBM Plex Sans',sans-serif;font-size:13px"><span style="color:#7E93A8">{{ r.k }}</span><span style="color:#1C2733;font-weight:600;text-align:right">{{ r.v }}</span></div>
+                      <div style="display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px solid #EEF2F7;font-family:'Poppins',sans-serif;font-size:13px"><span style="color:#7E93A8">{{ r.k }}</span><span style="color:#1C2733;font-weight:600;text-align:right">{{ r.v }}</span></div>
                     </sc-for>
                   </div>
                   <sc-if value="{{ product.hasFuente }}" hint-placeholder-val="{{ false }}">
-                    <a href="{{ product.fuenteUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#0E5FB5;text-decoration:none" style-hover="text-decoration:underline"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"></path></svg>Base de datos PubChem</a>
+                    <a href="{{ product.fuenteUrl }}" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:6px;margin-top:14px;font-family:'Poppins',sans-serif;font-size:12.5px;color:#0E5FB5;text-decoration:none" style-hover="text-decoration:underline"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"></path></svg>Base de datos PubChem</a>
                   </sc-if>
                 </div>
                 <sc-if value="{{ product.hasStorage }}" hint-placeholder-val="{{ false }}">
                   <div style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:22px 22px 18px">
-                    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0E5FB5;margin-bottom:6px">Conservación</div>
-                    <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:19px;color:#0B2440;margin-bottom:14px">Estabilidad y almacenamiento</h3>
+                    <div style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0E5FB5;margin-bottom:6px">Conservación</div>
+                    <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#0B2440;margin-bottom:14px">Estabilidad y almacenamiento</h3>
                     <div style="display:flex;flex-wrap:wrap;gap:8px;margin-bottom:16px">
                       <sc-for list="{{ product.storageNotas }}" as="nota" hint-placeholder-count="3">
-                        <span style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;color:#3A4855;background:#F4F7FB;border:1px solid #E2E8F0;border-radius:20px;padding:5px 12px">{{ nota }}</span>
+                        <span style="font-family:'Poppins',sans-serif;font-size:12px;color:#3A4855;background:#F4F7FB;border:1px solid #E2E8F0;border-radius:20px;padding:5px 12px">{{ nota }}</span>
                       </sc-for>
                     </div>
                     <div style="display:flex;align-items:center;gap:12px;border:1px solid #EEF2F7;border-radius:10px;background:#FAFBFD;padding:12px 14px;margin-bottom:10px">
-                      <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:#EAF2FB;color:#0E5FB5;flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M4.5 6.5l15 11M19.5 6.5l-15 11"></path></svg></span>
-                      <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#0B2440">Liofilizado (polvo)</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#5A6B7B">{{ product.storageLiofilizado }}</div></div>
+                      <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:#EAF2FB;font-size:19px;line-height:1;flex-shrink:0">❄️</span>
+                      <div><div style="font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#0B2440">Liofilizado (polvo)</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#5A6B7B">{{ product.storageLiofilizado }}</div></div>
                     </div>
                     <div style="display:flex;align-items:center;gap:12px;border:1px solid #EEF2F7;border-radius:10px;background:#FAFBFD;padding:12px 14px">
-                      <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:rgba(31,169,113,.12);color:#15875A;flex-shrink:0"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2l4 4M17 3l3 3-9.5 9.5-3.8.8.8-3.8z"></path><path d="M3 21l4.5-1"></path></svg></span>
-                      <div><div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#0B2440">Reconstituido</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#5A6B7B">{{ product.storageReconstituido }}</div></div>
+                      <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;background:rgba(31,169,113,.12);font-size:19px;line-height:1;flex-shrink:0">💉</span>
+                      <div><div style="font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#0B2440">Reconstituido</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#5A6B7B">{{ product.storageReconstituido }}</div></div>
                     </div>
                   </div>
                 </sc-if>
@@ -508,21 +518,21 @@ input{font:inherit}
           <section style="background:#fff">
             <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px)">
               <div style="display:flex;align-items:center;gap:13px;margin-bottom:24px">
-                <span style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:rgba(14,95,181,.1);color:#0E5FB5;flex-shrink:0"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5a2 2 0 0 1 2-2h9l5 5v11a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2z"></path><path d="M14 3v5h5M8 13h8M8 17h6"></path></svg></span>
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:10px;background:rgba(14,95,181,.1);font-size:22px;line-height:1;flex-shrink:0">📚</span>
                 <div>
-                  <h2 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,28px);color:#0B2440;letter-spacing:-.01em">Fuentes y referencias</h2>
-                  <div style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#5A6B7B;margin-top:2px">Investigación revisada por pares</div>
+                  <h2 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(22px,2.6vw,28px);color:#0B2440;letter-spacing:-.01em">Fuentes y referencias</h2>
+                  <div style="font-family:'Poppins',sans-serif;font-size:13px;color:#5A6B7B;margin-top:2px">Investigación revisada por pares</div>
                 </div>
               </div>
               <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,260px),1fr));gap:16px">
                 <sc-for list="{{ product.referencias }}" as="ref" hint-placeholder-count="4">
                   <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:18px 18px;display:flex;flex-direction:column;gap:9px">
-                    <div style="font-family:'IBM Plex Sans',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#15875A;line-height:1.3">{{ ref.journal }}</div>
-                    <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:14px;line-height:1.35;color:#0B2440">{{ ref.titulo }}</div>
+                    <div style="font-family:'Poppins',sans-serif;font-size:10.5px;font-weight:700;letter-spacing:.05em;text-transform:uppercase;color:#15875A;line-height:1.3">{{ ref.journal }}</div>
+                    <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;line-height:1.35;color:#0B2440">{{ ref.titulo }}</div>
                     <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#7E93A8">{{ ref.anio }}<sc-if value="{{ ref.hasId }}" hint-placeholder-val="{{ false }}"> · {{ ref.idLabel }}</sc-if></div>
-                    <div style="font-family:'IBM Plex Sans',sans-serif;font-style:italic;font-size:12px;color:#5A6B7B">{{ ref.autores }}</div>
+                    <div style="font-family:'Poppins',sans-serif;font-style:italic;font-size:12px;color:#5A6B7B">{{ ref.autores }}</div>
                     <sc-if value="{{ ref.hasUrl }}" hint-placeholder-val="{{ false }}">
-                      <a href="{{ ref.url }}" target="_blank" rel="noopener" style="margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;color:#0E5FB5;text-decoration:none" style-hover="text-decoration:underline">Ver fuente <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"></path></svg></a>
+                      <a href="{{ ref.url }}" target="_blank" rel="noopener" style="margin-top:auto;display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-size:12.5px;color:#0E5FB5;text-decoration:none" style-hover="text-decoration:underline">Ver fuente <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M14 3h7v7M21 3l-9 9M19 14v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h5"></path></svg></a>
                     </sc-if>
                   </div>
                 </sc-for>
@@ -535,9 +545,9 @@ input{font:inherit}
         <section style="background:#fff">
           <div style="max-width:1180px;margin:0 auto;width:100%;padding:0 clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
             <div style="border:1px solid #F3D9A4;border-radius:12px;background:#FFFBF2;padding:20px 22px">
-              <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.2 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.2a2 2 0 0 0-3.4 0z"></path><path d="M12 9v4M12 17h.01"></path></svg><span style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#B45309">Aviso importante de investigación</span></div>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:#5A6B7B"><strong style="color:#3A4855">No apto para consumo humano ni veterinario.</strong> Producto destinado exclusivamente a investigación in vitro y de laboratorio. No es un medicamento, no está registrado ni aprobado por ANMAT, y no diagnostica, trata, cura ni previene ninguna enfermedad.</p>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;line-height:1.65;color:#5A6B7B;margin-top:8px">Los datos de investigación citados provienen de publicaciones revisadas por pares y se ofrecen solo como referencia educativa; no constituyen asesoramiento médico ni afirmaciones sobre el producto. Al comprar, confirmás que sos un investigador calificado y que usarás el producto conforme a la normativa vigente.</p>
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:10px"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M10.3 3.2 1.8 18a2 2 0 0 0 1.7 3h17a2 2 0 0 0 1.7-3L13.7 3.2a2 2 0 0 0-3.4 0z"></path><path d="M12 9v4M12 17h.01"></path></svg><span style="font-family:'Poppins',sans-serif;font-size:12px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:#B45309">Aviso importante de investigación</span></div>
+              <p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.65;color:#5A6B7B"><strong style="color:#3A4855">No apto para consumo humano ni veterinario.</strong> Producto destinado exclusivamente a investigación in vitro y de laboratorio. No es un medicamento, no está registrado ni aprobado por ANMAT, y no diagnostica, trata, cura ni previene ninguna enfermedad.</p>
+              <p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.65;color:#5A6B7B;margin-top:8px">Los datos de investigación citados provienen de publicaciones revisadas por pares y se ofrecen solo como referencia educativa; no constituyen asesoramiento médico ni afirmaciones sobre el producto. Al comprar, confirmás que sos un investigador calificado y que usarás el producto conforme a la normativa vigente.</p>
             </div>
           </div>
         </section>
@@ -546,9 +556,9 @@ input{font:inherit}
       <sc-if value="{{ productNotFound }}" hint-placeholder-val="{{ false }}">
         <section style="background:#fff">
           <div style="max-width:1180px;margin:0 auto;width:100%;padding:80px clamp(20px,5vw,56px);text-align:center">
-            <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:28px;color:#0B2440">Producto no encontrado</h1>
-            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;color:#5A6B7B;margin-top:12px">El producto que buscás no está disponible.</p>
-            <a href="#/catalogo" style="margin-top:22px;display:inline-flex;background:#0E5FB5;color:#fff;border-radius:8px;padding:13px 24px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none">Volver al catálogo</a>
+            <h1 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:28px;color:#0B2440">Producto no encontrado</h1>
+            <p style="font-family:'Poppins',sans-serif;font-size:15px;color:#5A6B7B;margin-top:12px">El producto que buscás no está disponible.</p>
+            <a href="#/catalogo" style="margin-top:22px;display:inline-flex;background:#0E5FB5;color:#fff;border-radius:8px;padding:13px 24px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none">Volver al catálogo</a>
           </div>
         </section>
       </sc-if>
@@ -560,36 +570,36 @@ input{font:inherit}
       <section style="background:#fff">
         <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(40px,5vw,64px) clamp(20px,5vw,56px) clamp(28px,4vw,44px)">
           <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Nosotros</span>
-          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440;max-width:760px;text-wrap:balance">Péptidos de investigación con trazabilidad y respaldo</h1>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:18px;max-width:680px">AminoLabAr es un proveedor argentino de péptidos de investigación importados de Estados Unidos. Trabajamos con un objetivo simple: que cada compra sea trazable, esté bien conservada y cuente con asesoría real de principio a fin.</p>
+          <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440;max-width:760px;text-wrap:balance">Péptidos de investigación con trazabilidad y respaldo</h1>
+          <p style="font-family:'Poppins',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:18px;max-width:680px">AminoLabAr es un proveedor argentino de péptidos de investigación importados de Estados Unidos. Trabajamos con un objetivo simple: que cada compra sea trazable, esté bien conservada y cuente con asesoría real de principio a fin.</p>
         </div>
         <div style="max-width:1180px;margin:0 auto;width:100%;padding:0 clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
           <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:18px">
             <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
               <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#EAF2FB;color:#0E5FB5;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v9.7L12 21.7l-8.4-4.85v-9.7z"></path><path d="m9 12 2 2 4-4"></path></svg></span>
-              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">Producidos en Estados Unidos</h3>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Importamos péptidos fabricados en EE. UU., cumpliendo estándares de calidad reconocidos en investigación.</p>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">Producidos en Estados Unidos</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Importamos péptidos fabricados en EE. UU., cumpliendo estándares de calidad reconocidos en investigación.</p>
             </div>
             <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
               <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#EAF2FB;color:#0E5FB5;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.5h7.5L19 7v14.5H7z"></path><path d="M14 2.5V7h5"></path><path d="M9.5 12h7M9.5 15.5h7"></path></svg></span>
-              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">COA por lote disponible</h3>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Cada lote cuenta con su Certificado de Análisis, que informa identidad y pureza del compuesto. Disponible a solicitud.</p>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">COA por lote disponible</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Cada lote cuenta con su Certificado de Análisis, que informa identidad y pureza del compuesto. Disponible a solicitud.</p>
             </div>
             <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
               <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#EAF2FB;color:#0E5FB5;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5a6 6 0 0 0-6 6c0 1.5.5 2.7 1.5 4l4.5 6 4.5-6c1-1.3 1.5-2.5 1.5-4a6 6 0 0 0-6-6z"></path><path d="M9.5 8.5h5M12 6v5"></path></svg></span>
-              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">Conservación y cadena de frío</h3>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Almacenamiento y despacho cuidando la cadena de frío, para preservar la estabilidad del producto hasta tu domicilio.</p>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">Conservación y cadena de frío</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Almacenamiento y despacho cuidando la cadena de frío, para preservar la estabilidad del producto hasta tu domicilio.</p>
             </div>
             <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
               <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#E7F6EF;color:#15875A;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg></span>
-              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">Asesoría personalizada</h3>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Te acompañamos por WhatsApp para resolver dudas sobre presentaciones, disponibilidad y envíos, de forma directa.</p>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#0B2440;line-height:1.25">Asesoría personalizada</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Te acompañamos por WhatsApp para resolver dudas sobre presentaciones, disponibilidad y envíos, de forma directa.</p>
             </div>
           </div>
 
           <div style="margin-top:24px;border:1px solid #FCE3B8;background:#FEF8EC;border-radius:12px;padding:20px 24px;display:flex;gap:13px;align-items:flex-start">
             <span style="flex-shrink:0;color:#B07A0E;display:inline-flex"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg></span>
-            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.6;color:#92660C">Todos los productos comercializados por AminoLabAr están destinados exclusivamente a investigación y colección. No son aptos para consumo humano ni animal, ni para uso diagnóstico o terapéutico.</p>
+            <p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.6;color:#92660C">Todos los productos comercializados por AminoLabAr están destinados exclusivamente a investigación y colección. No son aptos para consumo humano ni animal, ni para uso diagnóstico o terapéutico.</p>
           </div>
         </div>
       </section>
@@ -600,35 +610,35 @@ input{font:inherit}
       <section style="background:#fff">
         <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(40px,5vw,64px) clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
           <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Envíos</span>
-          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Envíos a todo el país</h1>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:660px">Despachamos a toda la Argentina por Andreani, con seguimiento. Coordinás el envío por WhatsApp al finalizar tu pedido.</p>
+          <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Envíos a todo el país</h1>
+          <p style="font-family:'Poppins',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:660px">Despachamos a toda la Argentina por Andreani, con seguimiento. Coordinás el envío por WhatsApp al finalizar tu pedido.</p>
 
           <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,250px),1fr));gap:18px">
             <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
               <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#EAF2FB;color:#0E5FB5;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7h11v9H3z"></path><path d="M14 10h4l3 3v3h-7"></path><circle cx="7" cy="18" r="1.6"></circle><circle cx="17.5" cy="18" r="1.6"></circle></svg></span>
-              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440">Andreani · todo el país</h3>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Enviamos a cualquier localidad de Argentina mediante Andreani, con número de seguimiento.</p>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#0B2440">Andreani · todo el país</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Enviamos a cualquier localidad de Argentina mediante Andreani, con número de seguimiento.</p>
             </div>
             <div style="border:1px solid #C9E9D7;border-radius:12px;background:#F2FBF6;padding:24px 22px">
               <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#1FA971;color:#fff;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
-              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440">Envío GRATIS desde 3 péptidos</h3>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Si tu pedido incluye 3 o más péptidos, el envío es <strong style="color:#15875A">sin cargo</strong>. Con menos, el costo se coordina por WhatsApp.</p>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#0B2440">Envío GRATIS desde 3 péptidos</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Si tu pedido incluye 3 o más péptidos, el envío es <strong style="color:#15875A">sin cargo</strong>. Con menos, el costo se coordina por WhatsApp.</p>
             </div>
             <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:24px 22px">
               <span style="display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:10px;background:#EAF2FB;color:#0E5FB5;margin-bottom:15px"><svg width="23" height="23" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg></span>
-              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440">Despacho en 24 hs hábiles</h3>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Una vez confirmado el pago, despachamos dentro de las 24 horas hábiles.</p>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#0B2440">Despacho en 24 hs hábiles</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.6;color:#5A6B7B;margin-top:9px">Una vez confirmado el pago, despachamos dentro de las 24 horas hábiles.</p>
             </div>
           </div>
 
           <div style="margin-top:28px;border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:8px clamp(18px,3vw,28px)">
-            <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E7EDF4;font-family:'IBM Plex Sans',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">CORREO</span><span style="font-size:14.5px;color:#1C2733">Andreani, con seguimiento a todo el país.</span></div>
-            <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E7EDF4;font-family:'IBM Plex Sans',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">ENVÍO GRATIS</span><span style="font-size:14.5px;color:#1C2733">A partir de 3 péptidos en el pedido.</span></div>
-            <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E7EDF4;font-family:'IBM Plex Sans',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">DESPACHO</span><span style="font-size:14.5px;color:#1C2733">Dentro de las 24 hs hábiles tras confirmar el pago.</span></div>
-            <div style="display:flex;gap:16px;padding:16px 0;font-family:'IBM Plex Sans',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">CONSERVACIÓN</span><span style="font-size:14.5px;color:#1C2733">Embalaje que cuida la cadena de frío durante el transporte.</span></div>
+            <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E7EDF4;font-family:'Poppins',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">CORREO</span><span style="font-size:14.5px;color:#1C2733">Andreani, con seguimiento a todo el país.</span></div>
+            <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E7EDF4;font-family:'Poppins',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">ENVÍO GRATIS</span><span style="font-size:14.5px;color:#1C2733">A partir de 3 péptidos en el pedido.</span></div>
+            <div style="display:flex;gap:16px;padding:16px 0;border-bottom:1px solid #E7EDF4;font-family:'Poppins',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">DESPACHO</span><span style="font-size:14.5px;color:#1C2733">Dentro de las 24 hs hábiles tras confirmar el pago.</span></div>
+            <div style="display:flex;gap:16px;padding:16px 0;font-family:'Poppins',sans-serif"><span style="width:160px;flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#94A3B8;letter-spacing:.03em;padding-top:1px">CONSERVACIÓN</span><span style="font-size:14.5px;color:#1C2733">Embalaje que cuida la cadena de frío durante el transporte.</span></div>
           </div>
 
-          <div style="margin-top:26px"><a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:14px 26px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="background:#18885B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Consultar por un envío</a></div>
+          <div style="margin-top:26px"><a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:14px 26px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="background:#18885B"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Consultar por un envío</a></div>
         </div>
       </section>
     </sc-if>
@@ -638,21 +648,21 @@ input{font:inherit}
       <section style="background:#fff">
         <div style="max-width:880px;margin:0 auto;width:100%;padding:clamp(40px,5vw,64px) clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
           <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Preguntas frecuentes</span>
-          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Preguntas frecuentes</h1>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:640px">Respuestas directas a las consultas más habituales. Si te queda alguna duda, escribinos por WhatsApp.</p>
+          <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Preguntas frecuentes</h1>
+          <p style="font-family:'Poppins',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:640px">Respuestas directas a las consultas más habituales. Si te queda alguna duda, escribinos por WhatsApp.</p>
 
           <div style="margin-top:30px;display:flex;flex-direction:column;gap:16px">
             <sc-for list="{{ faqs }}" as="f" hint-placeholder-count="6">
               <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:22px 24px">
-                <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:clamp(16px,1.9vw,18px);color:#0B2440;line-height:1.3">{{ f.q }}</h3>
-                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14.5px;line-height:1.65;color:#5A6B7B;margin-top:10px">{{ f.a }}</p>
+                <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:clamp(16px,1.9vw,18px);color:#0B2440;line-height:1.3">{{ f.q }}</h3>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.65;color:#5A6B7B;margin-top:10px">{{ f.a }}</p>
               </div>
             </sc-for>
           </div>
 
           <div style="margin-top:26px;border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:24px clamp(20px,3vw,28px);display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px">
-            <div><h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:#0B2440">¿Tenés otra consulta?</h3><p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B;margin-top:6px">Te respondemos por WhatsApp a la brevedad.</p></div>
-            <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:13px 24px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none;white-space:nowrap" style-hover="background:#18885B"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Escribir por WhatsApp</a>
+            <div><h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">¿Tenés otra consulta?</h3><p style="font-family:'Poppins',sans-serif;font-size:14px;color:#5A6B7B;margin-top:6px">Te respondemos por WhatsApp a la brevedad.</p></div>
+            <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:13px 24px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none;white-space:nowrap" style-hover="background:#18885B"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Escribir por WhatsApp</a>
           </div>
         </div>
       </section>
@@ -663,24 +673,24 @@ input{font:inherit}
       <section style="background:#fff">
         <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(40px,5vw,64px) clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
           <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Contacto</span>
-          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Hablemos por WhatsApp</h1>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:620px">La forma más rápida de contactarnos es por WhatsApp. Te asesoramos sobre productos, presentaciones, disponibilidad y envíos.</p>
+          <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Hablemos por WhatsApp</h1>
+          <p style="font-family:'Poppins',sans-serif;font-size:clamp(15px,1.6vw,17px);line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:620px">La forma más rápida de contactarnos es por WhatsApp. Te asesoramos sobre productos, presentaciones, disponibilidad y envíos.</p>
 
           <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px;align-items:start">
             <!-- WhatsApp principal -->
             <div style="border:1px solid #C9E9D7;border-radius:12px;background:#F2FBF6;padding:28px 26px">
               <span style="display:inline-flex;align-items:center;justify-content:center;width:50px;height:50px;border-radius:12px;background:#1FA971;color:#fff;margin-bottom:16px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg></span>
-              <h3 style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:19px;color:#0B2440">WhatsApp</h3>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#0B2440">WhatsApp</h3>
               <p style="font-family:'IBM Plex Mono',monospace;font-size:16px;color:#0B2440;margin-top:8px">+54 9 221 522-7060</p>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;color:#5A6B7B;margin-top:8px">Lun a Vie · 9 a 18 h</p>
-              <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:14px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="background:#18885B">Escribir por WhatsApp</a>
+              <p style="font-family:'Poppins',sans-serif;font-size:13.5px;color:#5A6B7B;margin-top:8px">Lun a Vie · 9 a 18 h</p>
+              <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:14px 16px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="background:#18885B">Escribir por WhatsApp</a>
             </div>
 
             <!-- Datos de la marca -->
             <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:28px 26px">
               <div style="display:inline-flex;align-items:center;gap:10px;margin-bottom:18px">
                 <span style="display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;color:#0E5FB5"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v9.7L12 21.7l-8.4-4.85v-9.7z"></path><circle cx="12" cy="12" r="2.4" fill="#2FA8E0" stroke="none"></circle></svg></span>
-                <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;color:#0B2440">AminoLab<span style="color:#0E5FB5">Ar</span></span>
+                <span style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;color:#0B2440">AminoLab<span style="color:#0E5FB5">Ar</span></span>
               </div>
               <div style="border-top:1px solid #E2E8F0">
                 <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #E7EDF4;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:96px;flex-shrink:0;color:#94A3B8;letter-spacing:.03em">RUBRO</span><span style="color:#1C2733">Péptidos de investigación</span></div>
@@ -689,8 +699,8 @@ input{font:inherit}
                 <div style="display:flex;gap:16px;padding:13px 0;font-family:'IBM Plex Mono',monospace;font-size:12.5px"><span style="width:96px;flex-shrink:0;color:#94A3B8;letter-spacing:.03em">HORARIO</span><span style="color:#1C2733">Lun a Vie · 9 a 18 h</span></div>
               </div>
               <div style="margin-top:16px;display:flex;flex-wrap:wrap;gap:10px">
-                <a href="#/catalogo" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:11px 18px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Ver catálogo</a>
-                <a href="#/medios-pago" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:11px 18px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Medios de pago</a>
+                <a href="#/catalogo" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:11px 18px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Ver catálogo</a>
+                <a href="#/medios-pago" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:11px 18px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Medios de pago</a>
               </div>
             </div>
           </div>
@@ -703,16 +713,16 @@ input{font:inherit}
       <section style="background:#fff">
         <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
           <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Checkout</span>
-          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Finalizá tu compra</h1>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:clamp(14px,1.5vw,16px);line-height:1.6;color:#5A6B7B;margin-top:12px;max-width:560px">Revisá el detalle completo de tu pedido. Cuando esté todo listo, lo confirmás y coordinás el envío por WhatsApp.</p>
+          <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Finalizá tu compra</h1>
+          <p style="font-family:'Poppins',sans-serif;font-size:clamp(14px,1.5vw,16px);line-height:1.6;color:#5A6B7B;margin-top:12px;max-width:560px">Revisá el detalle completo de tu pedido. Cuando esté todo listo, lo confirmás y coordinás el envío por WhatsApp.</p>
 
           <!-- Carrito vacío -->
           <sc-if value="{{ emptyCart }}" hint-placeholder-val="{{ true }}">
             <div style="margin-top:34px;border:1px solid #E2E8F0;border-radius:12px;background:#F4F7FB;padding:56px 24px;text-align:center">
               <span style="display:inline-flex;color:#9DB1C7;margin-bottom:14px"><svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle><path d="M2.5 3h2.2l2 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.6-1.3L21 7H6.2"></path></svg></span>
-              <p style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Tu carrito está vacío</p>
-              <p style="font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B;margin-top:8px">Sumá péptidos desde el catálogo para empezar tu pedido.</p>
-              <a href="#/catalogo" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:8px;padding:13px 26px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none" style-hover="background:#0B4E97">Ver catálogo</a>
+              <p style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Tu carrito está vacío</p>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;color:#5A6B7B;margin-top:8px">Sumá péptidos desde el catálogo para empezar tu pedido.</p>
+              <a href="#/catalogo" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:8px;padding:13px 26px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none" style-hover="background:#0B4E97">Ver catálogo</a>
             </div>
           </sc-if>
 
@@ -725,7 +735,7 @@ input{font:inherit}
                   <div style="display:flex;gap:14px;align-items:center;padding:16px 18px;border-bottom:1px solid #EEF3F8">
                     <div style="flex-shrink:0;width:56px;height:56px;border:1px solid #E2E8F0;border-radius:8px;background:#F4F7FB;display:flex;align-items:center;justify-content:center;color:#9DB1C7"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></div>
                     <div style="flex:1;min-width:0">
-                      <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:15px;color:#0B2440;line-height:1.25">{{ l.nombre }}</div>
+                      <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;color:#0B2440;line-height:1.25">{{ l.nombre }}</div>
                       <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#7E93A8;margin-top:3px">{{ l.presentacion }} · {{ l.unitUSDText }} c/u</div>
                       <div style="display:flex;align-items:center;gap:14px;margin-top:10px">
                         <div style="display:inline-flex;align-items:center;border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
@@ -733,7 +743,7 @@ input{font:inherit}
                           <span style="min-width:30px;text-align:center;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;color:#0B2440">{{ l.qty }}</span>
                           <button onClick="{{ l.onInc }}" aria-label="Sumar" style="width:32px;height:32px;border:none;background:#fff;color:#0B2440;font-size:17px;cursor:pointer;display:inline-flex;align-items:center;justify-content:center" style-hover="background:#F4F7FB">+</button>
                         </div>
-                        <button onClick="{{ l.onRemove }}" style="display:inline-flex;align-items:center;gap:5px;background:none;border:none;color:#94A3B8;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;cursor:pointer;padding:0" style-hover="color:#C0392B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M9 6V4h6v2M7 6l1 14h8l1-14"></path></svg>Quitar</button>
+                        <button onClick="{{ l.onRemove }}" style="display:inline-flex;align-items:center;gap:5px;background:none;border:none;color:#94A3B8;font-family:'Poppins',sans-serif;font-size:12.5px;cursor:pointer;padding:0" style-hover="color:#C0392B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M9 6V4h6v2M7 6l1 14h8l1-14"></path></svg>Quitar</button>
                       </div>
                     </div>
                     <div style="text-align:right;flex-shrink:0">
@@ -743,18 +753,18 @@ input{font:inherit}
                   </div>
                 </sc-for>
                 <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#F8FAFC">
-                  <a href="#/catalogo" style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;color:#0E5FB5;text-decoration:none;display:inline-flex;align-items:center;gap:6px" style-hover="gap:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"></path></svg>Seguir comprando</a>
-                  <button onClick="{{ clearCart }}" style="background:none;border:none;color:#94A3B8;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;cursor:pointer" style-hover="color:#C0392B">Vaciar carrito</button>
+                  <a href="#/catalogo" style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13.5px;color:#0E5FB5;text-decoration:none;display:inline-flex;align-items:center;gap:6px" style-hover="gap:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"></path></svg>Seguir comprando</a>
+                  <button onClick="{{ clearCart }}" style="background:none;border:none;color:#94A3B8;font-family:'Poppins',sans-serif;font-size:12.5px;cursor:pointer" style-hover="color:#C0392B">Vaciar carrito</button>
                 </div>
               </div>
 
               <!-- Resumen del pedido -->
               <div style="border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:22px 22px 24px;position:sticky;top:84px">
-                <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:17px;color:#0B2440;margin-bottom:16px">Resumen del pedido</div>
+                <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#0B2440;margin-bottom:16px">Resumen del pedido</div>
 
                 <!-- Progreso envío gratis -->
                 <div style="border:1px solid #E2E8F0;border-radius:9px;background:#fff;padding:13px 15px;margin-bottom:18px">
-                  <div style="display:flex;align-items:center;gap:8px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;color:#15875A">
+                  <div style="display:flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:13px;font-weight:600;color:#15875A">
                     <sc-if value="{{ freeShip }}" hint-placeholder-val="{{ false }}"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
                     <span style="color:#0B2440">{{ faltanText }}</span>
                   </div>
@@ -763,26 +773,26 @@ input{font:inherit}
                   </div>
                 </div>
 
-                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;font-family:'Poppins',sans-serif;font-size:14px;color:#5A6B7B">
                   <span>Subtotal (USD)</span><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#0B2440;font-size:15px">{{ cartTotalUSD }}</span>
                 </div>
-                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B">
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:9px 0;border-bottom:1px solid #E2E8F0;font-family:'Poppins',sans-serif;font-size:14px;color:#5A6B7B">
                   <span>Subtotal (ARS)</span><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;color:#0B2440;font-size:15px">{{ cartTotalARS }}</span>
                 </div>
-                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Sans',sans-serif;font-size:14px;color:#5A6B7B">
-                  <span>Envío</span><span style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:14px;color:{{ shipColor }}">{{ shipText }}</span>
+                <div style="display:flex;justify-content:space-between;align-items:baseline;padding:11px 0;border-bottom:1px solid #E2E8F0;font-family:'Poppins',sans-serif;font-size:14px;color:#5A6B7B">
+                  <span>Envío</span><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;color:{{ shipColor }}">{{ shipText }}</span>
                 </div>
                 <div style="display:flex;justify-content:space-between;align-items:baseline;padding:14px 0 4px">
-                  <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;color:#0B2440">Total</span>
+                  <span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px;color:#0B2440">Total</span>
                   <div style="text-align:right">
                     <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:21px;color:#0B2440">{{ cartTotalUSD }}</div>
                     <div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#5A6B7B;margin-top:2px">{{ cartTotalARS }}</div>
                   </div>
                 </div>
 
-                <a href="{{ waCheckoutHref }}" target="_blank" rel="noopener" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15.5px;text-decoration:none;transition:background .15s" style-hover="background:#18885B"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Finalizar pedido por WhatsApp</a>
-                <a href="#/medios-pago" style="margin-top:10px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:12px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Ver medios de pago</a>
-                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.55;color:#94A3B8;margin-top:13px;text-align:center">El pedido se confirma y coordina por WhatsApp. El valor en ARS es de referencia según cotización.</p>
+                <a href="{{ waCheckoutHref }}" target="_blank" rel="noopener" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15.5px;text-decoration:none;transition:background .15s" style-hover="background:#18885B"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Finalizar pedido por WhatsApp</a>
+                <a href="#/medios-pago" style="margin-top:10px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:12px 16px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Ver medios de pago</a>
+                <p style="font-family:'Poppins',sans-serif;font-size:11.5px;line-height:1.55;color:#94A3B8;margin-top:13px;text-align:center">El pedido se confirma y coordina por WhatsApp. El valor en ARS es de referencia según cotización.</p>
               </div>
             </div>
           </sc-if>
@@ -795,11 +805,11 @@ input{font:inherit}
       <section style="background:#fff">
         <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
           <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Cómo pagar</span>
-          <h1 style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Medios de pago</h1>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:15px;line-height:1.6;color:#5A6B7B;margin-top:14px;max-width:620px">Aceptamos transferencia bancaria en pesos y USDT. Coordinás el pago por WhatsApp al finalizar tu pedido.</p>
+          <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Medios de pago</h1>
+          <p style="font-family:'Poppins',sans-serif;font-size:15px;line-height:1.6;color:#5A6B7B;margin-top:14px;max-width:620px">Aceptamos transferencia bancaria en pesos y USDT. Coordinás el pago por WhatsApp al finalizar tu pedido.</p>
 
           <!-- Aviso informativo -->
-          <div style="margin-top:22px;display:inline-flex;align-items:center;gap:9px;border:1px solid #FCE3B8;background:#FEF8EC;border-radius:8px;padding:11px 15px;font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#92660C">
+          <div style="margin-top:22px;display:inline-flex;align-items:center;gap:9px;border:1px solid #FCE3B8;background:#FEF8EC;border-radius:8px;padding:11px 15px;font-family:'Poppins',sans-serif;font-size:13px;color:#92660C">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
             <span>Página informativa. Los datos para abonar se comparten al confirmar el pedido por WhatsApp.</span>
           </div>
@@ -810,7 +820,7 @@ input{font:inherit}
               <div style="display:flex;align-items:center;gap:13px;padding:20px 22px;border-bottom:1px solid #EEF3F8">
                 <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:10px;background:#EAF2FB;color:#0E5FB5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-5 9 5"></path><path d="M5 10v8M19 10v8M9 10v8M15 10v8M3 21h18"></path></svg></span>
                 <div>
-                  <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Transferencia bancaria</div>
+                  <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Transferencia bancaria</div>
                   <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#0E5FB5;margin-top:2px">En pesos · ARS</div>
                 </div>
               </div>
@@ -821,7 +831,7 @@ input{font:inherit}
                   <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">ALIAS</span><span style="color:#C7D0DA">—</span></div>
                   <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">CUIT</span><span style="color:#C7D0DA">—</span></div>
                 </div>
-                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:#94A3B8;margin-top:auto">Los datos de la cuenta se completan al coordinar el pedido.</p>
+                <p style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.55;color:#94A3B8;margin-top:auto">Los datos de la cuenta se completan al coordinar el pedido.</p>
               </div>
             </div>
 
@@ -830,7 +840,7 @@ input{font:inherit}
               <div style="display:flex;align-items:center;gap:13px;padding:20px 22px;border-bottom:1px solid #EEF3F8">
                 <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:10px;background:#E7F6EF;color:#15875A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 9.5h7M12 9.5v8"></path></svg></span>
                 <div>
-                  <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:18px;color:#0B2440">USDT</div>
+                  <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">USDT</div>
                   <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#15875A;margin-top:2px">Stablecoin · dólar cripto</div>
                 </div>
               </div>
@@ -840,28 +850,66 @@ input{font:inherit}
                   <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">WALLET</span><span style="color:#C7D0DA">—</span></div>
                   <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">RED ALT.</span><span style="color:#C7D0DA">—</span></div>
                 </div>
-                <p style="font-family:'IBM Plex Sans',sans-serif;font-size:12px;line-height:1.55;color:#94A3B8;margin-top:auto">La dirección de wallet y la red se confirman al coordinar el pedido.</p>
+                <p style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.55;color:#94A3B8;margin-top:auto">La dirección de wallet y la red se confirman al coordinar el pedido.</p>
               </div>
             </div>
           </div>
 
           <!-- Pasos -->
           <div style="margin-top:30px;border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:24px clamp(20px,3vw,30px)">
-            <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;color:#0B2440;margin-bottom:18px">Cómo es el proceso</div>
+            <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px;color:#0B2440;margin-bottom:18px">Cómo es el proceso</div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:18px">
-              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">1</span><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Finalizás el pedido por WhatsApp con el detalle del carrito.</p></div>
-              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">2</span><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Te pasamos los datos para abonar por transferencia o USDT.</p></div>
-              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">3</span><p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Confirmás el pago y coordinamos el envío a todo el país.</p></div>
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">1</span><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Finalizás el pedido por WhatsApp con el detalle del carrito.</p></div>
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">2</span><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Te pasamos los datos para abonar por transferencia o USDT.</p></div>
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">3</span><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Confirmás el pago y coordinamos el envío a todo el país.</p></div>
             </div>
           </div>
 
           <div style="margin-top:26px;display:flex;flex-wrap:wrap;gap:14px">
-            <a href="#/carrito" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:8px;padding:14px 26px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="background:#0B4E97">Volver al carrito</a>
-            <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:14px 26px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Consultar por WhatsApp</a>
+            <a href="#/carrito" style="display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:8px;padding:14px 26px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="background:#0B4E97">Volver al carrito</a>
+            <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:14px 26px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Consultar por WhatsApp</a>
           </div>
         </div>
       </section>
     </sc-if>
+
+    <!-- ================= CTA PASTEL + NEWSLETTER (global, sobre el footer) ================= -->
+    <section style="position:relative;overflow:hidden;background:linear-gradient(120deg,#FBF6CB 0%,#DDF3D4 32%,#E9E7F7 66%,#FBE4EC 100%)">
+      <!-- burbujitas -->
+      <div style="position:absolute;inset:0;overflow:hidden;pointer-events:none">
+        <span style="position:absolute;bottom:8%;left:12%;width:10px;height:10px;border-radius:50%;background:rgba(255,255,255,.85);animation:amBubble 7s ease-in infinite"></span>
+        <span style="position:absolute;bottom:5%;left:24%;width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.8);animation:amBubble 6s ease-in infinite;animation-delay:1.4s"></span>
+        <span style="position:absolute;bottom:12%;left:38%;width:8px;height:8px;border-radius:50%;background:rgba(124,224,160,.7);animation:amBubble 8s ease-in infinite;animation-delay:.6s"></span>
+        <span style="position:absolute;bottom:6%;left:52%;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.85);animation:amBubble 6.5s ease-in infinite;animation-delay:2.1s"></span>
+        <span style="position:absolute;bottom:10%;left:64%;width:11px;height:11px;border-radius:50%;background:rgba(214,180,222,.6);animation:amBubble 7.5s ease-in infinite;animation-delay:.9s"></span>
+        <span style="position:absolute;bottom:4%;left:77%;width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.8);animation:amBubble 6.8s ease-in infinite;animation-delay:1.8s"></span>
+        <span style="position:absolute;bottom:14%;left:88%;width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.75);animation:amBubble 8.5s ease-in infinite;animation-delay:.3s"></span>
+        <span style="position:absolute;bottom:3%;left:46%;width:6px;height:6px;border-radius:50%;background:rgba(124,224,160,.6);animation:amBubble 7.2s ease-in infinite;animation-delay:2.6s"></span>
+        <span style="position:absolute;bottom:9%;left:31%;width:5px;height:5px;border-radius:50%;background:rgba(255,255,255,.8);animation:amBubble 6.2s ease-in infinite;animation-delay:3.1s"></span>
+      </div>
+      <!-- viales flotando -->
+      <span style="position:absolute;top:10%;left:4%;opacity:.5;animation:amDriftB 11s ease-in-out infinite;filter:drop-shadow(0 14px 22px rgba(11,36,64,.12))"><svg width="78" height="78" viewBox="0 0 24 24" fill="#fff" stroke="#C7B6BE" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></span>
+      <span style="position:absolute;bottom:18%;right:5%;opacity:.5;animation:amDriftA 10s ease-in-out infinite;animation-delay:1.5s;filter:drop-shadow(0 14px 22px rgba(11,36,64,.12))"><svg width="70" height="70" viewBox="0 0 24 24" fill="#fff" stroke="#E2C4CE" stroke-width="1.05" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></span>
+
+      <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,7vw,90px) clamp(20px,5vw,56px) clamp(18px,3vw,34px);text-align:center">
+        <h2 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(26px,4vw,44px);line-height:1.16;letter-spacing:-.02em;color:#0B2440;max-width:840px;margin:0 auto;text-wrap:balance">Todos los péptidos de investigación que necesitás, con la <span style="position:relative;white-space:nowrap">tranquilidad<span style="position:absolute;left:0;right:0;bottom:3px;height:9px;border-radius:5px;background:linear-gradient(90deg,rgba(52,196,118,.55) 0%,rgba(52,196,118,.55) 42%,#ffffff 50%,rgba(52,196,118,.55) 58%,rgba(52,196,118,.55) 100%);background-size:250% 100%;animation:amSweep 1.4s linear infinite"></span></span> y la comunidad de investigación a tu alcance.</h2>
+        <a href="#/catalogo" style="margin-top:26px;display:inline-flex;align-items:center;gap:10px;background:#0B2440;color:#fff;border-radius:30px;padding:15px 30px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15.5px;text-decoration:none;transition:transform .15s,background .15s" style-hover="background:#11305a;transform:translateY(-2px)">Ver catálogo <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+      </div>
+
+      <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto;width:100%;padding:0 clamp(20px,5vw,56px) clamp(48px,7vw,80px)">
+        <div style="background:linear-gradient(120deg,#EDE9F8 0%,#F7E7EF 100%);border-radius:18px;padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px;align-items:center">
+          <div>
+            <h3 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(20px,2.4vw,26px);color:#0B2440;letter-spacing:-.01em">Novedades de investigación de AminoLabAr</h3>
+            <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#5A6B7B;margin-top:8px">Suscribite para enterarte de nuevos compuestos de investigación, reposición de stock y novedades de documentación.</p>
+            <p style="font-family:'Poppins',sans-serif;font-size:12px;color:#94A3B8;margin-top:6px">Para investigadores y laboratorios. Sin spam, cancelás cuando quieras.</p>
+          </div>
+          <div style="display:flex;gap:8px;background:#fff;border-radius:30px;padding:6px 6px 6px 18px;box-shadow:0 14px 34px -18px rgba(11,36,64,.3);max-width:440px;justify-self:end;width:100%">
+            <input type="email" placeholder="Tu email" style="flex:1;border:none;outline:none;background:transparent;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;min-width:0">
+            <a href="https://wa.me/5492215227060?text=Quiero%20recibir%20novedades%20de%20AminoLabAr" target="_blank" rel="noopener" style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;background:#0B2440;color:#fff;border-radius:24px;padding:11px 22px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;text-decoration:none;transition:background .15s" style-hover="background:#11305a">Suscribir</a>
+          </div>
+        </div>
+      </div>
+    </section>
 
   </main>
 
@@ -872,35 +920,35 @@ input{font:inherit}
         <div style="max-width:300px">
           <div style="display:inline-flex;align-items:center;gap:10px">
             <span style="display:inline-flex;width:30px;height:30px;align-items:center;justify-content:center;color:#2FA8E0"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v9.7L12 21.7l-8.4-4.85v-9.7z"></path><circle cx="12" cy="12" r="2.4" fill="#2FA8E0" stroke="none"></circle></svg></span>
-            <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;color:#fff">AminoLab<span style="color:#2FA8E0">Ar</span></span>
+            <span style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:19px;letter-spacing:-.02em;color:#fff">AminoLab<span style="color:#2FA8E0">Ar</span></span>
           </div>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.6;color:#8FA8C2;margin-top:14px">Péptidos de investigación importados de Estados Unidos.</p>
+          <p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.6;color:#8FA8C2;margin-top:14px">Péptidos de investigación importados de Estados Unidos.</p>
           <p style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5E7B9A;margin-top:10px">Solo para investigación y colección.</p>
         </div>
         <div>
-          <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Navegación</div>
-          <a href="#/inicio" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Inicio</a>
-          <a href="#/catalogo" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Catálogo</a>
-          <button onClick="{{ openDrawer }}" style="display:block;width:100%;text-align:left;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;background:none;border:none;cursor:pointer;padding:5px 0" style-hover="color:#fff">Carrito</button>
-          <a href="#/medios-pago" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Medios de pago</a>
+          <div style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Navegación</div>
+          <a href="#/inicio" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Inicio</a>
+          <a href="#/catalogo" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Catálogo</a>
+          <button onClick="{{ openDrawer }}" style="display:block;width:100%;text-align:left;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;background:none;border:none;cursor:pointer;padding:5px 0" style-hover="color:#fff">Carrito</button>
+          <a href="#/medios-pago" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Medios de pago</a>
         </div>
         <div>
-          <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Información</div>
-          <a href="#/nosotros" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Nosotros</a>
-          <a href="#/envios" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Envíos</a>
-          <a href="#/faq" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">FAQ</a>
-          <a href="#/contacto" style="display:block;color:#9DB6CF;font-family:'IBM Plex Sans',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Contacto</a>
+          <div style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Información</div>
+          <a href="#/nosotros" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Nosotros</a>
+          <a href="#/envios" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Envíos</a>
+          <a href="#/faq" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">FAQ</a>
+          <a href="#/contacto" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Contacto</a>
         </div>
         <div>
-          <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Contacto</div>
+          <div style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Contacto</div>
           <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:14px;text-decoration:none" style-hover="color:#2FA8E0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>+54 9 221 522-7060</a>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#8FA8C2;margin-top:12px">Asesoría por WhatsApp</p>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13px;color:#8FA8C2;margin-top:4px">Lun a Vie · 9 a 18 h</p>
+          <p style="font-family:'Poppins',sans-serif;font-size:13px;color:#8FA8C2;margin-top:12px">Asesoría por WhatsApp</p>
+          <p style="font-family:'Poppins',sans-serif;font-size:13px;color:#8FA8C2;margin-top:4px">Lun a Vie · 9 a 18 h</p>
         </div>
       </div>
 
       <div style="margin-top:34px;padding-top:22px;border-top:1px solid rgba(255,255,255,.1)">
-        <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11.5px;line-height:1.65;color:#7E97B6;max-width:900px">{{ disclaimer }}</p>
+        <p style="font-family:'Poppins',sans-serif;font-size:11.5px;line-height:1.65;color:#7E97B6;max-width:900px">{{ disclaimer }}</p>
       </div>
       <div style="margin-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#5E7B9A">
         <span>© 2026 AminoLabAr</span>
@@ -910,7 +958,7 @@ input{font:inherit}
   </footer>
 
   <!-- WhatsApp flotante (todas las páginas) -->
-  <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp" style="position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;gap:10px;background:#1FA971;color:#fff;border-radius:999px;padding:13px 19px 13px 15px;box-shadow:0 12px 30px -8px rgba(31,169,113,.55);font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none;transition:background .15s,transform .15s" style-hover="background:#18885B;transform:translateY(-2px)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>WhatsApp</a>
+  <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" aria-label="Contactar por WhatsApp" style="position:fixed;right:20px;bottom:20px;z-index:60;display:inline-flex;align-items:center;gap:10px;background:#1FA971;color:#fff;border-radius:999px;padding:13px 19px 13px 15px;box-shadow:0 12px 30px -8px rgba(31,169,113,.55);font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none;transition:background .15s,transform .15s" style-hover="background:#18885B;transform:translateY(-2px)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>WhatsApp</a>
 
   <!-- ================= CARRITO LATERAL (drawer deslizable) ================= -->
   <div style="{{ drawerWrapStyle }}">
@@ -919,7 +967,7 @@ input{font:inherit}
       <!-- Encabezado -->
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:18px 20px;border-bottom:1px solid #E2E8F0;flex-shrink:0">
         <div style="display:flex;align-items:center;gap:10px">
-          <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.01em;color:#0B2440">Tu carrito</span>
+          <span style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:18px;letter-spacing:-.01em;color:#0B2440">Tu carrito</span>
           <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;color:#0E5FB5;background:#EAF2FB;border-radius:999px;padding:2px 9px">{{ cartCount }}</span></sc-if>
         </div>
         <button onClick="{{ closeDrawer }}" aria-label="Cerrar" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid #E2E8F0;border-radius:8px;background:#fff;color:#0B2440;cursor:pointer;transition:background .15s" style-hover="background:#F4F7FB"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
@@ -931,9 +979,9 @@ input{font:inherit}
         <sc-if value="{{ emptyCart }}" hint-placeholder-val="{{ true }}">
           <div style="padding:52px 26px;text-align:center;display:flex;flex-direction:column;align-items:center">
             <span style="display:inline-flex;color:#9DB1C7;margin-bottom:14px"><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"></circle><circle cx="18" cy="20" r="1.4"></circle><path d="M2.5 3h2.2l2 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.6-1.3L21 7H6.2"></path></svg></span>
-            <p style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;color:#0B2440">Tu carrito está vacío</p>
-            <p style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B;margin-top:8px;max-width:240px">Sumá péptidos desde el catálogo para empezar tu pedido.</p>
-            <a href="#/catalogo" onClick="{{ closeDrawer }}" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:8px;padding:12px 24px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:14px;text-decoration:none" style-hover="background:#0B4E97">Ver catálogo</a>
+            <p style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px;color:#0B2440">Tu carrito está vacío</p>
+            <p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B;margin-top:8px;max-width:240px">Sumá péptidos desde el catálogo para empezar tu pedido.</p>
+            <a href="#/catalogo" onClick="{{ closeDrawer }}" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:8px;padding:12px 24px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;text-decoration:none" style-hover="background:#0B4E97">Ver catálogo</a>
           </div>
         </sc-if>
 
@@ -943,7 +991,7 @@ input{font:inherit}
             <div style="display:flex;gap:12px;padding:15px 18px;border-bottom:1px solid #EEF3F8">
               <div style="flex-shrink:0;width:50px;height:50px;border:1px solid #E2E8F0;border-radius:8px;background:#F4F7FB;display:flex;align-items:center;justify-content:center;color:#9DB1C7"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></div>
               <div style="flex:1;min-width:0">
-                <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:14px;color:#0B2440;line-height:1.25">{{ l.nombre }}</div>
+                <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;color:#0B2440;line-height:1.25">{{ l.nombre }}</div>
                 <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#7E93A8;margin-top:3px">{{ l.presentacion }} · {{ l.unitUSDText }} c/u</div>
                 <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:10px">
                   <div style="display:inline-flex;align-items:center;border:1px solid #CBD5E1;border-radius:7px;overflow:hidden">
@@ -956,7 +1004,7 @@ input{font:inherit}
                     <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;color:#7E93A8;margin-top:1px">{{ l.lineARSText }}</div>
                   </div>
                 </div>
-                <button onClick="{{ l.onRemove }}" style="margin-top:8px;display:inline-flex;align-items:center;gap:5px;background:none;border:none;color:#94A3B8;font-family:'IBM Plex Sans',sans-serif;font-size:12px;cursor:pointer;padding:0" style-hover="color:#C0392B"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M9 6V4h6v2M7 6l1 14h8l1-14"></path></svg>Quitar</button>
+                <button onClick="{{ l.onRemove }}" style="margin-top:8px;display:inline-flex;align-items:center;gap:5px;background:none;border:none;color:#94A3B8;font-family:'Poppins',sans-serif;font-size:12px;cursor:pointer;padding:0" style-hover="color:#C0392B"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M9 6V4h6v2M7 6l1 14h8l1-14"></path></svg>Quitar</button>
               </div>
             </div>
           </sc-for>
@@ -968,7 +1016,7 @@ input{font:inherit}
         <div style="border-top:1px solid #E2E8F0;background:#F8FAFC;padding:16px 18px 18px;flex-shrink:0">
           <!-- Progreso envío gratis -->
           <div style="border:1px solid #E2E8F0;border-radius:9px;background:#fff;padding:11px 13px;margin-bottom:14px">
-            <div style="display:flex;align-items:center;gap:7px;font-family:'IBM Plex Sans',sans-serif;font-size:12.5px;font-weight:600;color:#15875A">
+            <div style="display:flex;align-items:center;gap:7px;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#15875A">
               <sc-if value="{{ freeShip }}" hint-placeholder-val="{{ false }}"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></sc-if>
               <span style="color:#0B2440">{{ faltanText }}</span>
             </div>
@@ -976,7 +1024,7 @@ input{font:inherit}
           </div>
           <!-- Totales -->
           <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:14px">
-            <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:15px;color:#0B2440">Total</span>
+            <span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;color:#0B2440">Total</span>
             <div style="text-align:right">
               <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:19px;color:#0B2440">{{ cartTotalUSD }}</div>
               <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6B7B;margin-top:1px">{{ cartTotalARS }}</div>
@@ -984,10 +1032,10 @@ input{font:inherit}
           </div>
           <!-- Botones apilados -->
           <div style="display:flex;flex-direction:column;gap:10px">
-            <button onClick="{{ closeDrawer }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:8px;padding:13px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:background .15s,color .15s" style-hover="background:#EAF2FB">Seguir comprando</button>
-            <a href="#/carrito" onClick="{{ closeDrawer }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:14px 16px;font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:background .15s" style-hover="background:#0B4E97">Hacer checkout<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
+            <button onClick="{{ closeDrawer }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:8px;padding:13px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:background .15s,color .15s" style-hover="background:#EAF2FB">Seguir comprando</button>
+            <a href="#/carrito" onClick="{{ closeDrawer }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:14px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:background .15s" style-hover="background:#0B4E97">Hacer checkout<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
           </div>
-          <p style="font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.5;color:#94A3B8;margin-top:11px;text-align:center">El pedido se confirma y coordina por WhatsApp.</p>
+          <p style="font-family:'Poppins',sans-serif;font-size:11px;line-height:1.5;color:#94A3B8;margin-top:11px;text-align:center">El pedido se confirma y coordina por WhatsApp.</p>
         </div>
       </sc-if>
     </aside>
@@ -995,7 +1043,7 @@ input{font:inherit}
 
   <!-- Toast (carrito en fase futura) -->
   <sc-if value="{{ hasToast }}" hint-placeholder-val="{{ false }}">
-    <div style="position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:70;background:#0B2440;color:#fff;padding:12px 18px;border-radius:8px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;box-shadow:0 12px 32px -8px rgba(11,36,64,.5);animation:amToast .2s ease;max-width:90vw;text-align:center">{{ toast }}</div>
+    <div style="position:fixed;left:50%;bottom:88px;transform:translateX(-50%);z-index:70;background:#0B2440;color:#fff;padding:12px 18px;border-radius:8px;font-family:'Poppins',sans-serif;font-size:13.5px;box-shadow:0 12px 32px -8px rgba(11,36,64,.5);animation:amToast .2s ease;max-width:90vw;text-align:center">{{ toast }}</div>
   </sc-if>
 
   <!-- ================= MODAL COA (visor de PDF) ================= -->
@@ -1005,10 +1053,10 @@ input{font:inherit}
       <div style="display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 16px;border-bottom:1px solid #E2E8F0;flex-shrink:0">
         <div style="display:flex;align-items:center;gap:10px;min-width:0">
           <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:rgba(31,169,113,.12);color:#15875A;flex-shrink:0"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 3h6M10 3v5.5L5.5 18a2 2 0 0 0 1.8 3h9.4a2 2 0 0 0 1.8-3L14 8.5V3"></path></svg></span>
-          <span style="font-family:'Hanken Grotesk',sans-serif;font-weight:700;font-size:16px;color:#0B2440;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Certificado de Análisis</span>
+          <span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px;color:#0B2440;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Certificado de Análisis</span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-          <a href="{{ coaModalUrl }}" target="_blank" rel="noopener" download style="display:inline-flex;align-items:center;gap:7px;border:1px solid #CBD5E1;border-radius:8px;padding:8px 13px;font-family:'Hanken Grotesk',sans-serif;font-weight:600;font-size:13px;color:#0B2440;text-decoration:none;transition:background .15s" style-hover="background:#F4F7FB"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"></path></svg>Descargar</a>
+          <a href="{{ coaModalUrl }}" target="_blank" rel="noopener" download style="display:inline-flex;align-items:center;gap:7px;border:1px solid #CBD5E1;border-radius:8px;padding:8px 13px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13px;color:#0B2440;text-decoration:none;transition:background .15s" style-hover="background:#F4F7FB"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"></path></svg>Descargar</a>
           <button onClick="{{ closeCoa }}" aria-label="Cerrar" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid #E2E8F0;border-radius:8px;background:#fff;color:#0B2440;cursor:pointer;transition:background .15s" style-hover="background:#F4F7FB"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
         </div>
       </div>
@@ -1033,29 +1081,29 @@ input{font:inherit}
 
     <!-- contenido -->
     <div style="position:relative;z-index:2;display:flex;flex-direction:column;align-items:center;width:100%;padding:24px">
-      <div style="font-family:'Hanken Grotesk',sans-serif;font-weight:800;font-size:27px;letter-spacing:-.02em;color:#0B2440;margin-bottom:20px">Amino<span style="color:#0E5FB5">LabAr</span></div>
+      <div style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:27px;letter-spacing:-.02em;color:#0B2440;margin-bottom:20px">Amino<span style="color:#0E5FB5">LabAr</span></div>
 
       <div style="{{ ageGateCardStyle }}">
-        <h2 style="font-family:'Hanken Grotesk',sans-serif;font-size:24px;font-weight:700;color:#0B2440;line-height:1.2;letter-spacing:-.01em">Verificación de investigador</h2>
-        <p style="margin-top:11px;font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.6;color:#5A6B7B">AminoLabAr comercializa péptidos de investigación exclusivamente para fines de investigación in vitro y de laboratorio. Confirmá antes de continuar.</p>
+        <h2 style="font-family:'Anek Latin',sans-serif;font-size:24px;font-weight:700;color:#0B2440;line-height:1.2;letter-spacing:-.01em">Verificación de investigador</h2>
+        <p style="margin-top:11px;font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.6;color:#5A6B7B">AminoLabAr comercializa péptidos de investigación exclusivamente para fines de investigación in vitro y de laboratorio. Confirmá antes de continuar.</p>
 
         <div style="margin-top:20px;display:flex;flex-direction:column;gap:10px">
           <div onClick="{{ toggleChkAge }}" style="{{ chkAgeRowStyle }}">
             <div style="{{ chkAgeBoxStyle }}"><sc-if value="{{ chkAge }}" hint-placeholder-val="{{ true }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg></sc-if></div>
-            <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.5;color:#1C2733">Soy mayor de <strong>18 años</strong>.</span>
+            <span style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.5;color:#1C2733">Soy mayor de <strong>18 años</strong>.</span>
           </div>
           <div onClick="{{ toggleChkResearcher }}" style="{{ chkResearcherRowStyle }}">
             <div style="{{ chkResearcherBoxStyle }}"><sc-if value="{{ chkResearcher }}" hint-placeholder-val="{{ true }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg></sc-if></div>
-            <span style="font-family:'IBM Plex Sans',sans-serif;font-size:13.5px;line-height:1.5;color:#1C2733">Confirmo que adquiero estos productos <strong>únicamente para investigación in vitro y de laboratorio</strong> — no para uso humano ni veterinario.</span>
+            <span style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.5;color:#1C2733">Confirmo que adquiero estos productos <strong>únicamente para investigación in vitro y de laboratorio</strong> — no para uso humano ni veterinario.</span>
           </div>
         </div>
 
         <button onClick="{{ ageEnterClick }}" style="{{ ageEnterStyle }}">Entrar a AminoLabAr <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
 
-        <p style="margin-top:16px;font-family:'IBM Plex Sans',sans-serif;font-size:11px;line-height:1.55;color:#9DB1C7">Al continuar afirmás que lo declarado es verdadero. Productos no aptos para uso humano ni veterinario, ni para procedimientos diagnósticos. No son medicamentos ni están registrados o aprobados por ANMAT.</p>
+        <p style="margin-top:16px;font-family:'Poppins',sans-serif;font-size:11px;line-height:1.55;color:#9DB1C7">Al continuar afirmás que lo declarado es verdadero. Productos no aptos para uso humano ni veterinario, ni para procedimientos diagnósticos. No son medicamentos ni están registrados o aprobados por ANMAT.</p>
       </div>
 
-      <button onClick="{{ rejectAge }}" style="margin-top:18px;background:none;border:none;color:#7E93A8;font-family:'IBM Plex Sans',sans-serif;font-size:13px;cursor:pointer;padding:8px;transition:color .15s" style-hover="color:#C0392B">¿No sos investigador? Salir</button>
+      <button onClick="{{ rejectAge }}" style="margin-top:18px;background:none;border:none;color:#7E93A8;font-family:'Poppins',sans-serif;font-size:13px;cursor:pointer;padding:8px;transition:color .15s" style-hover="color:#C0392B">¿No sos investigador? Salir</button>
     </div>
   </div>
 
@@ -1676,9 +1724,9 @@ class Component extends DCLogic {
 
   navStyle(active, mobile) {
     if (mobile) {
-      return { display: "block", fontFamily: "'IBM Plex Sans',sans-serif", fontSize: "17px", fontWeight: active ? 700 : 500, color: active ? "#0E5FB5" : "#0B2440", textDecoration: "none", padding: "15px 4px", borderBottom: "1px solid #E7EDF4" };
+      return { display: "block", fontFamily: "'Poppins',sans-serif", fontSize: "17px", fontWeight: active ? 700 : 500, color: active ? "#0E5FB5" : "#0B2440", textDecoration: "none", padding: "15px 4px", borderBottom: "1px solid #E7EDF4" };
     }
-    return { fontFamily: "'IBM Plex Sans',sans-serif", fontSize: "14.5px", fontWeight: active ? 700 : 500, color: active ? "#0B2440" : "#5A6B7B", textDecoration: "none", padding: "6px 0", borderBottom: active ? "2px solid #0E5FB5" : "2px solid transparent", whiteSpace: "nowrap" };
+    return { fontFamily: "'Poppins',sans-serif", fontSize: "14.5px", fontWeight: active ? 700 : 500, color: active ? "#0B2440" : "#5A6B7B", textDecoration: "none", padding: "6px 0", borderBottom: active ? "2px solid #0E5FB5" : "2px solid transparent", whiteSpace: "nowrap" };
   }
 
   renderVals() {
@@ -1767,7 +1815,7 @@ class Component extends DCLogic {
     const ageEnterStyle = {
       marginTop: "20px", width: "100%", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "8px",
       background: ageCanEnter ? "#0E5FB5" : "#C3D2E2", color: "#fff", border: "none", borderRadius: "10px",
-      padding: "14px 18px", fontFamily: "'Hanken Grotesk',sans-serif", fontWeight: 700, fontSize: "15px",
+      padding: "14px 18px", fontFamily: "'Anek Latin',sans-serif", fontWeight: 700, fontSize: "15px",
       cursor: ageCanEnter ? "pointer" : "not-allowed", transition: "background .18s,transform .12s",
     };
     const ageEnterClick = ageCanEnter ? this.confirmAge : (() => {});
