@@ -1045,7 +1045,8 @@
     }
     return cur;
   }
-  var BABEL_URL = "https://unpkg.com/@babel/standalone@7.26.4/babel.min.js";
+  var BABEL_URL = "https://unpkg.com/@babel/standalone@7.29.0/babel.min.js";
+  var BABEL_SRI = "sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y";
   var GLOBAL_POLL_INTERVAL_MS = 50;
   var GLOBAL_POLL_TIMEOUT_MS = 3e4;
   function createExternalModules(onResolved) {
@@ -1059,6 +1060,7 @@
       babelLoading = new Promise((res, rej) => {
         const s = document.createElement("script");
         s.src = BABEL_URL;
+        s.integrity = BABEL_SRI;
         s.crossOrigin = "anonymous";
         s.onload = () => res();
         s.onerror = rej;
@@ -1233,14 +1235,21 @@
 
   // src/helmet.ts
   var DESIGN_DOC_MODE_RE = /<meta\b[^>]*\bname\s*=\s*["']design_doc_mode["'][^>]*\b(?:content|value)\s*=\s*["'](\w+)["']/i;
-  var CANVAS_BG_LIGHT = "#f0eee9";
+  var CANVAS_BG_LIGHT = "#f0eee6";
   var CANVAS_BG_DARK = "#2e2c26";
   function createHelmetManager(doc, isStreaming) {
     const mounted = /* @__PURE__ */ new Set();
     const live = /* @__PURE__ */ new Map();
     let designDocMode = null;
     let canvasStyleEl = null;
-    let appTheme = doc.documentElement.dataset.theme === "dark" ? "dark" : "light";
+    let appTheme = "light";
+    try {
+      const ds = doc.documentElement.dataset.theme;
+      appTheme = ds === "dark" || ds === "light" ? ds : new URLSearchParams(doc.defaultView?.location.search ?? "").get(
+        "theme"
+      ) === "dark" ? "dark" : "light";
+    } catch {
+    }
     function applyCanvasBg() {
       if (!canvasStyleEl) return;
       const bg = appTheme === "dark" ? CANVAS_BG_DARK : CANVAS_BG_LIGHT;
@@ -1275,6 +1284,7 @@
         const t = e.data.theme;
         if (t === "light" || t === "dark") {
           appTheme = t;
+          doc.documentElement.dataset.theme = t;
           applyCanvasBg();
         }
         return;

@@ -87,15 +87,42 @@ input{font:inherit}
 @keyframes amHeaderSweep{0%{background-position:-160% 0}100%{background-position:260% 0}}
 @keyframes amPageIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 @keyframes amGateIn{from{opacity:0;transform:translateY(16px) scale(.96)}to{opacity:1;transform:translateY(0) scale(1)}}
+@keyframes amPop{0%{transform:scale(.4);opacity:0}62%{transform:scale(1.1)}100%{transform:scale(1);opacity:1}}
+@keyframes amRing{from{transform:scale(.5);opacity:0}to{transform:scale(1);opacity:1}}
+@keyframes amSlideUp{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+@keyframes amCheckDraw{from{stroke-dashoffset:34}to{stroke-dashoffset:0}}
+@keyframes amPulseSoft{0%,100%{box-shadow:0 0 0 0 rgba(31,169,113,.4)}50%{box-shadow:0 0 0 7px rgba(31,169,113,0)}}
 @keyframes amVialsIn{from{opacity:0}to{opacity:1}}
 @keyframes amDriftA{0%,100%{transform:translate(0,0) rotate(8deg)}50%{transform:translate(10px,-26px) rotate(13deg)}}
 @keyframes amDriftB{0%,100%{transform:translate(0,0) rotate(-12deg)}50%{transform:translate(-14px,-20px) rotate(-7deg)}}
 @keyframes amDriftC{0%,100%{transform:translate(0,0) rotate(18deg)}50%{transform:translate(9px,-30px) rotate(23deg)}}
 @keyframes amBubble{0%{transform:translateY(0) scale(1);opacity:0}12%{opacity:.7}88%{opacity:.7}100%{transform:translateY(-140px) scale(.4);opacity:0}}
 @keyframes amSweep{0%{background-position:180% 0}100%{background-position:-80% 0}}
+@keyframes amGradShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
+@keyframes amBlobFloat{0%,100%{transform:translate(0,0) scale(1);opacity:.42}50%{transform:translate(18px,-22px) scale(1.12);opacity:.6}}
+@keyframes amBlobFloat2{0%,100%{transform:translate(0,0) scale(1);opacity:.3}50%{transform:translate(-16px,18px) scale(1.15);opacity:.46}}
+@media(prefers-reduced-motion:reduce){*{animation-duration:.001ms!important;animation-iteration-count:1!important}}
+.amqv input{position:absolute;width:1px;height:1px;opacity:0;pointer-events:none;margin:0}
+.amqv-tabs{display:flex;flex-wrap:wrap;gap:9px;margin-top:24px}
+.amqv-tab{display:inline-flex;align-items:center;gap:8px;padding:11px 18px;border-radius:999px;background:#EEF1F5;color:#5A6B7B;font-family:'Poppins',sans-serif;font-weight:600;font-size:14.5px;line-height:1;cursor:pointer;transition:background .18s,color .18s,transform .18s,box-shadow .18s;-webkit-user-select:none;user-select:none}
+.amqv-tab svg{width:16px;height:16px}
+.amqv-tab:hover{background:#E1E6ED;transform:translateY(-1px)}
+.amqv-tab:active{transform:translateY(0)}
+.amqv-tabs label[for=amqv-t1]{background:#0B2440;color:#fff;box-shadow:0 10px 22px -10px rgba(11,36,64,.55);transform:none}
+#amqv-t1:checked~.amqv-tabs label[for=amqv-t1],#amqv-t2:checked~.amqv-tabs label[for=amqv-t2],#amqv-t3:checked~.amqv-tabs label[for=amqv-t3],#amqv-t4:checked~.amqv-tabs label[for=amqv-t4],#amqv-t5:checked~.amqv-tabs label[for=amqv-t5]{background:#0B2440;color:#fff;box-shadow:0 10px 22px -10px rgba(11,36,64,.55);transform:none}
+#amqv-t2:checked~.amqv-tabs label[for=amqv-t1],#amqv-t3:checked~.amqv-tabs label[for=amqv-t1],#amqv-t4:checked~.amqv-tabs label[for=amqv-t1],#amqv-t5:checked~.amqv-tabs label[for=amqv-t1]{background:#EEF1F5;color:#5A6B7B;box-shadow:none}
+.amqv-panel{display:none}
+.amqv-panels .amqv-p1{display:block}
+#amqv-t2:checked~.amqv-panels .amqv-p1,#amqv-t3:checked~.amqv-panels .amqv-p1,#amqv-t4:checked~.amqv-panels .amqv-p1,#amqv-t5:checked~.amqv-panels .amqv-p1{display:none}
+#amqv-t1:checked~.amqv-panels .amqv-p1,#amqv-t2:checked~.amqv-panels .amqv-p2,#amqv-t3:checked~.amqv-panels .amqv-p3,#amqv-t4:checked~.amqv-panels .amqv-p4,#amqv-t5:checked~.amqv-panels .amqv-p5{display:block;animation:amPageIn .32s cubic-bezier(.22,.61,.36,1) both}
+/* ===== Tweaks: Movimiento / Esquinas / Profundidad ===== */
+[data-am-motion=sereno] [style*="amDrift"],[data-am-motion=sereno] [style*="amGradShift"],[data-am-motion=sereno] [style*="amBlobFloat"],[data-am-motion=sereno] [style*="amVialsIn"]{animation:none!important}
+[data-am-depth=plano][data-am-depth=plano] *{box-shadow:none!important}
+[data-am-shape=clinicas] [style*="border-radius: 999px"]{border-radius:5px!important}
+[data-am-shape=clinicas] [style*="border-radius: 28px"],[data-am-shape=clinicas] [style*="border-radius: 22px"],[data-am-shape=clinicas] [style*="border-radius: 20px"],[data-am-shape=clinicas] [style*="border-radius: 18px"],[data-am-shape=clinicas] [style*="border-radius: 16px"],[data-am-shape=clinicas] [style*="border-radius: 15px"],[data-am-shape=clinicas] [style*="border-radius: 14px"],[data-am-shape=clinicas] [style*="border-radius: 13px"],[data-am-shape=clinicas] [style*="border-radius: 12px"],[data-am-shape=clinicas] [style*="border-radius: 11px"],[data-am-shape=clinicas] [style*="border-radius: 10px"]{border-radius:3px!important}
 </style>
 </helmet>
-<div style="font-family:'Poppins',sans-serif;color:#1C2733;background:#fff;min-height:100vh;display:flex;flex-direction:column">
+<div data-am-motion="{{ amMotion }}" data-am-shape="{{ amShape }}" data-am-depth="{{ amDepth }}" style="font-family:'Poppins',sans-serif;color:#1C2733;background:#fff;min-height:100vh;display:flex;flex-direction:column">
 
   <!-- ================= HEADER (compartido) ================= -->
   <header style="position:sticky;top:0;z-index:50;background:#fff;border-bottom:1px solid #E2E8F0">
@@ -117,6 +144,32 @@ input{font:inherit}
       </sc-if>
 
       <div style="display:flex;align-items:center;gap:12px">
+        <!-- Acceso a cuenta (Ingresar / avatar) -->
+        <sc-if value="{{ loggedOut }}" hint-placeholder-val="{{ true }}">
+          <a href="#/ingresar" aria-label="Ingresar a tu cuenta" style="display:inline-flex;align-items:center;gap:8px;height:40px;padding:0 14px;border:1px solid #E2E8F0;border-radius:8px;background:#fff;color:#0B2440;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;text-decoration:none;transition:border-color .15s,background .15s,color .15s" style-hover="border-color:#0E5FB5;color:#0E5FB5;background:#F4F7FB">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg>
+            <sc-if value="{{ showFullNav }}" hint-placeholder-val="{{ true }}"><span>Ingresar</span></sc-if>
+          </a>
+        </sc-if>
+        <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
+          <div style="position:relative">
+            <button onClick="{{ toggleUserMenu }}" aria-label="Menú de cuenta" style="display:inline-flex;align-items:center;gap:9px;height:40px;padding:4px;border:1px solid #E2E8F0;border-radius:999px;background:#fff;cursor:pointer;transition:border-color .15s,box-shadow .15s" style-hover="border-color:#CBD5E1;box-shadow:0 4px 12px -6px rgba(11,36,64,.3)">
+              <span style="width:32px;height:32px;border-radius:50%;background:linear-gradient(135deg,#0E5FB5,#2FA8E0);color:#fff;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:12px;display:inline-flex;align-items:center;justify-content:center;flex-shrink:0">{{ userInitials }}</span>
+              <sc-if value="{{ showFullNav }}" hint-placeholder-val="{{ true }}"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;color:#0B2440;padding-right:8px">{{ userFirst }}</span></sc-if>
+            </button>
+            <sc-if value="{{ userMenuOpen }}" hint-placeholder-val="{{ false }}">
+              <div onClick="{{ closeUserMenu }}" style="position:fixed;inset:0;z-index:40"></div>
+              <div style="position:absolute;top:50px;right:0;z-index:41;width:210px;background:#fff;border:1px solid #E7EDF4;border-radius:13px;box-shadow:0 24px 50px -20px rgba(11,36,64,.4),0 0 0 1px rgba(226,232,240,.7);padding:7px;animation:amSlideUp .22s cubic-bezier(.16,1,.3,1) both">
+                <div style="padding:9px 11px 10px;border-bottom:1px solid #EEF3F8;margin-bottom:5px">
+                  <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;color:#0B2440;line-height:1.2">{{ userName }}</div>
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7E93A8;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">{{ userEmail }}</div>
+                </div>
+                <a href="#/cuenta" onClick="{{ closeUserMenu }}" style="display:flex;align-items:center;gap:10px;padding:10px 11px;border-radius:8px;color:#0B2440;font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:500;text-decoration:none;transition:background .14s" style-hover="background:#F4F7FB"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg>Mi cuenta</a>
+                <button onClick="{{ logout }}" style="width:100%;display:flex;align-items:center;gap:10px;padding:10px 11px;border:none;background:none;border-radius:8px;color:#5A6B7B;font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:500;cursor:pointer;text-align:left;transition:background .14s,color .14s" style-hover="background:#FDECEC;color:#C0392B"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a1.6 1.6 0 0 1 1.6 1.6v12.8A1.6 1.6 0 0 1 18 20h-3M10 16l-4-4 4-4M6 12h11"></path></svg>Cerrar sesión</button>
+              </div>
+            </sc-if>
+          </div>
+        </sc-if>
         <button onClick="{{ openDrawer }}" aria-label="Abrir carrito" style="position:relative;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid #E2E8F0;border-radius:8px;background:#fff;color:#0B2440;cursor:pointer;transition:border-color .15s,background .15s" style-hover="border-color:#CBD5E1;background:#F4F7FB">
           <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.3"></circle><circle cx="18" cy="20" r="1.3"></circle><path d="M2.5 3h2.2l2 11.2a1.6 1.6 0 0 0 1.6 1.3h8.7a1.6 1.6 0 0 0 1.6-1.3L21 7H6.2"></path></svg>
           <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
@@ -137,6 +190,13 @@ input{font:inherit}
         <sc-for list="{{ navItemsMobile }}" as="n" hint-placeholder-count="6">
           <a href="{{ n.href }}" style="{{ n.style }}">{{ n.label }}</a>
         </sc-for>
+        <sc-if value="{{ loggedOut }}" hint-placeholder-val="{{ true }}">
+          <a href="#/ingresar" style="display:flex;align-items:center;gap:10px;font-family:'Poppins',sans-serif;font-size:17px;font-weight:600;color:#0E5FB5;text-decoration:none;padding:15px 4px;border-bottom:1px solid #E7EDF4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg>Ingresar / Crear cuenta</a>
+        </sc-if>
+        <sc-if value="{{ loggedIn }}" hint-placeholder-val="{{ false }}">
+          <a href="#/cuenta" style="display:flex;align-items:center;gap:10px;font-family:'Poppins',sans-serif;font-size:17px;font-weight:600;color:#0E5FB5;text-decoration:none;padding:15px 4px;border-bottom:1px solid #E7EDF4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.6"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg>Mi cuenta</a>
+          <button onClick="{{ logout }}" style="display:flex;align-items:center;gap:10px;width:100%;text-align:left;font-family:'Poppins',sans-serif;font-size:17px;font-weight:500;color:#5A6B7B;background:none;border:none;cursor:pointer;padding:15px 4px;border-bottom:1px solid #E7EDF4"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a1.6 1.6 0 0 1 1.6 1.6v12.8A1.6 1.6 0 0 1 18 20h-3M10 16l-4-4 4-4M6 12h11"></path></svg>Cerrar sesión</button>
+        </sc-if>
         <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="margin-top:22px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border-radius:8px;padding:14px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15px;text-decoration:none">Escribir por WhatsApp</a>
       </div>
     </div>
@@ -154,20 +214,55 @@ input{font:inherit}
 
     <!-- ================= INICIO ================= -->
     <sc-if value="{{ isInicio }}" hint-placeholder-val="{{ true }}">
+      <!-- HERO -->
       <section style="background:#fff">
-        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(46px,7vw,88px) clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,330px),1fr));gap:clamp(34px,5vw,60px);align-items:center">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,68px) clamp(20px,5vw,56px) clamp(20px,4vw,44px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(28px,4vw,56px);align-items:center">
           <div>
-            <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:18px">Péptidos de investigación · Importación EE. UU.</span>
-            <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(31px,4.6vw,52px);line-height:1.07;letter-spacing:-.02em;color:#0B2440;text-wrap:balance">Péptidos de investigación importados de Estados Unidos</h1>
-            <p style="font-family:'Poppins',sans-serif;font-size:clamp(15px,1.6vw,18px);line-height:1.6;color:#5A6B7B;margin-top:20px;max-width:540px"><strong style="color:#3A4855;font-weight:600">AminoLabAr</strong> es un proveedor argentino de péptidos de investigación importados de Estados Unidos. Certificado de Análisis (COA) por lote, envíos a todo el país por Andreani con despacho en 24 hs hábiles y asesoría personalizada por WhatsApp. Productos destinados a investigación y colección.</p>
-            <div style="margin-top:30px">
-              <a href="#/catalogo" style="display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:15px 28px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15.5px;letter-spacing:.01em;text-decoration:none;transition:background .15s" style-hover="background:#0B4E97">Ver catálogo<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
+            <span style="display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:#0E5FB5;background:#EAF2FB;border-radius:999px;padding:7px 14px;margin-bottom:22px"><span style="width:7px;height:7px;border-radius:50%;background:#1FA971"></span>Importados de EE. UU. · COA por lote</span>
+            <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(36px,5.4vw,62px);line-height:1.02;letter-spacing:-.025em;color:#0B2440;text-wrap:balance">Péptidos de investigación en los que podés confiar</h1>
+            <p style="font-family:'Poppins',sans-serif;font-size:clamp(15.5px,1.6vw,18.5px);line-height:1.6;color:#5A6B7B;margin-top:22px;max-width:520px">Péptidos grado investigación con Certificado de Análisis en cada lote. Pureza ≥ 99%, testeados por laboratorio externo.</p>
+            <div style="margin-top:32px;display:flex;flex-wrap:wrap;gap:14px;align-items:center">
+              <a href="#/catalogo" style="display:inline-flex;align-items:center;gap:10px;background:#0B2440;color:#fff;border-radius:999px;padding:16px 30px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:16px;text-decoration:none;box-shadow:0 12px 24px -8px rgba(11,36,64,.4);transition:transform .18s,box-shadow .18s" style-hover="transform:translateY(-2px);box-shadow:0 18px 30px -10px rgba(11,36,64,.45)">Ver catálogo<span style="font-size:18px;line-height:1">→</span></a>
+              <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15px;color:#0B2440;text-decoration:none;padding:14px 6px" style-hover="color:#0E5FB5">Asesoría por WhatsApp<span style="font-size:17px;line-height:1">→</span></a>
             </div>
           </div>
-          <div style="position:relative;border:1px solid #E2E8F0;border-radius:12px;background:#F4F7FB;background-image:linear-gradient(#E5ECF4 1px,transparent 1px),linear-gradient(90deg,#E5ECF4 1px,transparent 1px);background-size:26px 26px;min-height:300px;aspect-ratio:1/1;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
-            <svg width="104" height="104" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg>
-            <div style="position:absolute;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:13px 16px;border-top:1px solid #E2E8F0;background:#fff;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.03em;color:#5A6B7B">
-              <span>LOTE · COA</span><span style="color:#0E5FB5;font-weight:500">Producido en EE. UU.</span>
+          <div style="position:relative;min-height:clamp(330px,42vw,460px);border-radius:22px;background:linear-gradient(150deg,#E9E7F7 0%,#EAF2FB 52%,#FBE4EC 100%);background-size:220% 220%;overflow:hidden;box-shadow:0 30px 60px -28px rgba(11,36,64,.4);animation:amVialsIn .8s ease both,amGradShift 18s ease-in-out infinite">
+            <div aria-hidden="true" style="position:absolute;width:240px;height:240px;border-radius:50%;background:rgba(255,255,255,.42);top:-70px;right:-50px;filter:blur(6px);animation:amBlobFloat 11s ease-in-out infinite"></div>
+            <div aria-hidden="true" style="position:absolute;width:160px;height:160px;border-radius:50%;background:rgba(255,255,255,.3);bottom:-50px;left:-30px;filter:blur(6px);animation:amBlobFloat2 13s ease-in-out infinite"></div>
+            <span style="position:absolute;top:18px;left:18px;z-index:5;display:inline-flex;align-items:center;gap:7px;font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;color:#0B2440;background:rgba(255,255,255,.78);border-radius:999px;padding:6px 12px;backdrop-filter:blur(4px)"><span style="width:6px;height:6px;border-radius:50%;background:#1FA971"></span>Pureza ≥ 99% · HPLC</span>
+            <!-- vial pequeño izquierda -->
+            <div style="position:absolute;left:13%;bottom:16%;width:62px;height:158px;z-index:1">
+              <div style="width:100%;height:100%;animation:amDriftB 8.5s ease-in-out infinite;filter:drop-shadow(0 16px 20px rgba(11,36,64,.16))">
+                <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:34px;height:17px;background:#0B2440;border-radius:6px 6px 3px 3px"></div>
+                <div style="position:absolute;top:15px;left:50%;transform:translateX(-50%);width:40px;height:8px;background:#C7D2E2;border-radius:2px"></div>
+                <div style="position:absolute;top:22px;left:50%;transform:translateX(-50%);width:50px;bottom:0;background:linear-gradient(#fff,#f3effa);border:1.4px solid rgba(11,36,64,.13);border-radius:8px 8px 13px 13px;overflow:hidden">
+                  <div style="position:absolute;left:0;right:0;bottom:0;height:44%;background:linear-gradient(#D8CFF0,#B7A9E4)"></div>
+                  <div style="position:absolute;left:0;right:0;top:36%;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.06em;color:#0B2440;opacity:.5">PNG</div>
+                </div>
+              </div>
+            </div>
+            <!-- vial pequeño derecha -->
+            <div style="position:absolute;right:12%;bottom:21%;width:60px;height:150px;z-index:1">
+              <div style="width:100%;height:100%;animation:amDriftC 9s ease-in-out infinite;filter:drop-shadow(0 16px 20px rgba(11,36,64,.16))">
+                <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:33px;height:16px;background:#0B2440;border-radius:6px 6px 3px 3px"></div>
+                <div style="position:absolute;top:14px;left:50%;transform:translateX(-50%);width:39px;height:8px;background:#C7D2E2;border-radius:2px"></div>
+                <div style="position:absolute;top:21px;left:50%;transform:translateX(-50%);width:48px;bottom:0;background:linear-gradient(#fff,#faf0f4);border:1.4px solid rgba(11,36,64,.13);border-radius:8px 8px 13px 13px;overflow:hidden">
+                  <div style="position:absolute;left:0;right:0;bottom:0;height:42%;background:linear-gradient(#F6C9DA,#EFA9C4)"></div>
+                  <div style="position:absolute;left:0;right:0;top:34%;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:8px;letter-spacing:.06em;color:#0B2440;opacity:.5">PNG</div>
+                </div>
+              </div>
+            </div>
+            <!-- vial grande centro -->
+            <div style="position:absolute;left:50%;bottom:8%;margin-left:-49px;width:98px;height:236px;z-index:3">
+              <div style="width:100%;height:100%;animation:amDriftA 7.5s ease-in-out infinite;filter:drop-shadow(0 24px 28px rgba(11,36,64,.24))">
+                <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:52px;height:25px;background:#0B2440;border-radius:8px 8px 4px 4px"></div>
+                <div style="position:absolute;top:23px;left:50%;transform:translateX(-50%);width:60px;height:11px;background:#C7D2E2;border-radius:3px"></div>
+                <div style="position:absolute;top:32px;left:50%;transform:translateX(-50%);width:76px;bottom:0;background:linear-gradient(#fff,#eef3fb);border:1.5px solid rgba(11,36,64,.14);border-radius:11px 11px 18px 18px;overflow:hidden;box-shadow:inset 0 2px 6px rgba(255,255,255,.85)">
+                  <div style="position:absolute;left:0;right:0;bottom:0;height:46%;background:linear-gradient(#A6C6EC,#5E97D6)"></div>
+                  <div style="position:absolute;left:0;right:0;top:46%;height:2px;background:rgba(255,255,255,.6)"></div>
+                  <div style="position:absolute;left:8px;right:8px;top:30%;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.08em;color:#0B2440;opacity:.55;text-transform:uppercase">vial<br>PNG</div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -183,6 +278,88 @@ input{font:inherit}
           <span>Despacho en 24 hs hábiles</span>
         </div>
       </div>
+
+      <!-- LA GARANTÍA AminoLabAr -->
+      <section style="background:#fff">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,84px) clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(30px,4vw,56px);align-items:center">
+          <div style="position:relative;min-height:clamp(300px,38vw,420px);border-radius:22px;background:linear-gradient(155deg,#E9E7F7 0%,#FBE4EC 100%);background-size:220% 220%;overflow:hidden;order:0;animation:amGradShift 20s ease-in-out infinite">
+            <div aria-hidden="true" style="position:absolute;width:200px;height:200px;border-radius:50%;background:rgba(255,255,255,.4);top:-50px;left:-40px;filter:blur(6px);animation:amBlobFloat 12s ease-in-out infinite"></div>
+            <div style="position:absolute;left:50%;bottom:9%;margin-left:-46px;width:92px;height:222px;z-index:2">
+              <div style="width:100%;height:100%;animation:amDriftA 8s ease-in-out infinite;filter:drop-shadow(0 22px 26px rgba(11,36,64,.22))">
+                <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:49px;height:24px;background:#0B2440;border-radius:8px 8px 4px 4px"></div>
+                <div style="position:absolute;top:22px;left:50%;transform:translateX(-50%);width:56px;height:10px;background:#C7D2E2;border-radius:3px"></div>
+                <div style="position:absolute;top:31px;left:50%;transform:translateX(-50%);width:72px;bottom:0;background:linear-gradient(#fff,#f4f0fb);border:1.5px solid rgba(11,36,64,.14);border-radius:11px 11px 17px 17px;overflow:hidden;box-shadow:inset 0 2px 6px rgba(255,255,255,.85)">
+                  <div style="position:absolute;left:0;right:0;bottom:0;height:45%;background:linear-gradient(#CBBEEC,#A78FDC)"></div>
+                  <div style="position:absolute;left:0;right:0;top:46%;height:2px;background:rgba(255,255,255,.6)"></div>
+                  <div style="position:absolute;left:8px;right:8px;top:30%;text-align:center;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:.08em;color:#0B2440;opacity:.55;text-transform:uppercase">vial<br>PNG</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div>
+            <h2 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.06;letter-spacing:-.025em;color:#0B2440">La garantía AminoLabAr</h2>
+            <p style="font-family:'Poppins',sans-serif;font-size:clamp(15px,1.5vw,17px);line-height:1.6;color:#5A6B7B;margin-top:16px;max-width:480px">Calidad documentada para investigación y laboratorio. Cada lote cumple nuestros estándares de pureza.</p>
+            <div style="margin-top:28px;display:flex;flex-direction:column;gap:14px">
+              <div style="display:flex;align-items:center;gap:16px;border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:16px 18px">
+                <span style="flex-shrink:0;width:48px;height:48px;border-radius:50%;background:#DDF3D4;display:inline-flex;align-items:center;justify-content:center;color:#15875A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+                <div><div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16.5px;color:#0B2440">Pureza ≥ 99% garantizada</div><div style="font-family:'Poppins',sans-serif;font-size:13.5px;color:#7E93A8;margin-top:2px">Cada lote verificado</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:16px;border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:16px 18px">
+                <span style="flex-shrink:0;width:48px;height:48px;border-radius:50%;background:#EAF2FB;display:inline-flex;align-items:center;justify-content:center;color:#0E5FB5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10v-6z"></path></svg></span>
+                <div><div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16.5px;color:#0B2440">Protección en el envío</div><div style="font-family:'Poppins',sans-serif;font-size:13.5px;color:#7E93A8;margin-top:2px">Pedidos embalados con cadena de frío</div></div>
+              </div>
+              <div style="display:flex;align-items:center;gap:16px;border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:16px 18px">
+                <span style="flex-shrink:0;width:48px;height:48px;border-radius:50%;background:#FBF6CB;display:inline-flex;align-items:center;justify-content:center;color:#A07A12"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l5 5v13H7z"></path><path d="M14 3v5h5"></path><path d="M9.5 13h6M9.5 16.5h6"></path></svg></span>
+                <div><div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16.5px;color:#0B2440">COA en cada lote</div><div style="font-family:'Poppins',sans-serif;font-size:13.5px;color:#7E93A8;margin-top:2px">Testeado por laboratorio externo</div></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- TODO LO QUE NECESITÁS -->
+      <section style="background:linear-gradient(125deg,#DDF3D4 0%,#CDEBDD 30%,#E6F1CE 60%,#D6F0DC 100%);background-size:240% 240%;animation:amGradShift 18s ease-in-out infinite">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,84px) clamp(20px,5vw,56px)">
+          <div style="text-align:center;max-width:640px;margin:0 auto 36px">
+            <h2 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,42px);line-height:1.05;letter-spacing:-.025em;color:#0B2440;text-wrap:balance">Todo lo que necesitás para tu investigación</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:18px">
+            <div style="border:1px solid #CFE8C2;border-radius:18px;background:#fff;padding:26px 24px;display:flex;flex-direction:column">
+              <span style="width:52px;height:52px;border-radius:14px;background:#DDF3D4;display:inline-flex;align-items:center;justify-content:center;color:#15875A;margin-bottom:18px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.5 8.5 0 0 1-12.3 7.6L3 21l1.9-5.6A8.5 8.5 0 1 1 21 11.5z"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#0B2440">Asesoría real por WhatsApp</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#5A6B7B;margin-top:8px;flex:1">Te ayudamos a elegir presentación, reconstitución y conservación.</p>
+              <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="margin-top:18px;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:#0B2440;color:#fff;border-radius:999px;padding:11px 20px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;text-decoration:none;transition:transform .18s" style-hover="transform:translateY(-2px)">Escribinos<span style="font-size:16px;line-height:1">→</span></a>
+            </div>
+            <div style="border:1px solid #CFE8C2;border-radius:18px;background:#fff;padding:26px 24px;display:flex;flex-direction:column">
+              <span style="width:52px;height:52px;border-radius:14px;background:#EAF2FB;display:inline-flex;align-items:center;justify-content:center;color:#0E5FB5;margin-bottom:18px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M9 2v6.5L4.5 18a2 2 0 0 0 1.8 3h11.4a2 2 0 0 0 1.8-3L15 8.5V2"></path><path d="M8 2h8M8.5 14h7"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#0B2440">Calidad de investigación a precio accesible</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#5A6B7B;margin-top:8px;flex:1">Importado de EE. UU., con COA por lote y precios claros en USD + ARS.</p>
+              <a href="#/catalogo" style="margin-top:18px;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:#0B2440;color:#fff;border-radius:999px;padding:11px 20px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;text-decoration:none;transition:transform .18s" style-hover="transform:translateY(-2px)">Ver catálogo<span style="font-size:16px;line-height:1">→</span></a>
+            </div>
+            <div style="border:1px solid #CFE8C2;border-radius:18px;background:#fff;padding:26px 24px;display:flex;flex-direction:column">
+              <span style="width:52px;height:52px;border-radius:14px;background:#F4F0FB;display:inline-flex;align-items:center;justify-content:center;color:#7C5FCB;margin-bottom:18px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#0B2440">Soporte cuando lo necesites</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#5A6B7B;margin-top:8px;flex:1">Respuesta rápida por WhatsApp.</p>
+            </div>
+            <div style="border:1px solid #CFE8C2;border-radius:18px;background:#fff;padding:26px 24px;display:flex;flex-direction:column">
+              <span style="width:52px;height:52px;border-radius:14px;background:#FBF6CB;display:inline-flex;align-items:center;justify-content:center;color:#A07A12;margin-bottom:18px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M1 4h14v11H1z"></path><path d="M15 8h4l3 3v4h-7"></path><circle cx="6" cy="18" r="1.8"></circle><circle cx="18" cy="18" r="1.8"></circle></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#0B2440">Envíos a todo el país, despacho en 24 h</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#5A6B7B;margin-top:8px;flex:1">Por Andreani, con seguimiento.</p>
+            </div>
+            <div style="border:1px solid #CFE8C2;border-radius:18px;background:#fff;padding:26px 24px;display:flex;flex-direction:column">
+              <span style="width:52px;height:52px;border-radius:14px;background:#EAF2FB;display:inline-flex;align-items:center;justify-content:center;color:#0E5FB5;margin-bottom:18px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5a6 6 0 0 1 6 6c0 4-6 10-6 10S6 12.5 6 8.5a6 6 0 0 1 6-6z"></path><path d="M9 8.5l2 2 4-4"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#0B2440">Conservación cuidada</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#5A6B7B;margin-top:8px;flex:1">Cadena de frío y embalaje para que llegue perfecto.</p>
+            </div>
+            <div style="border:1px solid #CFE8C2;border-radius:18px;background:#fff;padding:26px 24px;display:flex;flex-direction:column">
+              <span style="width:52px;height:52px;border-radius:14px;background:#DDF3D4;display:inline-flex;align-items:center;justify-content:center;color:#15875A;margin-bottom:18px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l2.6 5.3 5.9.9-4.3 4.2 1 5.9L12 16l-5.2 2.7 1-5.9L3.5 8.7l5.9-.9z"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#0B2440">Envío gratis desde 3 péptidos</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#5A6B7B;margin-top:8px;flex:1">Sumá unidades y el envío corre por nuestra cuenta.</p>
+              <a href="#/catalogo" style="margin-top:18px;align-self:flex-start;display:inline-flex;align-items:center;gap:8px;background:#0B2440;color:#fff;border-radius:999px;padding:11px 20px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;text-decoration:none;transition:transform .18s" style-hover="transform:translateY(-2px)">Comprá con confianza<span style="font-size:16px;line-height:1">→</span></a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       <!-- Productos destacados -->
       <section style="background:#fff">
@@ -202,23 +379,217 @@ input{font:inherit}
         </div>
       </section>
 
-      <!-- Calidad / COA -->
-      <section style="background:#F4F7FB;border-top:1px solid #E2E8F0;border-bottom:1px solid #E2E8F0">
-        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(34px,5vw,60px);align-items:center">
+      <!-- CALIDAD QUE PODÉS VERIFICAR -->
+      <section style="background:#fff;border-top:1px solid #EEF2F7;border-bottom:1px solid #EEF2F7">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,84px) clamp(20px,5vw,56px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(34px,5vw,64px);align-items:center">
           <div>
-            <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Calidad y trazabilidad</span>
-            <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:clamp(24px,3.2vw,34px);line-height:1.13;letter-spacing:-.02em;color:#0B2440">Cada lote con su Certificado de Análisis</h2>
-            <p style="font-family:'Poppins',sans-serif;font-size:16px;line-height:1.65;color:#5A6B7B;margin-top:20px;max-width:540px">Trabajamos con péptidos producidos en Estados Unidos. El Certificado de Análisis (COA) de cada lote está disponible a solicitud e informa la identidad y la pureza del compuesto.</p>
-            <p style="font-family:'Poppins',sans-serif;font-size:16px;line-height:1.65;color:#5A6B7B;margin-top:14px;max-width:540px">Despachamos en 24 horas hábiles y enviamos a todo el país por Andreani. Ante cualquier consulta sobre presentaciones o disponibilidad, la asesoría es directa por WhatsApp.</p>
-            <div style="margin-top:26px;display:flex;flex-direction:column;gap:0;border-top:1px solid #E2E8F0;max-width:520px">
-              <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="width:88px;color:#94A3B8;letter-spacing:.04em">ORIGEN</span><span style="color:#1C2733">Estados Unidos</span></div>
-              <div style="display:flex;gap:16px;padding:13px 0;border-bottom:1px solid #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="width:88px;color:#94A3B8;letter-spacing:.04em">COA</span><span style="color:#1C2733">Disponible por lote</span></div>
-              <div style="display:flex;gap:16px;padding:13px 0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="width:88px;color:#94A3B8;letter-spacing:.04em">ENVÍO</span><span style="color:#1C2733">Andreani · todo el país</span></div>
+            <h2 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(30px,3.9vw,46px);line-height:1.04;letter-spacing:-.025em;color:#10172A;text-wrap:balance">Calidad que podés verificar, no solo creer</h2>
+            <p style="font-family:'Poppins',sans-serif;font-size:clamp(15px,1.5vw,17px);line-height:1.55;color:#64748B;margin-top:18px;max-width:560px">Cada lote se testea de forma independiente en laboratorios acreditados de EE. UU. No te pedimos que nos creas: te damos la prueba.</p>
+
+            <!-- Stats -->
+            <div style="margin-top:30px;display:flex;align-items:center;gap:22px;flex-wrap:wrap">
+              <div style="display:flex;align-items:center;gap:11px">
+                <span style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(26px,3vw,32px);color:#10172A;line-height:1;letter-spacing:-.02em">99%+</span>
+                <span style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.25;color:#7E8AA0">Pureza<br>garantizada</span>
+              </div>
+              <div style="width:1px;height:36px;background:#E4E9F0"></div>
+              <div style="display:flex;align-items:center;gap:11px">
+                <span style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(26px,3vw,32px);color:#10172A;line-height:1;letter-spacing:-.02em">5</span>
+                <span style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.25;color:#7E8AA0">Controles<br>de calidad</span>
+              </div>
+              <div style="width:1px;height:36px;background:#E4E9F0"></div>
+              <div style="display:flex;align-items:center;gap:11px">
+                <span style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(26px,3vw,32px);color:#10172A;line-height:1;letter-spacing:-.02em">100%</span>
+                <span style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.25;color:#7E8AA0">Origen<br>EE. UU.</span>
+              </div>
+            </div>
+            <div style="margin-top:26px;height:1px;background:#EEF2F7;max-width:620px"></div>
+
+            <!-- Tabs (CSS-only, interactivos) -->
+            <div class="amqv">
+              <input class="amqv-i" type="radio" name="amqv" id="amqv-t1">
+              <input class="amqv-i" type="radio" name="amqv" id="amqv-t2">
+              <input class="amqv-i" type="radio" name="amqv" id="amqv-t3">
+              <input class="amqv-i" type="radio" name="amqv" id="amqv-t4">
+              <input class="amqv-i" type="radio" name="amqv" id="amqv-t5">
+              <div class="amqv-tabs">
+                <label class="amqv-tab" for="amqv-t1"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4.5 13.5H11l-1 8.5L19.5 10H13z"></path></svg>Potencia</label>
+                <label class="amqv-tab" for="amqv-t2"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10v-6z"></path></svg>Pureza</label>
+                <label class="amqv-tab" for="amqv-t3"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg>Estabilidad</label>
+                <label class="amqv-tab" for="amqv-t4"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10v-6z"></path><path d="M9 11.5l2 2 4-4"></path></svg>Seguridad</label>
+                <label class="amqv-tab" for="amqv-t5"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 0 1 15-6.7L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-15 6.7L3 16"></path><path d="M3 21v-5h5"></path></svg>Consistencia</label>
+              </div>
+              <div class="amqv-panels" style="margin-top:14px">
+                <div class="amqv-panel amqv-p1">
+                  <div style="border:1px solid #ECEFF3;border-radius:18px;background:#F6F7FA;padding:clamp(20px,2.6vw,28px)">
+                    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#10172A">Potencia verificada</span><span style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-weight:600;font-size:11.5px;color:#15875A;background:#E4F6EB;border-radius:999px;padding:5px 11px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.5l2.3 2.3 4.7-5"></path></svg>Análisis HPLC</span></div>
+                    <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.55;color:#64748B;margin-top:14px">Cada vial se testea para confirmar que contiene exactamente lo que dice la etiqueta, hasta el microgramo.</p>
+                    <div style="margin-top:16px;border:1px solid #EAEFF4;border-left:3px solid #1FA971;border-radius:10px;background:#fff;padding:14px 16px"><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#64748B"><strong style="color:#10172A;font-weight:600">Por qué importa:</strong> Sin sorpresas. Recibís la concentración exacta que pagaste, en cada compra.</p></div>
+                  </div>
+                </div>
+                <div class="amqv-panel amqv-p2">
+                  <div style="border:1px solid #ECEFF3;border-radius:18px;background:#F6F7FA;padding:clamp(20px,2.6vw,28px)">
+                    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#10172A">Pureza confirmada</span><span style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-weight:600;font-size:11.5px;color:#15875A;background:#E4F6EB;border-radius:999px;padding:5px 11px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.5l2.3 2.3 4.7-5"></path></svg>≥99%</span></div>
+                    <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.55;color:#64748B;margin-top:14px">Medimos la pureza de cada lote por HPLC para asegurar un mínimo de 99% de compuesto activo.</p>
+                    <div style="margin-top:16px;border:1px solid #EAEFF4;border-left:3px solid #1FA971;border-radius:10px;background:#fff;padding:14px 16px"><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#64748B"><strong style="color:#10172A;font-weight:600">Por qué importa:</strong> Menos impurezas significa resultados de investigación más confiables y reproducibles.</p></div>
+                  </div>
+                </div>
+                <div class="amqv-panel amqv-p3">
+                  <div style="border:1px solid #ECEFF3;border-radius:18px;background:#F6F7FA;padding:clamp(20px,2.6vw,28px)">
+                    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#10172A">Estabilidad garantizada</span><span style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-weight:600;font-size:11.5px;color:#15875A;background:#E4F6EB;border-radius:999px;padding:5px 11px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.5l2.3 2.3 4.7-5"></path></svg>Liofilizado</span></div>
+                    <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.55;color:#64748B;margin-top:14px">El liofilizado se controla para mantener su integridad durante el transporte y la conservación.</p>
+                    <div style="margin-top:16px;border:1px solid #EAEFF4;border-left:3px solid #1FA971;border-radius:10px;background:#fff;padding:14px 16px"><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#64748B"><strong style="color:#10172A;font-weight:600">Por qué importa:</strong> Con cadena de frío y embalaje cuidado, llega y se mantiene en condiciones óptimas.</p></div>
+                  </div>
+                </div>
+                <div class="amqv-panel amqv-p4">
+                  <div style="border:1px solid #ECEFF3;border-radius:18px;background:#F6F7FA;padding:clamp(20px,2.6vw,28px)">
+                    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#10172A">Seguridad documentada</span><span style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-weight:600;font-size:11.5px;color:#15875A;background:#E4F6EB;border-radius:999px;padding:5px 11px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.5l2.3 2.3 4.7-5"></path></svg>COA por lote</span></div>
+                    <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.55;color:#64748B;margin-top:14px">Cada lote viene con su Certificado de Análisis de laboratorio externo, disponible a solicitud.</p>
+                    <div style="margin-top:16px;border:1px solid #EAEFF4;border-left:3px solid #1FA971;border-radius:10px;background:#fff;padding:14px 16px"><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#64748B"><strong style="color:#10172A;font-weight:600">Por qué importa:</strong> Trazabilidad total: sabés exactamente qué estás recibiendo en cada pedido.</p></div>
+                  </div>
+                </div>
+                <div class="amqv-panel amqv-p5">
+                  <div style="border:1px solid #ECEFF3;border-radius:18px;background:#F6F7FA;padding:clamp(20px,2.6vw,28px)">
+                    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#10172A">Consistencia entre lotes</span><span style="display:inline-flex;align-items:center;gap:6px;font-family:'Poppins',sans-serif;font-weight:600;font-size:11.5px;color:#15875A;background:#E4F6EB;border-radius:999px;padding:5px 11px"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.5l2.3 2.3 4.7-5"></path></svg>Mismo estándar</span></div>
+                    <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.55;color:#64748B;margin-top:14px">Aplicamos el mismo panel de control a cada lote para que el resultado sea reproducible.</p>
+                    <div style="margin-top:16px;border:1px solid #EAEFF4;border-left:3px solid #1FA971;border-radius:10px;background:#fff;padding:14px 16px"><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#64748B"><strong style="color:#10172A;font-weight:600">Por qué importa:</strong> Resultados comparables compra tras compra, sin variaciones inesperadas.</p></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- CTA -->
+            <div style="margin-top:30px;display:flex;flex-wrap:wrap;gap:18px;align-items:center">
+              <a href="#/catalogo" style="display:inline-flex;align-items:center;gap:10px;background:#10172A;color:#fff;border-radius:999px;padding:15px 30px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15.5px;text-decoration:none;box-shadow:0 14px 28px -10px rgba(16,23,42,.45);transition:transform .18s,box-shadow .18s" style-hover="transform:translateY(-2px);box-shadow:0 20px 34px -12px rgba(16,23,42,.5)">Comprar ahora<span style="font-size:17px;line-height:1">→</span></a>
+              <span style="display:inline-flex;align-items:center;gap:8px;font-family:'Poppins',sans-serif;font-size:13.5px;color:#64748B"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#1FA971" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 12.5l2.3 2.3 4.7-5"></path></svg>COA gratis en cada pedido</span>
             </div>
           </div>
-          <div style="position:relative;border:1px solid #E2E8F0;border-radius:12px;background:#fff;background-image:linear-gradient(#EEF3F8 1px,transparent 1px),linear-gradient(90deg,#EEF3F8 1px,transparent 1px);background-size:26px 26px;min-height:280px;aspect-ratio:4/3;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
-            <svg width="84" height="84" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.1" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.5h7.5L19 7v14.5H7z"></path><path d="M14 2.5V7h5"></path><path d="M9.5 12h7M9.5 15.5h7M9.5 8.5h3"></path></svg>
-            <span style="position:absolute;left:14px;bottom:13px;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6B7B;background:#fff;border:1px solid #E2E8F0;border-radius:4px;padding:3px 8px">certificado de análisis</span>
+
+          <!-- Panel derecho -->
+          <div style="position:relative;min-height:clamp(400px,48vw,540px);border-radius:28px;background:linear-gradient(162deg,#FBFCFE 0%,#EBF1FB 58%,#E5ECFA 100%);overflow:hidden;box-shadow:0 34px 70px -36px rgba(16,23,42,.4)">
+            <div aria-hidden="true" style="position:absolute;width:64%;padding-bottom:64%;border-radius:50%;border:1px solid rgba(16,23,42,.05);left:18%;top:16%"></div>
+            <div aria-hidden="true" style="position:absolute;width:44%;padding-bottom:44%;border-radius:50%;border:1px solid rgba(16,23,42,.05);left:28%;top:28%"></div>
+            <!-- vial placeholder (reemplazá por PNG) -->
+            <div style="position:absolute;left:50%;top:53%;transform:translate(-50%,-50%) rotate(15deg);width:126px;height:300px;filter:drop-shadow(0 34px 30px rgba(16,23,42,.22))">
+              <div style="position:absolute;top:0;left:50%;transform:translateX(-50%);width:62px;height:30px;background:linear-gradient(#E7EBF1,#AEB8C6);border-radius:9px 9px 5px 5px"></div>
+              <div style="position:absolute;top:28px;left:50%;transform:translateX(-50%);width:70px;height:13px;background:linear-gradient(#D2D9E3,#B4BECC);border-radius:3px"></div>
+              <div style="position:absolute;top:39px;left:50%;transform:translateX(-50%);width:94px;bottom:0;background:linear-gradient(#ffffff,#eef3fb);border:1.5px solid rgba(16,23,42,.12);border-radius:13px 13px 20px 20px;overflow:hidden;box-shadow:inset 0 2px 7px rgba(255,255,255,.85)">
+                <div style="position:absolute;left:8px;right:8px;top:26%;bottom:9%;border-radius:8px;background:linear-gradient(150deg,#BCD4F0,#8FB6E4);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;text-align:center">
+                  <span style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:16px;color:#fff;letter-spacing:.02em;line-height:1">TB-500</span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:7.5px;letter-spacing:.06em;color:#fff;opacity:.85">PUREZA ≥ 99%</span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:7px;letter-spacing:.04em;color:#0B2440;opacity:.5;margin-top:3px">reemplazá · PNG</span>
+                </div>
+              </div>
+            </div>
+            <!-- badge top-right -->
+            <div style="position:absolute;top:22px;right:22px;z-index:5;display:flex;align-items:center;gap:11px;background:#fff;border-radius:14px;padding:12px 16px;box-shadow:0 18px 36px -16px rgba(16,23,42,.4)">
+              <span style="flex-shrink:0;width:30px;height:30px;border-radius:50%;background:#D9F2E2;display:inline-flex;align-items:center;justify-content:center;color:#15875A"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"></path></svg></span>
+              <span><span style="display:block;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;color:#10172A;line-height:1.1">Pureza 99%+</span><span style="display:block;font-family:'Poppins',sans-serif;font-size:11.5px;color:#7E8AA0;margin-top:2px">Verificado por HPLC</span></span>
+            </div>
+            <!-- bottom card -->
+            <a href="#/catalogo" style="position:absolute;left:20px;right:20px;bottom:20px;z-index:5;display:flex;align-items:center;gap:14px;background:#fff;border-radius:16px;padding:15px 18px;text-decoration:none;box-shadow:0 20px 40px -18px rgba(16,23,42,.4);transition:transform .18s,box-shadow .18s" style-hover="transform:translateY(-3px);box-shadow:0 28px 50px -18px rgba(16,23,42,.48)">
+              <span style="flex-shrink:0;width:38px;height:38px;border-radius:10px;background:#F1F4F8;display:inline-flex;align-items:center;justify-content:center;color:#5A6B7B"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 2.5h7.5L19 7v14.5H7z"></path><path d="M14 2.5V7h5"></path><path d="M9.5 12h7M9.5 15.5h7M9.5 8.5h3"></path></svg></span>
+              <span style="flex:1"><span style="display:block;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;color:#10172A;line-height:1.1">Mirá la prueba</span><span style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;color:#7E8AA0;margin-top:2px">Ver nuestros procesos de calidad</span></span>
+              <span style="flex-shrink:0;width:32px;height:32px;border-radius:50%;border:1px solid #DDE3EC;color:#5A6B7B;display:inline-flex;align-items:center;justify-content:center;font-size:15px">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- POR QUÉ ELEGIR AminoLabAr -->
+      <section style="position:relative;overflow:hidden;background:#FBFBFD">
+        <!-- fondo difuminado -->
+        <div aria-hidden="true" style="position:absolute;inset:0;z-index:0;filter:blur(70px);opacity:.5;pointer-events:none">
+          <div style="position:absolute;width:360px;height:360px;border-radius:50%;background:#E9E7F7;top:-60px;left:6%"></div>
+          <div style="position:absolute;width:300px;height:300px;border-radius:50%;background:#DDF3D4;top:30%;right:10%"></div>
+          <div style="position:absolute;width:320px;height:320px;border-radius:50%;background:#FBE4EC;bottom:-80px;left:32%"></div>
+          <div style="position:absolute;width:260px;height:260px;border-radius:50%;background:#FBF6CB;bottom:6%;right:30%"></div>
+        </div>
+        <div style="position:relative;z-index:1;max-width:1180px;margin:0 auto;width:100%;padding:clamp(54px,7vw,92px) clamp(20px,5vw,56px)">
+          <div style="text-align:center;max-width:620px;margin:0 auto clamp(36px,4vw,52px)">
+            <h2 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(30px,3.9vw,46px);line-height:1.04;letter-spacing:-.025em;color:#10172A">Por qué elegir AminoLabAr</h2>
+          </div>
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px">
+
+            <div style="border:1px solid #ECECF6;border-radius:18px;background:rgba(255,255,255,.86);backdrop-filter:blur(6px);padding:clamp(24px,2.4vw,30px) clamp(22px,2.2vw,28px);box-shadow:0 18px 40px -28px rgba(16,23,42,.3);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-5px);box-shadow:0 26px 50px -24px rgba(16,23,42,.34);border-color:#DCD7F2">
+              <span style="width:52px;height:52px;border-radius:14px;background:#EDEAFB;display:inline-flex;align-items:center;justify-content:center;color:#7C5FCB;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 7.5L12 2 3.5 7.5v9L12 22l8.5-5.5z"></path><path d="M3.5 7.5L12 13l8.5-5.5M12 13v9"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#10172A">Siempre con stock</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#64748B;margin-top:10px">Los péptidos de investigación más pedidos —BPC-157, TB-500 e Ipamorelin— listos para enviar. Sin demoras ni esperas.</p>
+            </div>
+
+            <div style="border:1px solid #E3EFDD;border-radius:18px;background:rgba(255,255,255,.86);backdrop-filter:blur(6px);padding:clamp(24px,2.4vw,30px) clamp(22px,2.2vw,28px);box-shadow:0 18px 40px -28px rgba(16,23,42,.3);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-5px);box-shadow:0 26px 50px -24px rgba(16,23,42,.34);border-color:#C8E6BC">
+              <span style="width:52px;height:52px;border-radius:14px;background:#DDF3D4;display:inline-flex;align-items:center;justify-content:center;color:#15875A;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l2.3 1.7 2.8-.3 1 2.7 2.4 1.5-.6 2.8.6 2.8-2.4 1.5-1 2.7-2.8-.3L12 21.5l-2.3-1.7-2.8.3-1-2.7L3.5 16l.6-2.8-.6-2.8 2.4-1.5 1-2.7 2.8.3z"></path><path d="M9.5 9.5h.01M14.5 14.5h.01M15 9l-6 6"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#10172A">Precio por volumen</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#64748B;margin-top:10px">Precios escalonados para pedidos de investigación más grandes. Menor costo por vial a mayor cantidad.</p>
+            </div>
+
+            <div style="border:1px solid #F1EBCE;border-radius:18px;background:rgba(255,255,255,.86);backdrop-filter:blur(6px);padding:clamp(24px,2.4vw,30px) clamp(22px,2.2vw,28px);box-shadow:0 18px 40px -28px rgba(16,23,42,.3);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-5px);box-shadow:0 26px 50px -24px rgba(16,23,42,.34);border-color:#E8DCA0">
+              <span style="width:52px;height:52px;border-radius:14px;background:#FBF6CB;display:inline-flex;align-items:center;justify-content:center;color:#A07A12;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8 3v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10v-6z"></path><path d="M9 11.5l2 2 4-4"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#10172A">Envío seguro y protegido</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#64748B;margin-top:10px">La cadena de frío mantiene estables los péptidos. Embalaje discreto con seguimiento en todo el país.</p>
+            </div>
+
+            <div style="border:1px solid #F6E0EA;border-radius:18px;background:rgba(255,255,255,.86);backdrop-filter:blur(6px);padding:clamp(24px,2.4vw,30px) clamp(22px,2.2vw,28px);box-shadow:0 18px 40px -28px rgba(16,23,42,.3);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-5px);box-shadow:0 26px 50px -24px rgba(16,23,42,.34);border-color:#EFC2D5">
+              <span style="width:52px;height:52px;border-radius:14px;background:#FBE4EC;display:inline-flex;align-items:center;justify-content:center;color:#C24F7B;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#10172A">Asesoría real por WhatsApp</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#64748B;margin-top:10px">Te acompañamos en cada compra: presentación, conservación y más, con respuesta rápida.</p>
+            </div>
+
+            <div style="border:1px solid #ECECF6;border-radius:18px;background:rgba(255,255,255,.86);backdrop-filter:blur(6px);padding:clamp(24px,2.4vw,30px) clamp(22px,2.2vw,28px);box-shadow:0 18px 40px -28px rgba(16,23,42,.3);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-5px);box-shadow:0 26px 50px -24px rgba(16,23,42,.34);border-color:#DCD7F2">
+              <span style="width:52px;height:52px;border-radius:14px;background:#EDEAFB;display:inline-flex;align-items:center;justify-content:center;color:#7C5FCB;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="9" r="4.2"></circle><path d="M7 12.5L4.5 21l3.5-2 4 2 3.5-2-2.5-8.5"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#10172A">Pureza ≥99% garantizada</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#64748B;margin-top:10px">Cada lote testeado en laboratorio externo por HPLC. Certificado de Análisis incluido sin costo.</p>
+            </div>
+
+            <div style="border:1px solid #D9EEE9;border-radius:18px;background:rgba(255,255,255,.86);backdrop-filter:blur(6px);padding:clamp(24px,2.4vw,30px) clamp(22px,2.2vw,28px);box-shadow:0 18px 40px -28px rgba(16,23,42,.3);transition:transform .2s,box-shadow .2s,border-color .2s" style-hover="transform:translateY(-5px);box-shadow:0 26px 50px -24px rgba(16,23,42,.34);border-color:#B4DED4">
+              <span style="width:52px;height:52px;border-radius:14px;background:#D7F0EA;display:inline-flex;align-items:center;justify-content:center;color:#1FA08C;margin-bottom:18px"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"></rect><path d="M2 10h20"></path></svg></span>
+              <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:19px;color:#10172A">Pago simple</h3>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#64748B;margin-top:10px">Transferencia, MercadoPago o USDT. Coordinás todo de forma directa por WhatsApp al cerrar tu pedido.</p>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= DEVOLUCIONES ================= -->
+      <section style="background:#fff;border-top:1px solid #E2E8F0">
+        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px)">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:clamp(32px,4vw,56px);align-items:center">
+
+            <div>
+              <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#1FA971;margin-bottom:14px">Compra segura</span>
+              <h2 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,42px);line-height:1.06;letter-spacing:-.025em;color:#0B2440">Devoluciones sin complicaciones</h2>
+              <p style="font-family:'Poppins',sans-serif;font-size:16px;line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:520px">Si cambiás de opinión, tenés <strong style="color:#0B2440;font-weight:600">30 días</strong> para devolver tu compra. La única condición es que los viales estén sin abrir, sellados y con la cadena de frío preservada. Comprá con tranquilidad.</p>
+              <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:10px;margin-top:26px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15.5px;color:#fff;background:#1FA971;border-radius:12px;padding:14px 24px;text-decoration:none;box-shadow:0 18px 40px -22px rgba(31,169,113,.7);transition:transform .18s cubic-bezier(.16,1,.3,1),box-shadow .18s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-3px);box-shadow:0 24px 48px -20px rgba(31,169,113,.75)"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8z"></path></svg>Gestionar una devolución</a>
+            </div>
+
+            <div style="display:flex;flex-direction:column;gap:14px">
+
+              <div style="display:flex;gap:18px;align-items:flex-start;border:1px solid #E2E8F0;border-radius:18px;background:#fff;padding:26px 24px;box-shadow:0 18px 40px -28px rgba(16,23,42,.3);transition:transform .18s cubic-bezier(.16,1,.3,1),box-shadow .18s cubic-bezier(.16,1,.3,1),border-color .18s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-4px);box-shadow:0 26px 50px -24px rgba(16,23,42,.34);border-color:#C7EBDB">
+                <span style="flex-shrink:0;width:52px;height:52px;border-radius:14px;background:#DDF3D4;display:inline-flex;align-items:center;justify-content:center;color:#1FA971"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></svg></span>
+                <div>
+                  <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#10172A">30 días para devolver</h3>
+                  <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#64748B;margin-top:6px">Si cambiás de opinión, tenés tiempo de sobra para gestionarlo.</p>
+                </div>
+              </div>
+
+              <div style="display:flex;gap:18px;align-items:flex-start;border:1px solid #E2E8F0;border-radius:18px;background:#fff;padding:26px 24px;box-shadow:0 18px 40px -28px rgba(16,23,42,.3);transition:transform .18s cubic-bezier(.16,1,.3,1),box-shadow .18s cubic-bezier(.16,1,.3,1),border-color .18s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-4px);box-shadow:0 26px 50px -24px rgba(16,23,42,.34);border-color:#BFD7F2">
+                <span style="flex-shrink:0;width:52px;height:52px;border-radius:14px;background:#EAF2FB;display:inline-flex;align-items:center;justify-content:center;color:#0E5FB5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20.5 7.5L12 2 3.5 7.5v9L12 22l8.5-5.5z"></path><path d="M3.5 7.5L12 13l8.5-5.5M12 13v9"></path><path d="M16.2 4.8l-8.4 5"></path></svg></span>
+                <div>
+                  <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#10172A">Producto sin abrir</h3>
+                  <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#64748B;margin-top:6px">El vial debe estar sellado y sin uso, con su embalaje original.</p>
+                </div>
+              </div>
+
+              <div style="display:flex;gap:18px;align-items:flex-start;border:1px solid #E2E8F0;border-radius:18px;background:#fff;padding:26px 24px;box-shadow:0 18px 40px -28px rgba(16,23,42,.3);transition:transform .18s cubic-bezier(.16,1,.3,1),box-shadow .18s cubic-bezier(.16,1,.3,1),border-color .18s cubic-bezier(.16,1,.3,1)" style-hover="transform:translateY(-4px);box-shadow:0 26px 50px -24px rgba(16,23,42,.34);border-color:#C7EBDB">
+                <span style="flex-shrink:0;width:52px;height:52px;border-radius:14px;background:#DDF3D4;display:inline-flex;align-items:center;justify-content:center;color:#1FA971"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"></path><circle cx="12" cy="12" r="3.5"></circle></svg></span>
+                <div>
+                  <h3 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#10172A">Cadena de frío preservada</h3>
+                  <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#64748B;margin-top:6px">Para garantizar la calidad del producto que recibimos de vuelta.</p>
+                </div>
+              </div>
+
+            </div>
           </div>
         </div>
       </section>
@@ -250,6 +621,42 @@ input{font:inherit}
                 </div>
               </div>
             </sc-for>
+          </div>
+        </div>
+      </section>
+
+      <!-- PREGUNTAS FRECUENTES -->
+      <section style="background:linear-gradient(135deg,#F1F5FB 0%,#EAEAF6 45%,#F6EEF4 100%);background-size:230% 230%;animation:amGradShift 22s ease-in-out infinite;border-top:1px solid #E2E8F0">
+        <div style="max-width:820px;margin:0 auto;width:100%;padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px)">
+          <div style="text-align:center;margin-bottom:32px">
+            <h2 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,40px);line-height:1.06;letter-spacing:-.025em;color:#0B2440">Preguntas frecuentes</h2>
+            <p style="font-family:'Poppins',sans-serif;font-size:16px;line-height:1.6;color:#5A6B7B;margin-top:12px">Todo lo que necesitás saber.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:12px">
+            <details style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:4px 22px" open="">
+              <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16.5px;color:#0B2440">¿Qué es el COA y cómo se lee?<span style="flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:20px;color:#0E5FB5">+</span></summary>
+              <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#5A6B7B;padding:0 0 18px">El COA (Certificado de Análisis) es el documento del laboratorio que informa la identidad y la pureza del compuesto de ese lote. Mirá el nombre del péptido, el número de lote y el valor de pureza (≥99%). Está disponible por lote a solicitud.</p>
+            </details>
+            <details style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:4px 22px">
+              <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16.5px;color:#0B2440">¿Cómo conservo el liofilizado?<span style="flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:20px;color:#0E5FB5">+</span></summary>
+              <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#5A6B7B;padding:0 0 18px">El péptido liofilizado (en polvo) se conserva refrigerado o en freezer, protegido de la luz. Mantené la cadena de frío hasta su uso. Ante dudas sobre conservación o reconstitución, escribinos por WhatsApp.</p>
+            </details>
+            <details style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:4px 22px">
+              <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16.5px;color:#0B2440">¿Cuánto tarda el envío?<span style="flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:20px;color:#0E5FB5">+</span></summary>
+              <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#5A6B7B;padding:0 0 18px">Despachamos en 24 horas hábiles tras confirmar el pago. El tiempo de tránsito depende de la zona; Andreani entrega a todo el país con seguimiento.</p>
+            </details>
+            <details style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:4px 22px">
+              <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16.5px;color:#0B2440">¿Hacen envíos a todo el país?<span style="flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:20px;color:#0E5FB5">+</span></summary>
+              <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#5A6B7B;padding:0 0 18px">Sí. Enviamos a toda la Argentina por Andreani con seguimiento. El envío es gratis a partir de 3 péptidos.</p>
+            </details>
+            <details style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:4px 22px">
+              <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16.5px;color:#0B2440">¿Son para uso humano?<span style="flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:20px;color:#0E5FB5">+</span></summary>
+              <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#5A6B7B;padding:0 0 18px"><strong style="color:#0B2440;font-weight:600">No.</strong> Todos los productos son exclusivamente para fines de investigación. No son aptos para consumo humano ni veterinario y no están aprobados por ANMAT como medicamento.</p>
+            </details>
+            <details style="border:1px solid #E2E8F0;border-radius:14px;background:#fff;padding:4px 22px">
+              <summary style="list-style:none;cursor:pointer;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:18px 0;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16.5px;color:#0B2440">¿Qué medios de pago aceptan?<span style="flex-shrink:0;font-family:'IBM Plex Mono',monospace;font-size:20px;color:#0E5FB5">+</span></summary>
+              <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#5A6B7B;padding:0 0 18px">Transferencia bancaria, MercadoPago y USDT. Coordinamos el pago por WhatsApp al cerrar tu pedido.</p>
+            </details>
           </div>
         </div>
       </section>
@@ -790,7 +1197,10 @@ input{font:inherit}
                   </div>
                 </div>
 
-                <a href="{{ waCheckoutHref }}" target="_blank" rel="noopener" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15.5px;text-decoration:none;transition:background .15s" style-hover="background:#18885B"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Finalizar pedido por WhatsApp</a>
+                <button onClick="{{ finalizarPedido }}" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15.5px;cursor:pointer;box-shadow:0 14px 28px -14px rgba(31,169,113,.7);transition:background .15s,transform .15s" style-hover="background:#18885B;transform:translateY(-1px)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Finalizar pedido por WhatsApp</button>
+                <sc-if value="{{ loggedOut }}" hint-placeholder-val="{{ true }}">
+                  <p style="display:flex;align-items:center;justify-content:center;gap:7px;font-family:'Poppins',sans-serif;font-size:11.5px;color:#7E93A8;margin-top:10px;text-align:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Necesitás una cuenta para finalizar — es gratis.</p>
+                </sc-if>
                 <a href="#/medios-pago" style="margin-top:10px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:12px 16px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Ver medios de pago</a>
                 <p style="font-family:'Poppins',sans-serif;font-size:11.5px;line-height:1.55;color:#94A3B8;margin-top:13px;text-align:center">El pedido se confirma y coordina por WhatsApp. El valor en ARS es de referencia según cotización.</p>
               </div>
@@ -873,6 +1283,455 @@ input{font:inherit}
       </section>
     </sc-if>
 
+    <!-- ================= INGRESAR (login + crear cuenta) ================= -->
+    <sc-if value="{{ isIngresar }}" hint-placeholder-val="{{ false }}">
+      <section style="background:linear-gradient(160deg,#F7FAFD 0%,#EAF1F8 55%,#E3EDF6 100%)">
+        <div style="max-width:1080px;margin:0 auto;width:100%;padding:clamp(34px,5vw,60px) clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
+          <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,340px),1fr));gap:clamp(30px,4vw,52px);align-items:center">
+
+            <!-- Columna marketing -->
+            <div>
+              <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Cuenta AminoLabAr</span>
+              <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.8vw,42px);line-height:1.08;letter-spacing:-.02em;color:#0B2440">Tu cuenta, tu laboratorio organizado.</h1>
+              <p style="font-family:'Poppins',sans-serif;font-size:clamp(14.5px,1.6vw,16px);line-height:1.65;color:#5A6B7B;margin-top:16px;max-width:460px">Crear tu cuenta es <strong style="color:#0B2440">gratis</strong> y te da seguimiento de pedidos, envío gratis y beneficios que crecen con cada compra.</p>
+              <div style="margin-top:24px;display:flex;flex-direction:column;gap:13px">
+                <div style="display:flex;align-items:flex-start;gap:11px"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:rgba(31,169,113,.14);color:#15875A;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-family:'Poppins',sans-serif;font-size:14px;color:#1C2733;line-height:1.5"><strong style="color:#0B2440">Seguimiento de pedidos</strong> y recompra en un clic.</span></div>
+                <div style="display:flex;align-items:flex-start;gap:11px"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:rgba(31,169,113,.14);color:#15875A;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-family:'Poppins',sans-serif;font-size:14px;color:#1C2733;line-height:1.5"><strong style="color:#0B2440">Envío gratis</strong> y beneficios por nivel de cliente.</span></div>
+                <div style="display:flex;align-items:flex-start;gap:11px"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:rgba(31,169,113,.14);color:#15875A;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-family:'Poppins',sans-serif;font-size:14px;color:#1C2733;line-height:1.5"><strong style="color:#0B2440">AminoPuntos</strong> y cupones por cada compra.</span></div>
+              </div>
+              <div style="margin-top:24px;display:flex;align-items:center;gap:12px;border:1px dashed #B9CBE0;background:rgba(255,255,255,.6);border-radius:12px;padding:13px 16px;max-width:460px">
+                <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:#0B2440;color:#fff"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg></span>
+                <div><div style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#5A6B7B">Probá la cuenta demo poblada:</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#0B2440;margin-top:2px">demo@aminolabar.com · demo1234</div></div>
+              </div>
+            </div>
+
+            <!-- Columna tarjeta auth -->
+            <div style="background:#fff;border-radius:18px;padding:clamp(22px,3vw,30px);box-shadow:0 30px 80px -28px rgba(11,36,64,.45),0 0 0 1px rgba(226,232,240,.9);animation:amSlideUp .4s cubic-bezier(.16,1,.3,1) both">
+              <sc-if value="{{ showAuthReason }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;align-items:flex-start;gap:9px;border:1px solid #C7DBF2;background:#EAF2FB;border-radius:11px;padding:12px 14px;margin-bottom:18px;font-family:'Poppins',sans-serif;font-size:13px;line-height:1.5;color:#0B4E97"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg><span>{{ authReason }} Crear una cuenta es gratis.</span></div>
+              </sc-if>
+
+              <!-- Pestañas -->
+              <div style="display:flex;gap:6px;background:#EFF3F8;border-radius:13px;padding:5px;margin-bottom:22px">
+                <button onClick="{{ goLogin }}" style="{{ authTabLoginStyle }}">Iniciar sesión</button>
+                <button onClick="{{ goRegister }}" style="{{ authTabRegisterStyle }}">Crear cuenta</button>
+              </div>
+
+              <!-- Form login -->
+              <sc-if value="{{ isLoginTab }}" hint-placeholder-val="{{ true }}">
+                <div style="display:flex;flex-direction:column;gap:15px">
+                  <div>
+                    <label style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#0B2440;margin-bottom:6px">Email</label>
+                    <input type="email" value="{{ loginEmail }}" onChange="{{ onLoginEmail }}" placeholder="tu@email.com" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+                  </div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:6px">
+                      <label style="font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#0B2440">Contraseña</label>
+                      <button onClick="{{ forgotPass }}" style="background:none;border:none;font-family:'Poppins',sans-serif;font-size:11.5px;color:#0E5FB5;cursor:pointer;padding:0">Olvidé mi contraseña</button>
+                    </div>
+                    <input type="password" value="{{ loginPass }}" onChange="{{ onLoginPass }}" placeholder="••••••••" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+                  </div>
+                  <sc-if value="{{ hasLoginError }}" hint-placeholder-val="{{ false }}">
+                    <div style="display:flex;align-items:center;gap:7px;font-family:'Poppins',sans-serif;font-size:12.5px;color:#C0392B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>{{ loginError }}</div>
+                  </sc-if>
+                  <button onClick="{{ doLogin }}" style="margin-top:3px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0E5FB5;color:#fff;border:none;border-radius:11px;padding:15px 18px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 16px 30px -14px rgba(14,95,181,.7);transition:background .18s,transform .14s" style-hover="background:#0B4E97;transform:translateY(-1px)">Entrar</button>
+                  <div style="display:flex;align-items:center;gap:12px;margin:4px 0"><span style="flex:1;height:1px;background:#E7EDF4"></span><span style="font-family:'Poppins',sans-serif;font-size:11.5px;color:#9DB1C7">o</span><span style="flex:1;height:1px;background:#E7EDF4"></span></div>
+                  <button onClick="{{ doLoginDemo }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:11px;padding:13px 18px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;cursor:pointer;transition:border-color .15s,background .15s" style-hover="border-color:#0E5FB5;color:#0E5FB5;background:#F4F7FB">Entrar con la cuenta demo</button>
+                  <p style="font-family:'Poppins',sans-serif;font-size:11.5px;line-height:1.5;color:#94A3B8;text-align:center;margin-top:4px">¿No tenés cuenta? <button onClick="{{ goRegister }}" style="background:none;border:none;color:#0E5FB5;font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:600;cursor:pointer;padding:0">Creá una gratis</button></p>
+                </div>
+              </sc-if>
+
+              <!-- Form crear cuenta -->
+              <sc-if value="{{ isRegisterTab }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;flex-direction:column;gap:14px">
+                  <div>
+                    <label style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#0B2440;margin-bottom:6px">Nombre y apellido</label>
+                    <input type="text" value="{{ regNombre }}" onChange="{{ onRegNombre }}" placeholder="Ej. Lucía Fernández" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:14px">
+                    <div>
+                      <label style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#0B2440;margin-bottom:6px">Email</label>
+                      <input type="email" value="{{ regEmail }}" onChange="{{ onRegEmail }}" placeholder="tu@email.com" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+                      <sc-if value="{{ regEmailBad }}" hint-placeholder-val="{{ false }}"><div style="font-family:'Poppins',sans-serif;font-size:11px;color:#C0392B;margin-top:5px">Ingresá un email válido.</div></sc-if>
+                    </div>
+                    <div>
+                      <label style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#0B2440;margin-bottom:6px">Teléfono / WhatsApp</label>
+                      <input type="tel" value="{{ regTel }}" onChange="{{ onRegTel }}" placeholder="+54 9 ..." style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+                    </div>
+                  </div>
+                  <div>
+                    <label style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#0B2440;margin-bottom:6px">Provincia</label>
+                    <select value="{{ regProv }}" onChange="{{ onRegProv }}" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;background:#fff;outline:none;cursor:pointer;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+                      <sc-for list="{{ provinceOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.value }}">{{ o.label }}</option></sc-for>
+                    </select>
+                  </div>
+                  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));gap:14px">
+                    <div>
+                      <label style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#0B2440;margin-bottom:6px">Contraseña</label>
+                      <input type="password" value="{{ regPass }}" onChange="{{ onRegPass }}" placeholder="Mín. 6 caracteres" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+                      <sc-if value="{{ regPassShort }}" hint-placeholder-val="{{ false }}"><div style="font-family:'Poppins',sans-serif;font-size:11px;color:#C0392B;margin-top:5px">Mínimo 6 caracteres.</div></sc-if>
+                    </div>
+                    <div>
+                      <label style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#0B2440;margin-bottom:6px">Repetir contraseña</label>
+                      <input type="password" value="{{ regPass2 }}" onChange="{{ onRegPass2 }}" placeholder="••••••••" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+                      <sc-if value="{{ regPassMismatch }}" hint-placeholder-val="{{ false }}"><div style="font-family:'Poppins',sans-serif;font-size:11px;color:#C0392B;margin-top:5px">Las contraseñas no coinciden.</div></sc-if>
+                    </div>
+                  </div>
+
+                  <!-- Checkboxes obligatorios -->
+                  <div style="display:flex;flex-direction:column;gap:10px;margin-top:4px">
+                    <div onClick="{{ toggleRegAge }}" style="{{ regAgeRowStyle }}">
+                      <div style="{{ regAgeBoxStyle }}"><sc-if value="{{ regChkAge }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg></sc-if></div>
+                      <span style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.5;color:#1C2733">Confirmo que soy mayor de <strong>18 años</strong> y que adquiero los productos <strong>exclusivamente como material de investigación</strong> (research use only), no para consumo humano.</span>
+                    </div>
+                    <div onClick="{{ toggleRegTerms }}" style="{{ regTermsRowStyle }}">
+                      <div style="{{ regTermsBoxStyle }}"><sc-if value="{{ regChkTerms }}" hint-placeholder-val="{{ false }}"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 6.5"></path></svg></sc-if></div>
+                      <span style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.5;color:#1C2733">Leí y acepto los <a href="#/terminos" target="_blank" rel="noopener" onClick="{{ stopProp }}" style="color:#0E5FB5;font-weight:600;text-decoration:underline">Términos y Condiciones</a>.</span>
+                    </div>
+                  </div>
+
+                  <button onClick="{{ doRegister }}" style="{{ regBtnStyle }}">Crear cuenta <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+                  <p style="font-family:'Poppins',sans-serif;font-size:11px;line-height:1.5;color:#94A3B8;text-align:center;margin-top:2px">Tus datos se usan solo para gestionar tu cuenta y tus pedidos. Productos para investigación; no aptos para consumo humano.</p>
+                </div>
+              </sc-if>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ================= CUENTA (panel privado + fidelización) ================= -->
+    <sc-if value="{{ isCuenta }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#F4F7FB">
+        <div style="max-width:1080px;margin:0 auto;width:100%;padding:clamp(28px,4vw,44px) clamp(20px,5vw,56px) clamp(48px,6vw,72px)">
+
+          <!-- A) Encabezado / bienvenida -->
+          <div style="display:flex;align-items:center;gap:16px;flex-wrap:wrap">
+            <span style="flex-shrink:0;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#0E5FB5,#2FA8E0);color:#fff;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:20px;display:inline-flex;align-items:center;justify-content:center;box-shadow:0 12px 26px -10px rgba(14,95,181,.6)">{{ userInitials }}</span>
+            <div style="flex:1;min-width:200px">
+              <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(24px,3vw,32px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Hola, {{ userFirst }}</h1>
+              <p style="font-family:'Poppins',sans-serif;font-size:13.5px;color:#5A6B7B;margin-top:5px">{{ sinceText }}</p>
+            </div>
+            <span style="display:inline-flex;align-items:center;gap:8px;background:#0B2440;color:#fff;border-radius:999px;padding:8px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#2FA8E0" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.3l8.4 4.85v9.7L12 21.7l-8.4-4.85v-9.7z"></path><circle cx="12" cy="12" r="2.2" fill="#2FA8E0" stroke="none"></circle></svg>Nivel {{ levelName }}</span>
+          </div>
+
+          <!-- B) Stats en tarjetas (count-up) -->
+          <div style="margin-top:24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:16px">
+            <div style="background:#fff;border:1px solid #E7EDF4;border-radius:15px;padding:20px 22px;box-shadow:0 16px 34px -24px rgba(11,36,64,.4)">
+              <div style="font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#7E93A8;margin-bottom:12px">Pedidos realizados</div>
+              {{ elPedidos }}
+            </div>
+            <div style="background:#fff;border:1px solid #E7EDF4;border-radius:15px;padding:20px 22px;box-shadow:0 16px 34px -24px rgba(11,36,64,.4)">
+              <div style="font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#7E93A8;margin-bottom:12px">Péptidos comprados</div>
+              {{ elPep }}
+            </div>
+            <div style="background:#fff;border:1px solid #E7EDF4;border-radius:15px;padding:20px 22px;box-shadow:0 16px 34px -24px rgba(11,36,64,.4)">
+              <div style="font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#7E93A8;margin-bottom:12px">Total invertido</div>
+              {{ elTotalUSD }}
+              {{ elTotalARS }}
+            </div>
+            <div style="background:linear-gradient(150deg,#0E5FB5,#0B2440);border:1px solid #0B2440;border-radius:15px;padding:20px 22px;box-shadow:0 16px 34px -22px rgba(14,95,181,.7);color:#fff">
+              <div style="font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:600;letter-spacing:.04em;text-transform:uppercase;color:#9EC2EA;margin-bottom:12px">Nivel de cliente</div>
+              <div style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:27px;line-height:1;letter-spacing:-.01em">{{ levelName }}</div>
+              <div style="font-family:'Poppins',sans-serif;font-size:12px;color:#BFD6EE;margin-top:7px">{{ loyaltyFaltanText }}</div>
+            </div>
+          </div>
+
+          <div style="margin-top:18px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr));gap:18px;align-items:start">
+
+            <!-- C) Programa de fidelización -->
+            <div style="background:#fff;border:1px solid #E7EDF4;border-radius:16px;padding:24px;box-shadow:0 16px 34px -26px rgba(11,36,64,.4)">
+              <div style="display:flex;align-items:center;gap:9px;margin-bottom:16px">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(14,95,181,.1);color:#0E5FB5"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.9H22l-6 4.4 2.3 7L12 16.9 5.7 20.3 8 13.3 2 8.9h7.6z"></path></svg></span>
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Programa de fidelización</h2>
+              </div>
+              <!-- barra de progreso -->
+              <div style="display:flex;justify-content:space-between;align-items:baseline;margin-bottom:8px">
+                <span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;color:#0B2440">{{ levelName }}</span>
+                <sc-if value="{{ isMaxLevel }}" hint-placeholder-val="{{ false }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#15875A">Nivel máximo</span></sc-if>
+                <sc-if value="{{ nextName }}" hint-placeholder-val="{{ true }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#7E93A8">Próximo: {{ nextName }}</span></sc-if>
+              </div>
+              <div style="height:10px;border-radius:99px;background:#EAF0F6;overflow:hidden"><div style="height:100%;width:{{ loyaltyProgress }};background:linear-gradient(90deg,#0E5FB5,#2FA8E0);border-radius:99px;transition:width .6s cubic-bezier(.16,1,.3,1)"></div></div>
+              <p style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#5A6B7B;margin-top:10px">{{ loyaltyFaltanText }}</p>
+
+              <!-- beneficios -->
+              <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px">
+                <sc-for list="{{ beneficios }}" as="b" hint-placeholder-count="3">
+                  <div style="display:flex;align-items:flex-start;gap:11px;padding:12px 14px;border:1px solid #EEF3F8;border-radius:11px;background:#FAFCFE">
+                    <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:24px;height:24px;border-radius:50%;background:{{ b.iconBg }};color:{{ b.iconFg }}">{{ b.icon }}</span>
+                    <div style="flex:1;min-width:0">
+                      <div style="display:flex;justify-content:space-between;gap:10px;align-items:baseline"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;color:#0B2440">{{ b.name }}</span><span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;color:{{ b.stateColor }};white-space:nowrap">{{ b.stateText }}</span></div>
+                      <div style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.45;color:#7E93A8;margin-top:3px">{{ b.desc }}</div>
+                    </div>
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <!-- D) Recompensas / cupones + AminoPuntos -->
+            <div style="display:flex;flex-direction:column;gap:18px">
+              <!-- cupón activo con countdown -->
+              <div style="background:#fff;border:1px solid #E7EDF4;border-radius:16px;padding:24px;box-shadow:0 16px 34px -26px rgba(11,36,64,.4)">
+                <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
+                  <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(31,169,113,.12);color:#15875A"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-4z"></path><path d="M9 7v10" stroke-dasharray="2 2"></path></svg></span>
+                  <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Tu cupón de recompra</h2>
+                </div>
+                <sc-if value="{{ couponActive }}" hint-placeholder-val="{{ true }}">
+                  <div style="border:1.5px dashed #1FA971;border-radius:13px;background:linear-gradient(135deg,#F0FBF5,#E7F6EF);padding:18px;position:relative;overflow:hidden">
+                    <div style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:18px;color:#0B2440;line-height:1.2">Envío gratis + 5% OFF</div>
+                    <p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.5;color:#3F6B57;margin-top:5px">En tu próxima compra. ¡Aprovechá antes de que venza!</p>
+                    <!-- countdown -->
+                    <div style="display:flex;gap:8px;margin-top:14px">
+                      <sc-for list="{{ couponUnits }}" as="u" hint-placeholder-count="4">
+                        <div style="flex:1;text-align:center;background:#fff;border:1px solid #CDEBDB;border-radius:9px;padding:8px 4px"><div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:20px;color:#0B2440;line-height:1">{{ u.v }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;letter-spacing:.05em;text-transform:uppercase;color:#7E93A8;margin-top:4px">{{ u.l }}</div></div>
+                      </sc-for>
+                    </div>
+                    <!-- código + copiar -->
+                    <div style="display:flex;gap:8px;margin-top:14px;align-items:stretch">
+                      <div style="flex:1;display:flex;align-items:center;justify-content:center;border:1px dashed #9AD3B6;border-radius:9px;background:#fff;font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px;letter-spacing:.12em;color:#0B2440">VUELVE5</div>
+                      <button onClick="{{ copyVuelve5 }}" style="flex-shrink:0;display:inline-flex;align-items:center;gap:7px;background:#1FA971;color:#fff;border:none;border-radius:9px;padding:0 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13px;cursor:pointer;transition:background .15s;animation:amPulseSoft 2.4s ease-in-out infinite" style-hover="background:#18885B">{{ copyVuelve5Label }}</button>
+                    </div>
+                  </div>
+                </sc-if>
+                <!-- cupón vencido (oportunidad perdida) -->
+                <div style="margin-top:12px;display:flex;align-items:center;gap:11px;border:1px solid #EEF3F8;border-radius:11px;background:#F8FAFC;padding:12px 14px;opacity:.72">
+                  <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:26px;height:26px;border-radius:7px;background:#EEF3F8;color:#9DB1C7"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></svg></span>
+                  <div style="flex:1"><div style="font-family:'IBM Plex Mono',monospace;font-size:13px;color:#9DB1C7;text-decoration:line-through">BIENVENIDA10</div><div style="font-family:'Poppins',sans-serif;font-size:11.5px;color:#94A3B8;margin-top:2px">Cupón vencido — 10% OFF de bienvenida</div></div>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#B45309;background:rgba(180,83,9,.1);border-radius:5px;padding:3px 8px">Vencido</span>
+                </div>
+              </div>
+
+              <!-- AminoPuntos -->
+              <div style="background:linear-gradient(150deg,#13294A,#0B2440);border-radius:16px;padding:24px;color:#fff;box-shadow:0 18px 40px -24px rgba(11,36,64,.8);position:relative;overflow:hidden">
+                <div style="position:absolute;top:-30px;right:-20px;width:120px;height:120px;border-radius:50%;background:radial-gradient(circle,rgba(47,168,224,.4),transparent 70%)"></div>
+                <div style="position:relative;z-index:1">
+                  <div style="display:flex;align-items:center;gap:9px;margin-bottom:6px">
+                    <span style="display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border-radius:8px;background:rgba(47,168,224,.22);color:#7CC6F0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5h5M12 9.5v7"></path></svg></span>
+                    <span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px">AminoPuntos</span>
+                  </div>
+                  <div style="display:flex;align-items:baseline;gap:8px">{{ elPuntos }}<span style="font-family:'Poppins',sans-serif;font-size:13px;color:#9EC2EA">puntos</span></div>
+                  <p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.5;color:#BFD6EE;margin-top:8px">Sumás <strong style="color:#fff">1 punto por cada USD</strong> que comprás. Canjealos por descuentos en tu próximo pedido.</p>
+                  <div style="margin-top:13px;height:7px;border-radius:99px;background:rgba(255,255,255,.14);overflow:hidden"><div style="height:100%;width:{{ puntosProgress }};background:linear-gradient(90deg,#2FA8E0,#7CC6F0);border-radius:99px;transition:width .6s"></div></div>
+                  <p style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9EC2EA;margin-top:7px">{{ puntosFaltanText }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Recordatorio de recompra (retención) -->
+          <div style="margin-top:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border:1px solid #FCE3B8;background:linear-gradient(120deg,#FEF8EC,#FDF1DC);border-radius:15px;padding:18px 22px">
+            <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:11px;background:#fff;color:#E0A422;box-shadow:0 6px 16px -8px rgba(180,131,9,.4)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 1 6 6c0 4 3 5 3 7H3c0-2 3-3 3-7a6 6 0 0 1 6-6z"></path><path d="M10 21h4"></path></svg></span>
+            <div style="flex:1;min-width:200px"><div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;color:#0B2440">¿Te quedan pocos viales?</div><p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.5;color:#92660C;margin-top:3px">Los péptidos reconstituidos duran ~30 días en heladera. Reabastecete a tiempo y usá tu cupón antes de que venza.</p></div>
+            <a href="#/catalogo" style="flex-shrink:0;display:inline-flex;align-items:center;gap:7px;background:#0B2440;color:#fff;border-radius:9px;padding:11px 18px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;text-decoration:none;transition:transform .15s,background .15s" style-hover="background:#11305a;transform:translateY(-1px)">Reabastecer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
+          </div>
+
+          <!-- E) Referidos -->
+          <div style="margin-top:18px;background:#fff;border:1px solid #E7EDF4;border-radius:16px;padding:24px;box-shadow:0 16px 34px -26px rgba(11,36,64,.4)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(14,95,181,.1);color:#0E5FB5"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="2.6"></circle><circle cx="6" cy="12" r="2.6"></circle><circle cx="18" cy="19" r="2.6"></circle><path d="M8.3 10.8l7.4-4.3M8.3 13.2l7.4 4.3"></path></svg></span>
+              <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Invitá y sumá puntos</h2>
+            </div>
+            <p style="font-family:'Poppins',sans-serif;font-size:13px;line-height:1.55;color:#5A6B7B;max-width:520px">Compartí tu código: tu amigo recibe <strong style="color:#0B2440">10% OFF</strong> en su primera compra y vos sumás <strong style="color:#0B2440">AminoPuntos</strong> cuando la concreta.</p>
+            <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap;align-items:stretch">
+              <div style="flex:1;min-width:180px;display:flex;align-items:center;justify-content:space-between;gap:10px;border:1px dashed #B9CBE0;border-radius:11px;background:#F8FAFC;padding:12px 16px"><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:17px;letter-spacing:.1em;color:#0B2440">{{ refCode }}</span><button onClick="{{ copyRef }}" style="display:inline-flex;align-items:center;gap:6px;background:none;border:none;color:#0E5FB5;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13px;cursor:pointer">{{ copyRefLabel }}</button></div>
+              <button onClick="{{ shareReferido }}" style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#1FA971;color:#fff;border:none;border-radius:11px;padding:13px 20px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:background .15s,transform .15s" style-hover="background:#18885B;transform:translateY(-1px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Compartir por WhatsApp</button>
+            </div>
+          </div>
+
+          <!-- F) Historial de pedidos -->
+          <div style="margin-top:18px;background:#fff;border:1px solid #E7EDF4;border-radius:16px;padding:24px;box-shadow:0 16px 34px -26px rgba(11,36,64,.4)">
+            <div style="display:flex;align-items:center;gap:9px;margin-bottom:16px">
+              <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(14,95,181,.1);color:#0E5FB5"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14a1 1 0 0 1 1 1v15l-4-2-4 2-4-2-4 2V5a1 1 0 0 1 1-1z"></path><path d="M8 8h8M8 12h6"></path></svg></span>
+              <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Historial de pedidos</h2>
+            </div>
+            <sc-if value="{{ hasOrders }}" hint-placeholder-val="{{ true }}">
+              <div style="display:flex;flex-direction:column;gap:12px">
+                <sc-for list="{{ orders }}" as="o" hint-placeholder-count="3">
+                  <div style="border:1px solid #EEF3F8;border-radius:13px;padding:16px 18px;background:#FAFCFE">
+                    <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:12px;flex-wrap:wrap">
+                      <div style="min-width:0">
+                        <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
+                          <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:13.5px;color:#0B2440">{{ o.numero }}</span>
+                          <span style="display:inline-flex;align-items:center;gap:6px;background:{{ o.chipBg }};color:{{ o.chipFg }};border-radius:999px;padding:3px 10px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:600"><span style="width:6px;height:6px;border-radius:50%;background:{{ o.chipDot }}"></span>{{ o.estado }}</span>
+                        </div>
+                        <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#94A3B8;margin-top:5px">{{ o.fechaText }}</div>
+                        <div style="font-family:'Poppins',sans-serif;font-size:13px;color:#5A6B7B;margin-top:7px;line-height:1.45">{{ o.productosText }}</div>
+                      </div>
+                      <div style="text-align:right;flex-shrink:0">
+                        <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;color:#0B2440">{{ o.totalText }}</div>
+                        <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#94A3B8;margin-top:2px">{{ o.totalARSText }}</div>
+                      </div>
+                    </div>
+                    <button onClick="{{ o.onReorder }}" style="margin-top:13px;display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0E5FB5;border:1px solid #CBD5E1;border-radius:9px;padding:9px 15px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:12.5px;cursor:pointer;transition:border-color .15s,background .15s,transform .15s" style-hover="border-color:#0E5FB5;background:#EAF2FB;transform:translateY(-1px)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 4v4h4"></path></svg>Volver a pedir</button>
+                  </div>
+                </sc-for>
+              </div>
+            </sc-if>
+            <sc-if value="{{ noOrders }}" hint-placeholder-val="{{ false }}">
+              <div style="border:1px dashed #CBD5E1;border-radius:13px;background:#F8FAFC;padding:40px 24px;text-align:center">
+                <span style="display:inline-flex;color:#9DB1C7;margin-bottom:12px"><svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 4h14a1 1 0 0 1 1 1v15l-4-2-4 2-4-2-4 2V5a1 1 0 0 1 1-1z"></path></svg></span>
+                <p style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px;color:#0B2440">Todavía no hiciste pedidos</p>
+                <p style="font-family:'Poppins',sans-serif;font-size:13px;color:#5A6B7B;margin-top:6px">Cuando finalices tu primer pedido, vas a verlo acá con su estado y seguimiento.</p>
+                <a href="#/catalogo" style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:9px;padding:12px 22px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;text-decoration:none" style-hover="background:#0B4E97">Ver catálogo</a>
+              </div>
+            </sc-if>
+          </div>
+
+          <!-- G) Mis datos -->
+          <div style="margin-top:18px;background:#fff;border:1px solid #E7EDF4;border-radius:16px;padding:24px;box-shadow:0 16px 34px -26px rgba(11,36,64,.4)">
+            <div style="display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap">
+              <div style="display:flex;align-items:center;gap:9px">
+                <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(14,95,181,.1);color:#0E5FB5"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg></span>
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">Mis datos</h2>
+              </div>
+              <sc-if value="{{ editData }}" hint-placeholder-val="{{ false }}">
+                <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#0E5FB5">Editando…</span>
+              </sc-if>
+            </div>
+
+            <sc-if value="{{ editData }}" hint-placeholder-val="{{ false }}">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px">
+                <div><label style="display:block;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#0B2440;margin-bottom:6px">Nombre y apellido</label><input type="text" value="{{ edNombre }}" onChange="{{ onEdNombre }}" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:11px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;outline:none" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)"></div>
+                <div><label style="display:block;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#0B2440;margin-bottom:6px">Email</label><input type="email" value="{{ edEmail }}" onChange="{{ onEdEmail }}" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:11px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;outline:none" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)"></div>
+                <div><label style="display:block;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#0B2440;margin-bottom:6px">Teléfono</label><input type="tel" value="{{ edTel }}" onChange="{{ onEdTel }}" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:11px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;outline:none" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)"></div>
+                <div><label style="display:block;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#0B2440;margin-bottom:6px">Provincia</label><select value="{{ edProv }}" onChange="{{ onEdProv }}" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:11px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;outline:none;cursor:pointer" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)"><sc-for list="{{ provinceOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.value }}">{{ o.label }}</option></sc-for></select></div>
+              </div>
+              <div style="margin-top:16px;display:flex;gap:10px;flex-wrap:wrap">
+                <button onClick="{{ saveEdit }}" style="display:inline-flex;align-items:center;gap:7px;background:#0E5FB5;color:#fff;border:none;border-radius:9px;padding:11px 20px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer" style-hover="background:#0B4E97">Guardar cambios</button>
+                <button onClick="{{ cancelEdit }}" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#5A6B7B;border:1px solid #CBD5E1;border-radius:9px;padding:11px 20px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13.5px;cursor:pointer" style-hover="border-color:#94A3B8">Cancelar</button>
+              </div>
+            </sc-if>
+
+            <sc-if value="{{ noEdit }}" hint-placeholder-val="{{ true }}">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:0 24px">
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #EEF3F8"><span style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#94A3B8">Nombre</span><span style="font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:600;color:#0B2440;text-align:right">{{ userName }}</span></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #EEF3F8"><span style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#94A3B8">Email</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#0B2440;text-align:right;word-break:break-all">{{ userEmail }}</span></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #EEF3F8"><span style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#94A3B8">Teléfono</span><span style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#0B2440;text-align:right">{{ userTel }}</span></div>
+                <div style="display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid #EEF3F8"><span style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#94A3B8">Provincia</span><span style="font-family:'Poppins',sans-serif;font-size:13.5px;font-weight:600;color:#0B2440;text-align:right">{{ userProv }}</span></div>
+              </div>
+              <div style="margin-top:18px;display:flex;gap:10px;flex-wrap:wrap">
+                <button onClick="{{ startEdit }}" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:9px;padding:11px 20px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;cursor:pointer;transition:border-color .15s" style-hover="border-color:#0E5FB5;color:#0E5FB5"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9M16.5 3.5a2 2 0 0 1 3 3L7 19l-4 1 1-4z"></path></svg>Editar datos</button>
+                <button onClick="{{ logout }}" style="display:inline-flex;align-items:center;gap:7px;background:none;color:#94A3B8;border:none;border-radius:9px;padding:11px 12px;font-family:'Poppins',sans-serif;font-size:13.5px;cursor:pointer;transition:color .15s" style-hover="color:#C0392B"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M15 4h3a1.6 1.6 0 0 1 1.6 1.6v12.8A1.6 1.6 0 0 1 18 20h-3M10 16l-4-4 4-4M6 12h11"></path></svg>Cerrar sesión</button>
+              </div>
+            </sc-if>
+          </div>
+
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ================= TÉRMINOS Y CONDICIONES ================= -->
+    <sc-if value="{{ isTerminos }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff">
+        <div style="max-width:1080px;margin:0 auto;width:100%;padding:clamp(34px,5vw,56px) clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
+          <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Legales</span>
+          <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.08;letter-spacing:-.02em;color:#0B2440">Términos y Condiciones de Uso y Venta</h1>
+          <p style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#7E93A8;margin-top:12px">Última actualización: 30 de junio de 2026</p>
+
+          <div style="margin-top:30px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr);gap:clamp(24px,4vw,48px);align-items:start">
+            <!-- Índice -->
+            <nav style="position:sticky;top:84px;border:1px solid #E7EDF4;border-radius:14px;background:#F8FAFC;padding:18px 18px 14px">
+              <div style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0E5FB5;margin-bottom:10px">Contenido</div>
+              <sc-for list="{{ terminosIndex }}" as="t" hint-placeholder-count="15">
+                <button onClick="{{ t.onClick }}" style="display:flex;gap:9px;align-items:baseline;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:6px 4px;font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.4;color:#5A6B7B;border-radius:6px;transition:color .14s,background .14s" style-hover="color:#0E5FB5;background:#EAF2FB"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9DB1C7;flex-shrink:0">{{ t.n }}</span>{{ t.title }}</button>
+              </sc-for>
+            </nav>
+
+            <!-- Cuerpo -->
+            <div style="max-width:680px">
+              <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855">Estos Términos y Condiciones regulan el acceso y uso del sitio de AminoLabAr y la compra de los productos ofrecidos. Te recomendamos leerlos con atención antes de crear tu cuenta o realizar un pedido.</p>
+
+              <div id="t1" style="scroll-margin-top:84px;margin-top:34px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">1. Aceptación de los términos</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Estos Términos y Condiciones regulan el acceso y uso del sitio de AminoLabAr y la compra de los productos ofrecidos. Al crear una cuenta, navegar o realizar un pedido, el usuario declara haber leído, comprendido y aceptado en su totalidad estos términos. Si no está de acuerdo, debe abstenerse de utilizar el sitio.</p>
+              </div>
+
+              <div id="t2" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">2. Naturaleza de los productos — uso exclusivo en investigación</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Todos los productos comercializados por AminoLabAr son péptidos y compuestos destinados <strong style="color:#0B2440">exclusivamente a investigación científica y de laboratorio</strong> (research use only). No son medicamentos, no están aprobados ni registrados por la ANMAT (Administración Nacional de Medicamentos, Alimentos y Tecnología Médica) para uso terapéutico, diagnóstico o preventivo, y no son aptos para consumo humano ni animal. No deben utilizarse para administración en personas. La información del sitio tiene carácter educativo e informativo y no constituye indicación, prescripción ni asesoramiento médico de ningún tipo.</p>
+              </div>
+
+              <div id="t3" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">3. Declaraciones y obligaciones del usuario</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Al registrarse y comprar, el usuario declara bajo su responsabilidad que:</p>
+                <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
+                  <div style="display:flex;gap:10px;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.7;color:#3A4855"><span style="font-family:'IBM Plex Mono',monospace;color:#0E5FB5;flex-shrink:0">(a)</span>es mayor de 18 años y tiene capacidad legal para contratar;</div>
+                  <div style="display:flex;gap:10px;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.7;color:#3A4855"><span style="font-family:'IBM Plex Mono',monospace;color:#0E5FB5;flex-shrink:0">(b)</span>adquiere los productos únicamente con fines de investigación y no para consumo humano o animal;</div>
+                  <div style="display:flex;gap:10px;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.7;color:#3A4855"><span style="font-family:'IBM Plex Mono',monospace;color:#0E5FB5;flex-shrink:0">(c)</span>cuenta con los conocimientos, instalaciones y recaudos adecuados para la manipulación segura de material de investigación;</div>
+                  <div style="display:flex;gap:10px;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.7;color:#3A4855"><span style="font-family:'IBM Plex Mono',monospace;color:#0E5FB5;flex-shrink:0">(d)</span>no revenderá ni distribuirá los productos para consumo humano;</div>
+                  <div style="display:flex;gap:10px;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.7;color:#3A4855"><span style="font-family:'IBM Plex Mono',monospace;color:#0E5FB5;flex-shrink:0">(e)</span>los datos que aporta son veraces, completos y actualizados.</div>
+                </div>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">El uso indebido de los productos es de exclusiva responsabilidad del usuario.</p>
+              </div>
+
+              <div id="t4" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">4. Ausencia de asesoramiento médico</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">AminoLabAr no presta servicios de salud ni emite recomendaciones médicas. Ninguna información del sitio, fichas de producto, contenido educativo o intercambio por WhatsApp debe interpretarse como consejo médico. Ante cualquier duda de salud, el usuario debe consultar a un profesional matriculado.</p>
+              </div>
+
+              <div id="t5" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">5. Registro y cuenta de usuario</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Para finalizar una compra es necesario crear una cuenta. El usuario es responsable de la confidencialidad de sus credenciales y de toda actividad realizada desde su cuenta. AminoLabAr podrá suspender o cancelar cuentas ante datos falsos, uso fraudulento o incumplimiento de estos términos.</p>
+              </div>
+
+              <div id="t6" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">6. Precios, moneda y pagos</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Los precios se expresan en dólares estadounidenses (USD) como referencia y se convierten a pesos argentinos (ARS) según la cotización vigente al momento de la operación. Los precios pueden variar sin previo aviso por fluctuación del tipo de cambio, costos de importación o disponibilidad. Los medios de pago aceptados son transferencia bancaria en pesos y USDT, coordinados al finalizar el pedido. El pedido se confirma una vez acreditado el pago.</p>
+              </div>
+
+              <div id="t7" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">7. Envíos</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Los envíos se realizan a todo el país a través del operador logístico informado (Andreani u otro), con número de seguimiento. Los plazos de despacho y tránsito son estimados y dependen del operador y la localidad de destino. El envío puede ser gratuito a partir de las condiciones publicadas (por ejemplo, a partir de 3 péptidos). El riesgo se transmite al usuario con la entrega.</p>
+              </div>
+
+              <div id="t8" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">8. Derecho de revocación (Botón de arrepentimiento)</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Conforme la Ley 24.240 de Defensa del Consumidor (art. 34) y la normativa vigente de Comercio Electrónico, el consumidor tiene derecho a revocar la compra dentro de los <strong style="color:#0B2440">diez (10) días corridos</strong> contados desde la celebración del contrato o la entrega del producto, lo que ocurra último, sin expresar causa y sin penalidad. Para ejercerlo puede contactarnos por los canales publicados. El producto debe devolverse en las mismas condiciones en que fue recibido, sin abrir, sin uso y con su embalaje original, preservando la cadena de frío cuando corresponda. Quedan exceptuados los supuestos previstos por la normativa (por ejemplo, productos que por razones de higiene, seguridad o conservación no puedan devolverse una vez abiertos). Los costos de devolución se rigen por la normativa aplicable.</p>
+              </div>
+
+              <div id="t9" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">9. Cambios y devoluciones</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Más allá del derecho de revocación, ante un producto con defecto de fabricación o error en el envío, el usuario debe comunicarse dentro de un plazo razonable para gestionar el cambio o la devolución, acreditando el inconveniente.</p>
+              </div>
+
+              <div id="t10" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">10. Protección de datos personales</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Los datos personales del usuario se tratan conforme a la Ley 25.326 de Protección de los Datos Personales. Se recaban con la finalidad de gestionar la cuenta, procesar pedidos, coordinar envíos y enviar comunicaciones del servicio. No se ceden a terceros salvo lo necesario para cumplir la operación (logística, pago) o por obligación legal. El titular de los datos puede ejercer en forma gratuita sus derechos de acceso, rectificación, actualización y supresión contactándonos. La Agencia de Acceso a la Información Pública, órgano de control de la Ley 25.326, tiene atribuciones para atender denuncias y reclamos por incumplimiento.</p>
+              </div>
+
+              <div id="t11" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">11. Propiedad intelectual</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Los contenidos del sitio (textos, marcas, logos, fichas, imágenes y diseño) son propiedad de AminoLabAr o se usan con autorización, y no pueden reproducirse sin consentimiento.</p>
+              </div>
+
+              <div id="t12" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">12. Limitación de responsabilidad</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">AminoLabAr no será responsable por daños derivados del uso indebido de los productos, de su utilización en contra de su naturaleza de material de investigación, ni de decisiones que el usuario adopte sobre su salud. El usuario asume la totalidad del riesgo asociado a la manipulación y destino que le dé a los productos.</p>
+              </div>
+
+              <div id="t13" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">13. Modificaciones</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">AminoLabAr puede modificar estos términos en cualquier momento. Las modificaciones rigen desde su publicación en el sitio. El uso posterior implica su aceptación.</p>
+              </div>
+
+              <div id="t14" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">14. Ley aplicable y jurisdicción</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Estos términos se rigen por las leyes de la República Argentina, en especial la Ley 24.240 de Defensa del Consumidor y normas complementarias. Ante cualquier controversia serán competentes los tribunales que correspondan según la normativa de defensa del consumidor.</p>
+              </div>
+
+              <div id="t15" style="scroll-margin-top:84px;margin-top:30px">
+                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">15. Contacto</h2>
+                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Para consultas, reclamos o el ejercicio de derechos, el usuario puede contactarnos por WhatsApp al número publicado en el sitio o por los canales de contacto informados en la sección Contacto.</p>
+                <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="margin-top:16px;display:inline-flex;align-items:center;gap:9px;background:#1FA971;color:#fff;border-radius:9px;padding:12px 22px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;text-decoration:none" style-hover="background:#18885B"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Contactar por WhatsApp</a>
+              </div>
+
+              <p style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#9DB1C7;margin-top:40px;padding-top:20px;border-top:1px solid #EEF3F8">AminoLabAr · Última actualización: 30/06/2026</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
     <!-- ================= CTA PASTEL + NEWSLETTER (global, sobre el footer) ================= -->
     <section style="position:relative;overflow:hidden;background:linear-gradient(120deg,#FBF6CB 0%,#DDF3D4 32%,#E9E7F7 66%,#FBE4EC 100%)">
       <!-- burbujitas -->
@@ -897,7 +1756,7 @@ input{font:inherit}
       </div>
 
       <div style="position:relative;z-index:2;max-width:1180px;margin:0 auto;width:100%;padding:0 clamp(20px,5vw,56px) clamp(48px,7vw,80px)">
-        <div style="background:linear-gradient(120deg,#EDE9F8 0%,#F7E7EF 100%);border-radius:18px;padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px;align-items:center">
+        <div style="background:linear-gradient(120deg,#EDE9F8 0%,#F7E7EF 100%);border:1px solid rgba(255,255,255,.7);border-radius:18px;padding:clamp(24px,4vw,40px);display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px;align-items:center;box-shadow:0 34px 70px -26px rgba(11,36,64,.4),0 10px 24px -14px rgba(11,36,64,.22)">
           <div>
             <h3 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(20px,2.4vw,26px);color:#0B2440;letter-spacing:-.01em">Novedades de investigación de AminoLabAr</h3>
             <p style="font-family:'Poppins',sans-serif;font-size:14px;line-height:1.55;color:#5A6B7B;margin-top:8px">Suscribite para enterarte de nuevos compuestos de investigación, reposición de stock y novedades de documentación.</p>
@@ -938,6 +1797,7 @@ input{font:inherit}
           <a href="#/envios" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Envíos</a>
           <a href="#/faq" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">FAQ</a>
           <a href="#/contacto" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Contacto</a>
+          <a href="#/terminos" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Términos y Condiciones</a>
         </div>
         <div>
           <div style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Contacto</div>
@@ -1056,11 +1916,42 @@ input{font:inherit}
           <span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px;color:#0B2440;white-space:nowrap;overflow:hidden;text-overflow:ellipsis">Certificado de Análisis</span>
         </div>
         <div style="display:flex;align-items:center;gap:8px;flex-shrink:0">
-          <a href="{{ coaModalUrl }}" target="_blank" rel="noopener" download style="display:inline-flex;align-items:center;gap:7px;border:1px solid #CBD5E1;border-radius:8px;padding:8px 13px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13px;color:#0B2440;text-decoration:none;transition:background .15s" style-hover="background:#F4F7FB"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"></path></svg>Descargar</a>
+          <a href="{{ coaModalUrl }}" target="_blank" rel="noopener" download="" style="display:inline-flex;align-items:center;gap:7px;border:1px solid #CBD5E1;border-radius:8px;padding:8px 13px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13px;color:#0B2440;text-decoration:none;transition:background .15s" style-hover="background:#F4F7FB"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12M7 11l5 5 5-5M5 21h14"></path></svg>Descargar</a>
           <button onClick="{{ closeCoa }}" aria-label="Cerrar" style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border:1px solid #E2E8F0;border-radius:8px;background:#fff;color:#0B2440;cursor:pointer;transition:background .15s" style-hover="background:#F4F7FB"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"></path></svg></button>
         </div>
       </div>
       <iframe src="{{ coaModalUrl }}" title="Certificado de Análisis" style="flex:1;width:100%;border:none;background:#525659"></iframe>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: GATE DE COMPRA (necesitás cuenta para finalizar) ================= -->
+  <div style="{{ checkoutGateWrapStyle }}">
+    <div onClick="{{ closeCheckoutGate }}" style="position:absolute;inset:0;cursor:pointer"></div>
+    <div style="{{ checkoutGatePanelStyle }}">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;border-radius:50%;background:linear-gradient(135deg,#EAF2FB,#D7E7F8);color:#0E5FB5;margin:0 auto 16px"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg></span>
+      <h3 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:22px;letter-spacing:-.01em;color:#0B2440">Creá tu cuenta para finalizar</h3>
+      <p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.6;color:#5A6B7B;margin-top:10px">Para finalizar tu pedido necesitás una cuenta. <strong style="color:#0B2440">Crear una cuenta es gratis</strong> y te da seguimiento de pedidos, envío gratis y beneficios. Tu carrito se conserva.</p>
+      <button onClick="{{ goToLoginForCheckout }}" style="margin-top:20px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0E5FB5;color:#fff;border:none;border-radius:11px;padding:14px 18px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 16px 30px -14px rgba(14,95,181,.7);transition:background .18s,transform .14s" style-hover="background:#0B4E97;transform:translateY(-1px)">Crear cuenta / Ingresar <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></button>
+      <button onClick="{{ closeCheckoutGate }}" style="margin-top:10px;width:100%;background:none;border:none;color:#7E93A8;font-family:'Poppins',sans-serif;font-size:13px;cursor:pointer;padding:8px" style-hover="color:#0B2440">Seguir comprando</button>
+    </div>
+  </div>
+
+  <!-- ================= MODAL: PEDIDO CONFIRMADO ================= -->
+  <div style="{{ confirmWrapStyle }}">
+    <div onClick="{{ closeConfirm }}" style="position:absolute;inset:0;cursor:pointer"></div>
+    <div style="{{ confirmPanelStyle }}">
+      <span style="display:inline-flex;align-items:center;justify-content:center;width:66px;height:66px;border-radius:50%;background:linear-gradient(135deg,#E7F6EF,#D4F0E1);color:#15875A;margin:0 auto 16px;animation:amPop .5s cubic-bezier(.16,1,.3,1) both"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5" style="stroke-dasharray:34;animation:amCheckDraw .5s .25s ease both"></path></svg></span>
+      <h3 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:23px;letter-spacing:-.01em;color:#0B2440">¡Pedido confirmado!</h3>
+      <p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.6;color:#5A6B7B;margin-top:10px">Te abrimos WhatsApp para coordinar el pago y el envío. Tu pedido ya quedó registrado en tu cuenta.</p>
+      <div style="margin-top:18px;border:1px solid #EEF3F8;border-radius:13px;background:#F8FAFC;padding:16px 18px;text-align:left">
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding-bottom:9px;border-bottom:1px solid #EEF3F8"><span style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#94A3B8">N.º de pedido</span><span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:13.5px;color:#0B2440">{{ confirm.numero }}</span></div>
+        <div style="display:flex;justify-content:space-between;align-items:baseline;padding:9px 0 0"><span style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#94A3B8">Total</span><div style="text-align:right"><div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:15px;color:#0B2440">{{ confirm.totalText }}</div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#94A3B8;margin-top:2px">{{ confirm.totalARSText }}</div></div></div>
+      </div>
+      <div style="margin-top:12px;display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(47,168,224,.1);border-radius:10px;padding:11px;font-family:'Poppins',sans-serif;font-size:13px;color:#0B4E97"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M9.5 9.5h5M12 9.5v7"></path></svg>Sumaste <strong style="color:#0B2440">+{{ confirm.puntos }} AminoPuntos</strong></div>
+      <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px">
+        <a href="#/cuenta" onClick="{{ closeConfirm }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:11px;padding:14px 18px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14.5px;text-decoration:none;transition:background .18s" style-hover="background:#0B4E97">Ver mi cuenta</a>
+        <a href="#/catalogo" onClick="{{ closeConfirm }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:11px;padding:12px 18px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none;transition:border-color .15s,color .15s" style-hover="border-color:#0E5FB5;color:#0E5FB5">Seguir comprando</a>
+      </div>
     </div>
   </div>
 
@@ -1109,7 +2000,33 @@ input{font:inherit}
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script>
+<script type="text/x-dc" data-dc-script data-props="{
+  &quot;$preview&quot;: { &quot;width&quot;: &quot;100%&quot;, &quot;height&quot;: 900 },
+  &quot;amMotion&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;vivo&quot;, &quot;sereno&quot;],
+    &quot;default&quot;: &quot;vivo&quot;,
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Carácter visual&quot;,
+    &quot;label&quot;: &quot;Movimiento&quot;
+  },
+  &quot;amShape&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;redondeadas&quot;, &quot;clinicas&quot;],
+    &quot;default&quot;: &quot;redondeadas&quot;,
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Carácter visual&quot;,
+    &quot;label&quot;: &quot;Esquinas&quot;
+  },
+  &quot;amDepth&quot;: {
+    &quot;editor&quot;: &quot;enum&quot;,
+    &quot;options&quot;: [&quot;flotante&quot;, &quot;plano&quot;],
+    &quot;default&quot;: &quot;flotante&quot;,
+    &quot;tsType&quot;: &quot;string&quot;,
+    &quot;section&quot;: &quot;Carácter visual&quot;,
+    &quot;label&quot;: &quot;Profundidad&quot;
+  }
+}">
 class Component extends DCLogic {
   // ====== CONSTANTES DE PRECIO — PUNTO DE INTEGRACIÓN (FASE FUTURA) ======
   // DOLAR_BLUE_VENTA: valor del dólar blue (venta). En una fase posterior
@@ -1233,7 +2150,310 @@ class Component extends DCLogic {
     menuOpen: false,
     toast: "",
     vw: (typeof window !== "undefined" ? window.innerWidth : 1200),
+
+    // ====== CUENTAS / SESIÓN (MOCK — sin backend) ======
+    user: null,            // objeto usuario logueado (o el último conocido)
+    session: false,        // flag de sesión activa
+    userMenuOpen: false,   // dropdown de cuenta en el header
+    authTab: "login",      // "login" | "register"
+    authReason: "",        // mensaje contextual mostrado en #/ingresar
+    pendingCheckout: false,// venía a finalizar un pedido antes de loguearse
+    checkoutGate: false,   // modal "necesitás cuenta para finalizar"
+    orderConfirm: null,    // pedido recién confirmado (modal de éxito)
+    loginError: "",
+    copied: "",            // código recién copiado (feedback)
+    editData: false,       // edición de "Mis datos"
+    now: Date.now(),       // tic para el contador regresivo del cupón
+    // campos de formularios (controlados)
+    loginEmail: "", loginPass: "",
+    regNombre: "", regEmail: "", regTel: "", regProv: "", regPass: "", regPass2: "",
+    regChkAge: false, regChkTerms: false,
+    edNombre: "", edEmail: "", edTel: "", edProv: "",
   };
+
+  // =====================================================================
+  //  SISTEMA DE CUENTAS — TODO MOCK (cliente). Sin backend, sin auth real.
+  //  Registro, sesión, pedidos y puntos viven en localStorage / estado.
+  //  Cada punto de integración real va marcado con "// TODO backend:".
+  // =====================================================================
+
+  PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba","Corrientes","Entre Ríos","Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquén","Río Negro","Salta","San Juan","San Luis","Santa Cruz","Santa Fe","Santiago del Estero","Tierra del Fuego","Tucumán"];
+
+  // Niveles de fidelización por cantidad de péptidos comprados (acumulados).
+  NIVELES = [
+    { name: "Explorador",   min: 0,  next: 3 },
+    { name: "Investigador", min: 3,  next: 6 },
+    { name: "Científico",   min: 6,  next: 10 },
+    { name: "Lab Pro",      min: 10, next: null },
+  ];
+  // Beneficios y a partir de qué índice de nivel se desbloquean.
+  BENEFICIOS = [
+    { name: "Envío siempre gratis",            unlockIdx: 1, desc: "En todos tus pedidos, sin mínimo de péptidos." },
+    { name: "5% OFF permanente",               unlockIdx: 2, desc: "Descuento fijo aplicado a todo el catálogo." },
+    { name: "Acceso anticipado a lanzamientos",unlockIdx: 3, desc: "Comprá los nuevos compuestos de investigación antes que nadie." },
+  ];
+
+  // Usuario DEMO ya registrado (poblado) para mostrar el panel con vida.
+  // TODO backend: reemplazar por la base real de usuarios.
+  DEMO_USER = {
+    nombre: "Lucía Fernández",
+    email: "demo@aminolabar.com",
+    password: "demo1234",
+    telefono: "+54 9 221 600-1234",
+    provincia: "Buenos Aires",
+    fecha: "2025-11-12",
+    referralCode: "LUCIA4827",
+    puntos: 344,
+    couponExpires: Date.now() + 9 * 86400000,  // cupón vigente (~9 días) — se refresca al loguear demo
+    esDemo: true,
+    pedidos: [
+      { numero: "AML-1080", fecha: "2026-06-28", estado: "Procesando", totalUSD: 114.98, totalARS: 175468,
+        items: [ { id: "ipamorelin", vi: 0, qty: 1, nombre: "Ipamorelin 10mg", presentacion: "10mg", lineUSD: 51.99, esInsumo: false },
+                 { id: "sermorelin", vi: 0, qty: 1, nombre: "Sermorelin 10mg", presentacion: "10mg", lineUSD: 62.99, esInsumo: false } ] },
+      { numero: "AML-1067", fecha: "2026-06-22", estado: "En camino", totalUSD: 81.98, totalARS: 125141,
+        items: [ { id: "semax", vi: 0, qty: 2, nombre: "Semax 10mg", presentacion: "10mg", lineUSD: 81.98, esInsumo: false } ] },
+      { numero: "AML-1043", fecha: "2026-06-10", estado: "Entregado", totalUSD: 146.97, totalARS: 224372,
+        items: [ { id: "bpc-157", vi: 0, qty: 1, nombre: "BPC-157 (vial)", presentacion: "10mg", lineUSD: 45.99, esInsumo: false },
+                 { id: "tb-500",  vi: 0, qty: 1, nombre: "TB-500 10mg",   presentacion: "10mg", lineUSD: 58.99, esInsumo: false },
+                 { id: "ghk-cu",  vi: 0, qty: 1, nombre: "GHK-Cu (vial)", presentacion: "50mg", lineUSD: 41.99, esInsumo: false } ] },
+    ],
+  };
+
+  // Cargar sesión persistida + sembrar la cuenta DEMO si todavía no existe.
+  loadAuth = () => {
+    let user = null, session = false;
+    try {
+      const sess = localStorage.getItem("amino_session");
+      const u = JSON.parse(localStorage.getItem("amino_user") || "null");
+      if (sess === "1" && u) { user = u; session = true; }
+    } catch (e) { /* localStorage no disponible */ }
+    // TODO backend: aquí iría un fetch a /api/me con la cookie/token de sesión.
+    try {
+      if (!localStorage.getItem("amino_user")) {
+        localStorage.setItem("amino_user", JSON.stringify(this.DEMO_USER)); // demo registrada (no logueada)
+      }
+    } catch (e) {}
+    // El cupón de la cuenta demo se mantiene siempre vigente para la presentación.
+    if (user && user.esDemo) {
+      user = Object.assign({}, user, { couponExpires: Date.now() + 9 * 86400000 });
+      try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
+    }
+    this.setState({ user, session });
+  };
+
+  // Guarda el usuario en localStorage y en el estado.
+  persistUser(user) {
+    try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
+    // TODO backend: PATCH /api/users/me con los datos actualizados.
+    this.setState({ user });
+  }
+
+  isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || "").trim()); }
+
+  // Validez del formulario de registro (campos mínimos + ambos checks).
+  canRegister() {
+    const s = this.state;
+    return !!(s.regNombre.trim() && this.isEmail(s.regEmail) && s.regTel.trim() &&
+      s.regProv && s.regPass.length >= 6 && s.regPass === s.regPass2 &&
+      s.regChkAge && s.regChkTerms);
+  }
+
+  setField = (k) => (e) => this.setState({ [k]: e.target.value });
+  setAuthTab = (tab) => this.setState({ authTab: tab, loginError: "" });
+  toggleRegAge = () => this.setState((s) => ({ regChkAge: !s.regChkAge }));
+  toggleRegTerms = () => this.setState((s) => ({ regChkTerms: !s.regChkTerms }));
+  toggleUserMenu = () => this.setState((s) => ({ userMenuOpen: !s.userMenuOpen }));
+  closeUserMenu = () => this.setState({ userMenuOpen: false });
+
+  // Crear cuenta (MOCK).
+  registerUser = () => {
+    if (!this.canRegister()) return;
+    const first = this.state.regNombre.trim().split(/\s+/)[0].toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, "").slice(0, 6) || "AMINO";
+    const code = first + Math.floor(1000 + Math.random() * 9000);
+    const user = {
+      nombre: this.state.regNombre.trim(),
+      email: this.state.regEmail.trim().toLowerCase(),
+      telefono: this.state.regTel.trim(),
+      provincia: this.state.regProv,
+      password: this.state.regPass,
+      fecha: new Date().toISOString().slice(0, 10),
+      referralCode: code,
+      puntos: 0,
+      couponExpires: Date.now() + 30 * 86400000,
+      esDemo: false,
+      pedidos: [],
+    };
+    // TODO backend: POST /api/register → crea el usuario y devuelve la sesión.
+    try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
+    this.afterAuth(user);
+  };
+
+  // Iniciar sesión (MOCK): valida contra el usuario guardado o la cuenta demo.
+  login = () => {
+    const email = (this.state.loginEmail || "").trim().toLowerCase();
+    const pass = this.state.loginPass || "";
+    // TODO backend: POST /api/login y validación de credenciales en el servidor.
+    let stored = null;
+    try { stored = JSON.parse(localStorage.getItem("amino_user") || "null"); } catch (e) {}
+    if (stored && stored.email === email && stored.password === pass) { this.afterAuth(stored); return; }
+    if (email === this.DEMO_USER.email && pass === this.DEMO_USER.password) { this.loginDemo(); return; }
+    this.setState({ loginError: "Email o contraseña incorrectos. Probá la cuenta demo." });
+  };
+
+  loginDemo = () => {
+    const u = JSON.parse(JSON.stringify(this.DEMO_USER));
+    u.couponExpires = Date.now() + 9 * 86400000;
+    try { localStorage.setItem("amino_user", JSON.stringify(u)); } catch (e) {}
+    this.afterAuth(u);
+  };
+
+  // Post-login/registro: activa la sesión y resuelve a dónde ir.
+  afterAuth = (user) => {
+    try { localStorage.setItem("amino_session", "1"); } catch (e) {}
+    const pend = this.state.pendingCheckout;
+    this.setState({ user, session: true, loginError: "", userMenuOpen: false, pendingCheckout: false, authReason: "" });
+    if (typeof window !== "undefined") {
+      if (pend) { this.showToast("¡Listo! Ya podés finalizar tu pedido."); window.location.hash = "#/carrito"; }
+      else { window.location.hash = "#/cuenta"; }
+    }
+  };
+
+  logout = () => {
+    try { localStorage.removeItem("amino_session"); } catch (e) {}
+    // TODO backend: POST /api/logout para invalidar el token/cookie.
+    this.setState({ session: false, userMenuOpen: false });
+    if (typeof window !== "undefined") window.location.hash = "#/inicio";
+  };
+
+  // ====== MIS DATOS (edición MOCK) ======
+  startEdit = () => this.setState((s) => ({ editData: true, edNombre: s.user.nombre, edEmail: s.user.email, edTel: s.user.telefono, edProv: s.user.provincia }));
+  cancelEdit = () => this.setState({ editData: false });
+  saveEdit = () => {
+    const u = Object.assign({}, this.state.user, {
+      nombre: this.state.edNombre.trim(), email: this.state.edEmail.trim(),
+      telefono: this.state.edTel.trim(), provincia: this.state.edProv,
+    });
+    this.persistUser(u);
+    this.setState({ editData: false });
+    this.showToast("Datos actualizados");
+  };
+
+  // ====== FINALIZAR PEDIDO (gate de cuenta) ======
+  finalizarPedido = () => {
+    if (!this.state.cart.length) return;
+    if (!this.state.session) { this.setState({ checkoutGate: true }); return; } // sin cuenta → gate
+    this.placeOrder();
+  };
+  closeCheckoutGate = () => this.setState({ checkoutGate: false });
+  goToLoginForCheckout = () => {
+    this.setState({ checkoutGate: false, pendingCheckout: true, authTab: "register", authReason: "Para finalizar tu pedido necesitás una cuenta." });
+    if (typeof window !== "undefined") window.location.hash = "#/ingresar";
+  };
+
+  // Registra el pedido en el historial MOCK, suma puntos, abre WhatsApp y confirma.
+  placeOrder = () => {
+    const productos = this.getProductos();
+    const items = this.state.cart.map((it) => {
+      const p = productos.find((x) => x.id === it.productId);
+      if (!p) return null;
+      let costo, presentacion;
+      if (p.variantes && p.variantes.length) { const v = p.variantes[Math.min(it.variantIndex, p.variantes.length - 1)]; costo = v.costoUSD; presentacion = v.label; }
+      else { costo = p.costoUSD; presentacion = this.presentacionDe(p.nombre); }
+      const lineUSD = this.round2(this.precioVentaUSD(costo) * it.qty);
+      const esInsumo = /^insumo/i.test(p.investigacion || "");
+      return { id: p.id, vi: it.variantIndex, qty: it.qty, nombre: p.nombre, presentacion, lineUSD, esInsumo };
+    }).filter(Boolean);
+    const totalUSD = this.round2(items.reduce((a, l) => a + l.lineUSD, 0));
+    const totalARS = this.round(totalUSD * (this.DOLAR_BLUE_VENTA + this.MARKUP_ARS));
+    const peptides = items.reduce((a, l) => a + (l.esInsumo ? 0 : l.qty), 0);
+    const vm = this.buildCart();
+    const user = Object.assign({}, this.state.user);
+    const numero = "AML-" + (1090 + (user.pedidos ? user.pedidos.length : 0));
+    const order = { numero, fecha: new Date().toISOString().slice(0, 10), estado: "Procesando", items, totalUSD, totalARS, peptides };
+    user.pedidos = [order, ...(user.pedidos || [])];
+    user.puntos = (user.puntos || 0) + Math.round(totalUSD); // 1 AminoPunto por USD
+    // TODO backend: POST /api/orders con el detalle del pedido.
+    try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
+    if (typeof window !== "undefined") window.open(vm.waHref, "_blank"); // mismo flujo WhatsApp de siempre
+    this.setState({ user, cart: [], drawerOpen: false, checkoutGate: false, orderConfirm: order });
+  };
+  closeConfirm = () => this.setState({ orderConfirm: null });
+
+  // ====== RECOMPRA / REFERIDOS / PUNTOS ======
+  reorder = (order) => {
+    this.setState((s) => {
+      const cart = s.cart.map((it) => ({ ...it }));
+      (order.items || []).forEach((it) => {
+        const key = it.id + ":" + it.vi;
+        const ex = cart.find((c) => c.key === key);
+        if (ex) ex.qty += it.qty; else cart.push({ key, productId: it.id, variantIndex: it.vi, qty: it.qty });
+      });
+      return { cart, drawerOpen: true };
+    });
+  };
+  copyCode = (code) => {
+    try { if (navigator.clipboard) navigator.clipboard.writeText(code); } catch (e) {}
+    this.setState({ copied: code });
+    clearTimeout(this._copyT);
+    this._copyT = setTimeout(() => this.setState({ copied: "" }), 1800);
+  };
+  shareReferido = () => {
+    const code = (this.state.user && this.state.user.referralCode) || "";
+    const txt = "Te recomiendo AminoLabAr — péptidos de investigación con COA por lote. Usá mi código " + code + " y tenés 10% OFF en tu primera compra: " + this.SITE_URL;
+    if (typeof window !== "undefined") window.open("https://wa.me/?text=" + encodeURIComponent(txt), "_blank");
+  };
+
+  // ====== FIDELIZACIÓN — métricas derivadas del historial MOCK ======
+  computeAccount() {
+    const u = this.state.user || {};
+    const pedidos = u.pedidos || [];
+    const pedidosCount = pedidos.length;
+    const tasaARS = this.DOLAR_BLUE_VENTA + this.MARKUP_ARS;
+    const pepBought = pedidos.reduce((a, o) => a + (o.items || []).reduce((b, it) => b + (it.esInsumo ? 0 : it.qty), 0), 0);
+    const totalUSD = this.round2(pedidos.reduce((a, o) => a + (o.totalUSD || 0), 0));
+    const totalARS = this.round(totalUSD * tasaARS);
+    // nivel actual
+    let idx = 0;
+    if (pepBought >= 10) idx = 3; else if (pepBought >= 6) idx = 2; else if (pepBought >= 3) idx = 1; else idx = 0;
+    const lvl = this.NIVELES[idx];
+    const isMax = idx === 3;
+    const next = isMax ? null : this.NIVELES[idx + 1];
+    const span = isMax ? 1 : (lvl.next - lvl.min);
+    const within = isMax ? 1 : (pepBought - lvl.min);
+    const progress = isMax ? 100 : Math.min(100, Math.round((within / span) * 100));
+    const faltan = isMax ? 0 : Math.max(0, lvl.next - pepBought);
+    return { pedidos, pedidosCount, pepBought, totalUSD, totalARS, levelIdx: idx, levelName: lvl.name, nextName: next ? next.name : "", isMax, progress, faltan };
+  }
+
+  // ====== COUNT-UP (números que animan) — componente React memoizado ======
+  getCountUp() {
+    if (this._CountUp) return this._CountUp;
+    const R = React;
+    class CountUp extends R.Component {
+      constructor(p) { super(p); this.state = { v: 0 }; }
+      componentDidMount() { this.run(); }
+      componentDidUpdate(prev) { if (prev.value !== this.props.value) this.run(); }
+      componentWillUnmount() { cancelAnimationFrame(this._raf); }
+      run() {
+        const from = this.state.v, to = Number(this.props.value) || 0, dur = this.props.dur || 900;
+        const t0 = (typeof performance !== "undefined" ? performance.now() : Date.now());
+        const step = (t) => {
+          const k = Math.min(1, ((typeof performance !== "undefined" ? performance.now() : Date.now()) - t0) / dur);
+          const e = 1 - Math.pow(1 - k, 3);
+          this.setState({ v: from + (to - from) * e });
+          if (k < 1) this._raf = requestAnimationFrame(step);
+        };
+        cancelAnimationFrame(this._raf); this._raf = requestAnimationFrame(step);
+      }
+      render() {
+        const dec = this.props.decimals || 0;
+        const txt = (this.props.prefix || "") + Number(this.state.v).toLocaleString("es-AR", { minimumFractionDigits: dec, maximumFractionDigits: dec }) + (this.props.suffix || "");
+        return R.createElement("span", { style: this.props.style }, txt);
+      }
+    }
+    this._CountUp = CountUp;
+    return CountUp;
+  }
 
   // Trae el catálogo desde Google Sheets y reemplaza el array local.
   // Si SHEET_URL está vacío o la planilla falla, se mantiene el array de respaldo.
@@ -1391,8 +2611,11 @@ class Component extends DCLogic {
     window.addEventListener("resize", this.onResize);
     this.actualizarDolarBlue();   // dólar blue en vivo (DolarAPI)
     this.actualizarCatalogo();    // catálogo en vivo (Google Sheets)
+    this.loadAuth();              // sesión persistida (MOCK localStorage)
     this.injectSchema();   // datos estructurados JSON-LD (Products, FAQ, Reviews)
     this.syncFromHash();
+    // Tic del contador regresivo del cupón (solo re-render cuando estás en #/cuenta)
+    this._tick = setInterval(() => { if (this.state.page === "cuenta") this.setState({ now: Date.now() }); }, 1000);
   }
 
   // ====== JSON-LD: Product (uno por producto) + FAQPage + AggregateRating/Review ======
@@ -1502,6 +2725,7 @@ class Component extends DCLogic {
   componentWillUnmount() {
     window.removeEventListener("hashchange", this.syncFromHash);
     window.removeEventListener("resize", this.onResize);
+    clearInterval(this._tick);
   }
   onResize = () => {
     if (this._raf) return;
@@ -1515,8 +2739,19 @@ class Component extends DCLogic {
     else if (parts[0] === "producto") { page = "producto"; productId = parts[1] || null; }
     else if (parts[0] === "carrito") page = "carrito";
     else if (parts[0] === "medios-pago") page = "medios-pago";
+    else if (parts[0] === "ingresar") page = "ingresar";
+    else if (parts[0] === "cuenta") page = "cuenta";
+    else if (parts[0] === "terminos") page = "terminos";
+    else if (parts[0] === "privacidad") page = "privacidad";
     else if (["nosotros", "envios", "faq", "contacto"].includes(parts[0])) page = parts[0];
-    this.setState({ page, productId, menuOpen: false, variantIndex: 0, detailQty: 1, drawerOpen: false });
+    // Guard del panel privado: sin sesión, redirige a #/ingresar.
+    let extra = {};
+    if (page === "cuenta" && !this.state.session) {
+      page = "ingresar";
+      extra = { authTab: "login", authReason: "Iniciá sesión para acceder a tu cuenta." };
+      if (typeof window !== "undefined" && window.location.hash !== "#/ingresar") { try { history.replaceState(null, "", "#/ingresar"); } catch (e) {} }
+    }
+    this.setState(Object.assign({ page, productId, menuOpen: false, userMenuOpen: false, variantIndex: 0, detailQty: 1, drawerOpen: false }, extra));
     const prod = page === "producto" ? this.getProductos().find((x) => x.id === productId) : null;
     this.setMeta(page, prod || null);
     if (typeof window !== "undefined") window.scrollTo(0, 0);
@@ -1835,7 +3070,207 @@ class Component extends DCLogic {
       transform: coaOpen ? "scale(1)" : "scale(.97)", transition: "transform .25s cubic-bezier(.16,1,.3,1)",
     };
 
+    // =====================================================================
+    //  VIEW-MODELS DE CUENTA / SESIÓN / FIDELIZACIÓN
+    // =====================================================================
+    const session = this.state.session;
+    const user = this.state.user || {};
+    const userName = user.nombre || "";
+    const userFirst = userName.split(/\s+/)[0] || "";
+    const initials = userName.split(/\s+/).filter(Boolean).slice(0, 2).map((w) => w[0]).join("").toUpperCase() || "AL";
+
+    // --- Página #/ingresar (login + registro) ---
+    const authTab = this.state.authTab;
+    const regEmailBad = this.state.regEmail.length > 0 && !this.isEmail(this.state.regEmail);
+    const regPassShort = this.state.regPass.length > 0 && this.state.regPass.length < 6;
+    const regPassMismatch = this.state.regPass2.length > 0 && this.state.regPass !== this.state.regPass2;
+    const canRegister = this.canRegister();
+    const provinceOpts = [{ value: "", label: "Elegí tu provincia" }].concat(this.PROVINCIAS.map((p) => ({ value: p, label: p })));
+
+    // estilos pestañas auth
+    const authTabOn = { flex: 1, textAlign: "center", padding: "13px 12px", borderRadius: "10px", fontFamily: "'Anek Latin',sans-serif", fontWeight: 700, fontSize: "14.5px", cursor: "pointer", border: "none", background: "#fff", color: "#0B2440", boxShadow: "0 6px 16px -8px rgba(11,36,64,.35)", transition: "all .2s" };
+    const authTabOff = { flex: 1, textAlign: "center", padding: "13px 12px", borderRadius: "10px", fontFamily: "'Anek Latin',sans-serif", fontWeight: 600, fontSize: "14.5px", cursor: "pointer", border: "none", background: "transparent", color: "#5A6B7B", boxShadow: "none", transition: "all .2s" };
+
+    // estilos checkboxes del registro (reutiliza lenguaje del gate)
+    const cbOn = { width: "20px", height: "20px", borderRadius: "5px", background: "#0E5FB5", border: "1px solid #0E5FB5", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px", transition: "all .15s" };
+    const cbOff = { width: "20px", height: "20px", borderRadius: "5px", background: "#fff", border: "1.5px solid #CBD5E1", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0, marginTop: "1px", transition: "all .15s" };
+    const cbRowOn = { display: "flex", gap: "11px", alignItems: "flex-start", padding: "13px 15px", border: "1px solid rgba(14,95,181,.45)", background: "rgba(14,95,181,.045)", borderRadius: "10px", cursor: "pointer", transition: "all .15s" };
+    const cbRowOff = { display: "flex", gap: "11px", alignItems: "flex-start", padding: "13px 15px", border: "1px solid #E2E8F0", background: "#fff", borderRadius: "10px", cursor: "pointer", transition: "all .15s" };
+    const regBtnStyle = { marginTop: "6px", width: "100%", display: "inline-flex", alignItems: "center", justifyContent: "center", gap: "9px", background: canRegister ? "#0E5FB5" : "#C3D2E2", color: "#fff", border: "none", borderRadius: "11px", padding: "15px 18px", fontFamily: "'Anek Latin',sans-serif", fontWeight: 700, fontSize: "15.5px", cursor: canRegister ? "pointer" : "not-allowed", boxShadow: canRegister ? "0 16px 30px -14px rgba(14,95,181,.7)" : "none", transition: "background .18s,transform .14s,box-shadow .18s" };
+
+    // --- Panel #/cuenta ---
+    const acc = this.computeAccount();
+    const CU = this.getCountUp();
+    const numStyle = { fontFamily: "'IBM Plex Mono',monospace", fontWeight: 600, fontSize: "30px", color: "#0B2440", letterSpacing: "-.01em", lineHeight: 1 };
+    const numStyleSm = { fontFamily: "'IBM Plex Mono',monospace", fontWeight: 600, fontSize: "26px", color: "#0B2440", letterSpacing: "-.01em", lineHeight: 1 };
+    const elPedidos = React.createElement(CU, { value: acc.pedidosCount, style: numStyle });
+    const elPep = React.createElement(CU, { value: acc.pepBought, style: numStyle });
+    const elTotalUSD = React.createElement(CU, { value: acc.totalUSD, decimals: 2, prefix: "US$ ", style: numStyleSm });
+    const elTotalARS = React.createElement(CU, { value: acc.totalARS, prefix: "$ ", suffix: " ARS", style: { fontFamily: "'IBM Plex Mono',monospace", fontSize: "12.5px", color: "#7E93A8", marginTop: "5px" } });
+    const elPuntos = React.createElement(CU, { value: user.puntos || 0, style: { fontFamily: "'IBM Plex Mono',monospace", fontWeight: 600, fontSize: "34px", color: "#0B2440", letterSpacing: "-.01em", lineHeight: 1 } });
+
+    const sinceText = (() => {
+      if (!user.fecha) return "";
+      const d = new Date(user.fecha + "T00:00:00");
+      return "Sos cliente AminoLabAr desde " + d.toLocaleDateString("es-AR", { month: "long", year: "numeric" }) + ".";
+    })();
+
+    // beneficios según nivel
+    const checkIcon = React.createElement("svg", { width: 13, height: 13, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "strokeWidth": 2.6, "strokeLinecap": "round", "strokeLinejoin": "round" }, React.createElement("path", { d: "M20 6 9 17l-5-5" }));
+    const lockIcon = React.createElement("svg", { width: 12, height: 12, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", "strokeWidth": 2, "strokeLinecap": "round", "strokeLinejoin": "round" }, React.createElement("rect", { x: 5, y: 11, width: 14, height: 9, rx: 2 }), React.createElement("path", { d: "M8 11V8a4 4 0 0 1 8 0v3" }));
+    const beneficios = this.BENEFICIOS.map((b) => {
+      const on = acc.levelIdx >= b.unlockIdx;
+      return {
+        name: b.name, desc: b.desc, unlocked: on,
+        icon: on ? checkIcon : lockIcon,
+        iconBg: on ? "rgba(31,169,113,.14)" : "#EEF3F8",
+        iconFg: on ? "#15875A" : "#9DB1C7",
+        stateColor: on ? "#15875A" : "#9DB1C7",
+        stateText: on ? "Desbloqueado" : ("Desde " + this.NIVELES[b.unlockIdx].name),
+      };
+    });
+    const loyaltyFaltanText = acc.isMax
+      ? "¡Alcanzaste el nivel máximo, " + userFirst + "!"
+      : "Te " + (acc.faltan === 1 ? "falta" : "faltan") + " " + acc.faltan + " péptido" + (acc.faltan === 1 ? "" : "s") + " para ser " + acc.nextName;
+    const loyaltyProgress = acc.progress + "%";
+
+    // cupón vigente + contador regresivo
+    const exp = user.couponExpires || 0;
+    const remain = Math.max(0, exp - this.state.now);
+    const couponActive = remain > 0;
+    const cdDays = Math.floor(remain / 86400000);
+    const cdHours = Math.floor((remain % 86400000) / 3600000);
+    const cdMins = Math.floor((remain % 3600000) / 60000);
+    const cdSecs = Math.floor((remain % 60000) / 1000);
+    const pad = (n) => String(n).padStart(2, "0");
+    const couponUnits = [
+      { v: pad(cdDays), l: "días" },
+      { v: pad(cdHours), l: "hs" },
+      { v: pad(cdMins), l: "min" },
+      { v: pad(cdSecs), l: "seg" },
+    ];
+
+    // historial de pedidos
+    const estadoChip = (e) => {
+      if (e === "Entregado") return { bg: "rgba(31,169,113,.12)", fg: "#15875A", dot: "#1FA971" };
+      if (e === "En camino") return { bg: "rgba(14,95,181,.1)", fg: "#0E5FB5", dot: "#0E5FB5" };
+      return { bg: "rgba(180,131,9,.12)", fg: "#92660C", dot: "#E0A422" };
+    };
+    const orders = (acc.pedidos || []).map((o) => {
+      const c = estadoChip(o.estado);
+      return {
+        numero: o.numero, estado: o.estado,
+        fechaText: new Date(o.fecha + "T00:00:00").toLocaleDateString("es-AR", { day: "2-digit", month: "short", year: "numeric" }),
+        productosText: (o.items || []).map((it) => it.nombre + (it.qty > 1 ? " ×" + it.qty : "")).join(" · "),
+        totalText: this.fmtUSD(o.totalUSD), totalARSText: this.fmtARS(o.totalARS),
+        chipBg: c.bg, chipFg: c.fg, chipDot: c.dot,
+        onReorder: () => this.reorder(o),
+      };
+    });
+
+    // referidos
+    const refCode = user.referralCode || "";
+    const copiedCode = this.state.copied;
+
+    // --- Modal: gate de compra (necesitás cuenta) ---
+    const gateOpen = this.state.checkoutGate;
+    const checkoutGateWrapStyle = { position: "fixed", inset: 0, zIndex: 160, display: "flex", alignItems: "center", justifyContent: "center", padding: "clamp(16px,4vw,40px)", background: "rgba(11,36,64,.42)", backdropFilter: "blur(7px)", WebkitBackdropFilter: "blur(7px)", opacity: gateOpen ? 1 : 0, pointerEvents: gateOpen ? "auto" : "none", transition: "opacity .3s ease" };
+    const checkoutGatePanelStyle = { position: "relative", zIndex: 1, background: "#fff", borderRadius: "18px", width: "min(440px,100%)", padding: "30px 28px 26px", textAlign: "center", boxShadow: "0 30px 80px -24px rgba(11,36,64,.55), 0 0 0 1px rgba(226,232,240,.9)", transform: gateOpen ? "translateY(0) scale(1)" : "translateY(16px) scale(.96)", opacity: gateOpen ? 1 : 0, transition: "transform .4s cubic-bezier(.16,1,.3,1), opacity .3s ease" };
+
+    // --- Modal: confirmación de pedido ---
+    const oc = this.state.orderConfirm;
+    const confirmOpen = !!oc;
+    const confirmWrapStyle = { position: "fixed", inset: 0, zIndex: 165, display: "flex", alignItems: "center", justifyContent: "center", padding: "clamp(16px,4vw,40px)", background: "rgba(11,36,64,.42)", backdropFilter: "blur(7px)", WebkitBackdropFilter: "blur(7px)", opacity: confirmOpen ? 1 : 0, pointerEvents: confirmOpen ? "auto" : "none", transition: "opacity .3s ease" };
+    const confirmPanelStyle = { position: "relative", zIndex: 1, background: "#fff", borderRadius: "20px", width: "min(440px,100%)", padding: "34px 30px 28px", textAlign: "center", boxShadow: "0 30px 80px -24px rgba(11,36,64,.55), 0 0 0 1px rgba(226,232,240,.9)", transform: confirmOpen ? "translateY(0) scale(1)" : "translateY(16px) scale(.96)", opacity: confirmOpen ? 1 : 0, transition: "transform .45s cubic-bezier(.16,1,.3,1), opacity .3s ease" };
+    const confirmVM = oc ? { numero: oc.numero, totalText: this.fmtUSD(oc.totalUSD), totalARSText: this.fmtARS(oc.totalARS), puntos: Math.round(oc.totalUSD) } : { numero: "", totalText: "", totalARSText: "", puntos: 0 };
+
+    // --- Índice de Términos y Condiciones (scroll suave por sección) ---
+    const tSecciones = [
+      ["t1", "Aceptación de los términos"],
+      ["t2", "Naturaleza de los productos — uso exclusivo en investigación"],
+      ["t3", "Declaraciones y obligaciones del usuario"],
+      ["t4", "Ausencia de asesoramiento médico"],
+      ["t5", "Registro y cuenta de usuario"],
+      ["t6", "Precios, moneda y pagos"],
+      ["t7", "Envíos"],
+      ["t8", "Derecho de revocación (Botón de arrepentimiento)"],
+      ["t9", "Cambios y devoluciones"],
+      ["t10", "Protección de datos personales"],
+      ["t11", "Propiedad intelectual"],
+      ["t12", "Limitación de responsabilidad"],
+      ["t13", "Modificaciones"],
+      ["t14", "Ley aplicable y jurisdicción"],
+      ["t15", "Contacto"],
+    ];
+    const terminosIndex = tSecciones.map((s, i) => ({
+      n: i + 1, id: s[0], title: s[1],
+      onClick: () => { const el = (typeof document !== "undefined") && document.getElementById(s[0]); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 84, behavior: "smooth" }); },
+    }));
+
+    const acctVals = {
+      terminosIndex,
+      // sesión / header
+      loggedIn: session, loggedOut: !session,
+      userName, userFirst, userInitials: initials,
+      userMenuOpen: this.state.userMenuOpen, toggleUserMenu: this.toggleUserMenu, closeUserMenu: this.closeUserMenu,
+      logout: this.logout,
+      // routing
+      isIngresar: page === "ingresar", isCuenta: page === "cuenta",
+      isTerminos: page === "terminos", isPrivacidad: page === "privacidad",
+      // ingresar
+      authTab, isLoginTab: authTab === "login", isRegisterTab: authTab === "register",
+      authTabLoginStyle: authTab === "login" ? authTabOn : authTabOff,
+      authTabRegisterStyle: authTab === "register" ? authTabOn : authTabOff,
+      showAuthReason: !!this.state.authReason, authReason: this.state.authReason,
+      goLogin: () => this.setAuthTab("login"), goRegister: () => this.setAuthTab("register"),
+      loginEmail: this.state.loginEmail, loginPass: this.state.loginPass,
+      onLoginEmail: this.setField("loginEmail"), onLoginPass: this.setField("loginPass"),
+      doLogin: this.login, doLoginDemo: this.loginDemo,
+      hasLoginError: !!this.state.loginError, loginError: this.state.loginError,
+      regNombre: this.state.regNombre, regEmail: this.state.regEmail, regTel: this.state.regTel,
+      regProv: this.state.regProv, regPass: this.state.regPass, regPass2: this.state.regPass2,
+      onRegNombre: this.setField("regNombre"), onRegEmail: this.setField("regEmail"), onRegTel: this.setField("regTel"),
+      onRegProv: this.setField("regProv"), onRegPass: this.setField("regPass"), onRegPass2: this.setField("regPass2"),
+      provinceOpts,
+      regEmailBad, regPassShort, regPassMismatch,
+      regChkAge: this.state.regChkAge, regChkTerms: this.state.regChkTerms,
+      toggleRegAge: this.toggleRegAge, toggleRegTerms: this.toggleRegTerms,
+      regAgeBoxStyle: this.state.regChkAge ? cbOn : cbOff, regTermsBoxStyle: this.state.regChkTerms ? cbOn : cbOff,
+      regAgeRowStyle: this.state.regChkAge ? cbRowOn : cbRowOff, regTermsRowStyle: this.state.regChkTerms ? cbRowOn : cbRowOff,
+      regBtnStyle, doRegister: this.registerUser, canRegister,
+      // cuenta — stats con count-up
+      sinceText,
+      elPedidos, elPep, elTotalUSD, elTotalARS, elPuntos,
+      levelName: acc.levelName, nextName: acc.nextName, isMaxLevel: acc.isMax,
+      loyaltyProgress, loyaltyFaltanText, beneficios,
+      couponActive, couponUnits, refCode, copiedCode,
+      copyCode: this.copyCode, shareReferido: this.shareReferido,
+      copyVuelve5: () => this.copyCode("VUELVE5"),
+      copyVuelve5Label: this.state.copied === "VUELVE5" ? "¡Copiado!" : "Copiar",
+      copyRef: () => this.copyCode(refCode),
+      copyRefLabel: (refCode && this.state.copied === refCode) ? "¡Copiado!" : "Copiar",
+      puntosProgress: Math.min(100, Math.round(((user.puntos || 0) / 500) * 100)) + "%",
+      puntosFaltanText: (user.puntos || 0) >= 500 ? "¡Ya podés canjear un descuento!" : ("Te faltan " + (500 - (user.puntos || 0)) + " puntos para canjear un descuento"),
+      noEdit: !this.state.editData,
+      orders, hasOrders: orders.length > 0, noOrders: orders.length === 0,
+      // mis datos
+      editData: this.state.editData, startEdit: this.startEdit, cancelEdit: this.cancelEdit, saveEdit: this.saveEdit,
+      edNombre: this.state.edNombre, edEmail: this.state.edEmail, edTel: this.state.edTel, edProv: this.state.edProv,
+      onEdNombre: this.setField("edNombre"), onEdEmail: this.setField("edEmail"), onEdTel: this.setField("edTel"), onEdProv: this.setField("edProv"),
+      userEmail: user.email || "", userTel: user.telefono || "", userProv: user.provincia || "",
+      // finalizar pedido
+      finalizarPedido: this.finalizarPedido,
+      checkoutGateWrapStyle, checkoutGatePanelStyle, closeCheckoutGate: this.closeCheckoutGate, goToLoginForCheckout: this.goToLoginForCheckout,
+      confirmWrapStyle, confirmPanelStyle, closeConfirm: this.closeConfirm, confirm: confirmVM,
+      stopProp: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
+      forgotPass: () => this.showToast("Escribinos por WhatsApp y te ayudamos a recuperar el acceso."),
+    };
+
     return {
+      ...acctVals,
+      amMotion: this.props.amMotion ?? "vivo",
+      amShape: this.props.amShape ?? "redondeadas",
+      amDepth: this.props.amDepth ?? "flotante",
       isInicio: page === "inicio",
       isCatalogo: page === "catalogo",
       isProducto,
