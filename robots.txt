@@ -57,4 +57,4 @@ Allow: /
 User-agent: Bingbot
 Allow: /
 
-Sitemap: https://aminolabar.com.ar/sitemap.xml
+Sitemap: https://www.aminolabar.com/sitemap.xml

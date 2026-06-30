@@ -36,10 +36,10 @@ Los productos comercializados por AminoLabAr están destinados exclusivamente a 
 
 ## Enlaces
 
-- Inicio: https://aminolabar.com.ar/
-- Catálogo: https://aminolabar.com.ar/#/catalogo
-- Nosotros: https://aminolabar.com.ar/#/nosotros
-- Envíos: https://aminolabar.com.ar/#/envios
-- Preguntas frecuentes: https://aminolabar.com.ar/#/faq
-- Contacto: https://aminolabar.com.ar/#/contacto
+- Inicio: https://www.aminolabar.com/
+- Catálogo: https://www.aminolabar.com/#/catalogo
+- Nosotros: https://www.aminolabar.com/#/nosotros
+- Envíos: https://www.aminolabar.com/#/envios
+- Preguntas frecuentes: https://www.aminolabar.com/#/faq
+- Contacto: https://www.aminolabar.com/#/contacto
 - WhatsApp: https://wa.me/5492215227060

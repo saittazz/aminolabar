@@ -18,14 +18,14 @@
 <meta name="robots" content="index, follow, max-image-preview:large">
 <meta name="author" content="AminoLabAr">
 <meta name="language" content="es-AR">
-<link rel="canonical" href="https://aminolabar.com.ar/">
+<link rel="canonical" href="https://www.aminolabar.com/">
 <!-- Open Graph -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="AminoLabAr">
 <meta property="og:locale" content="es_AR">
 <meta property="og:title" content="AminoLabAr · Péptidos de investigación en Argentina | Importados de EE. UU.">
 <meta property="og:description" content="Péptidos de investigación importados de Estados Unidos, con COA por lote, envíos a todo el país por Andreani y despacho en 24 hs. Asesoría por WhatsApp.">
-<meta property="og:url" content="https://aminolabar.com.ar/">
+<meta property="og:url" content="https://www.aminolabar.com/">
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="AminoLabAr · Péptidos de investigación en Argentina">
@@ -38,9 +38,9 @@
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://aminolabar.com.ar/#organization",
+      "@id": "https://www.aminolabar.com/#organization",
       "name": "AminoLabAr",
-      "url": "https://aminolabar.com.ar",
+      "url": "https://www.aminolabar.com",
       "description": "Proveedor argentino de péptidos de investigación importados de Estados Unidos, con Certificado de Análisis (COA) por lote y envíos a todo el país.",
       "areaServed": { "@type": "Country", "name": "Argentina" },
       "knowsLanguage": "es-AR",
@@ -54,10 +54,10 @@
     },
     {
       "@type": "LocalBusiness",
-      "@id": "https://aminolabar.com.ar/#localbusiness",
+      "@id": "https://www.aminolabar.com/#localbusiness",
       "name": "AminoLabAr",
-      "url": "https://aminolabar.com.ar",
-      "image": "https://aminolabar.com.ar/og.jpg",
+      "url": "https://www.aminolabar.com",
+      "image": "https://www.aminolabar.com/og.jpg",
       "description": "Venta de péptidos de investigación importados de Estados Unidos. COA por lote disponible, asesoría personalizada y envíos a todo el país por Andreani con despacho en 24 hs hábiles.",
       "telephone": "+5492215227060",
       "priceRange": "$$",
@@ -749,7 +749,10 @@ input{font:inherit}
               <div style="position:relative;border:1px solid #E2E8F0;border-radius:16px;background:#fff;min-height:380px;display:flex;align-items:center;justify-content:center;overflow:hidden">
                 <div style="position:absolute;inset:0;background:radial-gradient(120% 120% at 30% 20%,#EAF2FB 0%,#F4F7FB 55%,#EDE7F3 100%)"></div>
                 <svg width="128" height="128" viewBox="0 0 24 24" fill="none" stroke="#9DB1C7" stroke-width=".9" stroke-linecap="round" stroke-linejoin="round" style="position:relative;z-index:1"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg>
-                <span style="position:absolute;left:14px;bottom:14px;z-index:1;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:#5A6B7B;background:#fff;border:1px solid #E2E8F0;border-radius:5px;padding:3px 9px">{{ product.presentacion }}</span>
+                <sc-if value="{{ product.hasImagen }}" hint-placeholder-val="{{ false }}">
+                  <img src="{{ product.imagen }}" alt="{{ product.nombre }}" style="position:absolute;inset:0;z-index:1;width:100%;height:100%;object-fit:contain"/>
+                </sc-if>
+                <span style="position:absolute;left:14px;bottom:14px;z-index:2;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:.04em;color:#5A6B7B;background:#fff;border:1px solid #E2E8F0;border-radius:5px;padding:3px 9px">{{ product.presentacion }}</span>
               </div>
 
               <!-- caja de compra -->
@@ -2041,12 +2044,17 @@ class Component extends DCLogic {
   // Dejar "" para usar el array local de respaldo.
   SHEET_URL = "https://opensheet.elk.sh/1lcKlkt_2ypRiZVFZqQMDCgmgsjnw13AKh7Fl3ptkML4/1";
 
+  // Ids de productos que ya tienen imagen propia en /img/<id>.png.
+  // Sumá el id acá cuando agregues una imagen nueva (o completá la columna
+  // "imagen" en la planilla para anularlo por fila).
+  IMG_DISPONIBLES = ["ghk-cu", "cjc-nodac-ipa"];
+
   // Texto legal reutilizado en footer y en cada ficha de producto (ANMAT).
   DISCLAIMER = "Productos destinados exclusivamente a investigación y colección. No aptos para consumo humano. No son medicamentos. No están registrados ni aprobados por ANMAT. No diagnostican, tratan, curan ni previenen ninguna enfermedad. La información del sitio es de carácter general y no constituye asesoramiento médico.";
 
   // ====== IDENTIDAD DE MARCA + SEO (FASE 5) ======
   // Dominio del sitio. REEMPLAZAR por el dominio real al publicar.
-  SITE_URL = "https://aminolabar.com.ar";
+  SITE_URL = "https://www.aminolabar.com";
   BRAND = "AminoLabAr";
   PHONE = "+5492215227060";              // E.164 — usado en schema y tel
   PHONE_DISPLAY = "+54 9 221 522-7060";
@@ -2485,6 +2493,7 @@ class Component extends DCLogic {
       investigacion: String(f.investigacion || "").trim(),
       enStock: /^(true|si|sí|1)$/i.test(String(f.enStock).trim()),
     };
+    if (f.imagen) prod.imagen = String(f.imagen).trim();
     const variantesTxt = String(f.variantes || "").trim();
     if (variantesTxt) {
       prod.variantes = variantesTxt
@@ -2820,6 +2829,8 @@ class Component extends DCLogic {
     const ars = this.precioARS(ventaUSD);
     return {
       id: p.id, nombre: p.nombre, investigacion: p.investigacion, presentacion,
+      imagen: p.imagen ? p.imagen : ("img/" + p.id + ".png"),
+      hasImagen: !!p.imagen || this.IMG_DISPONIBLES.includes(p.id),
       enStock, sinStock: !enStock, desde,
       hasCaps, caps,
       precioUSD: ventaUSD,
@@ -2936,6 +2947,8 @@ class Component extends DCLogic {
 
     return {
       id: p.id, nombre: p.nombre, investigacion: p.investigacion,
+      imagen: p.imagen ? p.imagen : ("img/" + p.id + ".png"),
+      hasImagen: !!p.imagen || this.IMG_DISPONIBLES.includes(p.id),
       enStock, sinStock: !enStock,
       hasVariantes: variantes.length > 0, variantes,
       presentacion,
