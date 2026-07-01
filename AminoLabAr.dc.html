@@ -1255,6 +1255,33 @@ input{font:inherit}
       </section>
     </sc-if>
 
+    <!-- ================= RESET (nueva contraseña) ================= -->
+    <sc-if value="{{ isReset }}" hint-placeholder-val="{{ false }}">
+      <section style="background:linear-gradient(160deg,#F7FAFD 0%,#EAF1F8 55%,#E3EDF6 100%)">
+        <div style="max-width:460px;margin:0 auto;width:100%;padding:clamp(40px,7vw,80px) 20px">
+          <div style="background:#fff;border-radius:18px;padding:clamp(24px,4vw,34px);box-shadow:0 30px 80px -28px rgba(11,36,64,.45),0 0 0 1px rgba(226,232,240,.9);animation:amSlideUp .4s cubic-bezier(.16,1,.3,1) both">
+            <h1 style="font-family:'Hanken Grotesk','Anek Latin',sans-serif;font-weight:800;font-size:clamp(22px,3vw,26px);color:#0B2440;margin-bottom:8px">Elegí tu nueva contraseña</h1>
+            <p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B;margin-bottom:22px">Ingresá una contraseña nueva para tu cuenta de AminoLabAr.</p>
+            <div style="display:flex;flex-direction:column;gap:15px">
+              <div>
+                <label style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#0B2440;margin-bottom:6px">Nueva contraseña</label>
+                <input type="password" value="{{ newPass }}" onChange="{{ onNewPass }}" placeholder="••••••••" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+              </div>
+              <div>
+                <label style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;font-weight:600;color:#0B2440;margin-bottom:6px">Repetir contraseña</label>
+                <input type="password" value="{{ newPass2 }}" onChange="{{ onNewPass2 }}" placeholder="••••••••" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:12px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+              </div>
+              <sc-if value="{{ hasResetError }}" hint-placeholder-val="{{ false }}">
+                <div style="display:flex;align-items:center;gap:7px;font-family:'Poppins',sans-serif;font-size:12.5px;color:#C0392B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>{{ resetError }}</div>
+              </sc-if>
+              <button onClick="{{ doResetPassword }}" style="margin-top:3px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0E5FB5;color:#fff;border:none;border-radius:11px;padding:15px 18px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 16px 30px -14px rgba(14,95,181,.7);transition:background .18s,transform .14s" style-hover="background:#0B4E97;transform:translateY(-1px)">Guardar contraseña</button>
+              <p style="font-family:'Poppins',sans-serif;font-size:11.5px;line-height:1.5;color:#94A3B8;text-align:center;margin-top:4px"><a href="#/ingresar" style="color:#0E5FB5;font-weight:600;text-decoration:none">Volver a iniciar sesión</a></p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </sc-if>
+
     <!-- ================= INGRESAR (login + crear cuenta) ================= -->
     <sc-if value="{{ isIngresar }}" hint-placeholder-val="{{ false }}">
       <section style="background:linear-gradient(160deg,#F7FAFD 0%,#EAF1F8 55%,#E3EDF6 100%)">
@@ -1271,10 +1298,12 @@ input{font:inherit}
                 <div style="display:flex;align-items:flex-start;gap:11px"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:rgba(31,169,113,.14);color:#15875A;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-family:'Poppins',sans-serif;font-size:14px;color:#1C2733;line-height:1.5"><strong style="color:#0B2440">Envío gratis</strong> y beneficios por nivel de cliente.</span></div>
                 <div style="display:flex;align-items:flex-start;gap:11px"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:rgba(31,169,113,.14);color:#15875A;display:inline-flex;align-items:center;justify-content:center"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span><span style="font-family:'Poppins',sans-serif;font-size:14px;color:#1C2733;line-height:1.5"><strong style="color:#0B2440">AminoPuntos</strong> y cupones por cada compra.</span></div>
               </div>
+              <sc-if value="{{ verDemo }}" hint-placeholder-val="{{ false }}">
               <div style="margin-top:24px;display:flex;align-items:center;gap:12px;border:1px dashed #B9CBE0;background:rgba(255,255,255,.6);border-radius:12px;padding:13px 16px;max-width:460px">
                 <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:8px;background:#0B2440;color:#fff"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.4"></circle><path d="M5 20c0-3.6 3.1-6 7-6s7 2.4 7 6"></path></svg></span>
                 <div><div style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#5A6B7B">Probá la cuenta demo poblada:</div><div style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#0B2440;margin-top:2px">demo@aminolabar.com · demo1234</div></div>
               </div>
+              </sc-if>
             </div>
 
             <!-- Columna tarjeta auth -->
@@ -1307,8 +1336,10 @@ input{font:inherit}
                     <div style="display:flex;align-items:center;gap:7px;font-family:'Poppins',sans-serif;font-size:12.5px;color:#C0392B"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8v5M12 16h.01"></path></svg>{{ loginError }}</div>
                   </sc-if>
                   <button onClick="{{ doLogin }}" style="margin-top:3px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#0E5FB5;color:#fff;border:none;border-radius:11px;padding:15px 18px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15.5px;cursor:pointer;box-shadow:0 16px 30px -14px rgba(14,95,181,.7);transition:background .18s,transform .14s" style-hover="background:#0B4E97;transform:translateY(-1px)">Entrar</button>
+                  <sc-if value="{{ verDemo }}" hint-placeholder-val="{{ false }}">
                   <div style="display:flex;align-items:center;gap:12px;margin:4px 0"><span style="flex:1;height:1px;background:#E7EDF4"></span><span style="font-family:'Poppins',sans-serif;font-size:11.5px;color:#9DB1C7">o</span><span style="flex:1;height:1px;background:#E7EDF4"></span></div>
                   <button onClick="{{ doLoginDemo }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:11px;padding:13px 18px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;cursor:pointer;transition:border-color .15s,background .15s" style-hover="border-color:#0E5FB5;color:#0E5FB5;background:#F4F7FB">Entrar con la cuenta demo</button>
+                  </sc-if>
                   <p style="font-family:'Poppins',sans-serif;font-size:11.5px;line-height:1.5;color:#94A3B8;text-align:center;margin-top:4px">¿No tenés cuenta? <button onClick="{{ goRegister }}" style="background:none;border:none;color:#0E5FB5;font-family:'Poppins',sans-serif;font-size:11.5px;font-weight:600;cursor:pointer;padding:0">Creá una gratis</button></p>
                 </div>
               </sc-if>
@@ -2148,6 +2179,8 @@ class Component extends DCLogic {
     now: Date.now(),       // tic para el contador regresivo del cupón
     // campos de formularios (controlados)
     authBusy: false,       // evita doble submit mientras Supabase responde
+    recovering: false,     // llegó por link de recuperación de contraseña
+    newPass: "", newPass2: "", resetError: "",
     loginEmail: "", loginPass: "",
     regNombre: "", regEmail: "", regTel: "", regProv: "", regPass: "", regPass2: "",
     regChkAge: false, regChkTerms: false,
@@ -2165,9 +2198,23 @@ class Component extends DCLogic {
   sb = null;
   sbClient() {
     if (!this.sb && typeof window !== "undefined" && window.supabase) {
-      this.sb = window.supabase.createClient(this.SUPABASE_URL, this.SUPABASE_ANON);
+      this.sb = window.supabase.createClient(this.SUPABASE_URL, this.SUPABASE_ANON, {
+        auth: { flowType: "pkce", detectSessionInUrl: true, persistSession: true, autoRefreshToken: true },
+      });
     }
     return this.sb;
+  }
+
+  // Escucha el evento de recuperacion de contrasena y lleva a #/reset.
+  setupAuthListener() {
+    const sb = this.sbClient();
+    if (!sb || this._authListener) return;
+    this._authListener = sb.auth.onAuthStateChange((event) => {
+      if (event === "PASSWORD_RECOVERY") {
+        this.setState({ recovering: true, resetError: "" });
+        if (typeof window !== "undefined") window.location.hash = "#/reset";
+      }
+    });
   }
 
   // Arma el objeto usuario del estado a partir del email (auth) + fila profiles.
@@ -2373,6 +2420,34 @@ class Component extends DCLogic {
     try { localStorage.removeItem("amino_session"); } catch (e) {} // limpia sesión DEMO
     this.setState({ session: false, userMenuOpen: false });
     if (typeof window !== "undefined") window.location.hash = "#/inicio";
+  };
+
+  // ====== RECUPERAR CONTRASEÑA ======
+  // Manda el email de reseteo. El cliente escribe su email en el campo de login.
+  forgotPass = async () => {
+    const email = (this.state.loginEmail || "").trim().toLowerCase();
+    if (!this.isEmail(email)) { this.showToast("Escribí tu email arriba y volvé a tocar 'Olvidé mi contraseña'."); return; }
+    const sb = this.sbClient();
+    if (!sb) { this.showToast("No se pudo conectar. Reintentá."); return; }
+    const redirectTo = (typeof window !== "undefined" ? window.location.origin + "/" : this.SITE_URL);
+    try { await sb.auth.resetPasswordForEmail(email, { redirectTo }); } catch (e) {}
+    this.showToast("Si el email está registrado, te mandamos un enlace para restablecer tu contraseña.");
+  };
+
+  // Guarda la contraseña nueva (dentro de la sesión de recuperación).
+  doResetPassword = async () => {
+    const p1 = this.state.newPass || "", p2 = this.state.newPass2 || "";
+    if (p1.length < 6) { this.setState({ resetError: "La contraseña debe tener al menos 6 caracteres." }); return; }
+    if (p1 !== p2) { this.setState({ resetError: "Las contraseñas no coinciden." }); return; }
+    const sb = this.sbClient();
+    if (!sb) { this.setState({ resetError: "No se pudo conectar. Reintentá." }); return; }
+    this.setState({ authBusy: true, resetError: "" });
+    const { error } = await sb.auth.updateUser({ password: p1 });
+    if (error) { this.setState({ authBusy: false, resetError: "El enlace venció o no es válido. Pedí uno nuevo desde 'Olvidé mi contraseña'." }); return; }
+    this.setState({ authBusy: false, recovering: false, newPass: "", newPass2: "" });
+    this.showToast("Listo, tu contraseña se actualizó.");
+    await this.loadAuth(); // la sesión de recuperación ya es una sesión válida → queda logueado
+    if (typeof window !== "undefined") window.location.hash = "#/cuenta";
   };
 
   // ====== MIS DATOS (edición MOCK) ======
@@ -2754,7 +2829,8 @@ class Component extends DCLogic {
     window.addEventListener("resize", this.onResize);
     this.actualizarDolarBlue();   // dólar blue en vivo (DolarAPI)
     this.actualizarCatalogo();    // catálogo en vivo (Google Sheets)
-    this.loadAuth();              // sesión persistida (MOCK localStorage)
+    this.setupAuthListener();     // recuperación de contraseña (evento PASSWORD_RECOVERY)
+    this.loadAuth();              // sesión persistida (Supabase) o DEMO local
     this.injectSchema();   // datos estructurados JSON-LD (Products, FAQ, Reviews)
     this.syncFromHash();
     // Tic del contador regresivo del cupón (solo re-render cuando estás en #/cuenta)
@@ -2883,6 +2959,7 @@ class Component extends DCLogic {
     else if (parts[0] === "carrito") page = "carrito";
     else if (parts[0] === "medios-pago") page = "medios-pago";
     else if (parts[0] === "ingresar") page = "ingresar";
+    else if (parts[0] === "reset") page = "reset";
     else if (parts[0] === "cuenta") page = "cuenta";
     else if (parts[0] === "terminos") page = "terminos";
     else if (parts[0] === "privacidad") page = "privacidad";
@@ -3392,7 +3469,7 @@ class Component extends DCLogic {
       userMenuOpen: this.state.userMenuOpen, toggleUserMenu: this.toggleUserMenu, closeUserMenu: this.closeUserMenu,
       logout: this.logout,
       // routing
-      isIngresar: page === "ingresar", isCuenta: page === "cuenta",
+      isIngresar: page === "ingresar", isCuenta: page === "cuenta", isReset: page === "reset",
       isTerminos: page === "terminos", isPrivacidad: page === "privacidad",
       // ingresar
       authTab, isLoginTab: authTab === "login", isRegisterTab: authTab === "register",
@@ -3422,6 +3499,7 @@ class Component extends DCLogic {
       loyaltyProgress, loyaltyFaltanText, beneficios,
       couponActive, couponUnits, refCode, copiedCode,
       verCupon: false, verReferidos: false,   // Fase 3 pausadas: cupones y referidos ocultos (codigo intacto)
+      verDemo: false,   // cuenta demo oculta en produccion (poner true para presentaciones)
       copyCode: this.copyCode, shareReferido: this.shareReferido,
       copyVuelve5: () => this.copyCode("VUELVE5"),
       copyVuelve5Label: this.state.copied === "VUELVE5" ? "¡Copiado!" : "Copiar",
@@ -3441,7 +3519,12 @@ class Component extends DCLogic {
       checkoutGateWrapStyle, checkoutGatePanelStyle, closeCheckoutGate: this.closeCheckoutGate, goToLoginForCheckout: this.goToLoginForCheckout,
       confirmWrapStyle, confirmPanelStyle, closeConfirm: this.closeConfirm, confirm: confirmVM,
       stopProp: (e) => { if (e && e.stopPropagation) e.stopPropagation(); },
-      forgotPass: () => this.showToast("Escribinos por WhatsApp y te ayudamos a recuperar el acceso."),
+      forgotPass: this.forgotPass,
+      // recuperar contraseña (#/reset)
+      newPass: this.state.newPass, newPass2: this.state.newPass2,
+      onNewPass: this.setField("newPass"), onNewPass2: this.setField("newPass2"),
+      hasResetError: !!this.state.resetError, resetError: this.state.resetError,
+      doResetPassword: this.doResetPassword,
     };
 
     return {
