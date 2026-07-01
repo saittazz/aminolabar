@@ -2975,7 +2975,9 @@ class Component extends DCLogic {
       const ordenes = vis.map((it) => it.p.orden).filter((o) => typeof o === "number");
       const conBadge = vis.find((it) => it.p.badge);
       const coas = [];
-      vis.forEach((it) => { if (it.p.coas) coas.push.apply(coas, it.p.coas); });
+      vis.forEach((it) => {
+        (it.p.coas || []).forEach((coa) => coas.push(Object.assign({}, coa, { _ownerId: it.p.id, _label: it.label })));
+      });
       return {
         id: x.base, nombre: nombreBase, investigacion: first.investigacion, variantes: variantes,
         enStock: vis.some((it) => it.p.enStock),
@@ -3423,7 +3425,12 @@ class Component extends DCLogic {
     const cons = ficha.conservacion || (ficha.seco ? this.CONS_SECO : (tieneFicha ? this.CONS_STD : null));
     // COA: la planilla manda; si no hay, cae al hardcodeado en FICHAS del id EXACTO
     // (respaldo, sin alias, para no heredar el COA de otra presentación).
-    const coasFuente = (p.coas && p.coas.length) ? p.coas : ((this.FICHAS[p.id] && this.FICHAS[p.id].coas) || []);
+    let coasFuente = (p.coas && p.coas.length) ? p.coas : ((this.FICHAS[p.id] && this.FICHAS[p.id].coas) || []);
+    // En productos con capacidades, mostrar SOLO el COA de la variante seleccionada.
+    if (p.variantes && p.variantes.length && p.coas && p.coas.length) {
+      const selId = p.variantes[Math.min(this.state.variantIndex, p.variantes.length - 1)].id;
+      coasFuente = coasFuente.filter((c) => !c._ownerId || c._ownerId === selId);
+    }
     const coaCards = coasFuente.map((coa) => ({
       variante: coa.variante, lote: coa.lote, pureza: coa.pureza,
       rotulado: coa.rotulado, real: coa.real, fecha: coa.fecha,
