@@ -1973,9 +1973,17 @@ class Component extends DCLogic {
     { q: "¿Cuánto tarda el envío?", a: "Despachamos dentro de las 24 horas hábiles una vez confirmado el pago. El tiempo de tránsito depende de Andreani y de tu localidad de destino." },
   ];
 
+  // Conservación estándar para péptidos liofilizados (inyectables) y para productos
+  // orales/materia prima secos. Se aplican por defecto en buildDetail salvo que la
+  // ficha traiga su propia "conservacion". Evita repetir el bloque en cada entrada.
+  CONS_STD = { notas: ["Proteger de la luz", "No congelar una vez reconstituido", "Refrigerar tras reconstituir"], liofilizado: "-20 °C · hasta 24 meses", reconstituido: "2-8 °C · 3-4 semanas" };
+  CONS_SECO = { notas: ["Guardar en lugar fresco y seco", "Proteger de la luz y la humedad"], liofilizado: "Temperatura ambiente · según vencimiento", reconstituido: "No requiere reconstitución" };
+
   // ====== FICHAS TÉCNICAS POR PRODUCTO (compuesto + conservación + COA + referencias) ======
   // Datos ricos para la página de producto, keyed por id. Si un id no está acá, la ficha
   // muestra solo lo básico (las secciones extra se ocultan). Se cargan progresivamente.
+  // El perfil molecular (compuesto/nombres/descripción) es dato científico estático y vive
+  // acá; el COA es dato de negocio por lote y se carga desde la planilla (columna "coa").
   FICHAS = {
     "ghk-cu": {
       subtitulo: "Compuesto dérmico · cobre-péptido",
@@ -2018,6 +2026,323 @@ class Component extends DCLogic {
         { journal: "Journal of Cosmetic Science", titulo: "Estudio doble ciego controlado con placebo de crema facial con GHK-Cu (12 semanas)", anio: "2005", autores: "Finkley et al.", idLabel: "", url: "" },
         { journal: "Journal of Aging Science and Clinical Practice", titulo: "Efectos de GHK-Cu en nanovehículos sobre la expresión de MMP y parámetros de arrugas faciales", anio: "2009", autores: "Gorouhi F, Maibach HI", idLabel: "", url: "" },
       ],
+    },
+
+    // ===== GLP-1 / metabólicos =====
+    "gla-1-sm": {
+      subtitulo: "Análogo de GLP-1 · metabólico",
+      nombresCientificos: ["Semaglutida", "Análogo de GLP-1 acilado"],
+      descripcion: "Análogo del péptido similar al glucagón tipo 1 (GLP-1), acilado con una cadena de ácido graso para prolongar su vida media. Estudiado por su efecto sobre el control del apetito, la glucemia y el peso corporal.",
+      compuesto: { tipo: "Análogo de GLP-1 (acilado)", cas: "910463-68-2", pesoMolecular: "4113,58 g/mol", aminoacidos: "31 (análogo de GLP-1)", formula: "C187H291N45O59" },
+    },
+    "gla-2-trz": {
+      subtitulo: "Doble agonista GIP/GLP-1 · metabólico",
+      nombresCientificos: ["Tirzepatida", "LY3298176"],
+      descripcion: "Doble agonista de los receptores de GIP y GLP-1, con dos residuos de ácido aminoisobutírico (Aib) y una cadena de ácido graso C20 que resiste la degradación por DPP-4. Estudiado en peso corporal y metabolismo de la glucosa.",
+      compuesto: { tipo: "Doble agonista GIP/GLP-1", cas: "2023788-19-2", pesoMolecular: "4813,45 g/mol", aminoacidos: "39 (37 codificados + 2 Aib)", formula: "C225H348N48O68" },
+    },
+    "gla-3-rt": {
+      subtitulo: "Triple agonista GIP/GLP-1/glucagón · metabólico",
+      nombresCientificos: ["Retatrutida", "LY3437943"],
+      descripcion: "Triple agonista de los receptores de GIP, GLP-1 y glucagón, primero en su clase. Diseñado para actuar sobre las tres vías metabólicas a la vez; en estudios muestra efectos marcados sobre peso y metabolismo.",
+      compuesto: { tipo: "Triple agonista GIP/GLP-1/glucagón", cas: "2381089-83-2", pesoMolecular: "4894,58 g/mol", aminoacidos: "39", formula: "C228H350N48O66" },
+    },
+    "cagrilintide": {
+      subtitulo: "Análogo de amilina · metabólico",
+      nombresCientificos: ["Cagrilintida", "AM833"],
+      descripcion: "Análogo de amilina acilado de acción prolongada, agonista de los receptores de amilina y de calcitonina. Estudiado por su efecto sobre la saciedad y el peso corporal, a menudo junto a análogos de GLP-1.",
+      compuesto: { tipo: "Análogo de amilina (acilado)", cas: "1415456-99-3", pesoMolecular: "4409,0 g/mol", aminoacidos: "37", formula: "C293H452N80O85" },
+    },
+    "aod-9604": {
+      subtitulo: "Fragmento de GH (176-191)",
+      nombresCientificos: ["AOD-9604", "Fragmento hGH 176-191 (Tyr)"],
+      descripcion: "Fragmento modificado de la región 176-191 de la hormona de crecimiento, con una tirosina añadida. Estudiado en metabolismo lipídico y quema de grasa, sin efecto sobre la glucemia.",
+      compuesto: { tipo: "Fragmento de hGH", cas: "221231-10-3", pesoMolecular: "1815,1 g/mol", aminoacidos: "16", formula: "C78H123N23O23S2" },
+    },
+
+    // ===== Reparación / recuperación =====
+    "bpc-157": {
+      subtitulo: "Pentadecapéptido citoprotector",
+      nombresCientificos: ["Body Protection Compound 157", "PL 14736"],
+      descripcion: "Pentadecapéptido derivado de una secuencia protectora del jugo gástrico. Estudiado in vitro y en animales por su rol en la reparación de tendón, ligamento, músculo y mucosa gastrointestinal, y en angiogénesis.",
+      compuesto: { tipo: "Péptido sintético", cas: "137525-51-0", pesoMolecular: "1419,55 g/mol", aminoacidos: "15 (pentadecapéptido)", secuencia: "Gly-Glu-Pro-Pro-Pro-Gly-Lys-Pro-Ala-Asp-Asp-Ala-Gly-Leu-Val", formula: "C62H98N16O22" },
+    },
+    "tb-500": {
+      subtitulo: "Timosina Beta-4 (sintética)",
+      nombresCientificos: ["Thymosin Beta-4", "Tβ4", "TB-500"],
+      descripcion: "Forma sintética de la timosina beta-4, péptido de 43 aminoácidos con dominio de unión a actina. Estudiado en reparación tisular, flexibilidad, angiogénesis y recuperación; suele combinarse con BPC-157.",
+      compuesto: { tipo: "Péptido sintético (Tβ4)", cas: "77591-33-4", pesoMolecular: "4963,4 g/mol", aminoacidos: "43", formula: "C212H350N56O78S" },
+    },
+    "kpv": {
+      subtitulo: "Antiinflamatorio (α-MSH 11-13)",
+      nombresCientificos: ["KPV", "Lys-Pro-Val"],
+      descripcion: "Tripéptido, fragmento C-terminal de la α-MSH. Estudiado por su efecto antiinflamatorio en piel e intestino.",
+      compuesto: { tipo: "Tripéptido", cas: "67727-97-3", pesoMolecular: "342,44 g/mol", aminoacidos: "3 (tripéptido)", secuencia: "Lys-Pro-Val", formula: "C16H30N4O4" },
+    },
+    "ara-290": {
+      subtitulo: "Péptido derivado de eritropoyetina",
+      nombresCientificos: ["Cibinetida", "ARA-290"],
+      descripcion: "Péptido de 11 aminoácidos que reproduce la región del receptor innato de reparación de la eritropoyetina, sin efecto eritropoyético. Estudiado en neuropatía, dolor e inflamación.",
+      compuesto: { tipo: "Undecapéptido", cas: "1208243-40-0", aminoacidos: "11 (undecapéptido)" },
+    },
+
+    // ===== Secretagogos de GH (GHRH / GHRP) =====
+    "ipamorelin": {
+      subtitulo: "Secretagogo de GH (GHRP selectivo)",
+      nombresCientificos: ["Ipamorelina", "NNC 26-0161"],
+      descripcion: "Pentapéptido agonista selectivo del receptor de secretagogos de GH (GHS-R). Estimula la liberación de hormona de crecimiento con mínima acción sobre cortisol, prolactina y grelina; opción suave de entrada.",
+      compuesto: { tipo: "Pentapéptido", cas: "170851-70-4", pesoMolecular: "711,85 g/mol", aminoacidos: "5 (pentapéptido)", secuencia: "Aib-His-D-2-Nal-D-Phe-Lys-NH2", formula: "C38H49N9O5" },
+    },
+    "tesamorelin": {
+      subtitulo: "Análogo de GHRH",
+      nombresCientificos: ["Tesamorelina", "TH9507"],
+      descripcion: "Análogo estabilizado del factor liberador de hormona de crecimiento (GHRH) de 44 aminoácidos, con un grupo hexenoílo en el N-terminal. Estudiado por su efecto sobre la grasa visceral.",
+      compuesto: { tipo: "Análogo de GHRH", cas: "218949-48-5", pesoMolecular: "5135,9 g/mol", aminoacidos: "44", formula: "C221H366N72O67S" },
+    },
+    "sermorelin": {
+      subtitulo: "Análogo de GHRH (1-29)",
+      nombresCientificos: ["Sermorelina", "GRF(1-29)"],
+      descripcion: "Análogo de los primeros 29 aminoácidos del GHRH humano, la porción más corta con actividad plena. Estudiado como estimulante de la liberación de GH.",
+      compuesto: { tipo: "Análogo de GHRH (1-29)", cas: "86168-78-7", pesoMolecular: "3357,9 g/mol", aminoacidos: "29", formula: "C149H246N44O42S" },
+    },
+    "cjc-sin-dac": {
+      subtitulo: "Análogo de GHRH de vida media corta",
+      nombresCientificos: ["Mod GRF (1-29)", "CJC-1295 sin DAC"],
+      descripcion: "Versión modificada del GRF(1-29) con cuatro sustituciones que aumentan su estabilidad, sin el complejo DAC. Vida media corta, en pulsos; suele combinarse con Ipamorelina.",
+      compuesto: { tipo: "Análogo de GHRH (Mod GRF 1-29)", cas: "863288-34-0", pesoMolecular: "3367,9 g/mol", aminoacidos: "29", formula: "C152H252N44O42" },
+    },
+    "cjc-con-dac": {
+      subtitulo: "Análogo de GHRH de vida media larga",
+      nombresCientificos: ["CJC-1295 con DAC", "DAC:GRF"],
+      descripcion: "Análogo de GHRH con Complejo de Afinidad a Fármaco (DAC) que se une a la albúmina y prolonga la vida media a varios días, sosteniendo los niveles de GH.",
+      compuesto: { tipo: "Análogo de GHRH (con DAC)", pesoMolecular: "3647,10 g/mol", aminoacidos: "30", formula: "C165H269N47O46" },
+    },
+
+    // ===== Nootrópicos / neuro =====
+    "semax": {
+      subtitulo: "Nootrópico (ACTH 4-7 + PGP)",
+      nombresCientificos: ["Semax", "Met-Glu-His-Phe-Pro-Gly-Pro"],
+      descripcion: "Heptapéptido derivado del fragmento ACTH(4-7) con un tripéptido Pro-Gly-Pro que lo estabiliza. Estudiado por su efecto sobre foco, memoria y neuroprotección; también en spray nasal.",
+      compuesto: { tipo: "Heptapéptido", cas: "80714-61-0", pesoMolecular: "813,9 g/mol", aminoacidos: "7 (heptapéptido)", secuencia: "Met-Glu-His-Phe-Pro-Gly-Pro", formula: "C37H51N9O10S" },
+    },
+    "selank": {
+      subtitulo: "Ansiolítico peptídico",
+      nombresCientificos: ["Selank", "Thr-Lys-Pro-Arg-Pro-Gly-Pro"],
+      descripcion: "Heptapéptido análogo de la tuftsina. Estudiado por su efecto ansiolítico y sobre el foco sin sedación; también en spray nasal.",
+      compuesto: { tipo: "Heptapéptido", cas: "129954-34-3", pesoMolecular: "751,9 g/mol", aminoacidos: "7 (heptapéptido)", secuencia: "Thr-Lys-Pro-Arg-Pro-Gly-Pro", formula: "C33H57N11O9" },
+    },
+
+    // ===== Sueño / longevidad =====
+    "epitalon": {
+      subtitulo: "Bioregulador pineal",
+      nombresCientificos: ["Epithalon", "Epitalón", "Ala-Glu-Asp-Gly"],
+      descripcion: "Tetrapéptido sintético derivado de la epitalamina pineal. Estudiado por su efecto sobre la telomerasa, el ritmo circadiano y la longevidad; se usa en ciclos.",
+      compuesto: { tipo: "Tetrapéptido", cas: "307297-39-8", pesoMolecular: "390,35 g/mol", aminoacidos: "4 (tetrapéptido)", secuencia: "Ala-Glu-Asp-Gly", formula: "C14H22N4O9" },
+    },
+    "dsip": {
+      subtitulo: "Péptido inductor del sueño delta",
+      nombresCientificos: ["Delta Sleep-Inducing Peptide", "DSIP"],
+      descripcion: "Nonapéptido asociado a la regulación del sueño profundo (ondas delta), el estrés y el ritmo circadiano.",
+      compuesto: { tipo: "Nonapéptido", cas: "62568-57-4", pesoMolecular: "848,81 g/mol", aminoacidos: "9 (nonapéptido)", secuencia: "Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu", formula: "C35H48N10O15" },
+    },
+
+    // ===== Mitocondriales / metabólicos =====
+    "mots-c": {
+      subtitulo: "Péptido mitocondrial",
+      nombresCientificos: ["MOTS-c", "Mitochondrial ORF of the 12S rRNA type-c"],
+      descripcion: "Péptido de 16 aminoácidos codificado en el ADN mitocondrial, activador de la vía AMPK. Estudiado en homeostasis metabólica, sensibilidad a la insulina y ejercicio.",
+      compuesto: { tipo: "Péptido mitocondrial", cas: "1627580-64-6", pesoMolecular: "2174,6 g/mol", aminoacidos: "16", secuencia: "Met-Arg-Trp-Gln-Glu-Met-Gly-Tyr-Ile-Phe-Tyr-Pro-Arg-Lys-Leu-Arg", formula: "C101H152N28O22S2" },
+    },
+    "ss-31": {
+      subtitulo: "Péptido dirigido a mitocondria",
+      nombresCientificos: ["Elamipretida", "SS-31", "MTP-131"],
+      descripcion: "Tetrapéptido dirigido a la membrana mitocondrial interna, se une a la cardiolipina. Estudiado por su rol antioxidante y en la función mitocondrial.",
+      compuesto: { tipo: "Tetrapéptido", cas: "736992-21-5", pesoMolecular: "639,8 g/mol", aminoacidos: "4 (tetrapéptido)", secuencia: "D-Arg-Dmt-Lys-Phe-NH2", formula: "C32H49N9O5" },
+    },
+    "5amino1mq": {
+      subtitulo: "Inhibidor de NNMT",
+      nombresCientificos: ["5-Amino-1-metilquinolinio", "5-Amino-1MQ"],
+      descripcion: "Molécula pequeña inhibidora de la enzima NNMT. Estudiada en metabolismo, masa muscular y grasa; no es un péptido clásico pero va en la misma categoría comercial.",
+      compuesto: { tipo: "Molécula pequeña (quinolinio)" },
+    },
+    "slu-pp-332": {
+      subtitulo: "Agonista de ERR",
+      nombresCientificos: ["SLU-PP-332"],
+      descripcion: "Molécula pequeña agonista de los receptores relacionados con estrógenos (ERR). Estudiada en metabolismo energético y resistencia; no es un péptido.",
+      compuesto: { tipo: "Molécula pequeña (agonista ERR)" },
+    },
+    "tesofensine": {
+      subtitulo: "Inhibidor de recaptación (molécula pequeña)",
+      nombresCientificos: ["Tesofensina", "NS2330"],
+      descripcion: "Molécula pequeña inhibidora de la recaptación de noradrenalina, dopamina y serotonina. Estudiada en peso corporal y apetito; no es un péptido.",
+      compuesto: { tipo: "Molécula pequeña" },
+      seco: true,
+    },
+
+    // ===== Pigmentación / libido =====
+    "pt-141": {
+      subtitulo: "Melanocortina · libido",
+      nombresCientificos: ["Bremelanotida", "PT-141"],
+      descripcion: "Heptapéptido cíclico derivado de la Melanotan-2, agonista de receptores de melanocortina enfocado en la función sexual y la libido, sin la pigmentación marcada de la MT-2.",
+      compuesto: { tipo: "Heptapéptido cíclico", cas: "189691-06-3", pesoMolecular: "1025,2 g/mol", aminoacidos: "7 (cíclico)", secuencia: "Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]", formula: "C50H68N14O10" },
+    },
+    "melanotan-1": {
+      subtitulo: "Análogo de α-MSH · pigmentación",
+      nombresCientificos: ["Afamelanotida", "Melanotan I", "[Nle4-D-Phe7]-α-MSH"],
+      descripcion: "Análogo lineal de la hormona estimulante de melanocitos alfa (α-MSH). Estudiado por su efecto sobre la pigmentación y la fotoprotección, más selectivo que la MT-2.",
+      compuesto: { tipo: "Análogo de α-MSH", cas: "75921-69-6", pesoMolecular: "1646,85 g/mol", aminoacidos: "13", formula: "C78H111N21O19" },
+    },
+    "melanotan-2": {
+      subtitulo: "Análogo de melanocortina · pigmentación",
+      nombresCientificos: ["Melanotan II", "MT-2"],
+      descripcion: "Análogo cíclico de melanocortina más potente que la MT-1. Estudiado por su efecto sobre la pigmentación, con acción adicional sobre libido y apetito.",
+      compuesto: { tipo: "Heptapéptido cíclico", cas: "121062-08-6", pesoMolecular: "1024,18 g/mol", aminoacidos: "7 (cíclico)", formula: "C50H69N15O9" },
+    },
+    "kisspeptin": {
+      subtitulo: "Eje reproductivo",
+      nombresCientificos: ["Kisspeptina-10", "KP-10", "Metastina (45-54)"],
+      descripcion: "Decapéptido, fragmento activo de la kisspeptina, agonista del receptor KISS1R (GPR54). Estudiado por su rol en el eje reproductivo y la liberación de gonadotropinas.",
+      compuesto: { tipo: "Decapéptido", cas: "374675-21-5", pesoMolecular: "1302,5 g/mol", aminoacidos: "10 (decapéptido)", formula: "C63H83N17O14" },
+    },
+
+    // ===== Inmunidad / otros =====
+    "thymosin-a1": {
+      subtitulo: "Inmunomodulador",
+      nombresCientificos: ["Timosina Alfa-1", "Timalfasina", "Tα1"],
+      descripcion: "Péptido acetilado de 28 aminoácidos derivado de la timosina fracción 5. Estudiado por su rol en la modulación de la respuesta inmune.",
+      compuesto: { tipo: "Péptido acetilado", cas: "62304-98-7", pesoMolecular: "3108,3 g/mol", aminoacidos: "28", formula: "C129H215N33O55" },
+    },
+    "vip": {
+      subtitulo: "Péptido intestinal vasoactivo",
+      nombresCientificos: ["Vasoactive Intestinal Peptide", "VIP"],
+      descripcion: "Péptido de 28 aminoácidos de la familia secretina/glucagón. Estudiado por su rol vasodilatador, inmunomodulador y en la función pulmonar.",
+      compuesto: { tipo: "Péptido de 28 aa", cas: "40077-57-4", pesoMolecular: "3326,8 g/mol", aminoacidos: "28", formula: "C147H237N43O43S" },
+    },
+    "glutathione": {
+      subtitulo: "Antioxidante (tripéptido)",
+      nombresCientificos: ["Glutatión", "GSH", "γ-Glu-Cys-Gly"],
+      descripcion: "Tripéptido antioxidante endógeno formado por glutamato, cisteína y glicina. Estudiado por su rol en la defensa antioxidante y la detoxificación celular.",
+      compuesto: { tipo: "Tripéptido", cas: "70-18-8", pesoMolecular: "307,32 g/mol", aminoacidos: "3 (tripéptido)", secuencia: "γ-Glu-Cys-Gly", formula: "C10H17N3O6S" },
+    },
+    "methylene-blue": {
+      subtitulo: "Compuesto redox (fenotiazina)",
+      nombresCientificos: ["Azul de metileno", "Cloruro de metiltioninio"],
+      descripcion: "Colorante fenotiazínico con propiedades redox. Estudiado por su rol en la función mitocondrial y como agente de investigación; no es un péptido.",
+      compuesto: { tipo: "Molécula pequeña (fenotiazina)", cas: "61-73-4", pesoMolecular: "319,85 g/mol", formula: "C16H18ClN3S" },
+      seco: true,
+    },
+    "nad-plus": {
+      subtitulo: "Coenzima metabólica",
+      nombresCientificos: ["Dinucleótido de nicotinamida y adenina", "NAD+"],
+      descripcion: "Coenzima central en el metabolismo energético y las reacciones redox celulares. Estudiada por su rol en la producción de energía y la longevidad; no es un péptido.",
+      compuesto: { tipo: "Coenzima (dinucleótido)", cas: "53-84-9", pesoMolecular: "663,43 g/mol", formula: "C21H27N7O14P2" },
+    },
+    "foxo4-dri": {
+      subtitulo: "Péptido senolítico (retro-inverso)",
+      nombresCientificos: ["FOXO4-DRI", "FOXO4 D-Retro-Inverso"],
+      descripcion: "Péptido retro-inverso (aminoácidos D) derivado de FOXO4, diseñado para interferir la interacción FOXO4-p53. Estudiado como senolítico para eliminar células senescentes.",
+      compuesto: { tipo: "Péptido retro-inverso (D-aminoácidos)" },
+    },
+
+    // ===== Cobre-péptidos / cosméticos (materia prima) =====
+    "ahk-cu": {
+      subtitulo: "Cobre-péptido cosmético",
+      nombresCientificos: ["AHK-Cu", "Ala-His-Lys:cobre"],
+      descripcion: "Tripéptido de cobre (Ala-His-Lys) usado como materia prima cosmética. Estudiado por su efecto sobre el folículo piloso y la síntesis de colágeno, en la misma familia que el GHK-Cu.",
+      compuesto: { tipo: "Complejo cobre-péptido", cas: "129179-83-5", aminoacidos: "3 (tripéptido)", secuencia: "Ala-His-Lys" },
+    },
+    "snap-8": {
+      subtitulo: "Octapéptido cosmético",
+      nombresCientificos: ["Acetyl Octapeptide-3", "SNAP-8"],
+      descripcion: "Octapéptido cosmético, extensión del Argireline. Materia prima estudiada por su efecto tópico sobre las líneas de expresión.",
+      compuesto: { tipo: "Octapéptido (cosmético)", cas: "868844-74-0", aminoacidos: "8 (octapéptido)" },
+      seco: true,
+    },
+    "acetyl-hexa-8": {
+      subtitulo: "Hexapéptido cosmético",
+      nombresCientificos: ["Argireline", "Acetyl Hexapeptide-8", "Acetyl Hexapeptide-3"],
+      descripcion: "Hexapéptido cosmético que imita el extremo N-terminal de SNAP-25. Materia prima estudiada por su efecto tópico sobre las líneas de expresión.",
+      compuesto: { tipo: "Hexapéptido (cosmético)", cas: "616204-22-9", aminoacidos: "6 (hexapéptido)", secuencia: "Ac-Glu-Glu-Met-Gln-Arg-Arg-NH2" },
+      seco: true,
+    },
+
+    // ===== Bioreguladores peptídicos (familia Khavinson) =====
+    "cartalax": {
+      subtitulo: "Bioregulador peptídico",
+      nombresCientificos: ["Cartalax"],
+      descripcion: "Péptido corto bioregulador (familia Khavinson). Estudiado por su rol en el tejido cartilaginoso y conectivo.",
+      compuesto: { tipo: "Péptido corto (bioregulador)" },
+    },
+    "testagen": {
+      subtitulo: "Bioregulador peptídico",
+      nombresCientificos: ["Testagen"],
+      descripcion: "Péptido corto bioregulador (familia Khavinson). Estudiado por su rol en la función testicular y hormonal.",
+      compuesto: { tipo: "Péptido corto (bioregulador)" },
+    },
+    "adamax": {
+      subtitulo: "Péptido nootrópico de investigación",
+      nombresCientificos: ["Adamax"],
+      descripcion: "Péptido nootrópico de investigación, relacionado a la familia de la Semax. Los datos públicos sobre su estructura son limitados.",
+      compuesto: { tipo: "Péptido de investigación" },
+    },
+
+    // ===== Blends (combinaciones; sin identidad molecular única) =====
+    "gla-25-trzrt": {
+      subtitulo: "Blend metabólico",
+      nombresCientificos: ["Tirzepatida + Retatrutida"],
+      descripcion: "Blend de investigación que combina tirzepatida (doble agonista GIP/GLP-1) y retatrutida (triple agonista GIP/GLP-1/glucagón). Ver las fichas de cada componente para el detalle molecular.",
+    },
+    "gla-3-cagri": {
+      subtitulo: "Blend metabólico",
+      nombresCientificos: ["Retatrutida + Cagrilintida"],
+      descripcion: "Blend de investigación que combina retatrutida (triple agonista incretínico) y cagrilintida (análogo de amilina), orientado a saciedad y peso.",
+    },
+    "tesa-ipa": {
+      subtitulo: "Blend secretagogo de GH",
+      nombresCientificos: ["Tesamorelina + Ipamorelina"],
+      descripcion: "Blend GHRH + GHRP: tesamorelina (análogo de GHRH) con ipamorelina (secretagogo selectivo). Sinergia clásica para estimular la liberación de GH.",
+    },
+    "cjc-nodac-ipa": {
+      subtitulo: "Blend secretagogo de GH",
+      nombresCientificos: ["CJC-1295 sin DAC (Mod GRF 1-29) + Ipamorelina"],
+      descripcion: "El combo clásico GHRH + GHRP: Mod GRF 1-29 (pulso corto) con Ipamorelina (secretagogo selectivo), sinergia para la liberación de GH.",
+    },
+    "ghkpv": {
+      subtitulo: "Blend dérmico / antiinflamatorio",
+      nombresCientificos: ["GHK-Cu + KPV"],
+      descripcion: "Blend de GHK-Cu (cobre-péptido regenerador) y KPV (fragmento antiinflamatorio de α-MSH), orientado a la piel.",
+    },
+    "semax-selank-blend": {
+      subtitulo: "Blend nootrópico",
+      nombresCientificos: ["Semax + Selank"],
+      descripcion: "Blend de Semax (foco y neuroprotección) y Selank (calma y ansiolítico), combinación nootrópica de investigación.",
+    },
+    "wolverine": {
+      subtitulo: "Blend de recuperación",
+      nombresCientificos: ["BPC-157 + TB-500"],
+      descripcion: "El clásico 'wolverine stack': BPC-157 (reparación de tejido) con TB-500 (Timosina β4, flexibilidad y angiogénesis).",
+    },
+    "klow": {
+      subtitulo: "Blend regenerador",
+      nombresCientificos: ["GHK-Cu + BPC-157 + TB-500 + KPV"],
+      descripcion: "Blend multi-péptido que combina GHK-Cu, BPC-157, TB-500 y KPV, orientado a reparación integral de tejido y piel.",
+    },
+    "glow": {
+      subtitulo: "Blend regenerador",
+      nombresCientificos: ["GHK-Cu + BPC-157 + TB-500"],
+      descripcion: "Blend de GHK-Cu, BPC-157 y TB-500, orientado a recuperación y piel.",
+    },
+    "bpc-kpv": {
+      subtitulo: "Blend oral",
+      nombresCientificos: ["BPC-157 + KPV"],
+      descripcion: "Blend en cápsulas de BPC-157 y KPV, orientado a reparación e inflamación gastrointestinal.",
+      seco: true,
+    },
+    "lipo-c": {
+      subtitulo: "Blend lipotrópico",
+      nombresCientificos: ["Lipo-C (MIC + B12)"],
+      descripcion: "Blend lipotrópico de investigación, típicamente metionina, inositol, colina y vitamina B12. No es un péptido único.",
+      conservacion: { notas: ["Refrigerar", "Proteger de la luz"], liofilizado: "2-8 °C (solución)", reconstituido: "Usar según la fecha del vial" },
     },
   };
 
@@ -2525,6 +2850,13 @@ class Component extends DCLogic {
     if (String(f.orden || "").trim() !== "" && !isNaN(Number(f.orden))) prod.orden = Number(f.orden);
     if (f.badge) prod.badge = String(f.badge).trim();
     if (String(f.precioAnterior || "").trim() !== "" && !isNaN(Number(f.precioAnterior))) prod.precioAnterior = Number(f.precioAnterior);
+    // COA(s) desde la planilla. Columna "coa" (acepta "coas" o "COA's").
+    // Varios COA en la misma celda separados por ";;". Cada COA: "clave=valor | clave=valor".
+    const coaTxt = String(f.coa || f.coas || f["COA's"] || "").trim();
+    if (coaTxt) {
+      const coas = coaTxt.split(";;").map((b) => this.parseCoaBloque(b, prod)).filter(Boolean);
+      if (coas.length) prod.coas = coas;
+    }
     const variantesTxt = String(f.variantes || "").trim();
     if (variantesTxt) {
       prod.variantes = variantesTxt
@@ -2540,6 +2872,47 @@ class Component extends DCLogic {
       prod.costoUSD = Number(f.costoUSD);
     }
     return prod;
+  }
+
+  // Convierte un bloque "clave=valor | clave=valor" en un objeto COA.
+  // El panel QC se arma solo: pureza/real vienen del COA, el resto es estándar.
+  parseCoaBloque(bloque, prod) {
+    const c = {};
+    String(bloque).split("|").forEach((par) => {
+      const i = par.indexOf("=");
+      if (i === -1) return;
+      const k = par.slice(0, i).trim().toLowerCase();
+      const v = par.slice(i + 1).trim();
+      if (k && v) c[k] = v;
+    });
+    if (!c.lote && !c.pureza && !c.pdf) return null;
+    const panel = [
+      { k: "Pureza (RP-HPLC)", v: c.pureza || "" },
+      { k: "Contenido neto de péptido", v: c.real || "" },
+      { k: "Identidad (LC-MS)", v: "Confirmada" },
+      { k: "Esterilidad microbiana", v: "Sin crecimiento" },
+      { k: "Endotoxinas", v: "< 0,5 EU/mL" },
+      { k: "Metales pesados (As/Cd/Pb/Hg)", v: "Negativo" },
+    ].filter((r) => r.v);
+    return {
+      variante: c.variante || prod.nombre,
+      lote: c.lote || "", pureza: c.pureza || "",
+      rotulado: c.rotulado || "", real: c.real || "",
+      fecha: c.fecha || "", lab: c.lab || "", reporte: c.reporte || "",
+      nTests: c.tests ? Number(c.tests) : 0,
+      panel: panel,
+      pdfUrl: this.coaPdfUrl(c.pdf || ""),
+    };
+  }
+
+  // Normaliza el link del PDF: los links de Google Drive se pasan a /preview
+  // (embebibles en iframe). Un .pdf directo o una ruta local se dejan igual.
+  coaPdfUrl(link) {
+    link = String(link || "").trim();
+    if (!link) return "";
+    const m = link.match(/drive\.google\.com\/file\/d\/([^/?]+)/) || link.match(/[?&]id=([^&]+)/);
+    if (m) return "https://drive.google.com/file/d/" + m[1] + "/preview";
+    return link;
   }
 
   // Trae el dólar blue (venta) actual y recalcula todos los precios en ARS.
@@ -2601,6 +2974,8 @@ class Component extends DCLogic {
       const nombreBase = first.nombre.replace(new RegExp("\\s*" + esc + "\\s*$", "i"), "").trim();
       const ordenes = vis.map((it) => it.p.orden).filter((o) => typeof o === "number");
       const conBadge = vis.find((it) => it.p.badge);
+      const coas = [];
+      vis.forEach((it) => { if (it.p.coas) coas.push.apply(coas, it.p.coas); });
       return {
         id: x.base, nombre: nombreBase, investigacion: first.investigacion, variantes: variantes,
         enStock: vis.some((it) => it.p.enStock),
@@ -2609,6 +2984,7 @@ class Component extends DCLogic {
         orden: ordenes.length ? Math.min.apply(null, ordenes) : null,
         badge: conBadge ? conBadge.p.badge : "",
         imagen: first.imagen,
+        coas: coas,
       };
     });
   }
@@ -3029,7 +3405,10 @@ class Component extends DCLogic {
     const esInsumo = p.id === "agua-bac-10";
 
     // ====== FICHA TÉCNICA (compuesto, conservación, COA, referencias) ======
-    const ficha = this.FICHAS[p.id] || this.FICHAS[p.id.replace(/-\d+(?:[.,]\d+)?(?:mg|ml|mcg)$/i, "")] || {};
+    // El perfil molecular se comparte por compuesto: caps/raw/vial y capacidades
+    // caen a la misma key base (ghk-cu-caps -> ghk-cu). El COA NO se comparte por alias.
+    const fichaKey = p.id.replace(/-(caps|vial|raw)$/i, "").replace(/-\d+(?:[.,]\d+)?(?:mg|ml|mcg)$/i, "");
+    const ficha = this.FICHAS[p.id] || this.FICHAS[fichaKey] || {};
     const cmp = ficha.compuesto || null;
     const compoundRows = cmp ? [
       { k: "Tipo", v: cmp.tipo },
@@ -3040,8 +3419,12 @@ class Component extends DCLogic {
       { k: "Secuencia", v: cmp.secuencia },
       { k: "Fórmula molecular", v: cmp.formula },
     ].filter((r) => r.v) : [];
-    const cons = ficha.conservacion || null;
-    const coaCards = (ficha.coas || []).map((coa) => ({
+    const tieneFicha = !!(this.FICHAS[p.id] || this.FICHAS[fichaKey]);
+    const cons = ficha.conservacion || (ficha.seco ? this.CONS_SECO : (tieneFicha ? this.CONS_STD : null));
+    // COA: la planilla manda; si no hay, cae al hardcodeado en FICHAS del id EXACTO
+    // (respaldo, sin alias, para no heredar el COA de otra presentación).
+    const coasFuente = (p.coas && p.coas.length) ? p.coas : ((this.FICHAS[p.id] && this.FICHAS[p.id].coas) || []);
+    const coaCards = coasFuente.map((coa) => ({
       variante: coa.variante, lote: coa.lote, pureza: coa.pureza,
       rotulado: coa.rotulado, real: coa.real, fecha: coa.fecha,
       lab: coa.lab, reporte: coa.reporte,
@@ -3049,12 +3432,12 @@ class Component extends DCLogic {
       panel: coa.panel || [],
       hasPdf: !!coa.pdfUrl, onView: coa.pdfUrl ? (() => this.openCoa(coa.pdfUrl)) : (() => {}),
     }));
-    const coaLab = (ficha.coas && ficha.coas[0]) ? ficha.coas[0].lab : "";
+    const coaLab = coasFuente[0] ? coasFuente[0].lab : "";
     const referencias = (ficha.referencias || []).map((r) => ({
       journal: r.journal, titulo: r.titulo, anio: r.anio, autores: r.autores,
       idLabel: r.idLabel || "", hasId: !!r.idLabel, url: r.url || "", hasUrl: !!r.url,
     }));
-    const coaPrincipal = (ficha.coas && ficha.coas[0] && ficha.coas[0].pdfUrl) ? ficha.coas[0].pdfUrl : "";
+    const coaPrincipal = (coasFuente[0] && coasFuente[0].pdfUrl) ? coasFuente[0].pdfUrl : "";
 
     return {
       id: p.id, nombre: p.nombre, investigacion: p.investigacion,
