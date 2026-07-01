@@ -4,6 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <script src="./support.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 </head>
 <body>
 <x-dc>
@@ -1563,7 +1564,7 @@ input{font:inherit}
             <sc-if value="{{ editData }}" hint-placeholder-val="{{ false }}">
               <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:14px">
                 <div><label style="display:block;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#0B2440;margin-bottom:6px">Nombre y apellido</label><input type="text" value="{{ edNombre }}" onChange="{{ onEdNombre }}" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:11px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;outline:none" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)"></div>
-                <div><label style="display:block;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#0B2440;margin-bottom:6px">Email</label><input type="email" value="{{ edEmail }}" onChange="{{ onEdEmail }}" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:11px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;outline:none" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)"></div>
+                <div><label style="display:block;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#0B2440;margin-bottom:6px">Email</label><input type="email" value="{{ edEmail }}" disabled style="width:100%;border:1px solid #E2E8F0;border-radius:10px;padding:11px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#7E93A8;background:#F4F7FB;outline:none;cursor:not-allowed"><div style="font-family:'Poppins',sans-serif;font-size:11px;color:#94A3B8;margin-top:5px">Para cambiar tu email, escribinos por WhatsApp.</div></div>
                 <div><label style="display:block;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#0B2440;margin-bottom:6px">Teléfono</label><input type="tel" value="{{ edTel }}" onChange="{{ onEdTel }}" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:11px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;outline:none" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)"></div>
                 <div><label style="display:block;font-family:'Poppins',sans-serif;font-size:12px;font-weight:600;color:#0B2440;margin-bottom:6px">Provincia</label><select value="{{ edProv }}" onChange="{{ onEdProv }}" style="width:100%;border:1px solid #DCE5EF;border-radius:10px;padding:11px 14px;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;outline:none;cursor:pointer" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)"><sc-for list="{{ provinceOpts }}" as="o" hint-placeholder-count="5"><option value="{{ o.value }}">{{ o.label }}</option></sc-for></select></div>
               </div>
@@ -2142,6 +2143,7 @@ class Component extends DCLogic {
     editData: false,       // edición de "Mis datos"
     now: Date.now(),       // tic para el contador regresivo del cupón
     // campos de formularios (controlados)
+    authBusy: false,       // evita doble submit mientras Supabase responde
     loginEmail: "", loginPass: "",
     regNombre: "", regEmail: "", regTel: "", regProv: "", regPass: "", regPass2: "",
     regChkAge: false, regChkTerms: false,
@@ -2149,10 +2151,44 @@ class Component extends DCLogic {
   };
 
   // =====================================================================
-  //  SISTEMA DE CUENTAS — TODO MOCK (cliente). Sin backend, sin auth real.
-  //  Registro, sesión, pedidos y puntos viven en localStorage / estado.
-  //  Cada punto de integración real va marcado con "// TODO backend:".
+  //  SISTEMA DE CUENTAS — Fase 1: auth real con Supabase.
+  //  Perfil (nombre/tel/provincia/referral/puntos) en la tabla profiles.
+  //  Pedidos y cupones siguen MOCK (Fase 2 y 3). La cuenta DEMO es local.
   // =====================================================================
+
+  SUPABASE_URL = "https://vwztutwaiwijotrhzkol.supabase.co";
+  SUPABASE_ANON = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InZ3enR1dHdhaXdpam90cmh6a29sIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODI4Njg2NDUsImV4cCI6MjA5ODQ0NDY0NX0.rACSfWYExsWR1HSZHERC2jjW70C2uJNJkl4cY6YWlfk";
+  sb = null;
+  sbClient() {
+    if (!this.sb && typeof window !== "undefined" && window.supabase) {
+      this.sb = window.supabase.createClient(this.SUPABASE_URL, this.SUPABASE_ANON);
+    }
+    return this.sb;
+  }
+
+  // Arma el objeto usuario del estado a partir del email (auth) + fila profiles.
+  profileToUser(email, prof) {
+    return {
+      nombre: prof.nombre || "",
+      email: email || "",
+      telefono: prof.telefono || "",
+      provincia: prof.provincia || "",
+      fecha: (prof.created_at || new Date().toISOString()).slice(0, 10),
+      referralCode: prof.referral_code || "",
+      puntos: prof.puntos || 0,
+      couponExpires: 0,   // Fase 3: cupones server-side
+      esDemo: false,
+      pedidos: [],        // Fase 2: pedidos reales
+    };
+  }
+
+  authError(error) {
+    const m = (error && error.message) || "";
+    if (/already registered|already exists|user.*exists/i.test(m)) return "Ese email ya tiene una cuenta. Iniciá sesión.";
+    if (/valid email|invalid.*email/i.test(m)) return "El email no es válido.";
+    if (/at least|password/i.test(m)) return "La contraseña debe tener al menos 6 caracteres.";
+    return "No se pudo crear la cuenta. Reintentá en un momento.";
+  }
 
   PROVINCIAS = ["Buenos Aires","CABA","Catamarca","Chaco","Chubut","Córdoba","Corrientes","Entre Ríos","Formosa","Jujuy","La Pampa","La Rioja","Mendoza","Misiones","Neuquén","Río Negro","Salta","San Juan","San Luis","Santa Cruz","Santa Fe","Santiago del Estero","Tierra del Fuego","Tucumán"];
 
@@ -2196,34 +2232,34 @@ class Component extends DCLogic {
     ],
   };
 
-  // Cargar sesión persistida + sembrar la cuenta DEMO si todavía no existe.
-  loadAuth = () => {
+  // Cargar sesión. 1) Supabase (usuario real). 2) DEMO local como respaldo.
+  loadAuth = async () => {
+    const sb = this.sbClient();
+    if (sb) {
+      try {
+        const { data: { session } } = await sb.auth.getSession();
+        if (session && session.user) {
+          const { data: prof } = await sb.from("profiles").select("*").eq("id", session.user.id).single();
+          if (prof) { this.setState({ user: this.profileToUser(session.user.email, prof), session: true }); return; }
+        }
+      } catch (e) { /* sin conexión → cae al modo demo/local */ }
+    }
+    // --- Modo DEMO / local (para presentación del panel poblado) ---
     let user = null, session = false;
     try {
       const sess = localStorage.getItem("amino_session");
       const u = JSON.parse(localStorage.getItem("amino_user") || "null");
       if (sess === "1" && u) { user = u; session = true; }
-    } catch (e) { /* localStorage no disponible */ }
-    // TODO backend: aquí iría un fetch a /api/me con la cookie/token de sesión.
-    try {
-      if (!localStorage.getItem("amino_user")) {
-        localStorage.setItem("amino_user", JSON.stringify(this.DEMO_USER)); // demo registrada (no logueada)
-      }
     } catch (e) {}
-    // El cupón de la cuenta demo se mantiene siempre vigente para la presentación.
+    try {
+      if (!localStorage.getItem("amino_user")) localStorage.setItem("amino_user", JSON.stringify(this.DEMO_USER));
+    } catch (e) {}
     if (user && user.esDemo) {
       user = Object.assign({}, user, { couponExpires: Date.now() + 9 * 86400000 });
       try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
     }
     this.setState({ user, session });
   };
-
-  // Guarda el usuario en localStorage y en el estado.
-  persistUser(user) {
-    try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
-    // TODO backend: PATCH /api/users/me con los datos actualizados.
-    this.setState({ user });
-  }
 
   isEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(v || "").trim()); }
 
@@ -2242,51 +2278,64 @@ class Component extends DCLogic {
   toggleUserMenu = () => this.setState((s) => ({ userMenuOpen: !s.userMenuOpen }));
   closeUserMenu = () => this.setState({ userMenuOpen: false });
 
-  // Crear cuenta (MOCK).
-  registerUser = () => {
-    if (!this.canRegister()) return;
-    const first = this.state.regNombre.trim().split(/\s+/)[0].toUpperCase().replace(/[^A-ZÁÉÍÓÚÑ]/g, "").slice(0, 6) || "AMINO";
-    const code = first + Math.floor(1000 + Math.random() * 9000);
-    const user = {
-      nombre: this.state.regNombre.trim(),
+  // Crear cuenta (Supabase). El trigger handle_new_user crea la fila profiles.
+  registerUser = async () => {
+    if (!this.canRegister() || this.state.authBusy) return;
+    const sb = this.sbClient();
+    if (!sb) { this.setState({ loginError: "No se pudo conectar. Reintentá." }); return; }
+    this.setState({ authBusy: true, loginError: "" });
+    const { data, error } = await sb.auth.signUp({
       email: this.state.regEmail.trim().toLowerCase(),
-      telefono: this.state.regTel.trim(),
-      provincia: this.state.regProv,
       password: this.state.regPass,
-      fecha: new Date().toISOString().slice(0, 10),
-      referralCode: code,
-      puntos: 0,
-      couponExpires: Date.now() + 30 * 86400000,
-      esDemo: false,
-      pedidos: [],
-    };
-    // TODO backend: POST /api/register → crea el usuario y devuelve la sesión.
-    try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
+      options: { data: {
+        nombre: this.state.regNombre.trim(),
+        telefono: this.state.regTel.trim(),
+        provincia: this.state.regProv,
+      } },
+    });
+    if (error) { this.setState({ authBusy: false, loginError: this.authError(error) }); return; }
+    if (!data.session) { // confirmación de email activada en Supabase
+      this.setState({ authBusy: false, loginError: "Te enviamos un email para confirmar tu cuenta. Confirmala y después iniciá sesión." });
+      return;
+    }
+    const email = (data.user && data.user.email) || this.state.regEmail.trim().toLowerCase();
+    let prof = null;
+    try { const r = await sb.from("profiles").select("*").eq("id", data.user.id).single(); prof = r.data; } catch (e) {}
+    const user = this.profileToUser(email, prof || {
+      nombre: this.state.regNombre.trim(), telefono: this.state.regTel.trim(),
+      provincia: this.state.regProv, created_at: new Date().toISOString(),
+    });
+    this.setState({ authBusy: false });
     this.afterAuth(user);
   };
 
-  // Iniciar sesión (MOCK): valida contra el usuario guardado o la cuenta demo.
-  login = () => {
+  // Iniciar sesión (Supabase). La cuenta DEMO es local (para presentación).
+  login = async () => {
     const email = (this.state.loginEmail || "").trim().toLowerCase();
     const pass = this.state.loginPass || "";
-    // TODO backend: POST /api/login y validación de credenciales en el servidor.
-    let stored = null;
-    try { stored = JSON.parse(localStorage.getItem("amino_user") || "null"); } catch (e) {}
-    if (stored && stored.email === email && stored.password === pass) { this.afterAuth(stored); return; }
     if (email === this.DEMO_USER.email && pass === this.DEMO_USER.password) { this.loginDemo(); return; }
-    this.setState({ loginError: "Email o contraseña incorrectos. Probá la cuenta demo." });
+    const sb = this.sbClient();
+    if (!sb) { this.setState({ loginError: "No se pudo conectar. Reintentá." }); return; }
+    this.setState({ authBusy: true, loginError: "" });
+    const { data, error } = await sb.auth.signInWithPassword({ email, password: pass });
+    if (error) { this.setState({ authBusy: false, loginError: "Email o contraseña incorrectos." }); return; }
+    let prof = null;
+    try { const r = await sb.from("profiles").select("*").eq("id", data.user.id).single(); prof = r.data; } catch (e) {}
+    const user = this.profileToUser(data.user.email, prof || { nombre: data.user.email, created_at: new Date().toISOString() });
+    this.setState({ authBusy: false });
+    this.afterAuth(user);
   };
 
   loginDemo = () => {
     const u = JSON.parse(JSON.stringify(this.DEMO_USER));
     u.couponExpires = Date.now() + 9 * 86400000;
-    try { localStorage.setItem("amino_user", JSON.stringify(u)); } catch (e) {}
+    try { localStorage.setItem("amino_user", JSON.stringify(u)); localStorage.setItem("amino_session", "1"); } catch (e) {}
     this.afterAuth(u);
   };
 
   // Post-login/registro: activa la sesión y resuelve a dónde ir.
+  // (La persistencia real la maneja Supabase; el DEMO usa localStorage.)
   afterAuth = (user) => {
-    try { localStorage.setItem("amino_session", "1"); } catch (e) {}
     const pend = this.state.pendingCheckout;
     this.setState({ user, session: true, loginError: "", userMenuOpen: false, pendingCheckout: false, authReason: "" });
     if (typeof window !== "undefined") {
@@ -2295,9 +2344,10 @@ class Component extends DCLogic {
     }
   };
 
-  logout = () => {
-    try { localStorage.removeItem("amino_session"); } catch (e) {}
-    // TODO backend: POST /api/logout para invalidar el token/cookie.
+  logout = async () => {
+    const sb = this.sbClient();
+    if (sb) { try { await sb.auth.signOut(); } catch (e) {} }
+    try { localStorage.removeItem("amino_session"); } catch (e) {} // limpia sesión DEMO
     this.setState({ session: false, userMenuOpen: false });
     if (typeof window !== "undefined") window.location.hash = "#/inicio";
   };
@@ -2305,13 +2355,27 @@ class Component extends DCLogic {
   // ====== MIS DATOS (edición MOCK) ======
   startEdit = () => this.setState((s) => ({ editData: true, edNombre: s.user.nombre, edEmail: s.user.email, edTel: s.user.telefono, edProv: s.user.provincia }));
   cancelEdit = () => this.setState({ editData: false });
-  saveEdit = () => {
-    const u = Object.assign({}, this.state.user, {
-      nombre: this.state.edNombre.trim(), email: this.state.edEmail.trim(),
-      telefono: this.state.edTel.trim(), provincia: this.state.edProv,
+  saveEdit = async () => {
+    const s = this.state;
+    // El email vive en auth (cambiarlo requiere reconfirmación) → en Fase 1 no se toca.
+    const u = Object.assign({}, s.user, {
+      nombre: s.edNombre.trim(), telefono: s.edTel.trim(), provincia: s.edProv,
     });
-    this.persistUser(u);
-    this.setState({ editData: false });
+    if (u.esDemo) {
+      try { localStorage.setItem("amino_user", JSON.stringify(u)); } catch (e) {}
+      this.setState({ user: u, editData: false });
+      this.showToast("Datos actualizados");
+      return;
+    }
+    const sb = this.sbClient();
+    if (sb) {
+      const { data: { session } } = await sb.auth.getSession();
+      if (session) {
+        const { error } = await sb.from("profiles").update({ nombre: u.nombre, telefono: u.telefono, provincia: u.provincia }).eq("id", session.user.id);
+        if (error) { this.showToast("No se pudo guardar. Reintentá."); return; }
+      }
+    }
+    this.setState({ user: u, editData: false });
     this.showToast("Datos actualizados");
   };
 
