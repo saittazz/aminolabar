@@ -1443,6 +1443,7 @@ input{font:inherit}
             <!-- D) Recompensas / cupones + AminoPuntos -->
             <div style="display:flex;flex-direction:column;gap:18px">
               <!-- cupón activo con countdown -->
+              <sc-if value="{{ verCupon }}" hint-placeholder-val="{{ false }}">
               <div style="background:#fff;border:1px solid #E7EDF4;border-radius:16px;padding:24px;box-shadow:0 16px 34px -26px rgba(11,36,64,.4)">
                 <div style="display:flex;align-items:center;gap:9px;margin-bottom:14px">
                   <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(31,169,113,.12);color:#15875A"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2 2 2 0 0 0 0 4 2 2 0 0 1-2 2H5a2 2 0 0 1-2-2 2 2 0 0 0 0-4z"></path><path d="M9 7v10" stroke-dasharray="2 2"></path></svg></span>
@@ -1472,6 +1473,7 @@ input{font:inherit}
                   <span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.05em;text-transform:uppercase;color:#B45309;background:rgba(180,83,9,.1);border-radius:5px;padding:3px 8px">Vencido</span>
                 </div>
               </div>
+              </sc-if>
 
               <!-- AminoPuntos -->
               <div style="background:linear-gradient(150deg,#13294A,#0B2440);border-radius:16px;padding:24px;color:#fff;box-shadow:0 18px 40px -24px rgba(11,36,64,.8);position:relative;overflow:hidden">
@@ -1493,11 +1495,12 @@ input{font:inherit}
           <!-- Recordatorio de recompra (retención) -->
           <div style="margin-top:18px;display:flex;align-items:center;gap:14px;flex-wrap:wrap;border:1px solid #FCE3B8;background:linear-gradient(120deg,#FEF8EC,#FDF1DC);border-radius:15px;padding:18px 22px">
             <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:11px;background:#fff;color:#E0A422;box-shadow:0 6px 16px -8px rgba(180,131,9,.4)"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a6 6 0 0 1 6 6c0 4 3 5 3 7H3c0-2 3-3 3-7a6 6 0 0 1 6-6z"></path><path d="M10 21h4"></path></svg></span>
-            <div style="flex:1;min-width:200px"><div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;color:#0B2440">¿Te quedan pocos viales?</div><p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.5;color:#92660C;margin-top:3px">Los péptidos reconstituidos duran ~30 días en heladera. Reabastecete a tiempo y usá tu cupón antes de que venza.</p></div>
+            <div style="flex:1;min-width:200px"><div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;color:#0B2440">¿Te quedan pocos viales?</div><p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.5;color:#92660C;margin-top:3px">Los péptidos reconstituidos duran ~30 días en heladera. Reabastecete a tiempo para no cortar tu investigación.</p></div>
             <a href="#/catalogo" style="flex-shrink:0;display:inline-flex;align-items:center;gap:7px;background:#0B2440;color:#fff;border-radius:9px;padding:11px 18px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;text-decoration:none;transition:transform .15s,background .15s" style-hover="background:#11305a;transform:translateY(-1px)">Reabastecer <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
           </div>
 
-          <!-- E) Referidos -->
+          <!-- E) Referidos (oculto por ahora - Fase 3, codigo intacto) -->
+          <sc-if value="{{ verReferidos }}" hint-placeholder-val="{{ false }}">
           <div style="margin-top:18px;background:#fff;border:1px solid #E7EDF4;border-radius:16px;padding:24px;box-shadow:0 16px 34px -26px rgba(11,36,64,.4)">
             <div style="display:flex;align-items:center;gap:9px;margin-bottom:8px">
               <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:rgba(14,95,181,.1);color:#0E5FB5"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="18" cy="5" r="2.6"></circle><circle cx="6" cy="12" r="2.6"></circle><circle cx="18" cy="19" r="2.6"></circle><path d="M8.3 10.8l7.4-4.3M8.3 13.2l7.4 4.3"></path></svg></span>
@@ -1509,6 +1512,7 @@ input{font:inherit}
               <button onClick="{{ shareReferido }}" style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#1FA971;color:#fff;border:none;border-radius:11px;padding:13px 20px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:background .15s,transform .15s" style-hover="background:#18885B;transform:translateY(-1px)"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Compartir por WhatsApp</button>
             </div>
           </div>
+          </sc-if>
 
           <!-- F) Historial de pedidos -->
           <div style="margin-top:18px;background:#fff;border:1px solid #E7EDF4;border-radius:16px;padding:24px;box-shadow:0 16px 34px -26px rgba(11,36,64,.4)">
@@ -3417,6 +3421,7 @@ class Component extends DCLogic {
       levelName: acc.levelName, nextName: acc.nextName, isMaxLevel: acc.isMax,
       loyaltyProgress, loyaltyFaltanText, beneficios,
       couponActive, couponUnits, refCode, copiedCode,
+      verCupon: false, verReferidos: false,   // Fase 3 pausadas: cupones y referidos ocultos (codigo intacto)
       copyCode: this.copyCode, shareReferido: this.shareReferido,
       copyVuelve5: () => this.copyCode("VUELVE5"),
       copyVuelve5Label: this.state.copied === "VUELVE5" ? "¡Copiado!" : "Copiar",
