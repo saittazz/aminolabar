@@ -2182,6 +2182,19 @@ class Component extends DCLogic {
     };
   }
 
+  // Fila de la tabla orders -> objeto pedido que consume el panel.
+  orderRowToVM(row) {
+    return {
+      numero: row.numero,
+      fecha: (row.created_at || new Date().toISOString()).slice(0, 10),
+      estado: row.estado || "Procesando",
+      items: row.items || [],
+      totalUSD: Number(row.total_usd) || 0,
+      totalARS: Number(row.total_ars) || 0,
+      peptides: row.peptides || 0,
+    };
+  }
+
   authError(error) {
     const m = (error && error.message) || "";
     if (/already registered|already exists|user.*exists/i.test(m)) return "Ese email ya tiene una cuenta. Iniciá sesión.";
@@ -2240,7 +2253,13 @@ class Component extends DCLogic {
         const { data: { session } } = await sb.auth.getSession();
         if (session && session.user) {
           const { data: prof } = await sb.from("profiles").select("*").eq("id", session.user.id).single();
-          if (prof) { this.setState({ user: this.profileToUser(session.user.email, prof), session: true }); return; }
+          if (prof) {
+            const user = this.profileToUser(session.user.email, prof);
+            const { data: rows } = await sb.from("orders").select("*").eq("user_id", session.user.id).order("created_at", { ascending: false });
+            user.pedidos = (rows || []).map((r) => this.orderRowToVM(r));
+            this.setState({ user, session: true });
+            return;
+          }
         }
       } catch (e) { /* sin conexión → cae al modo demo/local */ }
     }
@@ -2391,8 +2410,8 @@ class Component extends DCLogic {
     if (typeof window !== "undefined") window.location.hash = "#/ingresar";
   };
 
-  // Registra el pedido en el historial MOCK, suma puntos, abre WhatsApp y confirma.
-  placeOrder = () => {
+  // Registra el pedido, abre WhatsApp y confirma. Real -> tabla orders; demo -> local.
+  placeOrder = async () => {
     const productos = this.getProductos();
     const items = this.state.cart.map((it) => {
       const p = productos.find((x) => x.id === it.productId);
@@ -2407,15 +2426,34 @@ class Component extends DCLogic {
     const totalUSD = this.round2(items.reduce((a, l) => a + l.lineUSD, 0));
     const totalARS = this.round(totalUSD * (this.DOLAR_BLUE_VENTA + this.MARKUP_ARS));
     const peptides = items.reduce((a, l) => a + (l.esInsumo ? 0 : l.qty), 0);
-    const vm = this.buildCart();
+    const waHref = this.buildCart().waHref;
     const user = Object.assign({}, this.state.user);
-    const numero = "AML-" + (1090 + (user.pedidos ? user.pedidos.length : 0));
-    const order = { numero, fecha: new Date().toISOString().slice(0, 10), estado: "Procesando", items, totalUSD, totalARS, peptides };
+
+    // --- DEMO / sin backend: historial local, como siempre ---
+    if (user.esDemo || !this.sbClient()) {
+      const numero = "AML-" + (1090 + (user.pedidos ? user.pedidos.length : 0));
+      const order = { numero, fecha: new Date().toISOString().slice(0, 10), estado: "Procesando", items, totalUSD, totalARS, peptides };
+      user.pedidos = [order, ...(user.pedidos || [])];
+      user.puntos = (user.puntos || 0) + Math.round(totalUSD);
+      try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
+      if (typeof window !== "undefined") window.open(waHref, "_blank");
+      this.setState({ user, cart: [], drawerOpen: false, checkoutGate: false, orderConfirm: order });
+      return;
+    }
+
+    // --- REAL: abrir WhatsApp YA (gesto del usuario, no lo bloquea el popup blocker) ---
+    if (typeof window !== "undefined") window.open(waHref, "_blank");
+    const sb = this.sbClient();
+    const { data: { session } } = await sb.auth.getSession();
+    if (!session) { this.setState({ checkoutGate: false }); return; }
+    // numero, estado y created_at los pone la DB (defaults). Solo mandamos lo nuestro.
+    const { data, error } = await sb.from("orders")
+      .insert({ user_id: session.user.id, total_usd: totalUSD, total_ars: totalARS, peptides, items })
+      .select("numero, created_at").single();
+    if (error) { this.showToast("No se pudo registrar el pedido, pero te derivamos a WhatsApp."); this.setState({ cart: [], drawerOpen: false, checkoutGate: false }); return; }
+    const order = this.orderRowToVM({ numero: data.numero, created_at: data.created_at, estado: "Procesando", items, total_usd: totalUSD, total_ars: totalARS, peptides });
     user.pedidos = [order, ...(user.pedidos || [])];
-    user.puntos = (user.puntos || 0) + Math.round(totalUSD); // 1 AminoPunto por USD
-    // TODO backend: POST /api/orders con el detalle del pedido.
-    try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
-    if (typeof window !== "undefined") window.open(vm.waHref, "_blank"); // mismo flujo WhatsApp de siempre
+    user.puntos = (user.puntos || 0) + Math.round(totalUSD); // optimista en memoria (Fase 3 lo persiste)
     this.setState({ user, cart: [], drawerOpen: false, checkoutGate: false, orderConfirm: order });
   };
   closeConfirm = () => this.setState({ orderConfirm: null });
