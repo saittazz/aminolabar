@@ -1064,17 +1064,17 @@ input{font:inherit}
         <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
           <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Cómo pagar</span>
           <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Medios de pago</h1>
-          <p style="font-family:'Poppins',sans-serif;font-size:15px;line-height:1.6;color:#5A6B7B;margin-top:14px;max-width:620px">Aceptamos transferencia bancaria en pesos y USDT. Coordinás el pago por WhatsApp al finalizar tu pedido.</p>
+          <p style="font-family:'Poppins',sans-serif;font-size:15px;line-height:1.6;color:#5A6B7B;margin-top:14px;max-width:620px">Aceptamos transferencia bancaria, MercadoPago y USDT. Elegís el que te quede más cómodo y coordinás el pago por WhatsApp al finalizar tu pedido.</p>
 
           <!-- Aviso informativo -->
           <div style="margin-top:22px;display:inline-flex;align-items:center;gap:9px;border:1px solid #FCE3B8;background:#FEF8EC;border-radius:8px;padding:11px 15px;font-family:'Poppins',sans-serif;font-size:13px;color:#92660C">
             <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 8h.01M11 12h1v4h1"></path></svg>
-            <span>Página informativa. Los datos para abonar se comparten al confirmar el pedido por WhatsApp.</span>
+            <span>Los datos exactos para abonar (cuenta, alias o wallet) te los pasamos por WhatsApp al confirmar el pedido, así evitamos errores al transcribir.</span>
           </div>
 
-          <div style="margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,300px),1fr));gap:22px">
-            <!-- Transferencia ARS -->
-            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column">
+          <div style="margin-top:30px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));gap:22px">
+            <!-- Transferencia bancaria -->
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .16s ease,border-color .16s ease,transform .16s ease" style-hover="box-shadow:0 14px 34px -16px rgba(11,36,64,.28);border-color:#CBD5E1;transform:translateY(-2px)">
               <div style="display:flex;align-items:center;gap:13px;padding:20px 22px;border-bottom:1px solid #EEF3F8">
                 <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:10px;background:#EAF2FB;color:#0E5FB5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10l9-5 9 5"></path><path d="M5 10v8M19 10v8M9 10v8M15 10v8M3 21h18"></path></svg></span>
                 <div>
@@ -1082,33 +1082,49 @@ input{font:inherit}
                   <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#0E5FB5;margin-top:2px">En pesos · ARS</div>
                 </div>
               </div>
-              <div style="padding:18px 22px 22px;flex:1;display:flex;flex-direction:column;gap:12px">
-                <div style="display:flex;flex-direction:column;gap:0">
-                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">TITULAR</span><span style="color:#C7D0DA">—</span></div>
-                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">CBU / CVU</span><span style="color:#C7D0DA">—</span></div>
-                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">ALIAS</span><span style="color:#C7D0DA">—</span></div>
-                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">CUIT</span><span style="color:#C7D0DA">—</span></div>
+              <div style="padding:18px 22px 22px;flex:1;display:flex;flex-direction:column;gap:14px">
+                <p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.6;color:#5A6B7B">El medio más usado. Transferís en pesos desde tu home banking o billetera virtual a la cuenta que te compartimos. La acreditación es inmediata y no tiene costo para vos.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:auto">
+                  <span style="display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6B7B;background:#F4F7FB;border:1px solid #E7EDF4;border-radius:20px;padding:5px 11px">Pesos (ARS)</span>
+                  <span style="display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6B7B;background:#F4F7FB;border:1px solid #E7EDF4;border-radius:20px;padding:5px 11px">Home banking o billetera</span>
+                  <span style="display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6B7B;background:#F4F7FB;border:1px solid #E7EDF4;border-radius:20px;padding:5px 11px">Sin comisión</span>
                 </div>
-                <p style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.55;color:#94A3B8;margin-top:auto">Los datos de la cuenta se completan al coordinar el pedido.</p>
+              </div>
+            </div>
+
+            <!-- MercadoPago -->
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .16s ease,border-color .16s ease,transform .16s ease" style-hover="box-shadow:0 14px 34px -16px rgba(11,36,64,.28);border-color:#CBD5E1;transform:translateY(-2px)">
+              <div style="display:flex;align-items:center;gap:13px;padding:20px 22px;border-bottom:1px solid #EEF3F8">
+                <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:10px;background:#EAF2FB;color:#0E5FB5"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2.5"></rect><path d="M2 10h20"></path><path d="M6 15h4"></path></svg></span>
+                <div>
+                  <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">MercadoPago</div>
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#0E5FB5;margin-top:2px">En pesos · ARS</div>
+                </div>
+              </div>
+              <div style="padding:18px 22px 22px;flex:1;display:flex;flex-direction:column;gap:14px">
+                <p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.6;color:#5A6B7B">Pagás en pesos con tu cuenta de MercadoPago: dinero disponible, tarjeta o transferencia. Práctico si ya operás con la app en el día a día.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:auto">
+                  <span style="display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6B7B;background:#F4F7FB;border:1px solid #E7EDF4;border-radius:20px;padding:5px 11px">Pesos (ARS)</span>
+                  <span style="display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6B7B;background:#F4F7FB;border:1px solid #E7EDF4;border-radius:20px;padding:5px 11px">Dinero, tarjeta o transferencia</span>
+                </div>
               </div>
             </div>
 
             <!-- USDT -->
-            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column">
+            <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;overflow:hidden;display:flex;flex-direction:column;transition:box-shadow .16s ease,border-color .16s ease,transform .16s ease" style-hover="box-shadow:0 14px 34px -16px rgba(11,36,64,.28);border-color:#CBD5E1;transform:translateY(-2px)">
               <div style="display:flex;align-items:center;gap:13px;padding:20px 22px;border-bottom:1px solid #EEF3F8">
                 <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:46px;height:46px;border-radius:10px;background:#E7F6EF;color:#15875A"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M8.5 9.5h7M12 9.5v8"></path></svg></span>
                 <div>
                   <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">USDT</div>
-                  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#15875A;margin-top:2px">Stablecoin · dólar cripto</div>
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#15875A;margin-top:2px">Stablecoin · dólar digital</div>
                 </div>
               </div>
-              <div style="padding:18px 22px 22px;flex:1;display:flex;flex-direction:column;gap:12px">
-                <div style="display:flex;flex-direction:column;gap:0">
-                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">RED</span><span style="color:#C7D0DA">—</span></div>
-                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;border-bottom:1px dashed #E2E8F0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">WALLET</span><span style="color:#C7D0DA">—</span></div>
-                  <div style="display:flex;justify-content:space-between;gap:12px;padding:11px 0;font-family:'IBM Plex Mono',monospace;font-size:13px"><span style="color:#94A3B8;letter-spacing:.03em">RED ALT.</span><span style="color:#C7D0DA">—</span></div>
+              <div style="padding:18px 22px 22px;flex:1;display:flex;flex-direction:column;gap:14px">
+                <p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.6;color:#5A6B7B">Si preferís pagar en cripto, tomamos USDT, la stablecoin atada al dólar. Ideal para operar en dólares sin depender del tipo de cambio del día. Te pasamos la red y la wallet al coordinar.</p>
+                <div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:auto">
+                  <span style="display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6B7B;background:#F4F7FB;border:1px solid #E7EDF4;border-radius:20px;padding:5px 11px">Dólar estable</span>
+                  <span style="display:inline-flex;align-items:center;font-family:'IBM Plex Mono',monospace;font-size:11px;color:#5A6B7B;background:#F4F7FB;border:1px solid #E7EDF4;border-radius:20px;padding:5px 11px">Red que coordinemos</span>
                 </div>
-                <p style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.55;color:#94A3B8;margin-top:auto">La dirección de wallet y la red se confirman al coordinar el pedido.</p>
               </div>
             </div>
           </div>
@@ -1118,7 +1134,7 @@ input{font:inherit}
             <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px;color:#0B2440;margin-bottom:18px">Cómo es el proceso</div>
             <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,210px),1fr));gap:18px">
               <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">1</span><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Finalizás el pedido por WhatsApp con el detalle del carrito.</p></div>
-              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">2</span><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Te pasamos los datos para abonar por transferencia o USDT.</p></div>
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">2</span><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Te pasamos los datos para abonar por transferencia, MercadoPago o USDT.</p></div>
               <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;width:26px;height:26px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">3</span><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Confirmás el pago y coordinamos el envío a todo el país.</p></div>
             </div>
           </div>
@@ -2004,22 +2020,6 @@ class Component extends DCLogic {
         liofilizado: "-20 °C · hasta 2 años",
         reconstituido: "2-8 °C · hasta 30 días",
       },
-      coas: [
-        {
-          variante: "GHK-Cu 50 mg", lote: "GHK50GA-03", pureza: "98,915%",
-          rotulado: "50 mg", real: "54,10 mg", fecha: "26/05/2026",
-          lab: "Kovera Labs", reporte: "KVR-2026-3AA240", nTests: 3,
-          panel: [
-            { k: "Pureza (RP-HPLC)", v: "98,915%" },
-            { k: "Contenido neto de péptido", v: "54,10 mg" },
-            { k: "Identidad (LC-MS)", v: "Confirmada" },
-            { k: "Esterilidad microbiana", v: "Sin crecimiento" },
-            { k: "Endotoxinas", v: "< 0,5 EU/mL" },
-            { k: "Metales pesados (As/Cd/Pb/Hg)", v: "Negativo" },
-          ],
-          pdfUrl: "coa/GHK-Cu_GHK50GA-03_COA.pdf",
-        },
-      ],
       referencias: [
         { journal: "International Journal of Molecular Sciences", titulo: "Regenerative and Protective Actions of the GHK-Cu Peptide in the Light of the New Gene Data", anio: "2018", autores: "Pickart L, Margolina A", idLabel: "PMID: 29986520", url: "https://pubmed.ncbi.nlm.nih.gov/29986520/" },
         { journal: "BioMed Research International", titulo: "GHK Peptide as a Natural Modulator of Multiple Cellular Pathways in Skin Regeneration", anio: "2015", autores: "Pickart L, Vasquez-Soltero JM, Margolina A", idLabel: "PMID: 26236730", url: "https://pubmed.ncbi.nlm.nih.gov/26236730/" },
