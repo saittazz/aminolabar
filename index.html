@@ -988,7 +988,10 @@ input{font:inherit}
               <div style="border:1px solid #E2E8F0;border-radius:12px;overflow:hidden">
                 <sc-for list="{{ cart }}" as="l" hint-placeholder-count="2">
                   <div style="display:flex;gap:14px;align-items:center;padding:16px 18px;border-bottom:1px solid #EEF3F8">
-                    <div style="flex-shrink:0;width:56px;height:56px;border:1px solid #E2E8F0;border-radius:8px;background:#F4F7FB;display:flex;align-items:center;justify-content:center;color:#9DB1C7"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></div>
+                    <div style="flex-shrink:0;width:56px;height:56px;border:1px solid #E2E8F0;border-radius:8px;background:#F4F7FB;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
+                      <sc-if value="{{ l.hasImagen }}" hint-placeholder-val="{{ true }}"><img src="{{ l.imagen }}" alt="{{ l.nombre }}" style="width:100%;height:100%;object-fit:contain"/></sc-if>
+                      <sc-if value="{{ l.noImagen }}" hint-placeholder-val="{{ false }}"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></sc-if>
+                    </div>
                     <div style="flex:1;min-width:0">
                       <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;color:#0B2440;line-height:1.25">{{ l.nombre }}</div>
                       <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#7E93A8;margin-top:3px">{{ l.presentacion }} · {{ l.unitUSDText }} c/u</div>
@@ -1007,6 +1010,30 @@ input{font:inherit}
                     </div>
                   </div>
                 </sc-for>
+
+                <!-- Sugerencias: completá tu pedido (solo productos en stock) -->
+                <sc-if value="{{ hasSugeridos }}" hint-placeholder-val="{{ false }}">
+                  <div style="padding:18px 18px 8px;border-bottom:1px solid #EEF3F8">
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#7E93A8;margin-bottom:12px">Completá tu pedido</div>
+                    <sc-for list="{{ sugeridos }}" as="s" hint-placeholder-count="2">
+                      <div style="display:flex;align-items:center;gap:12px;border:1px solid #E7EDF4;border-radius:10px;background:#FAFCFE;padding:11px 14px;margin-bottom:10px;transition:border-color .15s" style-hover="border-color:#CBD5E1">
+                        <div style="flex-shrink:0;width:46px;height:46px;border:1px solid #E7EDF4;border-radius:8px;background:#fff;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
+                          <sc-if value="{{ s.hasImagen }}" hint-placeholder-val="{{ true }}"><img src="{{ s.imagen }}" alt="{{ s.nombre }}" style="width:100%;height:100%;object-fit:contain"/></sc-if>
+                          <sc-if value="{{ s.noImagen }}" hint-placeholder-val="{{ false }}"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></sc-if>
+                        </div>
+                        <div style="flex:1;min-width:0">
+                          <div style="display:flex;align-items:center;gap:8px;flex-wrap:wrap">
+                            <span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;color:#0B2440;line-height:1.25">{{ s.nombre }}</span>
+                            <sc-if value="{{ s.esencial }}" hint-placeholder-val="{{ false }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#15875A;background:rgba(31,169,113,.12);border-radius:99px;padding:2px 9px">Esencial</span></sc-if>
+                          </div>
+                          <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#7E93A8;margin-top:3px">{{ s.presentacion }} · {{ s.usdText }}</div>
+                        </div>
+                        <button onClick="{{ s.onAdd }}" style="flex-shrink:0;display:inline-flex;align-items:center;gap:6px;border:1px solid #0E5FB5;border-radius:8px;background:#fff;color:#0E5FB5;padding:8px 14px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:12.5px;cursor:pointer;transition:background .15s,color .15s,transform .15s" style-hover="background:#0E5FB5;color:#fff;transform:translateY(-1px)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg>Agregar</button>
+                      </div>
+                    </sc-for>
+                  </div>
+                </sc-if>
+
                 <div style="display:flex;justify-content:space-between;align-items:center;padding:14px 18px;background:#F8FAFC">
                   <a href="#/catalogo" style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13.5px;color:#0E5FB5;text-decoration:none;display:inline-flex;align-items:center;gap:6px" style-hover="gap:9px"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H6M11 6l-6 6 6 6"></path></svg>Seguir comprando</a>
                   <button onClick="{{ clearCart }}" style="background:none;border:none;color:#94A3B8;font-family:'Poppins',sans-serif;font-size:12.5px;cursor:pointer" style-hover="color:#C0392B">Vaciar carrito</button>
@@ -1045,14 +1072,151 @@ input{font:inherit}
                   </div>
                 </div>
 
-                <button onClick="{{ finalizarPedido }}" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15.5px;cursor:pointer;box-shadow:0 14px 28px -14px rgba(31,169,113,.7);transition:background .15s,transform .15s" style-hover="background:#18885B;transform:translateY(-1px)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Finalizar pedido por WhatsApp</button>
+                <button onClick="{{ finalizarPedido }}" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:8px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:15.5px;cursor:pointer;box-shadow:0 14px 28px -14px rgba(31,169,113,.7);transition:background .15s,transform .15s" style-hover="background:#18885B;transform:translateY(-1px)"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>Finalizar pedido y pagar</button>
                 <sc-if value="{{ loggedOut }}" hint-placeholder-val="{{ true }}">
                   <p style="display:flex;align-items:center;justify-content:center;gap:7px;font-family:'Poppins',sans-serif;font-size:11.5px;color:#7E93A8;margin-top:10px;text-align:center"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="9" rx="2"></rect><path d="M8 11V8a4 4 0 0 1 8 0v3"></path></svg>Necesitás una cuenta para finalizar — es gratis.</p>
                 </sc-if>
                 <a href="#/medios-pago" style="margin-top:10px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:7px;background:#fff;color:#0B2440;border:1px solid #CBD5E1;border-radius:8px;padding:12px 16px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none" style-hover="border-color:#0E5FB5;color:#0E5FB5">Ver medios de pago</a>
-                <p style="font-family:'Poppins',sans-serif;font-size:11.5px;line-height:1.55;color:#94A3B8;margin-top:13px;text-align:center">El pedido se confirma y coordina por WhatsApp. El valor en ARS es de referencia según cotización.</p>
+                <p style="font-family:'Poppins',sans-serif;font-size:11.5px;line-height:1.55;color:#94A3B8;margin-top:13px;text-align:center">Al finalizar elegís el medio de pago (transferencia o USDT). El valor en ARS es de referencia según cotización.</p>
               </div>
             </div>
+          </sc-if>
+        </div>
+      </section>
+    </sc-if>
+
+    <!-- ================= REALIZAR PAGO (#/pago) ================= -->
+    <sc-if value="{{ isPago }}" hint-placeholder-val="{{ false }}">
+      <section style="background:#fff">
+        <div style="max-width:880px;margin:0 auto;width:100%;padding:clamp(36px,5vw,56px) clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
+          <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Último paso</span>
+          <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,40px);line-height:1.1;letter-spacing:-.02em;color:#0B2440">Realizar pago</h1>
+
+          <!-- Sin pedido pendiente -->
+          <sc-if value="{{ noPago }}" hint-placeholder-val="{{ false }}">
+            <div style="margin-top:34px;border:1px solid #E2E8F0;border-radius:12px;background:#F4F7FB;padding:56px 24px;text-align:center">
+              <p style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:18px;color:#0B2440">No tenés pagos pendientes</p>
+              <p style="font-family:'Poppins',sans-serif;font-size:14px;color:#5A6B7B;margin-top:8px">Cuando finalices un pedido, acá vas a poder elegir cómo pagarlo.</p>
+              <a href="#/catalogo" style="margin-top:22px;display:inline-flex;align-items:center;gap:8px;background:#0E5FB5;color:#fff;border-radius:8px;padding:13px 26px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14.5px;text-decoration:none" style-hover="background:#0B4E97">Ver catálogo</a>
+            </div>
+          </sc-if>
+
+          <sc-if value="{{ hasPago }}" hint-placeholder-val="{{ false }}">
+            <!-- Resumen del pedido -->
+            <div style="margin-top:26px;border:1px solid #E2E8F0;border-radius:13px;background:#F8FAFC;padding:18px 20px">
+              <div style="display:flex;justify-content:space-between;align-items:flex-start;gap:14px;flex-wrap:wrap">
+                <div style="min-width:0">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:14px;color:#0B2440">Pedido {{ pago.numero }}</div>
+                  <div style="font-family:'Poppins',sans-serif;font-size:13px;color:#5A6B7B;margin-top:6px;line-height:1.5">{{ pago.itemsText }}</div>
+                </div>
+                <div style="text-align:right;flex-shrink:0">
+                  <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:20px;color:#0B2440">{{ pago.totalARSText }}</div>
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#7E93A8;margin-top:2px">{{ pago.totalUSDText }}</div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Pago confirmado -->
+            <sc-if value="{{ pago.confirmado }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:18px;display:flex;align-items:center;gap:12px;border:1px solid rgba(31,169,113,.35);border-radius:13px;background:rgba(31,169,113,.08);padding:18px 20px">
+                <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(31,169,113,.15);color:#15875A"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span>
+                <div>
+                  <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px;color:#15875A">Pago confirmado</div>
+                  <p style="font-family:'Poppins',sans-serif;font-size:13px;color:#3A4855;margin-top:3px">Ya estamos preparando tu pedido. Seguí el estado desde <a href="#/cuenta" style="color:#0E5FB5;font-weight:600">tu cuenta</a>.</p>
+                </div>
+              </div>
+            </sc-if>
+
+            <!-- Comprobante en revisión -->
+            <sc-if value="{{ pago.enRevision }}" hint-placeholder-val="{{ false }}">
+              <div style="margin-top:18px;border:1px solid rgba(14,95,181,.3);border-radius:13px;background:rgba(14,95,181,.06);padding:20px 22px">
+                <div style="display:flex;align-items:center;gap:12px">
+                  <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:rgba(14,95,181,.12);color:#0E5FB5"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 3"></path></svg></span>
+                  <div>
+                    <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px;color:#0B4E97">Comprobante recibido — en revisión</div>
+                    <p style="font-family:'Poppins',sans-serif;font-size:13px;color:#3A4855;margin-top:3px">Recibimos tu comprobante. Apenas verifiquemos la transferencia, confirmamos el pago y despachamos tu pedido.</p>
+                  </div>
+                </div>
+                <a href="{{ pago.waListoHref }}" target="_blank" rel="noopener" style="margin-top:16px;display:inline-flex;align-items:center;gap:8px;background:#1FA971;color:#fff;border-radius:9px;padding:12px 20px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13.5px;text-decoration:none;transition:background .15s" style-hover="background:#18885B"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Avisar por WhatsApp que ya transferí</a>
+              </div>
+            </sc-if>
+
+            <!-- Pago pendiente: elegir método -->
+            <sc-if value="{{ pago.pendiente }}" hint-placeholder-val="{{ true }}">
+              <sc-if value="{{ pago.rechazado }}" hint-placeholder-val="{{ false }}">
+                <div style="margin-top:18px;border:1px solid rgba(192,57,43,.3);border-radius:11px;background:rgba(192,57,43,.06);padding:14px 18px;font-family:'Poppins',sans-serif;font-size:13px;color:#C0392B">No pudimos validar el comprobante anterior. Volvé a subirlo o escribinos por WhatsApp.</div>
+              </sc-if>
+
+              <div style="margin-top:26px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#0B2440">Elegí cómo pagar</div>
+              <div style="margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:14px">
+                <!-- Transferencia (activo) -->
+                <button onClick="{{ selectPayTransfer }}" style="{{ payTransferStyle }}">
+                  <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;background:rgba(14,95,181,.1);color:#0E5FB5"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10h18M3 10 12 4l9 6M5 10v8M9.5 10v8M14.5 10v8M19 10v8M3 18h18M2 21h20"></path></svg></span>
+                  <span style="min-width:0">
+                    <span style="display:block;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15.5px;color:#0B2440">Transferencia bancaria</span>
+                    <span style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;color:#5A6B7B;margin-top:2px">En pesos, a nuestro alias. Subís el comprobante acá.</span>
+                  </span>
+                  <sc-if value="{{ payTransfer }}" hint-placeholder-val="{{ true }}"><span style="position:absolute;top:12px;right:12px;display:inline-flex;align-items:center;justify-content:center;width:20px;height:20px;border-radius:50%;background:#0E5FB5;color:#fff"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"></path></svg></span></sc-if>
+                </button>
+                <!-- USDT (próximamente) -->
+                <button onClick="{{ selectPayUSDT }}" style="{{ payUSDTStyle }}">
+                  <span style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:44px;height:44px;border-radius:11px;background:rgba(38,161,123,.12);color:#26A17B"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"></circle><path d="M7 8h10M12 8v8M9.5 12.5c0 1 1.1 1.8 2.5 1.8s2.5-.8 2.5-1.8"></path></svg></span>
+                  <span style="min-width:0">
+                    <span style="display:block;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15.5px;color:#0B2440">USDT (cripto)</span>
+                    <span style="display:block;font-family:'Poppins',sans-serif;font-size:12.5px;color:#5A6B7B;margin-top:2px">Stablecoin atada al dólar, red TRC-20.</span>
+                  </span>
+                  <span style="position:absolute;top:12px;right:12px;font-family:'IBM Plex Mono',monospace;font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:#92660C;background:rgba(180,131,9,.14);border-radius:99px;padding:3px 9px">Próximamente</span>
+                </button>
+              </div>
+
+              <!-- Panel transferencia -->
+              <div style="margin-top:18px;border:1px solid #E2E8F0;border-radius:13px;background:#fff;padding:22px 22px 24px;box-shadow:0 16px 34px -26px rgba(11,36,64,.4)">
+                <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:16px;color:#0B2440">Transferí el total exacto</div>
+                <div style="margin-top:14px;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr));gap:12px">
+                  <div style="border:1px solid #E7EDF4;border-radius:10px;background:#F8FAFC;padding:14px 16px">
+                    <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#7E93A8">Monto a transferir</div>
+                    <div style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:21px;color:#0B2440;margin-top:6px">{{ pago.totalARSText }}</div>
+                  </div>
+                  <sc-if value="{{ pagoAliasSet }}" hint-placeholder-val="{{ false }}">
+                    <div style="border:1px solid #E7EDF4;border-radius:10px;background:#F8FAFC;padding:14px 16px">
+                      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#7E93A8">Alias</div>
+                      <div style="display:flex;align-items:center;gap:10px;margin-top:6px">
+                        <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:16px;color:#0B2440">{{ pagoAlias }}</span>
+                        <button onClick="{{ copyAlias }}" style="display:inline-flex;align-items:center;gap:5px;border:1px solid #CBD5E1;border-radius:7px;background:#fff;color:#0B2440;padding:5px 11px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:11.5px;cursor:pointer;transition:border-color .15s,color .15s" style-hover="border-color:#0E5FB5;color:#0E5FB5">{{ copyAliasLabel }}</button>
+                      </div>
+                      <div style="font-family:'Poppins',sans-serif;font-size:12px;color:#7E93A8;margin-top:5px">Titular: {{ pagoTitular }}</div>
+                    </div>
+                  </sc-if>
+                  <sc-if value="{{ pagoAliasUnset }}" hint-placeholder-val="{{ true }}">
+                    <div style="border:1px solid #E7EDF4;border-radius:10px;background:#F8FAFC;padding:14px 16px">
+                      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#7E93A8">Alias</div>
+                      <p style="font-family:'Poppins',sans-serif;font-size:13px;color:#3A4855;line-height:1.5;margin-top:6px">Te pasamos el alias por WhatsApp al coordinar el pedido.</p>
+                      <a href="{{ pago.waHref }}" target="_blank" rel="noopener" style="margin-top:8px;display:inline-flex;align-items:center;gap:7px;color:#15875A;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13px;text-decoration:none" style-hover="color:#0B6B45"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Pedir el alias por WhatsApp</a>
+                    </div>
+                  </sc-if>
+                </div>
+
+                <!-- Pasos -->
+                <div style="margin-top:18px;display:flex;flex-direction:column;gap:10px">
+                  <div style="display:flex;gap:11px;align-items:flex-start"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">1</span><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Transferí el <strong style="color:#0B2440">monto exacto en pesos</strong> desde tu home banking o billetera.</p></div>
+                  <div style="display:flex;gap:11px;align-items:flex-start"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">2</span><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Subí acá el <strong style="color:#0B2440">comprobante</strong> (foto, captura o PDF).</p></div>
+                  <div style="display:flex;gap:11px;align-items:flex-start"><span style="flex-shrink:0;width:24px;height:24px;border-radius:50%;background:#0E5FB5;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:600;display:inline-flex;align-items:center;justify-content:center">3</span><p style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.55;color:#5A6B7B">Verificamos la transferencia, <strong style="color:#0B2440">confirmamos el pago</strong> y despachamos.</p></div>
+                </div>
+
+                <!-- Subir comprobante -->
+                <input id="amComprobanteFile" type="file" accept="image/*,application/pdf" onChange="{{ onComprobante }}" style="display:none"/>
+                <sc-if value="{{ hasPagoError }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:16px;border:1px solid rgba(192,57,43,.3);border-radius:9px;background:rgba(192,57,43,.06);padding:11px 15px;font-family:'Poppins',sans-serif;font-size:12.5px;color:#C0392B">{{ pagoError }}</div>
+                </sc-if>
+                <sc-if value="{{ pagoNoSubiendo }}" hint-placeholder-val="{{ true }}">
+                  <button onClick="{{ pickComprobante }}" style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#1FA971;color:#fff;border:none;border-radius:9px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;cursor:pointer;box-shadow:0 14px 28px -14px rgba(31,169,113,.7);transition:background .15s,transform .15s" style-hover="background:#18885B;transform:translateY(-1px)"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M12 16V4M7 9l5-5 5 5M4 20h16"></path></svg>Subir comprobante de transferencia</button>
+                </sc-if>
+                <sc-if value="{{ pagoSubiendo }}" hint-placeholder-val="{{ false }}">
+                  <div style="margin-top:18px;width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#F4F7FB;color:#5A6B7B;border:1px solid #E2E8F0;border-radius:9px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14.5px">Subiendo comprobante…</div>
+                </sc-if>
+                <p style="font-family:'Poppins',sans-serif;font-size:12px;line-height:1.55;color:#94A3B8;margin-top:12px;text-align:center">¿Problemas para subirlo? <a href="{{ pago.waHref }}" target="_blank" rel="noopener" style="color:#0E5FB5;font-weight:600">Mandalo por WhatsApp</a> con tu número de pedido.</p>
+              </div>
+            </sc-if>
           </sc-if>
         </div>
       </section>
@@ -1452,6 +1616,7 @@ input{font:inherit}
                         <div style="display:flex;align-items:center;gap:10px;flex-wrap:wrap">
                           <span style="font-family:'IBM Plex Mono',monospace;font-weight:600;font-size:13.5px;color:#0B2440">{{ o.numero }}</span>
                           <span style="display:inline-flex;align-items:center;gap:6px;background:{{ o.chipBg }};color:{{ o.chipFg }};border-radius:999px;padding:3px 10px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:600"><span style="width:6px;height:6px;border-radius:50%;background:{{ o.chipDot }}"></span>{{ o.estado }}</span>
+                          <sc-if value="{{ o.hasPagoChip }}" hint-placeholder-val="{{ false }}"><span style="display:inline-flex;align-items:center;gap:6px;background:{{ o.pagoBg }};color:{{ o.pagoFg }};border-radius:999px;padding:3px 10px;font-family:'Poppins',sans-serif;font-size:11px;font-weight:600"><span style="width:6px;height:6px;border-radius:50%;background:{{ o.pagoDot }}"></span>{{ o.pagoText }}</span></sc-if>
                         </div>
                         <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#94A3B8;margin-top:5px">{{ o.fechaText }}</div>
                         <div style="font-family:'Poppins',sans-serif;font-size:13px;color:#5A6B7B;margin-top:7px;line-height:1.45">{{ o.productosText }}</div>
@@ -1461,7 +1626,12 @@ input{font:inherit}
                         <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#94A3B8;margin-top:2px">{{ o.totalARSText }}</div>
                       </div>
                     </div>
-                    <button onClick="{{ o.onReorder }}" style="margin-top:13px;display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0E5FB5;border:1px solid #CBD5E1;border-radius:9px;padding:9px 15px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:12.5px;cursor:pointer;transition:border-color .15s,background .15s,transform .15s" style-hover="border-color:#0E5FB5;background:#EAF2FB;transform:translateY(-1px)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 4v4h4"></path></svg>Volver a pedir</button>
+                    <div style="margin-top:13px;display:flex;gap:9px;flex-wrap:wrap">
+                      <sc-if value="{{ o.debePagar }}" hint-placeholder-val="{{ false }}">
+                        <button onClick="{{ o.onPagar }}" style="display:inline-flex;align-items:center;gap:7px;background:#1FA971;color:#fff;border:none;border-radius:9px;padding:9px 15px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:12.5px;cursor:pointer;transition:background .15s,transform .15s" style-hover="background:#18885B;transform:translateY(-1px)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"></rect><path d="M2 10h20"></path></svg>Completar pago</button>
+                      </sc-if>
+                      <button onClick="{{ o.onReorder }}" style="display:inline-flex;align-items:center;gap:7px;background:#fff;color:#0E5FB5;border:1px solid #CBD5E1;border-radius:9px;padding:9px 15px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:12.5px;cursor:pointer;transition:border-color .15s,background .15s,transform .15s" style-hover="border-color:#0E5FB5;background:#EAF2FB;transform:translateY(-1px)"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"></path><path d="M3 4v4h4"></path></svg>Volver a pedir</button>
+                    </div>
                   </div>
                 </sc-for>
               </div>
@@ -1748,7 +1918,10 @@ input{font:inherit}
         <sc-if value="{{ hasCart }}" hint-placeholder-val="{{ false }}">
           <sc-for list="{{ cart }}" as="l" hint-placeholder-count="2">
             <div style="display:flex;gap:12px;padding:15px 18px;border-bottom:1px solid #EEF3F8">
-              <div style="flex-shrink:0;width:50px;height:50px;border:1px solid #E2E8F0;border-radius:8px;background:#F4F7FB;display:flex;align-items:center;justify-content:center;color:#9DB1C7"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></div>
+              <div style="flex-shrink:0;width:50px;height:50px;border:1px solid #E2E8F0;border-radius:8px;background:#F4F7FB;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
+                <sc-if value="{{ l.hasImagen }}" hint-placeholder-val="{{ true }}"><img src="{{ l.imagen }}" alt="{{ l.nombre }}" style="width:100%;height:100%;object-fit:contain"/></sc-if>
+                <sc-if value="{{ l.noImagen }}" hint-placeholder-val="{{ false }}"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></sc-if>
+              </div>
               <div style="flex:1;min-width:0">
                 <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;color:#0B2440;line-height:1.25">{{ l.nombre }}</div>
                 <div style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#7E93A8;margin-top:3px">{{ l.presentacion }} · {{ l.unitUSDText }} c/u</div>
@@ -1765,6 +1938,29 @@ input{font:inherit}
                 </div>
                 <button onClick="{{ l.onRemove }}" style="margin-top:8px;display:inline-flex;align-items:center;gap:5px;background:none;border:none;color:#94A3B8;font-family:'Poppins',sans-serif;font-size:12px;cursor:pointer;padding:0" style-hover="color:#C0392B"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M9 6V4h6v2M7 6l1 14h8l1-14"></path></svg>Quitar</button>
               </div>
+            </div>
+          </sc-for>
+        </sc-if>
+
+        <!-- Sugerencias: completá tu pedido (solo productos en stock) -->
+        <sc-if value="{{ hasSugeridos }}" hint-placeholder-val="{{ false }}">
+          <div style="padding:16px 18px 6px">
+            <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#7E93A8">Completá tu pedido</div>
+          </div>
+          <sc-for list="{{ sugeridos }}" as="s" hint-placeholder-count="2">
+            <div style="display:flex;align-items:center;gap:11px;margin:0 18px 10px;border:1px solid #E7EDF4;border-radius:10px;background:#FAFCFE;padding:10px 12px;transition:border-color .15s" style-hover="border-color:#CBD5E1">
+              <div style="flex-shrink:0;width:42px;height:42px;border:1px solid #E7EDF4;border-radius:7px;background:#fff;display:flex;align-items:center;justify-content:center;color:#9DB1C7;overflow:hidden">
+                <sc-if value="{{ s.hasImagen }}" hint-placeholder-val="{{ true }}"><img src="{{ s.imagen }}" alt="{{ s.nombre }}" style="width:100%;height:100%;object-fit:contain"/></sc-if>
+                <sc-if value="{{ s.noImagen }}" hint-placeholder-val="{{ false }}"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="2" width="6" height="2.4" rx="0.6"></rect><path d="M9.7 4.4h4.6"></path><rect x="7.8" y="6" width="8.4" height="14" rx="1.7"></rect><path d="M7.8 13.2h8.4"></path></svg></sc-if>
+              </div>
+              <div style="flex:1;min-width:0">
+                <div style="display:flex;align-items:center;gap:7px;flex-wrap:wrap">
+                  <span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13px;color:#0B2440;line-height:1.25">{{ s.nombre }}</span>
+                  <sc-if value="{{ s.esencial }}" hint-placeholder-val="{{ false }}"><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:#15875A;background:rgba(31,169,113,.12);border-radius:99px;padding:2px 8px">Esencial</span></sc-if>
+                </div>
+                <div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#7E93A8;margin-top:2px">{{ s.presentacion }} · {{ s.usdText }}</div>
+              </div>
+              <button onClick="{{ s.onAdd }}" aria-label="Agregar {{ s.nombre }}" style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border:1px solid #0E5FB5;border-radius:8px;background:#fff;color:#0E5FB5;cursor:pointer;transition:background .15s,color .15s,transform .15s" style-hover="background:#0E5FB5;color:#fff;transform:translateY(-1px)"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.1" stroke-linecap="round"><path d="M12 5v14M5 12h14"></path></svg></button>
             </div>
           </sc-for>
         </sc-if>
@@ -1794,7 +1990,7 @@ input{font:inherit}
             <button onClick="{{ closeDrawer }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:8px;padding:13px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;letter-spacing:.04em;text-transform:uppercase;cursor:pointer;transition:background .15s,color .15s" style-hover="background:#EAF2FB">Seguir comprando</button>
             <a href="#/carrito" onClick="{{ closeDrawer }}" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:14px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;text-decoration:none;transition:background .15s" style-hover="background:#0B4E97">Hacer checkout<svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h13M13 6l6 6-6 6"></path></svg></a>
           </div>
-          <p style="font-family:'Poppins',sans-serif;font-size:11px;line-height:1.5;color:#94A3B8;margin-top:11px;text-align:center">El pedido se confirma y coordina por WhatsApp.</p>
+          <p style="font-family:'Poppins',sans-serif;font-size:11px;line-height:1.5;color:#94A3B8;margin-top:11px;text-align:center">Al finalizar elegís el medio de pago (transferencia o USDT).</p>
         </div>
       </sc-if>
     </aside>
@@ -1956,6 +2152,12 @@ class Component extends DCLogic {
   PHONE = "+5492215227060";              // E.164 — usado en schema y tel
   PHONE_DISPLAY = "+54 9 221 522-7060";
 
+  // ====== DATOS DE COBRO (transferencia bancaria) ======
+  // REEMPLAZAR por los datos reales antes de publicar. Mientras el alias
+  // contenga "COMPLETAR", la pagina de pago avisa que se pasan por WhatsApp.
+  PAGO_ALIAS = "COMPLETAR.ALIAS";        // alias CBU/CVU
+  PAGO_TITULAR = "COMPLETAR TITULAR";    // titular de la cuenta
+
   // ====== RESEÑAS / TESTIMONIOS (fuente única para sección visible + AggregateRating) ======
   REVIEW_AVG = 4.9;       // calificación promedio mostrada y en AggregateRating
   REVIEW_COUNT = 128;     // cantidad total de reseñas (AggregateRating.reviewCount)
@@ -1977,6 +2179,7 @@ class Component extends DCLogic {
     faq:      { t: "Preguntas frecuentes sobre péptidos en Argentina | AminoLabAr", d: "Dónde comprar péptidos de investigación en Argentina, COA por lote, origen EE. UU., medios de pago y envíos por Andreani. Respuestas de AminoLabAr." },
     contacto: { t: "Contacto · Asesoría por WhatsApp | AminoLabAr", d: "Contactá a AminoLabAr por WhatsApp para asesoría sobre péptidos de investigación, presentaciones, disponibilidad y envíos a todo el país." },
     carrito:  { t: "Tu carrito | AminoLabAr", d: "Revisá tu pedido de péptidos de investigación y coordiná el envío a todo el país por WhatsApp." },
+    pago:     { t: "Realizar pago | AminoLabAr", d: "Elegí cómo pagar tu pedido: transferencia bancaria o USDT. Subí tu comprobante y seguí el estado desde tu cuenta." },
     "medios-pago": { t: "Medios de pago · Transferencia y USDT | AminoLabAr", d: "Aceptamos transferencia bancaria en pesos y USDT. Coordiná el pago por WhatsApp al finalizar tu pedido de péptidos de investigación." },
   };
 
@@ -2374,6 +2577,10 @@ class Component extends DCLogic {
     pendingCheckout: false,// venía a finalizar un pedido antes de loguearse
     checkoutGate: false,   // modal "necesitás cuenta para finalizar"
     orderConfirm: null,    // pedido recién confirmado (modal de éxito)
+    pagoOrder: null,       // pedido que se está pagando en #/pago
+    payMethod: "transferencia", // método elegido en #/pago (USDT aún no operativo)
+    pagoSubiendo: false,   // subiendo comprobante a Storage
+    pagoError: "",         // error al subir el comprobante
     loginError: "",
     copied: "",            // código recién copiado (feedback)
     editData: false,       // edición de "Mis datos"
@@ -2437,6 +2644,7 @@ class Component extends DCLogic {
   // Fila de la tabla orders -> objeto pedido que consume el panel.
   orderRowToVM(row) {
     return {
+      id: row.id || null,
       numero: row.numero,
       fecha: (row.created_at || new Date().toISOString()).slice(0, 10),
       estado: row.estado || "Procesando",
@@ -2444,6 +2652,9 @@ class Component extends DCLogic {
       totalUSD: Number(row.total_usd) || 0,
       totalARS: Number(row.total_ars) || 0,
       peptides: row.peptides || 0,
+      // null = pedido anterior al flujo de pago (no muestra chip de pago)
+      estadoPago: row.estado_pago || null,
+      metodoPago: row.metodo_pago || null,
     };
   }
 
@@ -2712,31 +2923,95 @@ class Component extends DCLogic {
     // --- DEMO / sin backend: historial local, como siempre ---
     if (user.esDemo || !this.sbClient()) {
       const numero = "AML-" + (1090 + (user.pedidos ? user.pedidos.length : 0));
-      const order = { numero, fecha: new Date().toISOString().slice(0, 10), estado: "Procesando", items, totalUSD, totalARS, peptides };
+      const order = { id: "demo-" + numero, numero, fecha: new Date().toISOString().slice(0, 10), estado: "Procesando", items, totalUSD, totalARS, peptides, estadoPago: "pendiente", metodoPago: null };
       user.pedidos = [order, ...(user.pedidos || [])];
       user.puntos = (user.puntos || 0) + Math.round(totalUSD);
       try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
-      if (typeof window !== "undefined") window.open(waHref, "_blank");
-      this.setState({ user, cart: [], drawerOpen: false, checkoutGate: false, orderConfirm: order });
+      this.setState({ user, cart: [], drawerOpen: false, checkoutGate: false, pagoOrder: order, payMethod: "transferencia", pagoError: "" });
+      if (typeof window !== "undefined") window.location.hash = "#/pago";
       return;
     }
 
-    // --- REAL: abrir WhatsApp YA (gesto del usuario, no lo bloquea el popup blocker) ---
-    if (typeof window !== "undefined") window.open(waHref, "_blank");
+    // --- REAL: registrar en orders y pasar a la página de pago ---
     const sb = this.sbClient();
     const { data: { session } } = await sb.auth.getSession();
     if (!session) { this.setState({ checkoutGate: false }); return; }
     // numero, estado y created_at los pone la DB (defaults). Solo mandamos lo nuestro.
     const { data, error } = await sb.from("orders")
       .insert({ user_id: session.user.id, total_usd: totalUSD, total_ars: totalARS, peptides, items })
-      .select("numero, created_at").single();
-    if (error) { this.showToast("No se pudo registrar el pedido, pero te derivamos a WhatsApp."); this.setState({ cart: [], drawerOpen: false, checkoutGate: false }); return; }
-    const order = this.orderRowToVM({ numero: data.numero, created_at: data.created_at, estado: "Procesando", items, total_usd: totalUSD, total_ars: totalARS, peptides });
+      .select("id, numero, created_at").single();
+    if (error) {
+      // sin registro no hay página de pago: derivamos a WhatsApp como antes
+      if (typeof window !== "undefined") window.open(waHref, "_blank");
+      this.showToast("No se pudo registrar el pedido, pero te derivamos a WhatsApp.");
+      this.setState({ cart: [], drawerOpen: false, checkoutGate: false });
+      return;
+    }
+    const order = this.orderRowToVM({ id: data.id, numero: data.numero, created_at: data.created_at, estado: "Procesando", estado_pago: "pendiente", items, total_usd: totalUSD, total_ars: totalARS, peptides });
     user.pedidos = [order, ...(user.pedidos || [])];
     user.puntos = (user.puntos || 0) + Math.round(totalUSD); // optimista en memoria (Fase 3 lo persiste)
-    this.setState({ user, cart: [], drawerOpen: false, checkoutGate: false, orderConfirm: order });
+    this.setState({ user, cart: [], drawerOpen: false, checkoutGate: false, pagoOrder: order, payMethod: "transferencia", pagoError: "" });
+    if (typeof window !== "undefined") window.location.hash = "#/pago";
   };
   closeConfirm = () => this.setState({ orderConfirm: null });
+
+  // ====== PÁGINA DE PAGO (#/pago) ======
+  // Pedido a pagar: el recién creado, o el más nuevo con pago sin confirmar.
+  pagoOrderActual() {
+    const s = this.state;
+    if (s.pagoOrder) {
+      // refrescar desde user.pedidos si ya se recargó (estadoPago actualizado)
+      const fresh = (s.user && s.user.pedidos || []).find((o) => o.numero === s.pagoOrder.numero);
+      return fresh || s.pagoOrder;
+    }
+    return (s.user && s.user.pedidos || []).find((o) => o.estadoPago && o.estadoPago !== "confirmado") || null;
+  }
+  goPagar = (order) => {
+    this.setState({ pagoOrder: order, payMethod: "transferencia", pagoError: "" });
+    if (typeof window !== "undefined") window.location.hash = "#/pago";
+  };
+  selectPayTransfer = () => this.setState({ payMethod: "transferencia" });
+  selectPayUSDT = () => this.showToast("Pago con USDT disponible próximamente. Por ahora, transferencia bancaria.");
+  pickComprobante = () => {
+    const el = (typeof document !== "undefined") && document.getElementById("amComprobanteFile");
+    if (el) { el.value = ""; el.click(); }
+  };
+  onComprobante = async (e) => {
+    const file = e && e.target && e.target.files && e.target.files[0];
+    if (!file) return;
+    const order = this.pagoOrderActual();
+    if (!order) return;
+    if (file.size > 10 * 1024 * 1024) { this.setState({ pagoError: "El archivo no puede superar los 10 MB." }); return; }
+    if (!/^image\/|^application\/pdf$/.test(file.type)) { this.setState({ pagoError: "Subí una imagen (foto/captura) o un PDF." }); return; }
+
+    // actualiza el pedido en memoria (user.pedidos + pagoOrder) y persiste si es demo
+    const marcarEnRevision = () => {
+      const user = Object.assign({}, this.state.user);
+      user.pedidos = (user.pedidos || []).map((o) => o.numero === order.numero ? { ...o, estadoPago: "en_revision", metodoPago: "transferencia" } : o);
+      const pagoOrder = { ...order, estadoPago: "en_revision", metodoPago: "transferencia" };
+      if (user.esDemo) { try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (err) {} }
+      this.setState({ user, pagoOrder, pagoSubiendo: false, pagoError: "" });
+    };
+
+    // DEMO / sin backend: simula la subida
+    if ((this.state.user && this.state.user.esDemo) || !this.sbClient()) { marcarEnRevision(); return; }
+
+    this.setState({ pagoSubiendo: true, pagoError: "" });
+    try {
+      const sb = this.sbClient();
+      const { data: { session } } = await sb.auth.getSession();
+      if (!session) { this.setState({ pagoSubiendo: false, pagoError: "Tu sesión expiró. Volvé a ingresar." }); return; }
+      const ext = (file.name.split(".").pop() || "jpg").toLowerCase().replace(/[^a-z0-9]/g, "") || "jpg";
+      const path = session.user.id + "/" + order.numero + "-" + Date.now() + "." + ext;
+      const { error: upErr } = await sb.storage.from("comprobantes").upload(path, file);
+      if (upErr) { this.setState({ pagoSubiendo: false, pagoError: "No se pudo subir el comprobante. Reintentá o mandalo por WhatsApp." }); return; }
+      const { error: rpcErr } = await sb.rpc("adjuntar_comprobante", { p_order_id: order.id, p_path: path });
+      if (rpcErr) { this.setState({ pagoSubiendo: false, pagoError: "Se subió el archivo pero no se pudo asociar al pedido. Avisanos por WhatsApp." }); return; }
+      marcarEnRevision();
+    } catch (err) {
+      this.setState({ pagoSubiendo: false, pagoError: "No se pudo subir el comprobante. Reintentá o mandalo por WhatsApp." });
+    }
+  };
 
   // ====== RECOMPRA / REFERIDOS / PUNTOS ======
   reorder = (order) => {
@@ -3211,6 +3486,7 @@ class Component extends DCLogic {
     if (parts[0] === "catalogo") page = "catalogo";
     else if (parts[0] === "producto") { page = "producto"; productId = parts[1] || null; }
     else if (parts[0] === "carrito") page = "carrito";
+    else if (parts[0] === "pago") page = "pago";
     else if (parts[0] === "medios-pago") page = "medios-pago";
     else if (parts[0] === "ingresar") page = "ingresar";
     else if (parts[0] === "reset") page = "reset";
@@ -3223,6 +3499,11 @@ class Component extends DCLogic {
     if (page === "cuenta" && !this.state.session) {
       page = "ingresar";
       extra = { authTab: "login", authReason: "Iniciá sesión para acceder a tu cuenta." };
+      if (typeof window !== "undefined" && window.location.hash !== "#/ingresar") { try { history.replaceState(null, "", "#/ingresar"); } catch (e) {} }
+    }
+    if (page === "pago" && !this.state.session) {
+      page = "ingresar";
+      extra = { authTab: "login", authReason: "Iniciá sesión para ver el pago de tu pedido." };
       if (typeof window !== "undefined" && window.location.hash !== "#/ingresar") { try { history.replaceState(null, "", "#/ingresar"); } catch (e) {} }
     }
     this.setState(Object.assign({ page, productId, menuOpen: false, userMenuOpen: false, variantIndex: 0, detailQty: 1, drawerOpen: false }, extra));
@@ -3344,14 +3625,47 @@ class Component extends DCLogic {
       const ventaUSD = this.precioVentaUSD(costo);
       const lineUSD = this.round2(ventaUSD * it.qty);
       const esInsumo = p.id === "agua-bac-10";
+      const img = this.imgResolve(p, it.variantIndex);
       return {
         key: it.key, nombre: p.nombre, presentacion, qty: it.qty, lineUSD, esInsumo,
+        imagen: img.url, hasImagen: img.has, noImagen: !img.has,
         unitUSDText: this.fmtUSD(ventaUSD),
         lineUSDText: this.fmtUSD(lineUSD),
         lineARSText: this.fmtARS(this.round(lineUSD * tasaARS)),
         onInc: () => this.incItem(it.key), onDec: () => this.decItem(it.key), onRemove: () => this.removeItem(it.key),
       };
     }).filter(Boolean);
+
+    // Sugerencias para completar el pedido: SOLO productos en stock que no
+    // estén ya en el carrito. Agua bacteriostática siempre primera (es el
+    // insumo clave para reconstituir); después péptidos destacados.
+    const enCarrito = {};
+    this.state.cart.forEach((it) => { enCarrito[it.productId] = true; });
+    let sugeridos = [];
+    if (lines.length) {
+      const esAgua = (p) => /agua bacteriost/i.test(p.nombre || "");
+      const esInsumoProd = (p) => /^insumo/i.test(p.investigacion || "");
+      const cands = productos.filter((p) => p.enStock && p.visible !== false && !enCarrito[p.id]);
+      const agua = cands.filter(esAgua);
+      const peps = cands.filter((p) => !esInsumoProd(p) && !esAgua(p));
+      peps.sort((a, b) => (b.destacado ? 1 : 0) - (a.destacado ? 1 : 0));
+      sugeridos = agua.concat(peps).slice(0, 3).map((p) => {
+        // con variantes: sugerir la primera capacidad EN STOCK
+        let vIdx = 0, costo, presentacion;
+        if (p.variantes && p.variantes.length) {
+          vIdx = Math.max(0, p.variantes.findIndex((v) => v.enStock !== false));
+          costo = p.variantes[vIdx].costoUSD; presentacion = p.variantes[vIdx].label;
+        } else { costo = p.costoUSD; presentacion = this.presentacionDe(p.nombre); }
+        const img = this.imgResolve(p, vIdx);
+        return {
+          id: p.id, nombre: p.nombre, presentacion,
+          imagen: img.url, hasImagen: img.has, noImagen: !img.has,
+          esencial: esAgua(p),
+          usdText: this.fmtUSD(this.precioVentaUSD(costo)),
+          onAdd: () => this.addItem(p.id, vIdx, 1),
+        };
+      });
+    }
 
     const totalUSD = this.round2(lines.reduce((a, l) => a + l.lineUSD, 0));
     const totalARS = this.round(totalUSD * tasaARS);
@@ -3377,7 +3691,7 @@ class Component extends DCLogic {
 
     return {
       lines, count, totalUSDText: this.fmtUSD(totalUSD), totalARSText: this.fmtARS(totalARS),
-      freeShip, faltanText, shipText, cartProgress, waHref,
+      freeShip, faltanText, shipText, cartProgress, waHref, sugeridos,
     };
   }
 
@@ -3676,14 +3990,26 @@ class Component extends DCLogic {
       if (e === "En camino") return { bg: "rgba(14,95,181,.1)", fg: "#0E5FB5", dot: "#0E5FB5" };
       return { bg: "rgba(180,131,9,.12)", fg: "#92660C", dot: "#E0A422" };
     };
+    const pagoChip = (ep) => {
+      if (ep === "confirmado") return { t: "Pago confirmado", bg: "rgba(31,169,113,.12)", fg: "#15875A", dot: "#1FA971" };
+      if (ep === "en_revision") return { t: "Pago en revisión", bg: "rgba(14,95,181,.1)", fg: "#0E5FB5", dot: "#0E5FB5" };
+      if (ep === "rechazado") return { t: "Pago rechazado", bg: "rgba(192,57,43,.1)", fg: "#C0392B", dot: "#C0392B" };
+      return { t: "Pago pendiente", bg: "rgba(180,131,9,.12)", fg: "#92660C", dot: "#E0A422" };
+    };
     const orders = (acc.pedidos || []).map((o) => {
       const c = estadoChip(o.estado);
+      // pedidos viejos (pre flujo de pago) sin estadoPago: no muestran chip de pago
+      const pc = o.estadoPago ? pagoChip(o.estadoPago) : null;
       return {
         numero: o.numero, estado: o.estado,
         fechaText: new Date(o.fecha + "T00:00:00").toLocaleDateString("es-AR", { day: "2-digit", month: "short", year: "numeric" }),
         productosText: (o.items || []).map((it) => it.nombre + (it.qty > 1 ? " ×" + it.qty : "")).join(" · "),
         totalText: this.fmtUSD(o.totalUSD), totalARSText: this.fmtARS(o.totalARS),
         chipBg: c.bg, chipFg: c.fg, chipDot: c.dot,
+        hasPagoChip: !!pc,
+        pagoText: pc ? pc.t : "", pagoBg: pc ? pc.bg : "", pagoFg: pc ? pc.fg : "", pagoDot: pc ? pc.dot : "",
+        debePagar: !!o.estadoPago && (o.estadoPago === "pendiente" || o.estadoPago === "rechazado"),
+        onPagar: () => this.goPagar(o),
         onReorder: () => this.reorder(o),
       };
     });
@@ -3703,6 +4029,28 @@ class Component extends DCLogic {
     const confirmWrapStyle = { position: "fixed", inset: 0, zIndex: 165, display: "flex", alignItems: "center", justifyContent: "center", padding: "clamp(16px,4vw,40px)", background: "rgba(11,36,64,.42)", backdropFilter: "blur(7px)", WebkitBackdropFilter: "blur(7px)", opacity: confirmOpen ? 1 : 0, pointerEvents: confirmOpen ? "auto" : "none", transition: "opacity .3s ease" };
     const confirmPanelStyle = { position: "relative", zIndex: 1, background: "#fff", borderRadius: "20px", width: "min(440px,100%)", padding: "34px 30px 28px", textAlign: "center", boxShadow: "0 30px 80px -24px rgba(11,36,64,.55), 0 0 0 1px rgba(226,232,240,.9)", transform: confirmOpen ? "translateY(0) scale(1)" : "translateY(16px) scale(.96)", opacity: confirmOpen ? 1 : 0, transition: "transform .45s cubic-bezier(.16,1,.3,1), opacity .3s ease" };
     const confirmVM = oc ? { numero: oc.numero, totalText: this.fmtUSD(oc.totalUSD), totalARSText: this.fmtARS(oc.totalARS), puntos: Math.round(oc.totalUSD) } : { numero: "", totalText: "", totalARSText: "", puntos: 0 };
+
+    // --- Página de pago (#/pago) ---
+    const pagoO = this.pagoOrderActual();
+    const pagoAliasSet = this.PAGO_ALIAS.indexOf("COMPLETAR") === -1;
+    const pagoVM = pagoO ? {
+      numero: pagoO.numero,
+      totalUSDText: this.fmtUSD(pagoO.totalUSD),
+      totalARSText: this.fmtARS(pagoO.totalARS),
+      itemsText: (pagoO.items || []).map((it) => it.nombre + (it.qty > 1 ? " ×" + it.qty : "")).join(" · "),
+      pendiente: !pagoO.estadoPago || pagoO.estadoPago === "pendiente" || pagoO.estadoPago === "rechazado",
+      rechazado: pagoO.estadoPago === "rechazado",
+      enRevision: pagoO.estadoPago === "en_revision",
+      confirmado: pagoO.estadoPago === "confirmado",
+      waHref: "https://wa.me/5492215227060?text=" + encodeURIComponent("Hola AminoLabAr, hice el pedido " + pagoO.numero + " (" + this.fmtARS(pagoO.totalARS) + ") y quiero coordinar el pago por transferencia."),
+      waListoHref: "https://wa.me/5492215227060?text=" + encodeURIComponent("Hola AminoLabAr, ya transferí el pedido " + pagoO.numero + " y subí el comprobante en la web."),
+    } : { numero: "", totalUSDText: "", totalARSText: "", itemsText: "", pendiente: false, rechazado: false, enRevision: false, confirmado: false, waHref: "", waListoHref: "" };
+    const payTransfer = this.state.payMethod === "transferencia";
+    const payCardBase = { position: "relative", display: "flex", alignItems: "center", gap: "14px", border: "1px solid #E2E8F0", borderRadius: "13px", background: "#fff", padding: "16px 18px", cursor: "pointer", textAlign: "left", width: "100%", transition: "border-color .18s, box-shadow .18s, transform .15s" };
+    const payTransferStyle = payTransfer
+      ? Object.assign({}, payCardBase, { border: "2px solid #0E5FB5", boxShadow: "0 14px 30px -18px rgba(14,95,181,.5)", padding: "15px 17px" })
+      : payCardBase;
+    const payUSDTStyle = Object.assign({}, payCardBase, { cursor: "pointer", opacity: .62, background: "#F8FAFC" });
 
     // --- Índice de Términos y Condiciones (scroll suave por sección) ---
     const tSecciones = [
@@ -3815,6 +4163,19 @@ class Component extends DCLogic {
       detailQty: this.state.detailQty, incDetail: this.incDetail, decDetail: this.decDetail,
       product, productNotFound: isProducto && !product,
       isCarrito: page === "carrito", isMedios: page === "medios-pago",
+      // página de pago (#/pago)
+      isPago: page === "pago", hasPago: !!pagoO, noPago: !pagoO, pago: pagoVM,
+      pagoAlias: this.PAGO_ALIAS, pagoTitular: this.PAGO_TITULAR,
+      pagoAliasSet, pagoAliasUnset: !pagoAliasSet,
+      payTransfer, payTransferStyle, payUSDTStyle,
+      selectPayTransfer: this.selectPayTransfer, selectPayUSDT: this.selectPayUSDT,
+      pickComprobante: this.pickComprobante, onComprobante: this.onComprobante,
+      pagoSubiendo: this.state.pagoSubiendo, pagoNoSubiendo: !this.state.pagoSubiendo,
+      hasPagoError: !!this.state.pagoError, pagoError: this.state.pagoError,
+      copyAlias: () => this.copyCode(this.PAGO_ALIAS),
+      copyAliasLabel: this.state.copied === this.PAGO_ALIAS ? "¡Copiado!" : "Copiar",
+      // sugerencias del carrito
+      sugeridos: cartVM.sugeridos, hasSugeridos: (cartVM.sugeridos || []).length > 0,
       cart: cartVM.lines, cartCount: cartVM.count, hasCart: cartVM.lines.length > 0, emptyCart: cartVM.lines.length === 0,
       cartTotalUSD: cartVM.totalUSDText, cartTotalARS: cartVM.totalARSText,
       freeShip: cartVM.freeShip, faltanText: cartVM.faltanText, shipText: cartVM.shipText,
