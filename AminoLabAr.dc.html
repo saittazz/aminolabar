@@ -2140,7 +2140,7 @@ class Component extends DCLogic {
   // - Producto SIN variantes: la clave es el id (ej. "cjc-nodac-ipa").
   // - Producto CON capacidades: clave = id + "-" + capacidad
   //   (ej. "ghk-cu-50mg", "ghk-cu-100mg"). Sumá la clave acá al agregar la imagen.
-  IMG_DISPONIBLES = ["agua-bac-10", "agua-bac-30", "cjc-nodac-ipa", "cjc-nodac-ipa-float", "ghk-cu-100mg", "ghk-cu-50mg", "ghk-cu-50mg-float", "gla-3-rt-10mg", "gla-3-rt-10mg-float", "gla-3-rt-20mg", "gla-3-rt-30mg", "gla-3-rt-50mg", "gla-3-rt-60mg", "glow", "ipamorelin", "klow", "tesa-ipa", "tesamorelin-10mg", "tesamorelin-20mg", "wolverine", "wolverine-float"];
+  IMG_DISPONIBLES = ["agua-bac-10", "agua-bac-30", "cjc-nodac-ipa", "cjc-nodac-ipa-float", "ghk-cu-100mg", "ghk-cu-50mg", "ghk-cu-50mg-float", "gla-3-rt-10mg", "gla-3-rt-10mg-float", "gla-3-rt-20mg", "gla-3-rt-30mg", "gla-3-rt-50mg", "gla-3-rt-60mg", "glow", "ipamorelin", "klow", "melanotan-1", "semax-selank-blend", "tesa-ipa", "tesamorelin-10mg", "tesamorelin-20mg", "wolverine", "wolverine-float"];
 
   // Texto legal reutilizado en footer y en cada ficha de producto (ANMAT).
   DISCLAIMER = "Productos destinados exclusivamente a investigación y colección. No aptos para consumo humano. No son medicamentos. No están registrados ni aprobados por ANMAT. No diagnostican, tratan, curan ni previenen ninguna enfermedad. La información del sitio es de carácter general y no constituye asesoramiento médico.";
@@ -3677,12 +3677,15 @@ class Component extends DCLogic {
     // Sólo cuentan PÉPTIDOS para el envío gratis (los insumos no suman).
     const pepCount = lines.reduce((a, l) => a + (l.esInsumo ? 0 : l.qty), 0);
     const faltan = Math.max(0, this.FREE_SHIP_MIN - pepCount);
-    const freeShip = lines.length > 0 && faltan === 0;
+    // Envío gratis permanente desde nivel Investigador (idx>=1), sin importar cantidad.
+    const acc = this.computeAccount();
+    const envioNivel = acc.levelIdx >= 1;
+    const freeShip = lines.length > 0 && (faltan === 0 || envioNivel);
     const faltanText = freeShip
-      ? "¡Tenés envío gratis!"
+      ? (envioNivel && faltan > 0 ? "¡Tenés envío gratis por tu nivel " + acc.levelName + "!" : "¡Tenés envío gratis!")
       : "Te " + (faltan === 1 ? "falta" : "faltan") + " " + faltan + " péptido" + (faltan === 1 ? "" : "s") + " para envío gratis";
     const shipText = freeShip ? "GRATIS" : "A coordinar";
-    const cartProgress = Math.min(100, Math.round((pepCount / this.FREE_SHIP_MIN) * 100)) + "%";
+    const cartProgress = (envioNivel && lines.length > 0) ? "100%" : (Math.min(100, Math.round((pepCount / this.FREE_SHIP_MIN) * 100)) + "%");
 
     // Mensaje pre-cargado para WhatsApp con el detalle del pedido.
     let msg = "Hola AminoLabAr, quiero hacer este pedido:\n\n";
@@ -3690,7 +3693,7 @@ class Component extends DCLogic {
       msg += (i + 1) + ") " + l.nombre + " — " + l.presentacion + " ×" + l.qty + " — " + l.lineUSDText + "\n";
     });
     msg += "\nTotal: " + this.fmtUSD(totalUSD) + "  /  " + this.fmtARS(totalARS);
-    msg += "\nEnvío: " + (freeShip ? "GRATIS (3+ péptidos)" : "a coordinar");
+    msg += "\nEnvío: " + (freeShip ? (envioNivel && faltan > 0 ? "GRATIS (nivel " + acc.levelName + ")" : "GRATIS (3+ péptidos)") : "a coordinar");
     const waHref = "https://wa.me/5492215227060?text=" + encodeURIComponent(msg);
 
     return {
