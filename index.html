@@ -661,7 +661,25 @@ input{font:inherit}
                   </div>
                 </sc-if>
                 <sc-if value="{{ product.sinStock }}" hint-placeholder-val="{{ false }}">
-                  <a href="{{ product.whatsappHref }}" target="_blank" rel="noopener" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:8px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;text-decoration:none;transition:background .15s,color .15s" style-hover="background:#0E5FB5;color:#fff">Consultar por disponibilidad</a>
+                  <div style="display:flex;flex-direction:column;gap:10px">
+                    <sc-if value="{{ alertaPedida }}" hint-placeholder-val="{{ false }}">
+                      <div style="display:flex;align-items:flex-start;gap:10px;border:1px solid rgba(31,169,113,.35);border-radius:10px;background:rgba(31,169,113,.08);padding:14px 16px">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#15875A" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px"><path d="M20 6 9 17l-5-5"></path></svg>
+                        <div style="font-family:'Poppins',sans-serif;font-size:13.5px;line-height:1.5;color:#15875A"><strong>¡Listo!</strong> Te mandamos un mail apenas vuelva el stock de este producto.</div>
+                      </div>
+                    </sc-if>
+                    <sc-if value="{{ alertaNoPedida }}" hint-placeholder-val="{{ true }}">
+                      <div style="border:1px solid #E2E8F0;border-radius:10px;background:#FAFBFD;padding:14px 16px">
+                        <div style="display:flex;align-items:center;gap:8px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14.5px;color:#0B2440"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#0E5FB5" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.7 21a2 2 0 0 1-3.4 0"></path></svg>Avisame cuando llegue</div>
+                        <div style="font-family:'Poppins',sans-serif;font-size:12.5px;color:#5A6B7B;margin-top:4px">Te mandamos un solo mail cuando vuelva a estar disponible. Sin spam.</div>
+                        <div style="display:flex;gap:8px;margin-top:10px">
+                          <input type="email" value="{{ alertaEmail }}" onInput="{{ onAlertaEmail }}" placeholder="{{ alertaPlaceholder }}" style="flex:1;min-width:0;padding:11px 13px;border:1px solid #E2E8F0;border-radius:8px;font-family:'Poppins',sans-serif;font-size:13.5px;color:#1C2733;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s" style-focus="border-color:#0E5FB5;box-shadow:0 0 0 3px rgba(14,95,181,.12)">
+                          <button onClick="{{ crearAlertaStock }}" style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;background:#0E5FB5;color:#fff;border:none;border-radius:8px;padding:11px 18px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;cursor:pointer;transition:background .15s,transform .12s" style-hover="background:#0B4E97;transform:translateY(-1px)">Avisarme</button>
+                        </div>
+                      </div>
+                    </sc-if>
+                    <a href="{{ product.whatsappHref }}" target="_blank" rel="noopener" style="width:100%;display:inline-flex;align-items:center;justify-content:center;gap:9px;background:#fff;color:#0E5FB5;border:1px solid #0E5FB5;border-radius:8px;padding:15px 16px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;text-decoration:none;transition:background .15s,color .15s" style-hover="background:#0E5FB5;color:#fff">Consultar por disponibilidad</a>
+                  </div>
                 </sc-if>
 
                 <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;border:1px solid #EEF2F7;border-radius:10px;background:#FAFBFD;padding:14px 10px;text-align:center">
@@ -1832,8 +1850,8 @@ input{font:inherit}
             <p style="font-family:'Poppins',sans-serif;font-size:12px;color:#94A3B8;margin-top:6px">Para investigadores y laboratorios. Sin spam, cancelás cuando quieras.</p>
           </div>
           <div style="display:flex;gap:8px;background:#fff;border-radius:30px;padding:6px 6px 6px 18px;box-shadow:0 14px 34px -18px rgba(11,36,64,.3);max-width:440px;justify-self:end;width:100%">
-            <input type="email" placeholder="Tu email" style="flex:1;border:none;outline:none;background:transparent;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;min-width:0">
-            <a href="https://wa.me/5492215227060?text=Quiero%20recibir%20novedades%20de%20AminoLabAr" target="_blank" rel="noopener" style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;background:#0B2440;color:#fff;border-radius:24px;padding:11px 22px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;text-decoration:none;transition:background .15s" style-hover="background:#11305a">Suscribir</a>
+            <input type="email" value="{{ nlEmail }}" onInput="{{ onNlEmail }}" placeholder="Tu email" style="flex:1;border:none;outline:none;background:transparent;font-family:'Poppins',sans-serif;font-size:14px;color:#0B2440;min-width:0">
+            <button onClick="{{ suscribirNewsletter }}" style="flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;background:#0B2440;color:#fff;border:none;cursor:pointer;border-radius:24px;padding:11px 22px;font-family:'Anek Latin',sans-serif;font-weight:700;font-size:14px;transition:background .15s" style-hover="background:#11305a">Suscribir</button>
           </div>
         </div>
       </div>
@@ -2593,6 +2611,9 @@ class Component extends DCLogic {
     regNombre: "", regEmail: "", regTel: "", regProv: "", regPass: "", regPass2: "",
     regChkAge: false, regChkTerms: false,
     edNombre: "", edEmail: "", edTel: "", edProv: "",
+    // newsletter + avisos de stock (Supabase)
+    nlEmail: "", nlBusy: false,
+    alertaEmail: "", alertaBusy: false, alertaOk: {}, // { productoId: true } avisos pedidos en esta sesión
   };
 
   // =====================================================================
@@ -3092,6 +3113,46 @@ class Component extends DCLogic {
     this._CountUp = CountUp;
     return CountUp;
   }
+
+  // =====================================================================
+  //  NEWSLETTER + AVISOS DE STOCK
+  //  Inserts públicos en newsletter_subscribers / stock_alerts (RLS: solo
+  //  INSERT; la lista no se puede leer desde el cliente). Los mails de
+  //  reposición los manda la Edge Function notificar-stock (cron cada 10').
+  // =====================================================================
+  onNlEmail = (e) => this.setState({ nlEmail: e.target.value });
+  suscribirNewsletter = async () => {
+    if (this.state.nlBusy) return;
+    const email = this.state.nlEmail.trim();
+    if (!this.isEmail(email)) { this.showToast("Escribí un email válido para suscribirte."); return; }
+    const sb = this.sbClient();
+    if (!sb) { this.showToast("No se pudo conectar. Reintentá."); return; }
+    this.setState({ nlBusy: true });
+    const { error } = await sb.from("newsletter_subscribers").insert({ email });
+    this.setState({ nlBusy: false });
+    if (error && error.code === "23505") { this.setState({ nlEmail: "" }); this.showToast("Ese email ya estaba suscripto. ¡Gracias!"); return; }
+    if (error) { this.showToast("No se pudo suscribir. Reintentá."); return; }
+    this.setState({ nlEmail: "" });
+    this.showToast("¡Listo! Te vamos a avisar de las novedades.");
+  };
+
+  onAlertaEmail = (e) => this.setState({ alertaEmail: e.target.value });
+  crearAlertaStock = async () => {
+    if (this.state.alertaBusy) return;
+    const p = this.getProductos().find((x) => x.id === this.state.productId);
+    if (!p) return;
+    const sesionEmail = (this.state.session && this.state.user && this.state.user.email) || "";
+    const email = (this.state.alertaEmail.trim() || sesionEmail).trim();
+    if (!this.isEmail(email)) { this.showToast("Escribí tu email para avisarte cuando vuelva."); return; }
+    const sb = this.sbClient();
+    if (!sb) { this.showToast("No se pudo conectar. Reintentá."); return; }
+    this.setState({ alertaBusy: true });
+    const { error } = await sb.from("stock_alerts").insert({ email, producto_id: p.id, producto_nombre: p.nombre });
+    const alertaOk = Object.assign({}, this.state.alertaOk);
+    if (!error || error.code === "23505") alertaOk[p.id] = true; // duplicado = ya estaba anotado
+    this.setState({ alertaBusy: false, alertaOk, alertaEmail: "" });
+    if (error && error.code !== "23505") this.showToast("No se pudo guardar el aviso. Reintentá.");
+  };
 
   // Trae el catálogo desde Google Sheets y reemplaza el array local.
   // Si SHEET_URL está vacío o la planilla falla, se mantiene el array de respaldo.
@@ -4200,6 +4261,12 @@ class Component extends DCLogic {
       disclaimer: this.DISCLAIMER,
       routeKey: (typeof location !== "undefined" ? location.hash : page) || page,
       toast: this.state.toast, hasToast: !!this.state.toast,
+      // newsletter + avisos de stock
+      nlEmail: this.state.nlEmail, onNlEmail: this.onNlEmail, suscribirNewsletter: this.suscribirNewsletter,
+      alertaEmail: this.state.alertaEmail, onAlertaEmail: this.onAlertaEmail, crearAlertaStock: this.crearAlertaStock,
+      alertaPedida: isProducto && !!this.state.alertaOk[this.state.productId],
+      alertaNoPedida: !(isProducto && this.state.alertaOk[this.state.productId]),
+      alertaPlaceholder: (this.state.session && this.state.user && this.state.user.email) || "Tu email",
     };
   }
 }
