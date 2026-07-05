@@ -3154,10 +3154,30 @@ class Component extends DCLogic {
     if (error && error.code !== "23505") this.showToast("No se pudo guardar el aviso. Reintentá.");
   };
 
-  // Trae el catálogo desde Google Sheets y reemplaza el array local.
-  // Si SHEET_URL está vacío o la planilla falla, se mantiene el array de respaldo.
-  actualizarCatalogo() {
+  // Clave de localStorage donde guardamos la última planilla que cargó bien.
+  CATALOGO_CACHE_KEY = "amino_catalogo_v1";
+
+  // Hidrata el catálogo desde la última copia buena guardada (localStorage) ANTES
+  // de que vuelva el fetch. Así, si opensheet está caído, mostramos la última
+  // versión real de la planilla (que respeta VISIBLE) en vez del array de respaldo
+  // hardcodeado (que tiene TODO visible). Corre sincrónico en el mount.
+  hidratarCatalogoCache() {
+    try {
+      const raw = localStorage.getItem(this.CATALOGO_CACHE_KEY);
+      if (!raw) return;
+      const filas = JSON.parse(raw);
+      const productos = (filas || []).map((f) => this.filaAProducto(f)).filter((p) => p && p.id);
+      if (productos.length) this._productosCache = productos;
+    } catch (e) { /* cache corrupta o sin localStorage: seguimos con el respaldo */ }
+  }
+
+  // Trae el catálogo desde Google Sheets y reemplaza el array en memoria.
+  // opensheet es un servicio gratuito inestable, así que reintentamos unas veces
+  // con pausa antes de rendirnos. Si carga bien, guardamos las filas crudas en
+  // localStorage para la próxima visita (ver hidratarCatalogoCache).
+  actualizarCatalogo(intento = 0) {
     if (!this.SHEET_URL) return;
+    const MAX_INTENTOS = 3;
     // cache:"no-store" evita la copia cacheada del navegador sin romper opensheet
     // (opensheet NO admite parámetros extra en la URL: devuelve 400).
     fetch(this.SHEET_URL, { cache: "no-store" })
@@ -3168,10 +3188,17 @@ class Component extends DCLogic {
           .filter((p) => p && p.id);
         if (productos.length) {
           this._productosCache = productos; // catálogo en vivo
+          try { localStorage.setItem(this.CATALOGO_CACHE_KEY, JSON.stringify(filas)); } catch (e) { /* sin localStorage */ }
           this.forceUpdate();
         }
       })
-      .catch(() => { /* si falla, queda el catálogo local de respaldo */ });
+      .catch(() => {
+        // Fallo pasajero de opensheet: reintentamos con backoff. Si ya hidratamos
+        // desde localStorage, mientras tanto se ve la última planilla buena.
+        if (intento + 1 < MAX_INTENTOS) {
+          setTimeout(() => this.actualizarCatalogo(intento + 1), 1500 * (intento + 1));
+        }
+      });
   }
 
   // Convierte una fila de la planilla a la forma de producto que usa la UI.
@@ -3422,6 +3449,7 @@ class Component extends DCLogic {
     window.addEventListener("hashchange", this.syncFromHash);
     window.addEventListener("resize", this.onResize);
     this.actualizarDolarBlue();   // dólar blue en vivo (DolarAPI)
+    this.hidratarCatalogoCache(); // última planilla buena (localStorage) por si opensheet está caído
     this.actualizarCatalogo();    // catálogo en vivo (Google Sheets)
     this.setupAuthListener();     // recuperación de contraseña (evento PASSWORD_RECOVERY)
     this.loadAuth();              // sesión persistida (Supabase) o DEMO local
