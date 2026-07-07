@@ -2973,6 +2973,7 @@ class Component extends DCLogic {
       user.pedidos = [order, ...(user.pedidos || [])];
       // puntos: se acreditan recién cuando el pago se confirma (trigger en DB)
       try { localStorage.setItem("amino_user", JSON.stringify(user)); } catch (e) {}
+      this.guardarCarrito([]);
       this.setState({ user, cart: [], drawerOpen: false, checkoutGate: false, pagoOrder: order, payMethod: "transferencia", pagoError: "" });
       if (typeof window !== "undefined") window.location.hash = "#/pago";
       return;
@@ -2990,12 +2991,14 @@ class Component extends DCLogic {
       // sin registro no hay página de pago: derivamos a WhatsApp como antes
       if (typeof window !== "undefined") window.open(waHref, "_blank");
       this.showToast("No se pudo registrar el pedido, pero te derivamos a WhatsApp.");
+      this.guardarCarrito([]);
       this.setState({ cart: [], drawerOpen: false, checkoutGate: false });
       return;
     }
     const order = this.orderRowToVM({ id: data.id, numero: data.numero, created_at: data.created_at, estado: "Procesando", estado_pago: "pendiente", items, total_usd: totalUSD, total_ars: totalARS, peptides });
     user.pedidos = [order, ...(user.pedidos || [])];
     // puntos: los acredita el trigger recompute_puntos cuando el pago pasa a confirmado
+    this.guardarCarrito([]);
     this.setState({ user, cart: [], drawerOpen: false, checkoutGate: false, pagoOrder: order, payMethod: "transferencia", pagoError: "" });
     if (typeof window !== "undefined") window.location.hash = "#/pago";
   };
@@ -3068,6 +3071,7 @@ class Component extends DCLogic {
         const ex = cart.find((c) => c.key === key);
         if (ex) ex.qty += it.qty; else cart.push({ key, productId: it.id, variantIndex: it.vi, qty: it.qty });
       });
+      this.guardarCarrito(cart);
       return { cart, drawerOpen: true };
     });
   };
@@ -3185,6 +3189,24 @@ class Component extends DCLogic {
 
   // Clave de localStorage donde guardamos la última planilla que cargó bien.
   CATALOGO_CACHE_KEY = "amino_catalogo_v1";
+
+  // ====== CARRITO PERSISTIDO (localStorage) ======
+  // El carrito sobrevive recargas y visitas futuras en el mismo navegador.
+  CART_KEY = "amino_cart_v1";
+
+  guardarCarrito(cart) {
+    try { localStorage.setItem(this.CART_KEY, JSON.stringify(cart)); } catch (e) { /* sin localStorage */ }
+  }
+
+  // Corre en el mount. Los items con productos que ya no están en el catálogo
+  // no rompen nada: buildCart() los filtra al armar las líneas.
+  hidratarCarrito() {
+    try {
+      const cart = JSON.parse(localStorage.getItem(this.CART_KEY) || "[]");
+      const valido = Array.isArray(cart) ? cart.filter((it) => it && it.key && it.productId && it.qty > 0) : [];
+      if (valido.length) this.setState({ cart: valido });
+    } catch (e) { /* cache corrupta: arranca vacío */ }
+  }
 
   // Hidrata el catálogo desde la última copia buena guardada (localStorage) ANTES
   // de que vuelva el fetch. Así, si opensheet está caído, mostramos la última
@@ -3443,6 +3465,7 @@ class Component extends DCLogic {
     window.addEventListener("resize", this.onResize);
     this.actualizarDolarBlue();   // dólar blue en vivo (DolarAPI)
     this.hidratarCatalogoCache(); // última planilla buena (localStorage) por si opensheet está caído
+    this.hidratarCarrito();       // carrito guardado de la visita anterior (localStorage)
     this.actualizarCatalogo();    // catálogo en vivo (Google Sheets)
     this.setupAuthListener();     // recuperación de contraseña (evento PASSWORD_RECOVERY)
     this.loadAuth();              // sesión persistida (Supabase) o DEMO local
@@ -3612,6 +3635,7 @@ class Component extends DCLogic {
       const cart = s.cart.map((it) => ({ ...it }));
       const ex = cart.find((it) => it.key === key);
       if (ex) ex.qty += qty; else cart.push({ key, productId, variantIndex, qty });
+      this.guardarCarrito(cart);
       return { cart, drawerOpen: true };   // al agregar, se abre el panel lateral
     });
   };
@@ -3624,10 +3648,10 @@ class Component extends DCLogic {
   rejectAge = () => { if (typeof window !== "undefined") window.location.href = "https://www.google.com"; };
   openCoa = (url) => this.setState({ coaModal: url });
   closeCoa = () => this.setState({ coaModal: "" });
-  incItem = (key) => this.setState((s) => ({ cart: s.cart.map((it) => it.key === key ? { ...it, qty: it.qty + 1 } : it) }));
-  decItem = (key) => this.setState((s) => ({ cart: s.cart.map((it) => it.key === key ? { ...it, qty: Math.max(1, it.qty - 1) } : it) }));
-  removeItem = (key) => this.setState((s) => ({ cart: s.cart.filter((it) => it.key !== key) }));
-  clearCart = () => this.setState({ cart: [] });
+  incItem = (key) => this.setState((s) => { const cart = s.cart.map((it) => it.key === key ? { ...it, qty: it.qty + 1 } : it); this.guardarCarrito(cart); return { cart }; });
+  decItem = (key) => this.setState((s) => { const cart = s.cart.map((it) => it.key === key ? { ...it, qty: Math.max(1, it.qty - 1) } : it); this.guardarCarrito(cart); return { cart }; });
+  removeItem = (key) => this.setState((s) => { const cart = s.cart.filter((it) => it.key !== key); this.guardarCarrito(cart); return { cart }; });
+  clearCart = () => { this.guardarCarrito([]); this.setState({ cart: [] }); };
   incDetail = () => this.setState((s) => ({ detailQty: s.detailQty + 1 }));
   decDetail = () => this.setState((s) => ({ detailQty: Math.max(1, s.detailQty - 1) }));
   onSearch = (e) => this.setState({ query: e.target.value });
