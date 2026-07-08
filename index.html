@@ -389,37 +389,6 @@ input{font:inherit}
         </div>
       </section>
 
-      <!-- ================= RESEÑAS / TESTIMONIOS ================= -->
-      <section style="background:#fff;border-top:1px solid #E2E8F0">
-        <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,76px) clamp(20px,5vw,56px)">
-          <div style="display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap;margin-bottom:30px">
-            <div>
-              <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:12px">Reseñas de clientes</span>
-              <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:clamp(24px,3vw,32px);line-height:1.15;letter-spacing:-.02em;color:#0B2440">Lo que dicen quienes ya compraron</h2>
-            </div>
-            <div style="display:flex;align-items:center;gap:16px;border:1px solid #E2E8F0;border-radius:12px;background:#F8FAFC;padding:16px 22px">
-              <div style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(34px,5vw,44px);line-height:1;letter-spacing:-.02em;color:#0B2440">{{ reviewAvgText }}</div>
-              <div>
-                <div style="font-size:18px;letter-spacing:1px;line-height:1"><span style="color:#F2A516">{{ reviewStarsOn }}</span><span style="color:#D9E1EA">{{ reviewStarsOff }}</span></div>
-                <div style="font-family:'IBM Plex Mono',monospace;font-size:12px;color:#5A6B7B;margin-top:6px">Promedio · {{ reviewCountText }}</div>
-              </div>
-            </div>
-          </div>
-          <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,300px),1fr));gap:18px">
-            <sc-for list="{{ reviews }}" as="r" hint-placeholder-count="3">
-              <div style="border:1px solid #E2E8F0;border-radius:12px;background:#fff;padding:22px 22px;display:flex;flex-direction:column">
-                <div style="font-size:15px;letter-spacing:1px;line-height:1;margin-bottom:13px"><span style="color:#F2A516">{{ r.starsOn }}</span><span style="color:#D9E1EA">{{ r.starsOff }}</span></div>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#3A4855;flex:1">{{ r.texto }}</p>
-                <div style="display:flex;align-items:center;justify-content:space-between;gap:10px;margin-top:16px;padding-top:14px;border-top:1px solid #EEF3F8">
-                  <span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;color:#0B2440">{{ r.autor }} · {{ r.lugar }}</span>
-                  <span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#94A3B8">{{ r.fechaText }}</span>
-                </div>
-              </div>
-            </sc-for>
-          </div>
-        </div>
-      </section>
-
       <!-- ================= LOGÍSTICA Y COMPRA SEGURA ================= -->
       <section style="background:#fff;border-top:1px solid #E2E8F0">
         <div style="max-width:1180px;margin:0 auto;width:100%;padding:clamp(48px,6vw,80px) clamp(20px,5vw,56px)">
@@ -2200,18 +2169,6 @@ class Component extends DCLogic {
   PAGO_ALIAS = "aminolab.ar";        // alias CBU/CVU
   PAGO_TITULAR = "Juan Ignacio Saita";    // titular de la cuenta
 
-  // ====== RESEÑAS / TESTIMONIOS (fuente única para sección visible + AggregateRating) ======
-  REVIEW_AVG = 4.9;       // calificación promedio mostrada y en AggregateRating
-  REVIEW_COUNT = 128;     // cantidad total de reseñas (AggregateRating.reviewCount)
-  REVIEWS = [
-    { autor: "Martín G.", lugar: "CABA", rating: 5, fecha: "2026-05-18", texto: "Pedí BPC-157 y TB-500, llegaron en 48 hs a Capital. El COA del lote me lo pasaron por WhatsApp sin drama. Todo trazable y bien embalado con frío." },
-    { autor: "Lucía R.", lugar: "Córdoba", rating: 5, fecha: "2026-04-30", texto: "La asesoría por WhatsApp es lo mejor: me ayudaron a elegir presentación y me respondieron cada duda. Envío por Andreani con seguimiento, llegó perfecto." },
-    { autor: "Diego F.", lugar: "Rosario", rating: 5, fecha: "2026-04-12", texto: "Segunda compra. Productos importados de EE. UU., precios claros en dólar y el envío gratis desde 3 péptidos se nota. Muy recomendables." },
-    { autor: "Sofía M.", lugar: "Mendoza", rating: 5, fecha: "2026-03-27", texto: "Compré GHK-Cu y llegó impecable a Mendoza. Me mandaron el certificado de análisis del lote apenas lo pedí. Confiable de punta a punta." },
-    { autor: "Nicolás P.", lugar: "La Plata", rating: 4, fecha: "2026-03-09", texto: "Buena atención y despacho rápido en 24 hs. Un producto estaba sin stock pero me avisaron al toque y coordinamos. Volvería a comprar." },
-    { autor: "Carolina V.", lugar: "Mar del Plata", rating: 5, fecha: "2026-02-20", texto: "Lo que más valoro es la trazabilidad: cada lote con su COA y la cadena de frío cuidada. Llegó a Mar del Plata en tiempo y forma." },
-  ];
-
   // Meta description por página (para document.title + meta description dinámicos).
   PAGE_META = {
     inicio:   { t: "AminoLabAr · Péptidos de investigación en Argentina | Importados de EE. UU.", d: "AminoLabAr vende péptidos de investigación importados de Estados Unidos, con Certificado de Análisis (COA) por lote, envíos a todo el país por Andreani y despacho en 24 hs. Asesoría por WhatsApp." },
@@ -3469,7 +3426,7 @@ class Component extends DCLogic {
     this.actualizarCatalogo();    // catálogo en vivo (Google Sheets)
     this.setupAuthListener();     // recuperación de contraseña (evento PASSWORD_RECOVERY)
     this.loadAuth();              // sesión persistida (Supabase) o DEMO local
-    this.injectSchema();   // datos estructurados JSON-LD (Products, FAQ, Reviews)
+    this.injectSchema();   // datos estructurados JSON-LD (Products, FAQ)
     this.syncFromHash();
     // Tic del contador regresivo del cupón (solo re-render cuando estás en #/cuenta)
     this._tick = setInterval(() => { if (this.state.page === "cuenta") this.setState({ now: Date.now() }); }, 1000);
@@ -3523,25 +3480,6 @@ class Component extends DCLogic {
       "mainEntity": this.FAQS.map((f) => ({
         "@type": "Question", "name": f.q,
         "acceptedAnswer": { "@type": "Answer", "text": f.a },
-      })),
-    });
-
-    // AggregateRating + reseñas individuales, asociadas a la marca/negocio.
-    put("ld-reviews", {
-      "@context": "https://schema.org", "@type": "Organization",
-      "name": this.BRAND, "url": U,
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": this.REVIEW_AVG.toFixed(1),
-        "reviewCount": this.REVIEW_COUNT,
-        "bestRating": "5", "worstRating": "1",
-      },
-      "review": this.REVIEWS.map((r) => ({
-        "@type": "Review",
-        "author": { "@type": "Person", "name": r.autor },
-        "datePublished": r.fecha,
-        "reviewRating": { "@type": "Rating", "ratingValue": String(r.rating), "bestRating": "5", "worstRating": "1" },
-        "reviewBody": r.texto,
       })),
     });
   }
@@ -3915,18 +3853,6 @@ class Component extends DCLogic {
     const isCompact = this.state.vw < 880;
     const faqs = this.FAQS;
 
-    // ====== RESEÑAS (sección visible — usa la misma fuente que el schema) ======
-    const star = "★★★★★";
-    const reviews = this.REVIEWS.map((r) => ({
-      autor: r.autor, lugar: r.lugar, texto: r.texto,
-      starsOn: star.slice(0, r.rating), starsOff: star.slice(r.rating),
-      fechaText: new Date(r.fecha + "T00:00:00").toLocaleDateString("es-AR", { month: "long", year: "numeric" }),
-    }));
-    const reviewAvgText = this.REVIEW_AVG.toFixed(1).replace(".", ",");
-    const reviewCountText = this.REVIEW_COUNT + " reseñas";
-    const reviewStarsOn = star.slice(0, Math.round(this.REVIEW_AVG));
-    const reviewStarsOff = star.slice(Math.round(this.REVIEW_AVG));
-
     const allCards = this.getProductos().filter((p) => p.visible !== false).map((p) => this.toCard(p));
     const q = this.state.query.trim().toLowerCase();
     let cards = q ? allCards.filter((c) => (c.nombre + " " + c.investigacion).toLowerCase().includes(q)) : allCards.slice();
@@ -4281,7 +4207,6 @@ class Component extends DCLogic {
       isProducto,
       isNosotros: page === "nosotros", isEnvios: page === "envios",
       isFaq: page === "faq", isContacto: page === "contacto", faqs,
-      reviews, reviewAvgText, reviewCountText, reviewStarsOn, reviewStarsOff,
       isCompact, showFullNav: !isCompact, menuOpen: this.state.menuOpen, toggleMenu: this.toggleMenu,
       navItems, navItemsMobile,
       cards, featured, resultCount: cards.length,
