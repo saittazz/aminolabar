@@ -1,5 +1,5 @@
 # robots.txt — AminoLabAr
-# Péptidos de investigación importados de EE. UU. · Envíos a todo el país (Argentina)
+# Biblioteca informativa de péptidos de investigación (research use only) · Argentina
 
 # Buscadores tradicionales
 User-agent: *

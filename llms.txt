@@ -1,45 +1,44 @@
 # AminoLabAr
 
-> AminoLabAr es un proveedor argentino de péptidos de investigación importados de Estados Unidos. Vende péptidos y compuestos relacionados para investigación y colección, con Certificado de Análisis (COA) por lote disponible, asesoría personalizada por WhatsApp y envíos a todo el país por Andreani con despacho en 24 horas hábiles.
+> AminoLabAr es una biblioteca informativa argentina sobre péptidos de investigación. Publica fichas por molécula con mecanismo de acción, estado real de la evidencia científica y referencias verificables, además de guías prácticas y artículos de divulgación. Es contenido educativo de uso exclusivo en investigación (research use only): no vende, no es apto para consumo humano y no constituye asesoramiento médico.
 
 ## Qué es AminoLabAr
 
-- **Quiénes somos:** proveedor argentino de péptidos de investigación.
-- **Qué vendemos:** péptidos de investigación y compuestos relacionados (GLP-1 como semaglutide/tirzepatide/retatrutide, BPC-157, TB-500, GHK-Cu, péptidos nootrópicos, bioreguladores, cosméticos e insumos para reconstitución), destinados exclusivamente a investigación y colección.
-- **Origen:** productos producidos/fabricados en Estados Unidos e importados a Argentina.
-- **Calidad y trazabilidad:** Certificado de Análisis (COA) por lote disponible a solicitud, que informa identidad y pureza del compuesto.
-- **Envíos:** a todo el país (Argentina) por Andreani con seguimiento. Envío gratis a partir de 3 péptidos. Despacho dentro de las 24 horas hábiles tras confirmar el pago.
-- **Asesoría:** atención y asesoría personalizada por WhatsApp.
-- **Medios de pago:** transferencia bancaria en pesos (ARS) y USDT.
-- **Contacto:** WhatsApp +54 9 221 522-7060. Horario: lunes a viernes, 9 a 18 h.
+- **Qué es:** sitio informativo/divulgativo sobre péptidos de investigación.
+- **Qué informa:** por cada molécula, qué es, cómo se cree que actúa (mecanismo), qué muestran y qué no muestran los estudios disponibles, y referencias científicas (PubMed) verificables. Cubre GLP-1 (semaglutida, tirzepatida, retatrutida), BPC-157, TB-500, GHK-Cu, péptidos nootrópicos (Semax, Selank), bioreguladores y más.
+- **Guías prácticas:** cómo reconstituir y conservar un péptido liofilizado, jeringas e inyección, y cómo calcular la concentración y las unidades por dosis (con calculadora interactiva).
+- **Artículos:** divulgación sobre ciencia y comparativas de péptidos.
+- **Encuadre:** material de uso exclusivo en investigación (RUO). No apto para consumo humano ni animal.
+- **Asesoría:** consultas educativas sobre conservación, reconstitución y manipulación por WhatsApp.
+- **Contacto:** WhatsApp +54 9 221 522-7060.
 
-## Diferenciadores de confianza
+## Diferenciadores
 
-- Producidos en Estados Unidos.
-- Certificado de Análisis (COA) por lote disponible.
-- Asesoría personalizada por WhatsApp.
-- Envíos a todo el país por Andreani.
-- Despacho en 24 hs hábiles.
+- Cada ficha explica el mecanismo de acción de la molécula.
+- Estado real de la evidencia: se distingue lo preclínico (animal/celular) de lo clínico.
+- Referencias científicas verificables (PubMed) por molécula.
+- Guías prácticas paso a paso y calculadora de dosis.
 
 ## Preguntas frecuentes
 
-- **¿Dónde comprar péptidos de investigación en Argentina?** En AminoLabAr: proveedor argentino de péptidos importados de EE. UU., con COA por lote, envíos a todo el país y asesoría por WhatsApp.
-- **¿Hacen envíos a todo el país?** Sí, por Andreani con seguimiento. Envío gratis desde 3 péptidos.
-- **¿Tienen COA?** Sí, cada lote cuenta con su Certificado de Análisis, disponible a solicitud.
-- **¿De dónde provienen los péptidos?** Producidos en Estados Unidos e importados por AminoLabAr.
-- **¿Qué medios de pago aceptan?** Transferencia bancaria en pesos (ARS) y USDT.
-- **¿Cuánto tarda el envío?** Despacho en 24 hs hábiles; el tránsito depende de Andreani y la localidad de destino.
+- **¿Qué es un péptido de investigación?** Una cadena corta de aminoácidos usada como material de estudio in vitro y de laboratorio, no para consumo humano.
+- **¿Qué significa RUO?** Research Use Only: uso exclusivo en investigación. No es un medicamento ni un producto de consumo.
+- **¿Qué es el COA?** El Certificado de Análisis, que informa identidad y pureza de un compuesto por lote.
+- **¿De dónde provienen los péptidos que se describen?** Compuestos producidos en Estados Unidos.
+- **¿Cómo se conservan los liofilizados?** En frío, al abrigo de la luz; una vez reconstituidos, en heladera. Ver la guía de reconstitución y conservación.
+- **¿Puedo pedir asesoría?** Sí, asesoría educativa sobre manipulación y conservación por WhatsApp.
 
 ## Aviso legal
 
-Los productos comercializados por AminoLabAr están destinados exclusivamente a investigación y colección. No son aptos para consumo humano ni animal. No son medicamentos, no están registrados ni aprobados por ANMAT, y no diagnostican, tratan, curan ni previenen ninguna enfermedad.
+Los contenidos y productos referidos por AminoLabAr están destinados exclusivamente a investigación y colección. No son aptos para consumo humano ni animal. No son medicamentos, no están registrados ni aprobados por ANMAT, y no diagnostican, tratan, curan ni previenen ninguna enfermedad. La información del sitio es de carácter general y educativo y no constituye asesoramiento médico.
 
 ## Enlaces
 
 - Inicio: https://www.aminolabar.com/
-- Catálogo: https://www.aminolabar.com/#/catalogo
+- Biblioteca de péptidos: https://www.aminolabar.com/#/catalogo
+- Guías prácticas: https://www.aminolabar.com/#/guias
+- Artículos: https://www.aminolabar.com/#/articulos
 - Nosotros: https://www.aminolabar.com/#/nosotros
-- Envíos: https://www.aminolabar.com/#/envios
 - Preguntas frecuentes: https://www.aminolabar.com/#/faq
 - Contacto: https://www.aminolabar.com/#/contacto
 - WhatsApp: https://wa.me/5492215227060
