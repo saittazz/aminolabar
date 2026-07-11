@@ -1952,117 +1952,7 @@ input{font:inherit}
       </section>
     </sc-if>
 
-    <!-- ================= TÉRMINOS Y CONDICIONES ================= -->
-    <sc-if value="{{ isTerminos }}" hint-placeholder-val="{{ false }}">
-      <section style="background:#fff">
-        <div style="max-width:1080px;margin:0 auto;width:100%;padding:clamp(34px,5vw,56px) clamp(20px,5vw,56px) clamp(56px,7vw,84px)">
-          <span style="display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:11.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:#0E5FB5;margin-bottom:14px">Legales</span>
-          <h1 style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:clamp(28px,4vw,44px);line-height:1.08;letter-spacing:-.02em;color:#0B2440">Términos y Condiciones de Uso y Venta</h1>
-          <p style="font-family:'IBM Plex Mono',monospace;font-size:12.5px;color:#7E93A8;margin-top:12px">Última actualización: 30 de junio de 2026</p>
 
-          <div style="margin-top:30px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,2.4fr);gap:clamp(24px,4vw,48px);align-items:start">
-            <!-- Índice -->
-            <nav style="position:sticky;top:84px;border:1px solid #E7EDF4;border-radius:14px;background:#F8FAFC;padding:18px 18px 14px">
-              <div style="font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:#0E5FB5;margin-bottom:10px">Contenido</div>
-              <sc-for list="{{ terminosIndex }}" as="t" hint-placeholder-count="15">
-                <button onClick="{{ t.onClick }}" style="display:flex;gap:9px;align-items:baseline;width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:6px 4px;font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.4;color:#5A6B7B;border-radius:6px;transition:color .14s,background .14s" style-hover="color:#0E5FB5;background:#EAF2FB"><span style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#9DB1C7;flex-shrink:0">{{ t.n }}</span>{{ t.title }}</button>
-              </sc-for>
-            </nav>
-
-            <!-- Cuerpo -->
-            <div style="max-width:680px">
-              <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855">Estos Términos y Condiciones regulan el acceso y uso del sitio de AminoLabAr y la compra de los productos ofrecidos. Te recomendamos leerlos con atención antes de crear tu cuenta o realizar un pedido.</p>
-
-              <div id="t1" style="scroll-margin-top:84px;margin-top:34px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">1. Aceptación de los términos</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Estos Términos y Condiciones regulan el acceso y uso del sitio de AminoLabAr y la compra de los productos ofrecidos. Al crear una cuenta, navegar o realizar un pedido, el usuario declara haber leído, comprendido y aceptado en su totalidad estos términos. Si no está de acuerdo, debe abstenerse de utilizar el sitio.</p>
-              </div>
-
-              <div id="t2" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">2. Naturaleza de los productos — uso exclusivo en investigación</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Todos los productos comercializados por AminoLabAr son péptidos y compuestos destinados <strong style="color:#0B2440">exclusivamente a investigación científica y de laboratorio</strong> (research use only). No son medicamentos, no están aprobados ni registrados por la ANMAT (Administración Nacional de Medicamentos, Alimentos y Tecnología Médica) para uso terapéutico, diagnóstico o preventivo, y no son aptos para consumo humano ni animal. No deben utilizarse para administración en personas. La información del sitio tiene carácter educativo e informativo y no constituye indicación, prescripción ni asesoramiento médico de ningún tipo.</p>
-              </div>
-
-              <div id="t3" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">3. Declaraciones y obligaciones del usuario</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Al registrarse y comprar, el usuario declara bajo su responsabilidad que:</p>
-                <div style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
-                  <div style="display:flex;gap:10px;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.7;color:#3A4855"><span style="font-family:'IBM Plex Mono',monospace;color:#0E5FB5;flex-shrink:0">(a)</span>es mayor de 18 años y tiene capacidad legal para contratar;</div>
-                  <div style="display:flex;gap:10px;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.7;color:#3A4855"><span style="font-family:'IBM Plex Mono',monospace;color:#0E5FB5;flex-shrink:0">(b)</span>adquiere los productos únicamente con fines de investigación y no para consumo humano o animal;</div>
-                  <div style="display:flex;gap:10px;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.7;color:#3A4855"><span style="font-family:'IBM Plex Mono',monospace;color:#0E5FB5;flex-shrink:0">(c)</span>cuenta con los conocimientos, instalaciones y recaudos adecuados para la manipulación segura de material de investigación;</div>
-                  <div style="display:flex;gap:10px;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.7;color:#3A4855"><span style="font-family:'IBM Plex Mono',monospace;color:#0E5FB5;flex-shrink:0">(d)</span>no revenderá ni distribuirá los productos para consumo humano;</div>
-                  <div style="display:flex;gap:10px;font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.7;color:#3A4855"><span style="font-family:'IBM Plex Mono',monospace;color:#0E5FB5;flex-shrink:0">(e)</span>los datos que aporta son veraces, completos y actualizados.</div>
-                </div>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">El uso indebido de los productos es de exclusiva responsabilidad del usuario.</p>
-              </div>
-
-              <div id="t4" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">4. Ausencia de asesoramiento médico</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">AminoLabAr no presta servicios de salud ni emite recomendaciones médicas. Ninguna información del sitio, fichas de producto, contenido educativo o intercambio por WhatsApp debe interpretarse como consejo médico. Ante cualquier duda de salud, el usuario debe consultar a un profesional matriculado.</p>
-              </div>
-
-              <div id="t5" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">5. Registro y cuenta de usuario</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Para finalizar una compra es necesario crear una cuenta. El usuario es responsable de la confidencialidad de sus credenciales y de toda actividad realizada desde su cuenta. AminoLabAr podrá suspender o cancelar cuentas ante datos falsos, uso fraudulento o incumplimiento de estos términos.</p>
-              </div>
-
-              <div id="t6" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">6. Precios, moneda y pagos</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Los precios se expresan en dólares estadounidenses (USD) como referencia y se convierten a pesos argentinos (ARS) según la cotización vigente al momento de la operación. Los precios pueden variar sin previo aviso por fluctuación del tipo de cambio, costos de importación o disponibilidad. Los medios de pago aceptados son transferencia bancaria en pesos y USDT, coordinados al finalizar el pedido. El pedido se confirma una vez acreditado el pago.</p>
-              </div>
-
-              <div id="t7" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">7. Envíos</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Los envíos se realizan a todo el país a través del operador logístico informado (Andreani u otro), con número de seguimiento. Los plazos de despacho y tránsito son estimados y dependen del operador y la localidad de destino. El envío puede ser gratuito a partir de las condiciones publicadas (por ejemplo, a partir de 3 péptidos). El riesgo se transmite al usuario con la entrega.</p>
-              </div>
-
-              <div id="t8" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">8. Derecho de revocación (Botón de arrepentimiento)</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Conforme la Ley 24.240 de Defensa del Consumidor (art. 34) y la normativa vigente de Comercio Electrónico, el consumidor tiene derecho a revocar la compra dentro de los <strong style="color:#0B2440">diez (10) días corridos</strong> contados desde la celebración del contrato o la entrega del producto, lo que ocurra último, sin expresar causa y sin penalidad. Para ejercerlo puede contactarnos por los canales publicados. El producto debe devolverse en las mismas condiciones en que fue recibido, sin abrir, sin uso y con su embalaje original, preservando la cadena de frío cuando corresponda. Quedan exceptuados los supuestos previstos por la normativa (por ejemplo, productos que por razones de higiene, seguridad o conservación no puedan devolverse una vez abiertos). Los costos de devolución se rigen por la normativa aplicable.</p>
-              </div>
-
-              <div id="t9" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">9. Cambios y devoluciones</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Más allá del derecho de revocación, ante un producto con defecto de fabricación o error en el envío, el usuario debe comunicarse dentro de un plazo razonable para gestionar el cambio o la devolución, acreditando el inconveniente.</p>
-              </div>
-
-              <div id="t10" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">10. Protección de datos personales</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Los datos personales del usuario se tratan conforme a la Ley 25.326 de Protección de los Datos Personales. Se recaban con la finalidad de gestionar la cuenta, procesar pedidos, coordinar envíos y enviar comunicaciones del servicio. No se ceden a terceros salvo lo necesario para cumplir la operación (logística, pago) o por obligación legal. El titular de los datos puede ejercer en forma gratuita sus derechos de acceso, rectificación, actualización y supresión contactándonos. La Agencia de Acceso a la Información Pública, órgano de control de la Ley 25.326, tiene atribuciones para atender denuncias y reclamos por incumplimiento.</p>
-              </div>
-
-              <div id="t11" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">11. Propiedad intelectual</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Los contenidos del sitio (textos, marcas, logos, fichas, imágenes y diseño) son propiedad de AminoLabAr o se usan con autorización, y no pueden reproducirse sin consentimiento.</p>
-              </div>
-
-              <div id="t12" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">12. Limitación de responsabilidad</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">AminoLabAr no será responsable por daños derivados del uso indebido de los productos, de su utilización en contra de su naturaleza de material de investigación, ni de decisiones que el usuario adopte sobre su salud. El usuario asume la totalidad del riesgo asociado a la manipulación y destino que le dé a los productos.</p>
-              </div>
-
-              <div id="t13" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">13. Modificaciones</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">AminoLabAr puede modificar estos términos en cualquier momento. Las modificaciones rigen desde su publicación en el sitio. El uso posterior implica su aceptación.</p>
-              </div>
-
-              <div id="t14" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">14. Ley aplicable y jurisdicción</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Estos términos se rigen por las leyes de la República Argentina, en especial la Ley 24.240 de Defensa del Consumidor y normas complementarias. Ante cualquier controversia serán competentes los tribunales que correspondan según la normativa de defensa del consumidor.</p>
-              </div>
-
-              <div id="t15" style="scroll-margin-top:84px;margin-top:30px">
-                <h2 style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:21px;color:#0B2440;letter-spacing:-.01em">15. Contacto</h2>
-                <p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.75;color:#3A4855;margin-top:10px">Para consultas, reclamos o el ejercicio de derechos, el usuario puede contactarnos por WhatsApp al número publicado en el sitio o por los canales de contacto informados en el sitio.</p>
-                <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="margin-top:16px;display:inline-flex;align-items:center;gap:9px;background:#1FA971;color:#fff;border-radius:9px;padding:12px 22px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;text-decoration:none" style-hover="background:#18885B"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>Contactar por WhatsApp</a>
-              </div>
-
-              <p style="font-family:'IBM Plex Mono',monospace;font-size:11.5px;color:#9DB1C7;margin-top:40px;padding-top:20px;border-top:1px solid #EEF3F8">AminoLabAr · Última actualización: 30/06/2026</p>
-            </div>
-          </div>
-        </div>
-      </section>
-    </sc-if>
 
     <!-- ================= CTA PASTEL + NEWSLETTER (global, sobre el footer) ================= -->
     <section style="position:relative;overflow:hidden;background:linear-gradient(120deg,#FBF6CB 0%,#DDF3D4 32%,#E9E7F7 66%,#FBE4EC 100%)">
@@ -2124,8 +2014,7 @@ input{font:inherit}
         <div>
           <div style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Información</div>
           <a href="#/guias" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Guías</a>
-          <a href="#/articulos" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Artículos</a>          <a href="#/faq" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">FAQ</a>          <a href="#/terminos" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Términos y Condiciones</a>
-        </div>
+          <a href="#/articulos" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">Artículos</a>          <a href="#/faq" style="display:block;color:#9DB6CF;font-family:'Poppins',sans-serif;font-size:14px;text-decoration:none;padding:5px 0" style-hover="color:#fff">FAQ</a>        </div>
         <div>
           <div style="font-family:'Anek Latin',sans-serif;font-weight:600;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:#fff;margin-bottom:14px">Contacto</div>
           <a href="https://wa.me/5492215227060" target="_blank" rel="noopener" style="display:inline-flex;align-items:center;gap:8px;color:#fff;font-family:'IBM Plex Mono',monospace;font-size:14px;text-decoration:none" style-hover="color:#2FA8E0"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6.5 3h3l1.5 4-2 1.5a11 11 0 0 0 4.5 4.5l1.5-2 4 1.5v3a2 2 0 0 1-2 2A15 15 0 0 1 4.5 5a2 2 0 0 1 2-2z"></path></svg>+54 9 221 522-7060</a>
@@ -2380,7 +2269,7 @@ class Component extends DCLogic {
   // - Producto SIN variantes: la clave es el id (ej. "cjc-nodac-ipa").
   // - Producto CON capacidades: clave = id + "-" + capacidad
   //   (ej. "ghk-cu-50mg", "ghk-cu-100mg"). Sumá la clave acá al agregar la imagen.
-  IMG_DISPONIBLES = ["agua-bac-10", "agua-bac-30", "cjc-nodac-ipa", "cjc-nodac-ipa-float", "ghk-cu-100mg", "ghk-cu-50mg", "ghk-cu-50mg-float", "gla-3-rt-10mg", "gla-3-rt-10mg-float", "gla-3-rt-20mg", "gla-3-rt-30mg", "gla-3-rt-50mg", "gla-3-rt-60mg", "glow", "glutathione", "ipamorelin", "klow", "kpv", "melanotan-1", "semax", "semax-selank-blend", "tesa-ipa", "tesamorelin-10mg", "tesamorelin-20mg", "wolverine", "wolverine-float"];
+  IMG_DISPONIBLES = ["agua-bac-10", "agua-bac-30", "bpc-157-10mg", "cjc-nodac-ipa", "cjc-nodac-ipa-float", "cjc-sin-dac", "ghk-cu-100mg", "ghk-cu-50mg", "ghk-cu-50mg-float", "gla-3-rt-10mg", "gla-3-rt-10mg-float", "gla-3-rt-20mg", "gla-3-rt-30mg", "gla-3-rt-50mg", "gla-3-rt-60mg", "glow", "glutathione", "ipamorelin", "klow", "kpv", "melanotan-1", "melanotan-2", "mots-c-10mg", "selank", "semax", "semax-selank-blend", "ss-31", "tb-500", "tesa-ipa", "tesamorelin-10mg", "tesamorelin-20mg", "wolverine-10mg", "wolverine-float"];
 
   // Texto legal reutilizado en footer y en cada ficha de producto (ANMAT).
   DISCLAIMER = "Material de uso exclusivo en investigación científica (RUO). No apto para consumo humano ni animal. No son medicamentos. No están registrados ni aprobados por ANMAT. No diagnostican, tratan, curan ni previenen ninguna enfermedad. La información del sitio es de carácter general y no constituye asesoramiento médico.";
@@ -4182,9 +4071,7 @@ class Component extends DCLogic {
     else if (parts[0] === "carrito" || parts[0] === "pago" || parts[0] === "medios-pago") page = "inicio";
     else if (parts[0] === "ingresar") page = "ingresar";
     else if (parts[0] === "reset") page = "reset";
-    else if (parts[0] === "cuenta") page = "cuenta";
-    else if (parts[0] === "terminos") page = "terminos";
-    else if (parts[0] === "privacidad") page = "privacidad";
+    else if (parts[0] === "cuenta") page = "cuenta";    else if (parts[0] === "privacidad") page = "privacidad";
     else if (parts[0] === "faq") page = "faq";
     // Guard del panel privado: sin sesión, redirige a #/ingresar.
     let extra = {};
@@ -4898,31 +4785,7 @@ class Component extends DCLogic {
       : payCardBase;
     const payUSDTStyle = Object.assign({}, payCardBase, { cursor: "pointer", opacity: .62, background: "#F8FAFC" });
 
-    // --- Índice de Términos y Condiciones (scroll suave por sección) ---
-    const tSecciones = [
-      ["t1", "Aceptación de los términos"],
-      ["t2", "Naturaleza de los productos — uso exclusivo en investigación"],
-      ["t3", "Declaraciones y obligaciones del usuario"],
-      ["t4", "Ausencia de asesoramiento médico"],
-      ["t5", "Registro y cuenta de usuario"],
-      ["t6", "Precios, moneda y pagos"],
-      ["t7", "Envíos"],
-      ["t8", "Derecho de revocación (Botón de arrepentimiento)"],
-      ["t9", "Cambios y devoluciones"],
-      ["t10", "Protección de datos personales"],
-      ["t11", "Propiedad intelectual"],
-      ["t12", "Limitación de responsabilidad"],
-      ["t13", "Modificaciones"],
-      ["t14", "Ley aplicable y jurisdicción"],
-      ["t15", "Contacto"],
-    ];
-    const terminosIndex = tSecciones.map((s, i) => ({
-      n: i + 1, id: s[0], title: s[1],
-      onClick: () => { const el = (typeof document !== "undefined") && document.getElementById(s[0]); if (el) window.scrollTo({ top: el.getBoundingClientRect().top + window.pageYOffset - 84, behavior: "smooth" }); },
-    }));
-
     const acctVals = {
-      terminosIndex,
       // sesión / header
       loggedIn: session, loggedOut: !session,
       userName, userFirst, userInitials: initials,
@@ -4930,7 +4793,7 @@ class Component extends DCLogic {
       logout: this.logout,
       // routing
       isIngresar: page === "ingresar", isCuenta: page === "cuenta", isReset: page === "reset",
-      isTerminos: page === "terminos", isPrivacidad: page === "privacidad",
+      isPrivacidad: page === "privacidad",
       // ingresar
       authTab, isLoginTab: authTab === "login", isRegisterTab: authTab === "register",
       authTabLoginStyle: authTab === "login" ? authTabOn : authTabOff,
