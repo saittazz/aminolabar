@@ -2767,6 +2767,13 @@ class Component extends DCLogic {
       nombresCientificos: ["AOD-9604", "Fragmento hGH 176-191 (Tyr)"],
       descripcion: "Fragmento modificado de la región 176-191 de la hormona de crecimiento, con una tirosina añadida. Estudiado en metabolismo lipídico y quema de grasa, sin efecto sobre la glucemia.",
       compuesto: { tipo: "Fragmento de hGH", cas: "221231-10-3", pesoMolecular: "1815,1 g/mol", aminoacidos: "16", formula: "C78H123N23O23S2" },
+      usos: "Se lo asocia a la quema de grasa sin afectar la glucemia: usuarios lo reportan buscando bajar grasa (sobre todo abdominal) sin el hambre ni el impacto sobre el azúcar de otros compuestos, y valoran que no eleva el IGF-1 como la hormona de crecimiento. Suele mencionarse junto a dieta y entrenamiento.",
+      mecanismo: "Fragmento sintético de la región C-terminal (aminoácidos 176-191) de la hormona de crecimiento humana, con una tirosina añadida en el extremo. Reproduce la actividad lipolítica de la GH (estimula la degradación de grasa y frena su acumulación) sin la porción de la molécula responsable de los efectos sobre el crecimiento y la glucemia. Por eso, a diferencia de la GH completa, en estudios no eleva el IGF-1 ni altera la sensibilidad a la insulina.",
+      evidencia: "La evidencia favorable proviene sobre todo de estudios preclínicos (in vitro y en ratones obesos), donde AOD9604 reduce la masa grasa y estimula el metabolismo lipídico sin afectar la glucemia. En humanos, el desarrollo clínico como fármaco para la obesidad no prosperó: los ensayos no mostraron una pérdida de peso significativamente mayor que placebo y el programa se discontinuó. Su eficacia para bajar de peso en personas no está demostrada.",
+      referencias: [
+        { journal: "Endocrinology", titulo: "The effects of human GH and its lipolytic fragment (AOD9604) on lipid metabolism following chronic treatment in obese mice and beta(3)-AR knock-out mice", anio: "2001", autores: "Heffernan M, et al.", idLabel: "PMID: 11713213", url: "https://pubmed.ncbi.nlm.nih.gov/11713213/" },
+        { journal: "Horm Res", titulo: "Metabolic studies of a synthetic lipolytic domain (AOD9604) of human growth hormone", anio: "2000", autores: "Ng FM, et al.", idLabel: "PMID: 11146367", url: "https://pubmed.ncbi.nlm.nih.gov/11146367/" },
+      ],
     },
 
     // ===== Reparación / recuperación =====
@@ -2817,6 +2824,13 @@ class Component extends DCLogic {
       nombresCientificos: ["Cibinetida", "ARA-290"],
       descripcion: "Péptido de 11 aminoácidos que reproduce la región del receptor innato de reparación de la eritropoyetina, sin efecto eritropoyético. Estudiado en neuropatía, dolor e inflamación.",
       compuesto: { tipo: "Undecapéptido", cas: "1208243-40-0", aminoacidos: "11 (undecapéptido)" },
+      usos: "Se lo asocia a dolor neuropático e inflamación: usuarios lo reportan para molestias de neuropatía (ardor, hormigueo, dolor en manos y pies) y cuadros inflamatorios, buscando el efecto reparador de la vía de la eritropoyetina pero sin el aumento de glóbulos rojos.",
+      mecanismo: "Péptido de 11 aminoácidos que reproduce la región de la eritropoyetina (EPO) que activa el 'receptor innato de reparación' (un complejo del receptor de EPO con el receptor beta-común), sin activar el receptor clásico que estimula la producción de glóbulos rojos. Por esa vía modula la respuesta inmune e inflamatoria y favorece la reparación de tejidos y de fibras nerviosas, sin el efecto eritropoyético (y su riesgo trombótico) de la EPO.",
+      evidencia: "Tiene desarrollo clínico real en fase temprana. Ensayos aleatorizados controlados en personas con neuropatía de fibra fina (asociada a sarcoidosis y a diabetes tipo 2) mostraron mejoras en síntomas neuropáticos y en algunos marcadores metabólicos, con buena tolerancia y sin elevar la hemoglobina. Son estudios pequeños y de corto plazo: la evidencia es prometedora pero preliminar, y no está aprobado por ANMAT ni por otras agencias para uso clínico.",
+      referencias: [
+        { journal: "Mol Med", titulo: "Safety and efficacy of ARA 290 in sarcoidosis patients with symptoms of small fiber neuropathy: a randomized, double-blind pilot study", anio: "2012", autores: "Heij L, et al.", idLabel: "PMID: 23168581", url: "https://pubmed.ncbi.nlm.nih.gov/23168581/" },
+        { journal: "Mol Med", titulo: "ARA 290, a nonerythropoietic peptide engineered from erythropoietin, improves metabolic control and neuropathic symptoms in patients with type 2 diabetes", anio: "2015", autores: "Brines M, et al.", idLabel: "PMID: 25387363", url: "https://pubmed.ncbi.nlm.nih.gov/25387363/" },
+      ],
     },
 
     // ===== Secretagogos de GH (GHRH / GHRP) =====
@@ -2913,12 +2927,27 @@ class Component extends DCLogic {
       nombresCientificos: ["Epithalon", "Epitalón", "Ala-Glu-Asp-Gly"],
       descripcion: "Tetrapéptido sintético derivado de la epitalamina pineal. Estudiado por su efecto sobre la telomerasa, el ritmo circadiano y la longevidad; se usa en ciclos.",
       compuesto: { tipo: "Tetrapéptido", cas: "307297-39-8", pesoMolecular: "390,35 g/mol", aminoacidos: "4 (tetrapéptido)", secuencia: "Ala-Glu-Asp-Gly", formula: "C14H22N4O9" },
+      usos: "Se lo asocia a longevidad y antienvejecimiento: usuarios lo usan en ciclos buscando mejor sueño, regular el ritmo circadiano y un efecto 'antiedad' ligado a la idea de proteger los telómeros. Es popular en protocolos de biohacking.",
+      mecanismo: "Tetrapéptido sintético (Ala-Glu-Asp-Gly) derivado de la epitalamina, un extracto de la glándula pineal. Se propone que actúa como bioregulador: en estudios de laboratorio se asoció a un aumento de la actividad de la telomerasa (la enzima que mantiene los telómeros) y a la regulación de la función pineal y la producción de melatonina, lo que explicaría los efectos reportados sobre el ritmo de sueño. Su mecanismo molecular fino no está del todo aclarado.",
+      evidencia: "La evidencia es sobre todo preclínica y proviene en gran parte de un mismo grupo de investigación (Khavinson y colaboradores, en Rusia): en cultivos celulares se describió activación de telomerasa y elongación de telómeros, y en animales, efectos sobre marcadores de envejecimiento y vida media. Faltan ensayos clínicos independientes, aleatorizados y replicados en humanos. Los datos de longevidad deben leerse con cautela: su eficacia y seguridad en personas no están establecidas.",
+      referencias: [
+        { journal: "Bull Exp Biol Med", titulo: "Epithalon peptide induces telomerase activity and telomere elongation in human somatic cells", anio: "2003", autores: "Khavinson VKh, et al.", idLabel: "PMID: 12937682", url: "https://pubmed.ncbi.nlm.nih.gov/12937682/" },
+        { journal: "Ross Fiziol Zh Im I M Sechenova", titulo: "Effect of pineal peptide on parameters of the biological age and life span in mice", anio: "2001", autores: "Anisimov VN, et al.", idLabel: "PMID: 11227856", url: "https://pubmed.ncbi.nlm.nih.gov/11227856/" },
+        { journal: "Bull Exp Biol Med", titulo: "Peptide promotes overcoming of the division limit in human somatic cells", anio: "2004", autores: "Khavinson VKh, et al.", idLabel: "PMID: 15455129", url: "https://pubmed.ncbi.nlm.nih.gov/15455129/" },
+      ],
     },
     "dsip": {
       subtitulo: "Péptido inductor del sueño delta",
       nombresCientificos: ["Delta Sleep-Inducing Peptide", "DSIP"],
       descripcion: "Nonapéptido asociado a la regulación del sueño profundo (ondas delta), el estrés y el ritmo circadiano.",
       compuesto: { tipo: "Nonapéptido", cas: "62568-57-4", pesoMolecular: "848,81 g/mol", aminoacidos: "9 (nonapéptido)", secuencia: "Trp-Ala-Gly-Gly-Asp-Ala-Ser-Gly-Glu", formula: "C35H48N10O15" },
+      usos: "Se lo asocia a mejorar el sueño y a bajar el estrés: usuarios lo reportan buscando dormir más profundo, regular el ritmo de sueño/vigilia y una sensación de calma, a veces también para dolor crónico. Los reportes son muy variables entre personas.",
+      mecanismo: "Nonapéptido aislado originalmente del cerebro, asociado a la inducción del sueño de ondas lentas (delta). Su mecanismo no está bien establecido: cruza la barrera hematoencefálica y se le atribuyen efectos moduladores sobre varios sistemas (neurotransmisores, eje hormonal del estrés, ritmo circadiano y regulación de la temperatura), más que la unión a un receptor único y definido. Se comporta más como un modulador endógeno que como un hipnótico clásico.",
+      evidencia: "La evidencia es antigua, escasa y heterogénea. La mayoría son estudios de las décadas de 1980-1990, muchos en animales o con muestras chicas en humanos, con resultados inconsistentes sobre el sueño, el estrés y el dolor. No hay ensayos clínicos modernos de buena calidad que respalden su uso, y su farmacología sigue sin estar del todo aclarada. Su eficacia y seguridad en personas no están establecidas.",
+      referencias: [
+        { journal: "Neurosci Biobehav Rev", titulo: "Delta-sleep-inducing peptide (DSIP): a review", anio: "1984", autores: "Graf MV, Kastin AJ", idLabel: "PMID: 6145137", url: "https://pubmed.ncbi.nlm.nih.gov/6145137/" },
+        { journal: "Peptides", titulo: "Delta-sleep-inducing peptide (DSIP): an update", anio: "1986", autores: "Graf MV, Kastin AJ", idLabel: "PMID: 3550726", url: "https://pubmed.ncbi.nlm.nih.gov/3550726/" },
+      ],
     },
 
     // ===== Mitocondriales / metabólicos =====
@@ -2976,6 +3005,14 @@ class Component extends DCLogic {
       nombresCientificos: ["Bremelanotida", "PT-141"],
       descripcion: "Heptapéptido cíclico derivado de la Melanotan-2, agonista de receptores de melanocortina enfocado en la función sexual y la libido, sin la pigmentación marcada de la MT-2.",
       compuesto: { tipo: "Heptapéptido cíclico", cas: "189691-06-3", pesoMolecular: "1025,2 g/mol", aminoacidos: "7 (cíclico)", secuencia: "Ac-Nle-cyclo[Asp-His-D-Phe-Arg-Trp-Lys]", formula: "C50H68N14O10" },
+      usos: "Se lo asocia a la libido y la función sexual, en hombres y mujeres: usuarios lo reportan por aumento del deseo y mejor respuesta sexual, a diferencia de otros compuestos que actúan solo sobre el flujo sanguíneo. El efecto adverso más comentado son las náuseas y el rubor, sobre todo al inicio.",
+      mecanismo: "Heptapéptido cíclico derivado de la Melanotan-2, agonista de los receptores de melanocortina (sobre todo MC4R y MC3R) del sistema nervioso central. A diferencia de los inhibidores de la PDE5 (como el sildenafil), que actúan a nivel vascular, el PT-141 actúa a nivel central sobre las vías cerebrales del deseo y la excitación sexual. Deriva de la MT-2 pero está enfocado en la función sexual, con mucho menor efecto sobre la pigmentación.",
+      evidencia: "Tiene evidencia clínica sólida. En su forma farmacéutica (bremelanotida) está aprobada por la FDA de EE. UU. (no por ANMAT) para el trastorno del deseo sexual hipoactivo (HSDD) en mujeres premenopáusicas, con dos ensayos fase 3 (estudios RECONNECT) que mostraron aumentos significativos del deseo y menor malestar frente a placebo. También hay estudios más antiguos en disfunción eréctil masculina. Los efectos adversos frecuentes son náuseas, rubor y cefalea; el uso fuera de la indicación aprobada no tiene el mismo respaldo.",
+      referencias: [
+        { journal: "Obstet Gynecol", titulo: "Bremelanotide for the Treatment of Hypoactive Sexual Desire Disorder: Two Randomized Phase 3 Trials", anio: "2019", autores: "Kingsberg SA, et al.", idLabel: "PMID: 31599840", url: "https://pubmed.ncbi.nlm.nih.gov/31599840/" },
+        { journal: "Int J Impot Res", titulo: "Double-blind, placebo-controlled evaluation of the safety, pharmacokinetic properties and pharmacodynamic effects of intranasal PT-141 in men with erectile dysfunction", anio: "2004", autores: "Diamond LE, et al.", idLabel: "PMID: 14963471", url: "https://pubmed.ncbi.nlm.nih.gov/14963471/" },
+        { journal: "Ann N Y Acad Sci", titulo: "PT-141: a melanocortin agonist for the treatment of sexual dysfunction", anio: "2003", autores: "Molinoff PB, et al.", idLabel: "PMID: 12851303", url: "https://pubmed.ncbi.nlm.nih.gov/12851303/" },
+      ],
     },
     "melanotan-1": {
       subtitulo: "Análogo de α-MSH · pigmentación",
@@ -3001,6 +3038,13 @@ class Component extends DCLogic {
       usosDetalle: "La MT-2 es más potente y menos selectiva que la MT-1: broncea con dosis más bajas pero suma efectos sobre libido y apetito, con más efectos secundarios (náusea inicial, rubor, oscurecimiento de lunares). La MT-1 (afamelanotida) es más selectiva a la pigmentación, con un bronceado más parejo y un perfil más limpio. Dato aparte: el PT-141 (bremelanotida) deriva de la MT-2 pero está enfocado solo en la libido, sin el efecto bronceador.",
       descripcion: "Análogo cíclico de melanocortina más potente que la MT-1. Estudiado por su efecto sobre la pigmentación, con acción adicional sobre libido y apetito.",
       compuesto: { tipo: "Heptapéptido cíclico", cas: "121062-08-6", pesoMolecular: "1024,18 g/mol", aminoacidos: "7 (cíclico)", formula: "C50H69N15O9" },
+      mecanismo: "Análogo cíclico sintético de la α-MSH, agonista no selectivo de varios receptores de melanocortina (MC1R, MC3R, MC4R). Sobre el MC1R de los melanocitos estimula la producción de eumelanina (pigmentación/bronceado sin sol); sobre los receptores centrales MC3R/MC4R modula el apetito y las vías del deseo sexual, lo que explica sus efectos extra sobre libido y saciedad. Es más potente y menos selectiva que la Melanotan-1, de ahí que sume más efectos (y más efectos adversos).",
+      evidencia: "La evidencia clínica es limitada y proviene de estudios pequeños y antiguos: ensayos fase I mostraron que induce bronceado con poca exposición solar y observaron efectos sobre la erección y el deseo sexual (línea que derivó en el desarrollo del PT-141). No está aprobada por ninguna agencia para uso estético; su uso para broncearse no tiene datos de seguridad a largo plazo y las agencias sanitarias han advertido sobre riesgos (náuseas, cambios en lunares, efectos cardiovasculares y priapismo). Su perfil de seguridad no está bien caracterizado.",
+      referencias: [
+        { journal: "J Urol", titulo: "Synthetic melanotropic peptide initiates erections in men with psychogenic erectile dysfunction: a double-blind, placebo controlled crossover study", anio: "1998", autores: "Wessells H, et al.", idLabel: "PMID: 9679884", url: "https://pubmed.ncbi.nlm.nih.gov/9679884/" },
+        { journal: "Urology", titulo: "Effect of an alpha-melanocyte stimulating hormone analog on penile erection and sexual desire in men with organic erectile dysfunction", anio: "2000", autores: "Wessells H, et al.", idLabel: "PMID: 11018622", url: "https://pubmed.ncbi.nlm.nih.gov/11018622/" },
+        { journal: "Life Sci", titulo: "Evaluation of melanotan-II, a superpotent cyclic melanotropic peptide in a pilot phase-I clinical study", anio: "1996", autores: "Dorr RT, et al.", idLabel: "PMID: 8637402", url: "https://pubmed.ncbi.nlm.nih.gov/8637402/" },
+      ],
     },
     "kisspeptin": {
       subtitulo: "Eje reproductivo",
@@ -3048,12 +3092,25 @@ class Component extends DCLogic {
       nombresCientificos: ["Dinucleótido de nicotinamida y adenina", "NAD+"],
       descripcion: "Coenzima central en el metabolismo energético y las reacciones redox celulares. Estudiada por su rol en la producción de energía y la longevidad; no es un péptido.",
       compuesto: { tipo: "Coenzima (dinucleótido)", cas: "53-84-9", pesoMolecular: "663,43 g/mol", formula: "C21H27N7O14P2" },
+      usos: "Se lo asocia a energía, recuperación y longevidad: usuarios lo reportan buscando más energía, combatir la fatiga, apoyo cognitivo y un efecto antienvejecimiento. La vía intravenosa es la más comentada, buscando subir los niveles directamente.",
+      mecanismo: "Coenzima (dinucleótido de nicotinamida y adenina) presente en todas las células, central en el metabolismo energético: transporta electrones en la producción de ATP en la mitocondria y es sustrato de enzimas clave como las sirtuinas y las PARP, ligadas a la reparación del ADN y a la regulación del envejecimiento celular. Los niveles de NAD+ caen con la edad, y de ahí el interés en reponerlo o en aportar sus precursores (NR, NMN). No es un péptido.",
+      evidencia: "La biología del NAD+ está muy bien caracterizada, pero su uso como suplemento es otra historia. En animales, subir el NAD+ o dar precursores mejora marcadores metabólicos y de envejecimiento. En humanos, los ensayos con precursores (NR, NMN) muestran que elevan el NAD+ de forma segura, pero los beneficios clínicos concretos siguen siendo modestos e inconsistentes. La evidencia del NAD+ inyectable directo es aún más limitada. Su eficacia como suplemento sigue en estudio.",
+      referencias: [
+        { journal: "Cell Metab", titulo: "Therapeutic Potential of NAD-Boosting Molecules: The In Vivo Evidence", anio: "2018", autores: "Rajman L, Chwalek K, Sinclair DA", idLabel: "PMID: 29514064", url: "https://pubmed.ncbi.nlm.nih.gov/29514064/" },
+        { journal: "Science", titulo: "NAD+ in aging, metabolism, and neurodegeneration", anio: "2015", autores: "Verdin E", idLabel: "PMID: 26785480", url: "https://pubmed.ncbi.nlm.nih.gov/26785480/" },
+      ],
     },
     "foxo4-dri": {
       subtitulo: "Péptido senolítico (retro-inverso)",
       nombresCientificos: ["FOXO4-DRI", "FOXO4 D-Retro-Inverso"],
       descripcion: "Péptido retro-inverso (aminoácidos D) derivado de FOXO4, diseñado para interferir la interacción FOXO4-p53. Estudiado como senolítico para eliminar células senescentes.",
       compuesto: { tipo: "Péptido retro-inverso (D-aminoácidos)" },
+      usos: "Se lo asocia a la longevidad y al 'antienvejecimiento celular': usuarios lo usan en el marco del biohacking buscando eliminar células senescentes (células viejas que dejaron de dividirse pero siguen generando inflamación), con la idea de mejorar la salud de los tejidos. Es de uso muy experimental.",
+      mecanismo: "Péptido retro-inverso (construido con D-aminoácidos para resistir la degradación) diseñado a partir de la proteína FOXO4. Actúa como senolítico: interfiere la interacción entre FOXO4 y la proteína p53 dentro de las células senescentes. Al bloquear esa unión se libera p53 y se dispara la apoptosis (muerte celular programada) de forma selectiva en las células senescentes, sin afectar a las células sanas.",
+      evidencia: "La evidencia es exclusivamente preclínica y se apoya en gran medida en un estudio fundacional (Baar y col., Cell 2017): en ratones, el FOXO4-DRI eliminó células senescentes y mejoró marcadores de función renal, pelaje y resistencia física asociados al envejecimiento y a la toxicidad por quimioterapia. No hay ensayos clínicos en humanos: su eficacia y su seguridad en personas son desconocidas. Es un compuesto de investigación en etapa muy temprana.",
+      referencias: [
+        { journal: "Cell", titulo: "Targeted Apoptosis of Senescent Cells Restores Tissue Homeostasis in Response to Chemotoxicity and Aging", anio: "2017", autores: "Baar MP, et al.", idLabel: "PMID: 28340339", url: "https://pubmed.ncbi.nlm.nih.gov/28340339/" },
+      ],
     },
 
     // ===== Cobre-péptidos / cosméticos (materia prima) =====
@@ -3096,6 +3153,9 @@ class Component extends DCLogic {
       nombresCientificos: ["Adamax"],
       descripcion: "Péptido nootrópico de investigación, relacionado a la familia de la Semax. Los datos públicos sobre su estructura son limitados.",
       compuesto: { tipo: "Péptido de investigación" },
+      usos: "Se lo asocia al foco y la cognición, en la línea de la familia de la Semax: usuarios lo reportan buscando claridad mental y concentración. Los reportes son escasos y muy variables.",
+      mecanismo: "Péptido nootrópico de investigación emparentado con la familia de la Semax (fragmentos peptídicos de tipo ACTH/melanocortina). La información pública sobre su estructura exacta y su mecanismo es muy limitada; por analogía con esa familia se le atribuye una acción neuromoduladora sobre sistemas de neurotrofinas, pero no está caracterizado en detalle.",
+      evidencia: "Prácticamente no hay evidencia científica publicada: no se encuentran estudios preclínicos ni clínicos revisados por pares que respalden su uso, ni datos de seguridad. Todo lo que circula es experiencia anecdótica. Es un compuesto de investigación sin caracterizar; su eficacia y seguridad son desconocidas.",
     },
 
     // ===== Blends (combinaciones; sin identidad molecular única) =====
