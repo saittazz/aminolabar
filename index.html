@@ -944,7 +944,7 @@ input{font:inherit}
                     <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:rgba(47,168,224,.16);font-size:19px;line-height:1">🎚️</span>
                     <div>
                       <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#fff;letter-spacing:-.01em">Calculadora de dosis</div>
-                      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7FA8D0">Jeringa U-100 · en tiempo real</div>
+                      <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7FA8D0">Jeringa {{ calc.syrLabel }} · en tiempo real</div>
                     </div>
                   </div>
 
@@ -973,6 +973,19 @@ input{font:inherit}
                     </div>
                   </div>
 
+                  <!-- selector de jeringa -->
+                  <div style="margin-bottom:20px">
+                    <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px">
+                      <span style="font-family:'Poppins',sans-serif;font-size:13px;color:#B9CEE6">Tipo de jeringa</span>
+                      <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;color:#7FA8D0">{{ calc.tickReadText }}</span>
+                    </div>
+                    <div style="display:flex;flex-wrap:wrap;gap:8px">
+                      <button onClick="{{ calcSyr05 }}" style="{{ calc.syrStyle05 }}"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;color:#fff">0,5 ml</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#9FC4E6">50 UI · 1 u/rayita</span></button>
+                      <button onClick="{{ calcSyr1_100 }}" style="{{ calc.syrStyle1_100 }}"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;color:#fff">1 ml</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#9FC4E6">100 UI · 1 u/rayita</span></button>
+                      <button onClick="{{ calcSyr1_50 }}" style="{{ calc.syrStyle1_50 }}"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;color:#fff">1 ml</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#9FC4E6">50 UI · 2 u/rayita</span></button>
+                    </div>
+                  </div>
+
                   <!-- jeringa -->
                   <div style="display:flex;align-items:center;padding:6px 0 2px">
                     <!-- flange (apoyo del pulgar) -->
@@ -988,7 +1001,7 @@ input{font:inherit}
                         <!-- varilla del émbolo (estática, detrás) -->
                         <div style="position:absolute;top:50%;left:2px;right:8px;height:6px;transform:translateY(-50%);background:linear-gradient(180deg,#cdd8e4,#8195aa);border-radius:3px;opacity:.45"></div>
                         <!-- marcas de graduación -->
-                        <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent 0,transparent 9.85%,rgba(255,255,255,.28) 9.9%,rgba(255,255,255,.28) 10%,transparent 10.05%);pointer-events:none"></div>
+                        <div style="position:absolute;inset:0;{{ calc.tickGrad }};pointer-events:none"></div>
                         <!-- líquido (anclado del lado de la aguja) -->
                         <div class="pcalc-liquid" style="position:absolute;top:0;bottom:0;right:0;{{ calc.fillStyle }};background:linear-gradient(180deg,#6fd0fb 0%,#2FA8E0 45%,#0E5FB5 100%);box-shadow:0 0 22px 3px rgba(47,168,224,.55);border-radius:5px 4px 4px 5px">
                           <div class="pcalc-glow" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.45),transparent 55%);pointer-events:none"></div>
@@ -998,7 +1011,7 @@ input{font:inherit}
                         <div class="pcalc-stopper" style="position:absolute;top:0;bottom:0;transform:translateX(50%);{{ calc.stopperStyle }};width:9px;background:linear-gradient(180deg,#28405c,#0b1b2e);border-radius:2px;box-shadow:-2px 0 5px rgba(0,0,0,.4),inset 1px 0 0 rgba(255,255,255,.18)"></div>
                       </div>
                       <!-- escala -->
-                      <div style="position:absolute;left:0;right:0;top:100%;margin-top:7px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6E93BA"><span>{{ calc.barrelMaxText }} UI</span><span>{{ calc.barrelMidText }}</span><span>0</span></div>
+                      <div style="position:absolute;left:0;right:0;top:100%;height:20px;margin-top:6px;pointer-events:none"><sc-for list="{{ calc.ticks }}" as="t" hint-placeholder-count="11"><div style="position:absolute;top:0;{{ t.leftStyle }};transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px"><span style="width:1px;height:5px;background:rgba(255,255,255,.45)"></span><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#7FA6CC">{{ t.label }}</span></div></sc-for></div>
                     </div>
                     <!-- cuello + aguja -->
                     <div style="width:9px;height:14px;background:linear-gradient(180deg,#b9c8d8,#7c91a6);flex-shrink:0;clip-path:polygon(0 20%,100% 40%,100% 60%,0 80%)"></div>
@@ -1018,7 +1031,7 @@ input{font:inherit}
                     <div style="position:relative;border:1px solid rgba(47,168,224,.5);background:linear-gradient(135deg,rgba(47,168,224,.22),rgba(14,95,181,.14));border-radius:13px;padding:15px 17px;overflow:hidden">
                       <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#AFD6F2;margin-bottom:7px">Tenés que pinchar</div>
                       <sc-if value="{{ calc.hasResult }}" hint-placeholder-val="{{ true }}">
-                        <div style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:26px;color:#fff;line-height:1;text-shadow:0 0 18px rgba(47,168,224,.7)">{{ calc.unitsText }} <span style="font-size:14px;font-weight:600;color:#BFE0F8">unidades</span></div>
+                        <div style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:26px;color:#fff;line-height:1;text-shadow:0 0 18px rgba(47,168,224,.7)">{{ calc.unitsText }} <span style="font-size:14px;font-weight:600;color:#BFE0F8">unidades</span></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#AFD6F2;margin-top:6px">{{ calc.rayitaText }}</div>
                       </sc-if>
                       <sc-if value="{{ calc.overflow }}" hint-placeholder-val="{{ false }}">
                         <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;color:#FFD9A6;line-height:1.25">No entra en una jeringa</div>
@@ -1027,7 +1040,7 @@ input{font:inherit}
                   </div>
 
                   <sc-if value="{{ calc.overflow }}" hint-placeholder-val="{{ false }}">
-                    <div style="margin-top:14px;border:1px solid rgba(255,200,120,.35);background:rgba(255,180,90,.1);border-radius:11px;padding:13px 16px;display:flex;gap:11px;align-items:flex-start"><span style="flex-shrink:0;font-size:16px;line-height:1.3">⚠️</span><p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.55;color:#F3D3A6">La dosis supera las 100 unidades de una jeringa U-100. Reconstituí con menos agua (solución más concentrada) o dividí la aplicación.</p></div>
+                    <div style="margin-top:14px;border:1px solid rgba(255,200,120,.35);background:rgba(255,180,90,.1);border-radius:11px;padding:13px 16px;display:flex;gap:11px;align-items:flex-start"><span style="flex-shrink:0;font-size:16px;line-height:1.3">⚠️</span><p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.55;color:#F3D3A6">{{ calc.overflowText }}</p></div>
                   </sc-if>
 
                   <p style="margin-top:18px;font-family:'Poppins',sans-serif;font-size:11.5px;line-height:1.55;color:#6E8DAD">Valores de referencia para investigación. No es una indicación de dosis: la elección de dosis excede a esta herramienta.</p>
@@ -1088,7 +1101,7 @@ input{font:inherit}
                 <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:rgba(47,168,224,.16);font-size:19px;line-height:1">🎚️</span>
                 <div>
                   <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:17px;color:#fff;letter-spacing:-.01em">Calculadora de dosis</div>
-                  <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7FA8D0">Jeringa U-100 · en tiempo real</div>
+                  <div style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:#7FA8D0">Jeringa {{ calc.syrLabel }} · en tiempo real</div>
                 </div>
               </div>
 
@@ -1117,6 +1130,19 @@ input{font:inherit}
                 </div>
               </div>
 
+              <!-- selector de jeringa -->
+              <div style="margin-bottom:20px">
+                <div style="display:flex;align-items:center;justify-content:space-between;gap:8px;margin-bottom:9px">
+                  <span style="font-family:'Poppins',sans-serif;font-size:13px;color:#B9CEE6">Tipo de jeringa</span>
+                  <span style="font-family:'IBM Plex Mono',monospace;font-size:10.5px;letter-spacing:.04em;color:#7FA8D0">{{ calc.tickReadText }}</span>
+                </div>
+                <div style="display:flex;flex-wrap:wrap;gap:8px">
+                  <button onClick="{{ calcSyr05 }}" style="{{ calc.syrStyle05 }}"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;color:#fff">0,5 ml</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#9FC4E6">50 UI · 1 u/rayita</span></button>
+                  <button onClick="{{ calcSyr1_100 }}" style="{{ calc.syrStyle1_100 }}"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;color:#fff">1 ml</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#9FC4E6">100 UI · 1 u/rayita</span></button>
+                  <button onClick="{{ calcSyr1_50 }}" style="{{ calc.syrStyle1_50 }}"><span style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:13.5px;color:#fff">1 ml</span><span style="font-family:'IBM Plex Mono',monospace;font-size:9.5px;color:#9FC4E6">50 UI · 2 u/rayita</span></button>
+                </div>
+              </div>
+
               <!-- jeringa -->
               <div style="display:flex;align-items:center;padding:6px 0 2px">
                 <div style="width:7px;height:52px;border-radius:3px;background:linear-gradient(180deg,#cfe0f2,#8ba6c1);flex-shrink:0;box-shadow:0 2px 6px rgba(0,0,0,.4)"></div>
@@ -1126,14 +1152,14 @@ input{font:inherit}
                   </sc-if>
                   <div style="position:relative;height:50px;border-radius:9px 4px 4px 9px;overflow:hidden;background:linear-gradient(180deg,rgba(255,255,255,.17),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.24);box-shadow:inset 0 1px 0 rgba(255,255,255,.4),inset 0 -9px 18px rgba(0,0,0,.34)">
                     <div style="position:absolute;top:50%;left:2px;right:8px;height:6px;transform:translateY(-50%);background:linear-gradient(180deg,#cdd8e4,#8195aa);border-radius:3px;opacity:.45"></div>
-                    <div style="position:absolute;inset:0;background-image:repeating-linear-gradient(90deg,transparent 0,transparent 9.85%,rgba(255,255,255,.28) 9.9%,rgba(255,255,255,.28) 10%,transparent 10.05%);pointer-events:none"></div>
+                    <div style="position:absolute;inset:0;{{ calc.tickGrad }};pointer-events:none"></div>
                     <div class="pcalc-liquid" style="position:absolute;top:0;bottom:0;right:0;{{ calc.fillStyle }};background:linear-gradient(180deg,#6fd0fb 0%,#2FA8E0 45%,#0E5FB5 100%);box-shadow:0 0 22px 3px rgba(47,168,224,.55);border-radius:5px 4px 4px 5px">
                       <div class="pcalc-glow" style="position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,255,255,.45),transparent 55%);pointer-events:none"></div>
                       <div style="position:absolute;top:0;bottom:0;left:0;width:34px;overflow:hidden;pointer-events:none"><div class="pcalc-shimmer" style="position:absolute;top:-10%;left:0;width:16px;height:120%;background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent)"></div></div>
                     </div>
                     <div class="pcalc-stopper" style="position:absolute;top:0;bottom:0;transform:translateX(50%);{{ calc.stopperStyle }};width:9px;background:linear-gradient(180deg,#28405c,#0b1b2e);border-radius:2px;box-shadow:-2px 0 5px rgba(0,0,0,.4),inset 1px 0 0 rgba(255,255,255,.18)"></div>
                   </div>
-                  <div style="position:absolute;left:0;right:0;top:100%;margin-top:7px;display:flex;justify-content:space-between;font-family:'IBM Plex Mono',monospace;font-size:10px;color:#6E93BA"><span>{{ calc.barrelMaxText }} UI</span><span>{{ calc.barrelMidText }}</span><span>0</span></div>
+                  <div style="position:absolute;left:0;right:0;top:100%;height:20px;margin-top:6px;pointer-events:none"><sc-for list="{{ calc.ticks }}" as="t" hint-placeholder-count="11"><div style="position:absolute;top:0;{{ t.leftStyle }};transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:2px"><span style="width:1px;height:5px;background:rgba(255,255,255,.45)"></span><span style="font-family:'IBM Plex Mono',monospace;font-size:9px;color:#7FA6CC">{{ t.label }}</span></div></sc-for></div>
                 </div>
                 <div style="width:9px;height:14px;background:linear-gradient(180deg,#b9c8d8,#7c91a6);flex-shrink:0;clip-path:polygon(0 20%,100% 40%,100% 60%,0 80%)"></div>
                 <div style="width:38px;height:3px;background:linear-gradient(90deg,#cdd9e6,#7488a0);border-radius:2px;flex-shrink:0"></div>
@@ -1152,7 +1178,7 @@ input{font:inherit}
                 <div style="position:relative;border:1px solid rgba(47,168,224,.5);background:linear-gradient(135deg,rgba(47,168,224,.22),rgba(14,95,181,.14));border-radius:13px;padding:15px 17px;overflow:hidden">
                   <div style="font-family:'IBM Plex Mono',monospace;font-size:10px;letter-spacing:.08em;text-transform:uppercase;color:#AFD6F2;margin-bottom:7px">Tenés que pinchar</div>
                   <sc-if value="{{ calc.hasResult }}" hint-placeholder-val="{{ true }}">
-                    <div style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:26px;color:#fff;line-height:1;text-shadow:0 0 18px rgba(47,168,224,.7)">{{ calc.unitsText }} <span style="font-size:14px;font-weight:600;color:#BFE0F8">unidades</span></div>
+                    <div style="font-family:'Anek Latin',sans-serif;font-weight:800;font-size:26px;color:#fff;line-height:1;text-shadow:0 0 18px rgba(47,168,224,.7)">{{ calc.unitsText }} <span style="font-size:14px;font-weight:600;color:#BFE0F8">unidades</span></div><div style="font-family:'IBM Plex Mono',monospace;font-size:11px;color:#AFD6F2;margin-top:6px">{{ calc.rayitaText }}</div>
                   </sc-if>
                   <sc-if value="{{ calc.overflow }}" hint-placeholder-val="{{ false }}">
                     <div style="font-family:'Anek Latin',sans-serif;font-weight:700;font-size:15px;color:#FFD9A6;line-height:1.25">No entra en una jeringa</div>
@@ -1161,7 +1187,7 @@ input{font:inherit}
               </div>
 
               <sc-if value="{{ calc.overflow }}" hint-placeholder-val="{{ false }}">
-                <div style="margin-top:14px;border:1px solid rgba(255,200,120,.35);background:rgba(255,180,90,.1);border-radius:11px;padding:13px 16px;display:flex;gap:11px;align-items:flex-start"><span style="flex-shrink:0;font-size:16px;line-height:1.3">⚠️</span><p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.55;color:#F3D3A6">La dosis supera las 100 unidades de una jeringa U-100. Reconstituí con menos agua (solución más concentrada) o dividí la aplicación.</p></div>
+                <div style="margin-top:14px;border:1px solid rgba(255,200,120,.35);background:rgba(255,180,90,.1);border-radius:11px;padding:13px 16px;display:flex;gap:11px;align-items:flex-start"><span style="flex-shrink:0;font-size:16px;line-height:1.3">⚠️</span><p style="font-family:'Poppins',sans-serif;font-size:12.5px;line-height:1.55;color:#F3D3A6">{{ calc.overflowText }}</p></div>
               </sc-if>
 
               <p style="margin-top:18px;font-family:'Poppins',sans-serif;font-size:11.5px;line-height:1.55;color:#6E8DAD">Valores de referencia para investigación. No es una indicación de dosis: la elección de dosis excede a esta herramienta.</p>
@@ -1175,6 +1201,7 @@ input{font:inherit}
               <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;margin-top:7px;width:7px;height:7px;border-radius:50%;background:#0E5FB5"></span><p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#3A4855">Los mg del vial se pasan a microgramos (×1000) y se reparten en el agua que le agregás: eso da los <strong style="color:#0B2440">mcg por ml</strong>.</p></div>
               <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;margin-top:7px;width:7px;height:7px;border-radius:50%;background:#0E5FB5"></span><p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#3A4855">Una jeringa U-100 tiene 100 unidades por ml, así que los mcg/ml ÷ 100 dan los <strong style="color:#0B2440">mcg por unidad</strong>.</p></div>
               <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;margin-top:7px;width:7px;height:7px;border-radius:50%;background:#0E5FB5"></span><p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#3A4855">La dosis que buscás ÷ los mcg por unidad da las <strong style="color:#0B2440">unidades que pinchás</strong>. Más agua = solución más diluida = más unidades (más fácil de medir dosis chicas).</p></div>
+              <div style="display:flex;gap:12px;align-items:flex-start"><span style="flex-shrink:0;margin-top:7px;width:7px;height:7px;border-radius:50%;background:#0E5FB5"></span><p style="font-family:'Poppins',sans-serif;font-size:14.5px;line-height:1.6;color:#3A4855">Las unidades a pinchar son las mismas en cualquier jeringa U-100. Lo que cambia es cuánto entra (la de 0,5 ml llena a las 50) y cuánto vale cada rayita: en la de <strong style="color:#0B2440">1 ml · 50 UI cada rayita son 2 unidades</strong>, así que la 5ª rayita es 10, no 5. Elegí tu jeringa arriba y la calculadora te dice a qué rayita ir.</p></div>
             </div>
             <a href="#/guia/dosis" style="margin-top:18px;display:inline-flex;align-items:center;gap:8px;font-family:'Anek Latin',sans-serif;font-weight:600;font-size:14px;color:#0E5FB5;text-decoration:none" style-hover="text-decoration:underline">Leer la guía completa con ejemplos <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"></path></svg></a>
           </div>
@@ -2508,12 +2535,16 @@ class Component extends DCLogic {
       bloques: [
         { t: "h", x: "Qué jeringa usar", icon: "💉" },
         { t: "p", x: "El estándar es la jeringa de insulina U-100: tiene 100 unidades (UI) por cada mililitro. Vienen en distintos volúmenes y todas sirven mientras sean U-100." },
-        { t: "tabla", head: ["Jeringa", "Capacidad", "Ideal para"], rows: [
-          ["1 ml", "100 UI", "Dosis grandes o varias juntas"],
-          ["0,5 ml", "50 UI", "Uso general, buen equilibrio"],
-          ["0,3 ml", "30 UI", "Dosis chicas, máxima precisión"],
+        { t: "tabla", head: ["Jeringa", "Capacidad total", "Cada rayita vale"], rows: [
+          ["1 ml · 100 UI", "100 unidades (1 ml)", "1 unidad"],
+          ["1 ml · 50 UI", "100 unidades (1 ml)", "2 unidades"],
+          ["0,5 ml · 50 UI", "50 unidades (0,5 ml)", "1 unidad"],
+          ["0,3 ml · 30 UI", "30 unidades (0,3 ml)", "1 unidad"],
         ] },
         { t: "p", x: "La aguja típica es fina y corta: 29 a 31 G, de 8 mm (5/16\"). Cuanto más chica la jeringa, más separadas quedan las rayitas y más fácil es medir dosis pequeñas con exactitud." },
+        { t: "h", x: "Ojo: las dos jeringas de 1 ml no se leen igual", icon: "⚠️" },
+        { t: "p", x: "Hay dos jeringas de 1 ml y las dos entran 1 ml (100 unidades), pero se grabaron distinto. La de 100 UI trae 100 rayitas: cada rayita es 1 unidad, se lee directo. La de 50 UI trae solo 50 rayitas: cada rayita vale 2 unidades. La capacidad es la misma; lo que cambia es cuánto suma cada rayita." },
+        { t: "nota", v: "warn", titulo: "El error clásico de la jeringa de 50 UI", x: "En la de 1 ml · 50 UI contás 5 rayitas pensando que son 5 unidades, pero cuando mirás los números impresos, la 5ª rayita dice 10. Cada rayita son 2 unidades: para 10 unidades vas a la 5ª rayita, para 20 a la 10ª. Fijate siempre en los números grabados, no cuentes rayitas a ojo. En la calculadora, elegí tu jeringa arriba y te dice a qué rayita ir." },
         { t: "h", x: "Subcutánea (SubQ) vs intramuscular (IM)", icon: "📍" },
         { t: "p", x: "La vía subcutánea (SubQ) es la más común para la mayoría de los péptidos: llega al tejido graso justo debajo de la piel. Se hace un pellizco en el abdomen (a los costados del ombligo), el muslo o el flanco, con la aguja en un ángulo de 45 a 90°." },
         { t: "p", x: "La vía intramuscular (IM) llega al músculo y se reserva para casos puntuales; requiere una aguja más larga." },
@@ -3306,7 +3337,7 @@ class Component extends DCLogic {
     alertaEmail: "", alertaBusy: false, alertaOk: {}, // { productoId: true } avisos pedidos en esta sesión
     alertaModalId: "",     // producto del modal "Notificarme" abierto desde una card ("" = cerrado)
     // calculadora de dosis (guía #/guia/dosis)
-    calcMg: "5", calcMl: "2", calcDose: "250",
+    calcMg: "5", calcMl: "2", calcDose: "250", calcSyr: "1_100",
   };
 
   // =====================================================================
@@ -4340,6 +4371,9 @@ class Component extends DCLogic {
   calcSetMg = (e) => this.setState({ calcMg: e.target.value });
   calcSetMl = (e) => this.setState({ calcMl: e.target.value });
   calcSetDose = (e) => this.setState({ calcDose: e.target.value });
+  calcSyr05 = () => this.setState({ calcSyr: "05" });
+  calcSyr1_100 = () => this.setState({ calcSyr: "1_100" });
+  calcSyr1_50 = () => this.setState({ calcSyr: "1_50" });
   toggleSoloStock = () => this.setState((s) => ({ soloStock: !s.soloStock }));
   toggleMenu = () => this.setState((s) => ({ menuOpen: !s.menuOpen }));
 
@@ -4759,10 +4793,31 @@ class Component extends DCLogic {
     const cMcgMl = cMl > 0 ? (cMg * 1000 / cMl) : 0;
     const cMcgUnit = cMcgMl / 100;
     const cUnits = cMcgUnit > 0 ? (cDose / cMcgUnit) : 0;
-    const cBarrelMax = cUnits > 50 ? 100 : 50;
-    const cFill = Math.max(0, Math.min(100, (cUnits / cBarrelMax) * 100));
-    const cOverflow = cUnits > 100;
+    // ===== Tipo de jeringa: capacidad total y cuanto vale cada rayita =====
+    // Un UI siempre es 1/100 ml, asi que las unidades a pinchar son las mismas en las tres.
+    // Lo que cambia es cuanto entra (0,5 ml = 50 UI) y cuanto vale cada rayita.
+    const SYR = {
+      "05":    { cap: 50,  perTick: 1, major: 5,  ml: "0,5 ml", ui: "50 UI",  label: "0,5 ml · 50 UI" },
+      "1_100": { cap: 100, perTick: 1, major: 10, ml: "1 ml",   ui: "100 UI", label: "1 ml · 100 UI" },
+      "1_50":  { cap: 100, perTick: 2, major: 10, ml: "1 ml",   ui: "50 UI",  label: "1 ml · 50 UI" },
+    };
+    const cSyrKey = SYR[this.state.calcSyr] ? this.state.calcSyr : "1_100";
+    const cSyr = SYR[cSyrKey];
+    const cCap = cSyr.cap;
+    const cFill = Math.max(0, Math.min(100, (cUnits / cCap) * 100));
+    const cOverflow = cUnits > cCap;
+    const cTicksToInject = cSyr.perTick > 0 ? (cUnits / cSyr.perTick) : 0;
+    // rayitas del barril: menores (cada perTick) y mayores (cada major, alineadas con los numeros).
+    // Ambas anclan en 0% (borde del embolo) para que coincidan con la escala numerada.
+    const cMinorPct = 100 / (cCap / cSyr.perTick);
+    const cMajorPct = 100 / (cCap / cSyr.major);
+    const cTickGrad = "background-image:" +
+      "repeating-linear-gradient(90deg,rgba(255,255,255,.55) 0,rgba(255,255,255,.55) 1.4px,transparent 1.4px,transparent " + cMajorPct.toFixed(4) + "%)," +
+      "repeating-linear-gradient(90deg,rgba(255,255,255,.24) 0,rgba(255,255,255,.24) 1px,transparent 1px,transparent " + cMinorPct.toFixed(4) + "%)";
+    const cTicks = [];
+    for (let v = 0; v <= cCap + 0.001; v += cSyr.major) { cTicks.push({ label: String(Math.round(v)), leftStyle: "left:" + (100 - (v / cCap) * 100).toFixed(2) + "%" }); }
     const trackFill = (pct) => { const p = Math.max(0, Math.min(100, pct)).toFixed(1); return "background:linear-gradient(90deg,#2FA8E0 0%,#0E5FB5 " + p + "%,rgba(255,255,255,.14) " + p + "%,rgba(255,255,255,.14) 100%)"; };
+    const syrBtn = (active) => "flex:1 1 96px;cursor:pointer;display:flex;flex-direction:column;align-items:center;gap:1px;padding:9px 8px;border-radius:11px;transition:border-color .15s,background .15s;border:1px solid " + (active ? "rgba(47,168,224,.9)" : "rgba(255,255,255,.14)") + ";background:" + (active ? "linear-gradient(135deg,rgba(47,168,224,.30),rgba(14,95,181,.18))" : "rgba(255,255,255,.05)") + ";box-shadow:" + (active ? "0 6px 18px -8px rgba(47,168,224,.6)" : "none");
     const calc = {
       mg: this.state.calcMg, ml: this.state.calcMl, dose: this.state.calcDose,
       mgText: fmtCalc(cMg), mlText: fmtCalc(cMl), doseText: fmtCalc(cDose),
@@ -4772,7 +4827,16 @@ class Component extends DCLogic {
       fillStyle: "width:" + cFill.toFixed(1) + "%",
       stopperStyle: "right:" + cFill.toFixed(1) + "%",
       bubbleStyle: "right:" + cFill.toFixed(1) + "%",
-      barrelMaxText: String(cBarrelMax), barrelMidText: String(cBarrelMax / 2),
+      tickGrad: cTickGrad, ticks: cTicks,
+      rayitaText: cSyr.perTick > 1
+        ? ("hasta la rayita " + fmtCalc(cTicksToInject) + " · cada rayita = " + cSyr.perTick + " UI")
+        : ("hasta la rayita " + fmtCalc(cTicksToInject)),
+      syrLabel: cSyr.label,
+      tickReadText: cSyr.perTick > 1 ? ("cada rayita = " + cSyr.perTick + " UI") : "cada rayita = 1 UI",
+      overflowText: "La dosis supera las " + cCap + " unidades de esta jeringa (" + cSyr.ml + "). Probá una jeringa más grande, reconstituí con menos agua (solución más concentrada) o dividí la aplicación.",
+      syrStyle05: syrBtn(cSyrKey === "05"),
+      syrStyle1_100: syrBtn(cSyrKey === "1_100"),
+      syrStyle1_50: syrBtn(cSyrKey === "1_50"),
       mgTrack: trackFill((cMg - 1) / 149 * 100),
       mlTrack: trackFill((cMl - 0.5) / 9.5 * 100),
       doseTrack: trackFill((cDose - 25) / 2975 * 100),
@@ -5080,6 +5144,7 @@ class Component extends DCLogic {
       articulosHome: this.buildArticulos(), hasArticulosHome: this.ARTICULOS.length > 0,
       isCalculadora: page === "calculadora",
       calc, calcSetMg: this.calcSetMg, calcSetMl: this.calcSetMl, calcSetDose: this.calcSetDose,
+      calcSyr05: this.calcSyr05, calcSyr1_100: this.calcSyr1_100, calcSyr1_50: this.calcSyr1_50,
       waCalc: this.waConsulta("cómo calcular la dosis de un péptido"),
       isCompact, showFullNav: !isCompact, menuOpen: this.state.menuOpen, toggleMenu: this.toggleMenu,
       navItems, navItemsMobile,
